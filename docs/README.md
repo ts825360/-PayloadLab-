@@ -22,6 +22,7 @@
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |
 | `docs/issue-planning-prompt.md` | 이슈 초안을 만들 때 사용하는 공용 프롬프트 |
 | `docs/decisions/2026-09-07-project-review.md` | 현재 기획안을 평가하고 보완한 기록 |
+| `docs/planning/2026-09-07-role-assignment.md` | 팀원 이름을 입력하는 역할 분담 초안 |
 
 ## 작성 규칙
 
