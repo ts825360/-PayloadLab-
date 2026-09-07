@@ -20,6 +20,7 @@
 | `docs/research/` | SQL Injection·XSS·IDOR·SSRF 등 유형별 조사 자료와 학습 시나리오 |
 | `docs/decisions/` | 팀이 확정한 범위, 안전 원칙, UX, 기술 선택의 결정 기록 |
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |
+| `docs/meeting-notes/professor-status-report-template.md` | 교수님께 제출할 한 장짜리 상태 보고 템플릿 |
 | `docs/issue-planning-prompt.md` | 이슈 초안을 만들 때 사용하는 공용 프롬프트 |
 | `docs/decisions/2026-09-07-project-review.md` | 현재 기획안을 평가하고 보완한 기록 |
 | `docs/planning/2026-09-07-role-assignment.md` | 팀원 이름을 입력하는 역할 분담 초안 |
