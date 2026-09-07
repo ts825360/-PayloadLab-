@@ -23,6 +23,7 @@
 | `docs/issue-planning-prompt.md` | 이슈 초안을 만들 때 사용하는 공용 프롬프트 |
 | `docs/decisions/2026-09-07-project-review.md` | 현재 기획안을 평가하고 보완한 기록 |
 | `docs/planning/2026-09-07-role-assignment.md` | 팀원 이름을 입력하는 역할 분담 초안 |
+| `docs/meeting-notes/2026-09-07-progress-reporting-workflow.md` | GitHub 기록으로 교수님 보고를 정리하는 기준 |
 
 ## 작성 규칙
 

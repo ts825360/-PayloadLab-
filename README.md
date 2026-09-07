@@ -71,6 +71,7 @@ docker compose up --build
 
 - [프로젝트 한눈에 보기](docs/planning/2026-09-07-project-brief.md)
 - [역할 분담 초안](docs/planning/2026-09-07-role-assignment.md)
+- [주간·격주 진행 보고 기준](docs/meeting-notes/2026-09-07-progress-reporting-workflow.md)
 - [기획안 평가와 보완 기록](docs/decisions/2026-09-07-project-review.md)
 - [팀 문서 작성 규칙](docs/README.md)
 - [이슈 기획 프롬프트](docs/issue-planning-prompt.md)
