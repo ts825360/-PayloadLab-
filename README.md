@@ -70,7 +70,7 @@ docker compose up --build
 ## 주요 문서
 
 - [프로젝트 한눈에 보기](docs/planning/2026-09-07-project-brief.md)
-- [역할 분담 초안](docs/planning/2026-09-07-role-assignment.md)
+- [역할 분담 현황·댓글 접수 방법](docs/planning/2026-09-07-role-assignment.md)
 - [주간·격주 진행 보고 기준](docs/meeting-notes/2026-09-07-progress-reporting-workflow.md)
 - [교수님 상태 보고 템플릿](docs/meeting-notes/professor-status-report-template.md)
 - [기획안 평가와 보완 기록](docs/decisions/2026-09-07-project-review.md)
