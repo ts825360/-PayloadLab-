@@ -75,4 +75,4 @@ docker compose up --build
 - [교수님 상태 보고 템플릿](docs/meeting-notes/professor-status-report-template.md)
 - [기획안 평가와 보완 기록](docs/decisions/2026-09-07-project-review.md)
 - [팀 문서 작성 규칙](docs/README.md)
-- [이슈 기획 프롬프트](docs/issue-planning-prompt.md)
+- [이슈 기획 프롬프트](docs/planning-prompt.md)
