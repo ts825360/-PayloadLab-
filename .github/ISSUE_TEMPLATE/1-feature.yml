@@ -1,0 +1,63 @@
+name: 🟡 구현 · 기능
+description: 새 기능, 학습 시나리오, 화면을 만든다
+title: "🟡 [구현] "
+labels: ["type: feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        규칙: `docs/ISSUE-GUIDE.md`. 제목은 **우선순위 이모지 + 동사 + 구체**로 작성합니다.
+        생성 후 우선순위(P0~P3)와 area 라벨을 직접 추가하세요.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      options:
+        - 🔴 P0 — 마일스톤 또는 데모를 막음
+        - 🟠 P1 — 높음
+        - 🟡 P2 — 중간
+        - 🟢 P3 — 낮음
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역(area)
+      multiple: true
+      options:
+        - backend
+        - frontend
+        - lens
+        - visualization
+        - infra
+        - curriculum
+        - docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제
+      description: 무엇이 왜 필요한가. 배경, 제약, 관련 파일이나 현재 동작을 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안
+      description: 어떻게 만들 것인가. 범위, 파일, 예시를 적어 본문만으로 착수할 수 있게 합니다.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: 검증
+      description: 완료를 어떻게 확인할지 적습니다. 테스트, 수동 확인, 불변식 중 하나 이상을 포함하세요.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: 관련
+      description: 관련 이슈, Pull Request, 문서 경로
+      placeholder: "#21, docs/..."

@@ -1,0 +1,62 @@
+name: 🟡 교차검증 · 스파이크
+description: 결정을 내리기 전에 작은 검증으로 불확실성을 줄인다
+title: "🟡 [교차검증] "
+labels: ["needs-spike"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        검증 결과를 먼저 남기고, 그 결과를 바탕으로 다음 결정을 내립니다.
+        생성 후 우선순위(P0~P3), type, area 라벨을 직접 추가하세요.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      options:
+        - 🔴 P0 — 마일스톤 또는 데모를 막음
+        - 🟠 P1 — 높음
+        - 🟡 P2 — 중간
+        - 🟢 P3 — 낮음
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역(area)
+      multiple: true
+      options:
+        - backend
+        - frontend
+        - lens
+        - visualization
+        - infra
+        - curriculum
+        - docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제
+      description: 무엇을 결정하려 하며, 왜 작은 실험이나 실제 입력 검증이 필요한지 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: 검증 방법 (제안)
+      description: 어떤 입력, 도구, 기대 결과를 사용할지 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 결과 · 다음 결정
+      description: 검증 결과와 그 결과로 이어지는 결정 또는 남은 의문을 기록합니다.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: 관련
+      placeholder: "#21, docs/..."

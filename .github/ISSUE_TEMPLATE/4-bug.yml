@@ -1,0 +1,65 @@
+name: 🟠 버그
+description: 재현 가능한 오류를 기록하고 고친다
+title: "🟠 [버그] "
+labels: ["type: bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        규칙: `docs/ISSUE-GUIDE.md`. 생성 후 우선순위(P0~P3)와 area 라벨을 직접 추가하세요.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      options:
+        - 🔴 P0 — 마일스톤 또는 데모를 막음
+        - 🟠 P1 — 높음
+        - 🟡 P2 — 중간
+        - 🟢 P3 — 낮음
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역(area)
+      multiple: true
+      options:
+        - backend
+        - frontend
+        - lens
+        - visualization
+        - infra
+        - curriculum
+        - docs
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제 (재현)
+      description: 재현 절차, 기대 동작, 실제 동작, 관련 파일을 적습니다.
+      placeholder: |
+        재현: 1) … 2) …
+        기대: …
+        실제: …
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 원인 · 제안
+      description: 원인 추정과 수정 방향을 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: 검증
+      description: 수정 뒤 어떤 테스트나 확인으로 재발을 막을지 적습니다.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: 관련
+      placeholder: "#21, docs/..."

@@ -76,3 +76,4 @@ docker compose up --build
 - [기획안 평가와 보완 기록](docs/decisions/2026-09-07-project-review.md)
 - [팀 문서 작성 규칙](docs/README.md)
 - [이슈 기획 프롬프트](docs/planning-prompt.md)
+- [이슈 작성·운영 가이드](docs/ISSUE-GUIDE.md)
