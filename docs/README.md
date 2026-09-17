@@ -22,6 +22,7 @@
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |
 | `docs/meeting-notes/professor-status-report-template.md` | 교수님께 제출할 한 장짜리 상태 보고 템플릿 |
 | `docs/planning-prompt.md` | 이슈 초안을 만들 때 사용하는 공용 프롬프트 |
+| `docs/ISSUE-GUIDE.md` | 이슈 작성, 브랜치, Pull Request, 검증 기록의 공용 규칙 |
 | `docs/decisions/2026-09-07-project-review.md` | 현재 기획안을 평가하고 보완한 기록 |
 | `docs/planning/2026-09-07-role-assignment.md` | 총괄이 역할 댓글을 확인한 뒤 반영하는 역할 분담 현황 |
 | `docs/meeting-notes/2026-09-07-progress-reporting-workflow.md` | GitHub 기록으로 교수님 보고를 정리하는 기준 |

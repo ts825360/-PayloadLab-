@@ -1,0 +1,64 @@
+name: 🟢 결정 (needs-decision)
+description: 착수 전에 팀이 정해야 할 결정을 기록한다
+title: "🟢 [결정] "
+labels: ["type: idea", "needs-decision"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **이 이슈는 팀 결정을 요청합니다. 이슈를 등록해도 코드나 문서가 자동으로 바뀌지 않습니다.**
+        생성 후 우선순위(P0~P3)와 area 라벨을 직접 추가하세요.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      options:
+        - 🔴 P0 — 마일스톤 또는 데모를 막음
+        - 🟠 P1 — 높음
+        - 🟡 P2 — 중간
+        - 🟢 P3 — 낮음
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 영역(area)
+      multiple: true
+      options:
+        - backend
+        - frontend
+        - lens
+        - visualization
+        - infra
+        - curriculum
+        - docs
+  - type: textarea
+    id: problem
+    attributes:
+      label: 문제
+      description: 무엇을 왜 정해야 하나. 배경, 제약, 현재 상태를 적습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: 선택지 (제안)
+      description: 옵션 A, B(필요 시 C)와 권장안 및 장단점을 적습니다.
+      placeholder: |
+        - 옵션 A (권장):
+        - 옵션 B:
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: 결정 (완료 조건)
+      description: 수락과 목표일 또는 보류 사유가 기록되면 완료입니다.
+      placeholder: 아직 미결정 — 팀 논의 후 결정과 사유를 기록합니다.
+    validations:
+      required: true
+  - type: input
+    id: related
+    attributes:
+      label: 관련
+      placeholder: "#21, docs/..."

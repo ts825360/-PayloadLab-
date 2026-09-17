@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 이슈 작성 가이드
+    url: https://github.com/ts825360/-PayloadLab-/blob/main/docs/ISSUE-GUIDE.md
+    about: 이슈를 쓰기 전에 제목, 라벨, 본문, 검증 기준을 확인하세요.
