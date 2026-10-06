@@ -6,6 +6,7 @@
 
 ## 진행 보고
 
+- [2026-10-06 주간 진행 보고](2026-10-06-weekly-status-report.md)
 - [2026-09-11 주간 진행 보고](2026-09-11-weekly-status-report.md)
 
 ## Word 보고서
