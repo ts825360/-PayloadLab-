@@ -11,5 +11,6 @@
 
 ## Word 보고서
 
+- [2026-10-06 주간 진행 보고서](PayloadLab_weekly_report_2026-10-06.docx)
 - [2026-09-11 주간 진행 보고서](PayloadLab_주간_진행_보고서_2026-09-11.docx)
 - [주간 진행 보고 공용 양식](PayloadLab_주간_진행_보고_공용_양식.docx)
