@@ -1,34 +1,74 @@
 # PayloadLab
 
-> 보안을 처음 배우는 사람이 입력을 바꿔 보면서 **왜 성공하거나 실패했는지** 이해하는 웹 보안 학습 프로젝트입니다.
+> **보안 입문자가 웹 입력의 처리 과정을 관찰하면서, 공격문이 왜 위험하고 어떤 조건에서 성공하거나 실패하는지 이해하도록 돕는 교육용 웹 학습 프로젝트**
 
-## 먼저 알아둘 점
+PayloadLab은 단순히 공격 문자열을 입력하고 정답 여부만 확인하는 방식에서 벗어나, **입력 → 교육용 처리 과정 → 결과 → Lens 설명·시각화 → 재시도**의 흐름으로 학습하는 것을 목표로 합니다.
 
-이 저장소는 PayloadLab의 **기획·자료조사·의사결정·팀 협업 문서**를 관리하는 공간입니다. 여기에는 Docker 설정이나 실행 코드가 없으므로, 이 저장소를 내려받은 뒤 `docker compose up`을 실행하면 안 됩니다.
+> **저장소 구분:** 현재 저장소 [`ts825360/-PayloadLab-`](https://github.com/ts825360/-PayloadLab-)는 **기획·이슈·연구 근거·데이터 초안**을 관리합니다. 실행 코드는 별도의 [`ts825360/payload-lab`](https://github.com/ts825360/payload-lab) 저장소에서 개발된 것으로 문서화되어 있습니다. 이 저장소 자체에는 웹 앱의 실행 코드와 Docker Compose 설정이 없습니다.
 
-실제 프로토타입 코드는 [payload-lab 구현 저장소](https://github.com/ts825360/payload-lab)에 있습니다.
+## 주요 학습 흐름
 
-## 무엇을 만들고 있나요?
+1. SQL Injection·Reflected XSS·IDOR 중 학습할 유형을 선택합니다.
+2. 실습 난이도를 선택하고 교육용 입력을 작성합니다.
+3. 서버가 입력을 어떤 코드·쿼리·권한 확인 문맥에서 처리하는지 확인합니다.
+4. Lens가 **어디에서, 무엇이, 왜** 문제가 되었는지 설명합니다.
+5. 처리 단계와 결과를 시각적으로 관찰한 뒤 입력을 수정해 재시도합니다.
 
-보안 입문자는 실습 환경을 설치하는 것부터 어렵고, 예시 문장을 입력해 성공해도 “왜 됐는지” 이해하기 어렵습니다. PayloadLab은 아래 흐름으로 이 문제를 풀려고 합니다.
+**Lens**는 공격 문자열을 자동으로 만들어 주는 기능이 아니라, 해당 입력이 교육용 시나리오에서 갖는 의미와 부족한 조건을 설명하는 학습 보조 기능입니다. 공격처럼 보이는 문자열이 곧바로 실제 공격 성공을 의미하지는 않습니다.
 
-유형 선택 → 난이도 선택 → 입력 → 결과 확인 → Lens 설명 또는 다이어그램 → 수정해서 다시 시도
+## 개발 범위 및 현황
 
-**Lens**는 사용자가 입력한 내용이 교육용 코드나 쿼리의 어디에 들어갔는지, 무엇이 부족한지, 왜 필요한지를 알려 주는 돋보기입니다.
+| 구분 | 범위 / 현황 |
+| --- | --- |
+| 핵심 학습 유형 | SQL Injection, Reflected XSS, IDOR |
+| 후속 검토 | SSRF 모의 실습, Command Injection 안전 시나리오, 리눅스 명령어 퀴즈 |
+| 설명·시각화 | Lens 피드백, 입력과 교육용 코드·결과의 연결 |
+| 공격 입력 참고 자료 | SQLi·XSS·Command Injection·SSRF CSV 4종, 총 137행 |
+| 데이터셋 성격 | **문서에서 선별한 공격 시도 101행**, 자체 정상 예시 32행, 문맥 미정 4행. **실행 검증 또는 AI 학습 완료 데이터가 아님** |
+| 통합 상태 | 2026-10-23 기록 기준 구현 브랜치 검증과 기본 브랜치 통합은 별개이며, 통합 작업 [#23](https://github.com/ts825360/-PayloadLab-/issues/23)은 진행 중 |
 
-자세한 기획은 [프로젝트 한눈에 보기](docs/planning/2026-09-07-project-brief.md)에서 확인할 수 있습니다.
+2026-10-23 작성된 [구현 검증 기록](docs/decisions/2026-10-23-implementation-review.md)에 따르면 특정 구현 브랜치 기준 **백엔드 47개, 프론트엔드 25개 테스트**가 통과했습니다. 그러나 해당 문서는 원격 `main`과의 충돌 및 브라우저 화면 직접 검증 미완료를 명시하고 있습니다. **이 결과는 통합·운영 배포 완료를 뜻하지 않습니다.**
 
-## 현재 단계
+## 저장소와 문서 구조
 
-현재는 핵심 학습 흐름을 보여 주는 **프로토타입을 확인하고 기획을 구체화하는 단계**입니다.
+```text
+-PayloadLab-/                         # 이 저장소: 기획·근거·협업
+├── README.md                          # 프로젝트 소개·시작 안내
+├── .github/
+│   └── ISSUE_TEMPLATE/               # 이슈 유형별 입력 양식
+└── docs/
+    ├── README.md                     # 팀 문서 작성 및 관리 규칙
+    ├── ISSUE-GUIDE.md                # 이슈·브랜치·PR·검증 운영 가이드
+    ├── planning-prompt.md            # 이슈 기획 프롬프트
+    ├── planning/                     # 프로젝트 범위 및 역할 분담
+    ├── decisions/                    # 설계 판단과 구현 검증 기록
+    ├── research/                     # 유형별 연구·조사 문서
+    ├── meeting-notes/                # 회의·교수님 보고 자료
+    └── datasets/
+        └── payloads-all-the-things/
+            ├── README.md            # 데이터 목적·레이블·제약
+            ├── *.csv                # SQLi·XSS·CMDi·SSRF 입력 사례
+            ├── curated_samples.py   # 선별 사례와 메타데이터
+            ├── sources/             # 고정 원본 Markdown 발췌
+            ├── manifest.json        # 원문 위치·바이트·해시 추적
+            ├── build_dataset.py     # 오프라인 CSV 재생성
+            ├── test_dataset.py      # 데이터 무결성 검사
+            └── LICENSE              # 원본 라이선스 고지
+```
 
-- 첫 번째 중심 유형: SQL Injection, Reflected XSS, IDOR
-- 이후 검토할 후보: SSRF 교육용 모의 시나리오, 리눅스 명령어 빈칸 퀴즈
-- 각 유형의 설명 문장, 난이도, 안전 기준, 확장 범위는 팀 이슈에서 계속 검토합니다.
+위 트리는 **이 문서 저장소의 실제 파일 배치에 근거한 요약**입니다. 구현 저장소의 상세 디렉터리 구조는 코드 접근 및 통합 이후 확인하여 별도로 기록합니다. 향후 모듈 구조 원칙은 신규 `docs/architecture/repository-structure.md` 문서로 분리해 관리하는 것을 제안합니다. **이 경로는 아직 생성되지 않은 설계안**입니다.
 
-## 프로토타입 실행과 로컬 주소
+## 실행 방법
 
-프로토타입을 실행하려면 [구현 저장소](https://github.com/ts825360/payload-lab)를 내려받은 뒤 그 저장소에서 실행합니다.
+### 사전 준비
+
+- Git
+- Docker 및 Docker Compose 플러그인 (`docker compose` 명령 사용 가능)
+- 구현 저장소에 접근할 수 있는 GitHub 권한
+
+> **확인 상태:** 아래 명령과 URL은 현재 기획 저장소의 기존 README 및 2026-10-23 구현 검증 문서에 기재된 내용입니다. 연결된 GitHub 환경에서는 구현 저장소를 조회하지 못해 **최신 구현 브랜치의 실행 성공을 재검증하지 못했습니다.** PR 통합 뒤 구현 저장소 README 및 Compose 설정과 대조해야 합니다.
+
+### 웹 학습 앱 실행 (구현 저장소에서)
 
 ```bash
 git clone https://github.com/ts825360/payload-lab.git
@@ -36,44 +76,46 @@ cd payload-lab
 docker compose up --build
 ```
 
-현재 확인된 로컬 주소는 아래와 같습니다.
+기존 문서에 기록된 로컬 접근 주소:
 
-| 용도 | 주소 |
+| 항목 | 주소 |
 | --- | --- |
-| 학습 화면 | [http://localhost:5173](http://localhost:5173) |
-| 백엔드 API | [http://localhost:8001/labs](http://localhost:8001/labs) |
+| 프론트엔드 학습 화면 | http://localhost:5173 |
+| 백엔드 실습 API | http://localhost:8001/labs |
 
-> 위 주소는 **구현 저장소를 내려받아 Docker를 실행한 현재 컴퓨터에서만** 열립니다. 이 문서 저장소만으로는 실행되지 않습니다.
+컨테이너를 중지하려면 실행한 터미널에서 `Ctrl+C`를 사용하고, 별도 터미널에서 `docker compose down`을 실행합니다. 실제 서비스의 Compose 파일·환경변수·포트 매핑은 통합 후 재확인해야 합니다.
 
-## 안전 안내
+**주의:** 지금 보고 있는 `-PayloadLab-` 문서 저장소에서 `docker compose up`을 실행하는 절차가 아닙니다.
 
-프로토타입에는 보안 학습을 위해 의도적으로 취약한 교육용 처리 흐름이 포함됩니다. 반드시 개인의 로컬 Docker 환경에서만 사용하고, 외부 네트워크나 공개 서버에 배포하지 않습니다. 실제 서비스나 타인의 시스템을 대상으로 입력을 시도해서도 안 됩니다.
+### 공격 입력 자료 재생성·검증 (이 문서 저장소에서)
 
-프로젝트의 기능별 안전 기준과 공개 전 점검은 [안전 모델 이슈](https://github.com/ts825360/-PayloadLab-/issues/6)와 [공개 전 점검 이슈](https://github.com/ts825360/-PayloadLab-/issues/24)에서 관리합니다.
+Python 사용 환경에서 저장소 루트 기준:
 
-## 팀은 어떻게 작업하나요?
+```bash
+python docs/datasets/payloads-all-the-things/build_dataset.py
+python docs/datasets/payloads-all-the-things/test_dataset.py -v
+```
 
-| 남기는 내용 | 위치 |
-| --- | --- |
-| 기획서, 자료조사, 결정 기록, 회의 결과 | [docs/](docs/README.md) |
-| 의견 제안, 질문, 작업 배정, 진행 상황 | [GitHub Issues](https://github.com/ts825360/-PayloadLab-/issues) |
-| 코드·문서·디자인 변경 | Pull Request |
+이 검증은 CSV 형식, 원문과의 일치, 고정 해시 등을 확인합니다. **공격 유효성·라벨의 교육적 적절성·모델 성능을 검증하지는 않습니다.** CSV에 있는 문자열을 실행 환경에 자동으로 전달하지 않습니다.
 
-팀은 **격주 수요일**에 열린 이슈와 Pull Request를 함께 검토하고, 토의로 확정한 결과를 `docs/decisions/`와 이슈 댓글에 기록합니다.
+## 교육용 안전 원칙
 
-새 팀원은 다음 순서로 시작하면 됩니다.
+- 승인되지 않은 외부 웹사이트·IP·계정 대상 테스트는 제공하지 않습니다.
+- 외부 네트워크 요청과 임의 셸 명령 실행 대신 교육용 시나리오·더미 데이터·모의 결과를 사용합니다.
+- 취약한 교육용 실습을 공개 서비스로 배포하기 전에 별도의 안전성 검토가 필요합니다.
+- 공격문 자료는 **문자열 데이터**로 취급합니다. CSV를 스프레드시트에서 직접 열면 수식으로 해석될 위험이 있으므로 [데이터 관리 안내](docs/datasets/payloads-all-the-things/README.md)를 먼저 확인하세요.
 
-1. [프로젝트 한눈에 보기](docs/planning/2026-09-07-project-brief.md)를 읽습니다.
-2. [GitHub 운영 가이드](https://github.com/ts825360/-PayloadLab-/issues/1)를 읽습니다.
-3. 본인에게 맡겨진 이슈 하나를 선택하고 댓글에 계획을 남깁니다.
+안전 기준: [#6 시뮬레이션 안전 모델](https://github.com/ts825360/-PayloadLab-/issues/6), [#24 공개 전 점검](https://github.com/ts825360/-PayloadLab-/issues/24).
 
-## 주요 문서
+## 기여·협업
 
-- [프로젝트 한눈에 보기](docs/planning/2026-09-07-project-brief.md)
-- [역할 분담 현황·댓글 접수 방법](docs/planning/2026-09-07-role-assignment.md)
-- [주간·격주 진행 보고 기준](docs/meeting-notes/2026-09-07-progress-reporting-workflow.md)
-- [교수님 상태 보고 템플릿](docs/meeting-notes/professor-status-report-template.md)
-- [기획안 평가와 보완 기록](docs/decisions/2026-09-07-project-review.md)
-- [팀 문서 작성 규칙](docs/README.md)
-- [이슈 기획 프롬프트](docs/planning-prompt.md)
-- [이슈 작성·운영 가이드](docs/ISSUE-GUIDE.md)
+모든 작업은 GitHub Issue에서 계획·근거·검증을 남기고, 별도 작업 브랜치와 Pull Request로 변경을 검토합니다. 외부 자료를 활용한 경우 해당 이슈에 출처를 기록하고, 연구 문서에는 원문 URL·버전·활용 근거를 연결하여 보고서와 논문에서 재사용할 수 있도록 합니다. **출처 기록 세부 운영 규칙은 별도 가이드 개정안으로 검토 중이며 현재 `main` 반영 여부를 확인해야 합니다.**
+
+- [이슈 목록](https://github.com/ts825360/-PayloadLab-/issues)
+- [이슈·운영 가이드](docs/ISSUE-GUIDE.md)
+- [팀 문서 가이드](docs/README.md)
+- [프로젝트 기획안](docs/planning/2026-09-07-project-brief.md)
+- [2026-10-23 구현 검증 기록](docs/decisions/2026-10-23-implementation-review.md)
+- [공격 입력 데이터·원문·검증 방법](docs/datasets/payloads-all-the-things/README.md)
+
+> 문서·이슈에는 근거가 있는 사실과 미검증·검토 중인 제안을 구분합니다. 최종 지원 범위와 실행 방법은 기본 브랜치 통합 검증 결과에 따라 갱신합니다.
