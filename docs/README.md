@@ -18,6 +18,7 @@
 | --- | --- |
 | `docs/planning/` | 기획 의도, 범위, 사용자 흐름, 발표용 핵심 정리 |
 | `docs/research/` | SQL Injection·XSS·IDOR·SSRF 등 유형별 조사 자료와 학습 시나리오 |
+| [공격 입력 데이터 초안](datasets/payloads-all-the-things/README.md) | SQLi·XSS·CMDi·SSRF 공통 CSV, 원문 근거·정상 예시·라벨 검토 기준 |
 | `docs/decisions/` | 팀이 확정한 범위, 안전 원칙, UX, 기술 선택의 결정 기록 |
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |
 | `docs/meeting-notes/professor-status-report-template.md` | 교수님께 제출할 한 장짜리 상태 보고 템플릿 |

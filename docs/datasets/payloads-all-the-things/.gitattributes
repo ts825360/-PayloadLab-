@@ -1,0 +1,4 @@
+# Source byte offsets and payload characters must survive Windows Git checkouts.
+sources/** -text whitespace=-blank-at-eol,-blank-at-eof
+*.csv -text whitespace=cr-at-eol
+manifest.json -text
