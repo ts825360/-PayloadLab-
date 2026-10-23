@@ -1,0 +1,78 @@
+/* Keep input and Lens anchored; only their bounded contents scroll. */
+.focused-workbench .category-nav { overflow-y:auto; min-height:0; scrollbar-width:thin; flex-shrink:1; }
+.focused-workbench .sidebar-intro { margin-bottom:20px; }
+.focused-workbench .sidebar-notes { margin:16px 6px; }
+.focused-workbench .category-nav button { padding:10px 7px; }
+.focused-workbench .input-dock { grid-template-rows:minmax(180px, max-content) minmax(180px, 1fr); }
+.focused-workbench .input-panel { max-height:42dvh; overflow:auto; scrollbar-width:thin; }
+.inline-diagnostic { margin-top:8px; padding:8px 10px; border-left:2px solid #bf8b47; background:var(--soft); font-size:11px; line-height:1.6; }
+.inline-diagnostic code { overflow-wrap:anywhere; white-space:pre-wrap; }
+.inline-diagnostic mark { background:#f0c57d55; color:var(--heading); border-bottom:1px dashed #ac7730; }
+.inline-diagnostic span,.inline-diagnostic small { display:block; color:var(--muted); margin-top:4px; }
+.guided-lesson { padding:16px 0; color:var(--text); line-height:1.8; }
+.guided-lesson h2 { color:var(--accent); font-size:12px; margin:0 0 8px; letter-spacing:.02em; }
+.guided-lesson h3 { color:var(--heading); font-size:15px; margin:9px 0; }
+.guided-lesson p { font-size:12px; margin:8px 0; }
+.guided-lesson .guided-progress { display:inline-flex; background:var(--accent-soft); color:var(--accent); padding:2px 9px; border-radius:20px; font:11px/1.8 monospace; }
+.guided-suggestion { padding:10px 12px; background:var(--soft); border:1px solid var(--line); border-radius:8px; display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.guided-suggestion code { white-space:pre-wrap; overflow-wrap:anywhere; flex:1 1 100%; color:var(--heading); font-size:12px; }
+.guided-suggestion small { flex:1 1 100%; font-size:10px; color:var(--muted); }
+.guided-lesson button { padding:6px 10px; border:1px solid var(--line); background:var(--panel); color:var(--accent); border-radius:6px; font-size:11px; }
+.guided-lesson > button:last-child { margin-top:12px; background:var(--accent); color:var(--panel); border-color:var(--accent); }
+.guided-lesson button:disabled { opacity:.45; cursor:not-allowed; }
+.guided-lesson label { display:flex; align-items:flex-start; gap:7px; font-size:11px; }
+.guided-lesson input { accent-color:var(--accent); flex-shrink:0; margin-top:5px; }
+.guided-question { border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:12px; }
+.guided-question legend { color:var(--heading); font-size:11px; padding:0 5px; }
+.guided-question label+label { margin-top:7px; }
+.guided-observation { padding-left:10px; border-left:2px solid var(--accent); }
+.lens-result-detail { border-top:1px solid var(--line); padding-top:16px; margin-top:6px; }
+.planned-panel { background:var(--soft); border:1px dashed var(--line); padding:20px; border-radius:8px; font-size:13px; line-height:1.8; }
+.planned-panel strong { color:var(--accent); }
+.practice-simulation { padding:20px; }
+.practice-simulation .panel-heading h2 { font-size:15px; }
+.simulation-boundary { font-size:11px; color:var(--muted); line-height:1.8; margin:12px 0 20px; }
+.simulation-flow { list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 28px; padding:0; margin:0 0 22px; }
+.simulation-flow li { position:relative; display:flex; gap:10px; padding:14px; border:1px solid var(--line); background:var(--soft); border-radius:9px; min-width:0; }
+.simulation-flow li:not(:last-child)::after { content:'→'; position:absolute; right:-22px; top:15px; color:var(--muted); }
+.simulation-flow li:nth-child(2)::after { content:'↓'; right:50%; top:auto; bottom:-18px; }
+.flow-index { color:var(--accent); font:10px/1.8 monospace; }
+.simulation-flow strong { font-size:11px; display:block; color:var(--heading); margin-bottom:5px; }
+.simulation-flow code { font-size:11px; overflow-wrap:anywhere; white-space:pre-wrap; line-height:1.7; }
+.simulation-flow li[data-state='blocked'],.simulation-flow li[data-state='permission_denied'] { border-color:#ba8e5b; }
+.virtual-identity { display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:11px; padding:12px 0; }
+.virtual-identity strong { color:var(--accent); }
+.virtual-identity code { margin-left:auto; font-size:10px; }
+.virtual-file { display:grid; grid-template-columns:1fr auto; gap:7px; padding:12px; margin-bottom:9px; background:var(--soft); border:1px solid var(--line); border-radius:8px; font-size:11px; }
+.virtual-file code,.virtual-file small { grid-column:1/-1; }
+.virtual-file mark { background:var(--accent-soft); color:var(--accent); padding:2px; }
+.virtual-file small { color:var(--muted); font-size:10px; }
+.terminal-card { overflow:hidden; border-radius:10px; border:1px solid var(--line); margin-top:18px; }
+.terminal-bar { display:flex; justify-content:space-between; gap:12px; padding:10px 14px; background:#202a25; color:#b7ccbd; font:10px/1.7 monospace; }
+.terminal-raw { background:#14211b; color:#dbe9df; padding:16px; }
+.terminal-raw pre { margin:0 0 8px; white-space:pre-wrap; overflow-wrap:anywhere; font:12px/1.9 'IBM Plex Mono',monospace; }
+.terminal-raw .terminal-command { color:#a5d4b4; }
+.terminal-raw .terminal-stderr { color:#f0c08a; background:#a865171a; border-left:2px solid #be8746; padding-left:10px; }
+.terminal-annotation { padding:12px 16px; background:var(--soft); font-size:12px; border-top:2px solid var(--accent); line-height:1.8; }
+.terminal-annotation.warning { border-color:#b38a54; }
+.terminal-annotation span { display:block; color:var(--muted); font-size:10px; margin-bottom:4px; }
+.terminal-annotation strong { color:var(--heading); }
+.terminal-annotation p { margin:4px 0 0; }
+.simulation-empty { padding:20px; border:1px dashed var(--line); border-radius:8px; background:var(--soft); font-size:12px; line-height:1.8; }
+.supported-commands { margin-top:15px; font-size:11px; line-height:1.9; color:var(--muted); }
+.supported-commands summary { cursor:pointer; color:var(--accent); }
+.supported-commands code { display:block; overflow-wrap:anywhere; }
+.row-story { font-size:12px; line-height:1.9; padding:12px; background:var(--soft); border-left:2px solid var(--accent); }
+.comparison-output { white-space:pre-wrap; overflow-wrap:anywhere; font-size:11px; }
+@media (min-width:901px) and (max-height:780px) {
+  .focused-workbench .sidebar-notes { display:none; }
+  .focused-workbench .input-panel { max-height:38dvh; }
+}
+@media (max-width:900px) {
+  .focused-workbench .input-dock { grid-template-rows:auto minmax(210px,1fr); }
+  .focused-workbench .input-panel { max-height:37dvh; }
+  .practice-simulation { padding:14px; }
+  .simulation-flow { grid-template-columns:1fr; gap:20px; }
+  .simulation-flow li:not(:last-child)::after { content:'↓'; top:auto; right:50%; bottom:-20px; }
+}
+@media (prefers-reduced-motion:reduce) { .guided-lesson *,.simulation-flow * { transition:none!important; } }

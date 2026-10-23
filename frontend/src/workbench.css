@@ -1,0 +1,1347 @@
+/* One stable work surface. Only explanations/data panes scroll, never the
+   document to connect an input with its Lens or selected target. */
+.lens-close-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #15231b80;
+  backdrop-filter: blur(4px);
+}
+.lens-close-confirmation {
+  width: min(100%, 420px);
+  padding: 27px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 22px 80px #0003;
+}
+.lens-close-confirmation h2 {
+  font-size: 20px;
+  color: var(--heading);
+  margin: 10px 0;
+}
+.lens-close-confirmation p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.lens-close-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+.lens-close-actions button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.lens-close-actions .secondary-button {
+  background: var(--soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.lens-close-actions kbd {
+  font-size: 10px;
+  opacity: 0.7;
+}
+.focused-workbench {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+.focused-workbench .workspace-sidebar {
+  width: 204px;
+  padding: 24px 14px 18px;
+}
+.focused-workbench .workspace-body {
+  margin-left: 204px;
+  width: calc(100% - 204px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.focused-workbench .brand {
+  font-size: 21px;
+  gap: 9px;
+  padding: 0 5px;
+}
+.focused-workbench .sidebar-intro {
+  margin: 12px 5px 36px;
+  font-size: 10px;
+}
+.focused-workbench .nav-label {
+  padding: 0 6px;
+  font-size: 9px;
+}
+.focused-workbench .category-nav button {
+  padding: 13px 7px;
+  gap: 8px;
+}
+.focused-workbench .category-nav strong {
+  font-size: 12px;
+}
+.focused-workbench .category-nav small {
+  font-size: 9px;
+}
+.focused-workbench .nav-chevron {
+  display: none;
+}
+.focused-workbench .sidebar-notes {
+  margin: 32px 6px 20px;
+  padding-top: 20px;
+}
+.focused-workbench .sidebar-notes p {
+  font-size: 13px;
+}
+.focused-workbench .workspace-topbar {
+  height: 54px;
+  min-height: 54px;
+  padding: 0 26px;
+}
+.focused-workbench .lab-main {
+  max-width: none;
+  width: 100%;
+  padding: 20px 24px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.focused-workbench .lab-heading {
+  margin: 0;
+  gap: 20px;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+}
+.focused-workbench .lab-heading h1 {
+  font-size: 25px;
+  letter-spacing: -1px;
+  margin: 6px 0 5px;
+  line-height: 1.45;
+}
+.focused-workbench .lab-heading p {
+  font-size: 12px;
+  max-width: 700px;
+  line-height: 1.7;
+}
+.focused-workbench .difficulty-control {
+  min-width: 157px;
+  width: auto;
+  display: block;
+  text-align: right;
+}
+.focused-workbench .difficulty-control > div {
+  margin: 5px 0;
+}
+.focused-workbench .difficulty-control button {
+  padding: 5px 15px;
+}
+.focused-workbench .difficulty-control small {
+  font-size: 9px;
+}
+.focused-workbench .connection-message {
+  margin: 0;
+  padding: 8px 12px;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+.mobile-category-select {
+  display: none;
+}
+.workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.6fr);
+  gap: 18px;
+  min-height: 0;
+  flex: 1;
+}
+.input-dock {
+  display: grid;
+  grid-template-rows: max-content minmax(0, 1fr);
+  min-height: 0;
+  gap: 14px;
+  min-width: 0;
+}
+.input-dock .input-panel {
+  padding: 18px 20px;
+  min-height: 0;
+  flex-shrink: 0;
+}
+.input-dock .scenario {
+  font-size: 11px;
+  line-height: 1.75;
+  margin: 10px 0 15px;
+}
+.input-dock .panel-heading h2 {
+  font-size: 14px;
+}
+.input-dock .input-panel label {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.payload-editor textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  resize: none;
+  min-height: 52px;
+  max-height: 104px;
+  padding: 14px 0;
+  color: var(--heading);
+  font:
+    13px/1.9 "IBM Plex Mono",
+    "Noto Sans KR",
+    monospace;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+.payload-editor textarea:focus {
+  outline: 0;
+}
+.payload-editor textarea::placeholder {
+  font:
+    11px/1.9 "Noto Sans KR",
+    sans-serif;
+  color: var(--muted);
+}
+.input-dock .input-footer {
+  margin-top: 13px;
+  gap: 10px;
+}
+.input-dock .input-footer > span {
+  font-size: 10px;
+}
+.input-dock .primary-button {
+  font-size: 11px;
+  padding: 9px 13px;
+}
+.input-dock .claim-field {
+  margin-top: 9px;
+}
+.input-dock .claim-field input {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+.input-dock .lens-panel {
+  padding: 17px 20px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-color: var(--line);
+}
+.input-dock .lens-panel.has-result {
+  border-color: #d8c5a8;
+}
+.input-dock .lens-panel > .panel-heading {
+  flex-shrink: 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.input-dock .lens-body,
+.input-dock .lens-waiting {
+  overflow: auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding-right: 4px;
+}
+.input-dock .lens-body h3 {
+  font-size: 15px;
+  margin-top: 15px;
+  line-height: 1.7;
+}
+.input-dock .lens-body > p {
+  font-size: 12px;
+  line-height: 1.85;
+  margin-bottom: 12px;
+}
+.input-dock .lens-explanation {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+.input-dock .lens-explanation p {
+  font-size: 12px;
+  line-height: 1.85;
+  margin: 5px 0 13px;
+}
+.input-dock .lens-explanation > span {
+  font-size: 11px;
+}
+.input-dock .lens-actions {
+  padding-bottom: 5px;
+}
+.input-dock .lens-caption {
+  font-size: 10px;
+  display: inline;
+}
+.input-dock .lens-state {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.input-dock .lens-waiting {
+  padding: 30px 4px 15px 0;
+  text-align: left;
+}
+.input-dock .lens-orbit {
+  position: static;
+  margin: 0 0 18px;
+  width: 42px;
+  height: 42px;
+}
+.input-dock .lens-waiting p {
+  font-size: 12px;
+  margin: 8px 0;
+}
+.input-dock .lens-waiting > span {
+  font-size: 10px;
+}
+.observation-stage {
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 35px #23443406;
+}
+.observation-header {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+  background: var(--panel);
+  z-index: 2;
+}
+.observation-header > div:first-child {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+.observation-header h2 {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.stage-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.stage-state {
+  font-size: 10px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.stage-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.stage-controls button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 10px;
+  min-height: 30px;
+}
+.stage-tab.active {
+  color: var(--accent);
+  border-color: var(--line);
+  background: var(--accent-soft);
+}
+.stage-controls .stage-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+}
+.stage-back svg {
+  transform: rotate(180deg);
+}
+.stage-back:disabled {
+  visibility: hidden;
+  width: 0;
+  padding: 0;
+  border: 0;
+}
+.observation-scroll {
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 16px;
+  background: var(--bg);
+  position: relative;
+}
+.observation-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.observation-stage .composition-panel {
+  margin: 0;
+  flex-shrink: 0;
+}
+.observation-stage .composition-panel > .panel-heading {
+  padding: 12px 15px;
+}
+.observation-stage .panel-heading h2 {
+  font-size: 13px;
+}
+.observation-stage .composition-toolbar {
+  padding: 6px 14px;
+  gap: 8px;
+}
+.observation-stage .composition-toolbar > span,
+.observation-stage .composition-toolbar button:not(.text-button) {
+  font-size: 10px;
+}
+.observation-stage .composition-code {
+  padding: 13px 15px 15px 35px;
+  min-height: 70px;
+}
+.observation-stage .code-gutter {
+  top: 19px;
+  left: 13px;
+}
+.observation-stage .composition-code > code {
+  font-size: 13px;
+  line-height: 2;
+}
+.observation-stage .composition-note {
+  padding: 8px 14px;
+  font-size: 10px;
+}
+.observation-stage .comment-note {
+  padding: 7px 14px;
+  font-size: 10px;
+}
+.observation-stage .source-code {
+  padding: 13px 15px;
+  font-size: 11px;
+  max-height: 150px;
+  overflow: auto;
+}
+.observation-stage .execution-panel {
+  margin: 0;
+  flex: 1;
+  min-height: 240px;
+}
+.observation-stage .execution-panel > .panel-heading {
+  padding: 14px 16px 8px;
+}
+.observation-stage .execution-caption {
+  font-size: 10px;
+  padding: 0 16px 12px;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.observation-stage .sql-execution-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.observation-stage .condition-zone,
+.observation-stage .data-zone {
+  padding: 14px;
+  min-height: 0;
+}
+.observation-stage .condition-zone {
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+.observation-stage .zone-title {
+  margin-bottom: 13px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.observation-stage .zone-title > span:last-child {
+  font-size: 10px;
+}
+.observation-stage .condition-text code {
+  font-size: 11px;
+}
+.observation-stage .condition-operator {
+  min-width: 64px;
+  width: 64px;
+}
+.observation-stage .condition-child .condition-operator {
+  min-width: 0;
+  width: 100%;
+}
+.observation-stage .condition-operator > span:not(.truth) {
+  font-size: 9px;
+}
+.observation-stage .condition-leaf {
+  padding: 8px;
+}
+.observation-stage .condition-branch {
+  gap: 19px;
+}
+.observation-stage .condition-children {
+  padding-left: 9px;
+}
+.observation-stage .condition-child:before {
+  left: -10px;
+  width: 9px;
+}
+.observation-stage .condition-operator:after {
+  width: 9px;
+  right: -10px;
+}
+.observation-stage .condition-verdict {
+  font-size: 11px;
+  margin-top: 12px;
+  padding-top: 11px;
+}
+.observation-stage .diagram-footnote,
+.observation-stage .data-help,
+.observation-stage .table-legend {
+  font-size: 9px;
+}
+.observation-stage .evidence-table td {
+  font-size: 11px;
+  padding: 9px 6px;
+}
+.observation-stage .evidence-table th {
+  font-size: 10px;
+  padding: 7px 6px;
+}
+.observation-stage .query-outcome {
+  padding-top: 10px;
+  margin-top: 14px;
+}
+.observation-stage .query-outcome > strong {
+  font-size: 13px;
+}
+.observation-stage .query-outcome > p {
+  font-size: 11px;
+}
+.observation-stage .execution-placeholder {
+  flex: 1;
+  margin: 0;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.observation-stage .placeholder-flow {
+  padding: 25px 0;
+  gap: 15px;
+}
+.observation-stage .placeholder-title h2 {
+  font-size: 12px;
+}
+.observation-stage .ownership-map,
+.observation-stage .html-flow {
+  padding: 17px;
+}
+.observation-stage .html-stages {
+  flex-direction: row;
+}
+.observation-stage .html-stages > div:not(.browser-boundary) {
+  padding: 14px;
+}
+.observation-stage .browser-boundary {
+  font-size: 9px;
+}
+.observation-stage .ownership-check {
+  margin-top: 24px;
+}
+.analysis-preview-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 0 4px;
+}
+.observation-stage .stale-notice {
+  font-size: 11px;
+  padding: 0 3px;
+}
+.observation-tip {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  padding: 0 4px;
+}
+.attempt-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  min-height: 48px;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+.attempt-strip-heading {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.attempt-strip-heading b {
+  font:
+    10px Consolas,
+    monospace;
+  background: var(--soft);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-weight: 400;
+}
+.attempt-chips {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: auto;
+  min-width: 0;
+  scrollbar-width: thin;
+  flex: 1;
+}
+.attempt-chips > button {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  padding: 3px 7px;
+  border-radius: 4px;
+  font:
+    11px Consolas,
+    monospace;
+  min-width: 29px;
+  min-height: 28px;
+}
+.attempt-chips > button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.attempt-strip > .text-button {
+  white-space: nowrap;
+  font-size: 10px;
+}
+.strip-hint {
+  font-size: 10px;
+  color: var(--muted);
+}
+.focus-view {
+  flex-shrink: 0;
+}
+.focus-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 2px 14px;
+}
+.focus-title h2 {
+  font-size: 16px;
+  margin-top: 5px;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.focus-title > span {
+  font-size: 10px;
+  color: var(--muted);
+  max-width: 150px;
+  text-align: right;
+}
+.focus-context {
+  padding: 12px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px 8px 0 0;
+}
+.focus-context > span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+.focus-context code {
+  display: block;
+  white-space: nowrap;
+  overflow: auto;
+  font-size: 11px;
+  scrollbar-width: thin;
+  padding: 3px 0;
+}
+.context-selection {
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 2px 0;
+  border-radius: 3px;
+}
+.focus-magnifier {
+  background: var(--code);
+  border-radius: 0 0 9px 9px;
+  padding: 14px 20px 96px;
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+}
+.magnifier-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  color: #9db7a9;
+}
+.magnifier-heading > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.magnifier-heading > span:last-child {
+  font-size: 9px;
+}
+.magnified-code {
+  padding-top: 29px;
+  position: relative;
+  font-size: clamp(17px, 1.5vw, 25px);
+  line-height: 2;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.magnified-context {
+  color: #b4c2b9;
+  font-size: 0.78em;
+}
+.magnified-target {
+  background: #e9c596;
+  color: #3d2a15;
+  border: 1px solid #f1d2ab;
+  padding: 3px 2px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.magnified-target.is-gap {
+  padding: 3px 8px;
+}
+.target-annotation {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid #b99a71;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 11px;
+  box-shadow: 0 6px 20px #0002;
+  z-index: 3;
+  width: max-content;
+}
+.target-annotation > strong {
+  font-weight: 500;
+  display: block;
+  font-size: 11px;
+  color: var(--amber);
+}
+.target-annotation > span {
+  font-size: 10px;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+.focus-pending {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 25px;
+}
+.change-comparison {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 21px;
+  flex: 1;
+}
+.comparison-intro h2 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 7px 0;
+}
+.comparison-intro p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.comparison-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.comparison-labels b {
+  font:
+    10px Consolas,
+    monospace;
+  color: var(--accent);
+  margin-left: 5px;
+}
+.comparison-step-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  margin: 17px 0 8px;
+}
+.comparison-step-label > span {
+  font:
+    10px Consolas,
+    monospace;
+  color: var(--accent);
+}
+.change-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+.change-pair > pre,
+.change-pair > div {
+  padding: 13px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.change-pair small {
+  display: block;
+  color: var(--muted);
+  font:
+    10px/1.8 "Noto Sans KR",
+    sans-serif;
+  margin-top: 8px;
+}
+.query-pair > pre {
+  font-size: 11px;
+  line-height: 2;
+  color: var(--text);
+}
+.result-pair strong {
+  font-size: 13px;
+  font-weight: 500;
+  display: block;
+  color: var(--accent);
+}
+.result-pair span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.change-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 11px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 20px;
+}
+.change-summary svg {
+  color: var(--amber);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.comparison-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex: 1;
+  text-align: center;
+  color: var(--muted);
+}
+.comparison-empty h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.comparison-empty p {
+  font-size: 12px;
+}
+@media (min-width: 1650px) {
+  .workbench-grid {
+    grid-template-columns: minmax(380px, 0.7fr) minmax(0, 1.6fr);
+  }
+  .input-dock .input-panel,
+  .input-dock .lens-panel {
+    padding: 23px 25px;
+  }
+  .input-dock .lens-explanation p,
+  .input-dock .lens-body > p {
+    font-size: 14px;
+  }
+  .observation-stage .condition-text code {
+    font-size: 13px;
+  }
+  .observation-stage .sql-execution-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .observation-stage .condition-zone,
+  .observation-stage .data-zone {
+    padding: 22px;
+  }
+  .observation-stage .zone-title {
+    flex-direction: row;
+  }
+  .observation-stage .evidence-table td {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1250px) {
+  .focused-workbench .workspace-sidebar {
+    width: 64px;
+    padding: 18px 8px;
+  }
+  .focused-workbench .workspace-body {
+    margin-left: 64px;
+    width: calc(100% - 64px);
+  }
+  .focused-workbench .brand {
+    padding: 0;
+    justify-content: center;
+  }
+  .focused-workbench .brand > span:last-child,
+  .focused-workbench .sidebar-intro,
+  .focused-workbench .nav-label,
+  .focused-workbench .sidebar-notes,
+  .focused-workbench .sidebar-bottom {
+    display: none;
+  }
+  .focused-workbench .category-nav {
+    margin-top: 28px;
+  }
+  .focused-workbench .category-nav button {
+    justify-content: center;
+    padding: 14px 6px;
+  }
+  .focused-workbench .category-nav button > span:not(.nav-number) {
+    display: none;
+  }
+  .focused-workbench .nav-number {
+    display: block;
+    align-self: auto;
+    font-size: 12px;
+    margin: 0;
+    opacity: 1;
+  }
+  .focused-workbench .lab-main {
+    padding: 17px 20px;
+    gap: 15px;
+  }
+  .workbench-grid {
+    grid-template-columns: 325px minmax(0, 1fr);
+    gap: 15px;
+  }
+  .focused-workbench .lab-heading h1 {
+    font-size: 24px;
+  }
+  .focused-workbench .lab-heading p {
+    font-size: 11px;
+  }
+  .observation-header {
+    padding: 0 13px;
+  }
+  .stage-state {
+    display: none;
+  }
+  .observation-scroll {
+    padding: 12px;
+  }
+  .observation-stage .condition-zone,
+  .observation-stage .data-zone {
+    padding: 12px;
+  }
+  .observation-stage .condition-text code {
+    font-size: 10px;
+  }
+  .observation-stage .evidence-table td {
+    font-size: 10px;
+  }
+  .observation-stage .condition-operator {
+    width: 56px;
+    min-width: 56px;
+  }
+  .observation-stage .condition-child .condition-operator {
+    width: 100%;
+    min-width: 0;
+  }
+  .observation-stage .condition-branch {
+    gap: 16px;
+  }
+  .input-dock .lens-caption {
+    font-size: 9px;
+  }
+  .input-dock .lens-state {
+    font-size: 9px;
+  }
+}
+@media (max-width: 1020px) {
+  .workbench-grid {
+    grid-template-columns: 305px minmax(0, 1fr);
+  }
+  .focused-workbench .lab-main {
+    padding: 15px;
+    gap: 13px;
+  }
+  .input-dock .input-panel,
+  .input-dock .lens-panel {
+    padding: 15px;
+  }
+  .input-dock .scenario {
+    font-size: 10px;
+    margin: 8px 0 12px;
+  }
+  .focused-workbench .lab-heading p {
+    display: none;
+  }
+  .focused-workbench .lab-heading h1 {
+    font-size: 22px;
+  }
+  .focused-workbench .lab-heading .eyebrow {
+    font-size: 8px;
+  }
+  .observation-stage .sql-execution-grid {
+    grid-template-columns: 1fr;
+  }
+  .observation-stage .condition-zone {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .observation-stage .condition-branch {
+    gap: 24px;
+  }
+  .observation-stage .condition-operator {
+    width: 80px;
+    min-width: 80px;
+  }
+  .observation-stage .condition-text code {
+    font-size: 12px;
+  }
+  .observation-stage .zone-title {
+    flex-direction: row;
+  }
+  .observation-stage .execution-caption p {
+    display: none;
+  }
+  .observation-stage .composition-toolbar .composition-help {
+    font-size: 0;
+  }
+  .observation-stage .composition-toolbar .composition-help svg {
+    width: 14px;
+  }
+  .observation-stage .composition-code > code {
+    font-size: 12px;
+  }
+  .observation-stage .lens-caption {
+    display: none;
+  }
+  .observation-stage .entity strong {
+    font-size: 12px;
+  }
+  .observation-stage .relation-top {
+    gap: 9px;
+  }
+  .observation-stage .entity {
+    min-width: 0;
+  }
+  .observation-stage .html-stages {
+    flex-direction: column;
+  }
+  .observation-stage .browser-boundary {
+    flex-direction: row;
+  }
+  .magnifier-heading > span:last-child {
+    display: none;
+  }
+  .focus-title > span {
+    display: none;
+  }
+  .magnified-code {
+    font-size: 20px;
+  }
+  .strip-hint {
+    display: none;
+  }
+  .attempt-strip {
+    padding: 9px 12px;
+    gap: 8px;
+  }
+  .attempt-strip > .text-button {
+    font-size: 9px;
+  }
+  .observation-stage .composition-note > span:not(.input-bracket) {
+    font-size: 9px;
+  }
+}
+@media (max-height: 740px) and (min-width: 761px) {
+  .focused-workbench .lab-heading p {
+    display: none;
+  }
+  .focused-workbench .lab-main {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 11px;
+  }
+  .focused-workbench .lab-heading h1 {
+    font-size: 22px;
+    margin: 3px 0;
+  }
+  .focused-workbench .workspace-topbar {
+    min-height: 46px;
+    height: 46px;
+  }
+  .input-dock {
+    gap: 10px;
+  }
+  .input-dock .input-panel {
+    padding: 13px 17px;
+  }
+  .input-dock .scenario {
+    margin: 7px 0 10px;
+    font-size: 10px;
+  }
+  .input-dock .input-footer {
+    margin-top: 10px;
+  }
+  .input-dock .lens-panel {
+    padding: 13px 17px;
+  }
+  .input-dock .lens-panel > .panel-heading {
+    padding-bottom: 10px;
+  }
+  .observation-header {
+    height: 45px;
+  }
+  .input-dock .lens-body h3 {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .focused-workbench {
+    display: block;
+    height: 100dvh;
+  }
+  .focused-workbench .workspace-sidebar {
+    display: none;
+  }
+  .focused-workbench .workspace-body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .focused-workbench .workspace-topbar {
+    height: 46px;
+    min-height: 46px;
+    padding: 0 18px;
+  }
+  .focused-workbench .lab-main {
+    padding: 14px 16px;
+    gap: 13px;
+  }
+  .focused-workbench .lab-heading {
+    gap: 10px;
+  }
+  .focused-workbench .lab-heading h1 {
+    font-size: 20px;
+  }
+  .focused-workbench .lab-heading .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .focused-workbench .difficulty-control {
+    min-width: 118px;
+  }
+  .focused-workbench .difficulty-control > span,
+  .focused-workbench .difficulty-control small {
+    display: none;
+  }
+  .focused-workbench .difficulty-control button {
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+  .workbench-grid {
+    display: block;
+    position: relative;
+    min-height: 0;
+  }
+  .input-dock {
+    height: 100%;
+    gap: 12px;
+  }
+  .input-dock .input-panel,
+  .input-dock .lens-panel {
+    padding: 17px 19px;
+  }
+  .input-dock .scenario {
+    font-size: 11px;
+  }
+  .input-dock .lens-caption {
+    font-size: 10px;
+  }
+  .input-dock .lens-state {
+    font-size: 10px;
+  }
+  .input-dock .lens-body > p,
+  .input-dock .lens-explanation p {
+    font-size: 13px;
+  }
+  .input-dock .lens-waiting {
+    padding-top: 20px;
+  }
+  .observation-stage {
+    position: fixed;
+    inset: 12px;
+    z-index: 12;
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 30px #15231be0,
+      0 20px 70px #0005;
+    transition:
+      opacity 0.18s,
+      transform 0.18s;
+    grid-template-rows: 52px minmax(0, 1fr) auto;
+  }
+  .observation-stage.view-overview {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(15px);
+  }
+  .observation-stage:not(.view-overview) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .observation-stage .sql-execution-grid {
+    grid-template-columns: 1fr;
+  }
+  .observation-stage .condition-zone {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .observation-header {
+    padding: 0 13px;
+  }
+  .stage-controls {
+    gap: 2px;
+  }
+  .stage-controls .stage-back {
+    visibility: visible;
+    width: auto;
+    padding: 5px 7px;
+  }
+  .stage-controls .stage-tab:first-of-type {
+    display: none;
+  }
+  .stage-controls button {
+    font-size: 10px;
+  }
+  .observation-stage .composition-code > code {
+    font-size: 13px;
+  }
+  .observation-stage .condition-text code {
+    font-size: 12px;
+  }
+  .observation-stage .composition-toolbar > span,
+  .observation-stage .composition-toolbar button:not(.text-button) {
+    font-size: 10px;
+  }
+  .focus-magnifier {
+    min-height: 245px;
+    padding: 14px 16px 105px;
+  }
+  .focus-context code {
+    font-size: 10px;
+  }
+  .focus-title h2 {
+    font-size: 16px;
+  }
+  .target-annotation {
+    max-width: 270px !important;
+  }
+  .magnified-code {
+    font-size: 23px;
+    padding-top: 26px;
+  }
+  .change-comparison {
+    padding: 16px;
+  }
+  .comparison-intro h2 {
+    font-size: 17px;
+  }
+  .change-pair {
+    gap: 8px;
+  }
+  .change-pair > pre,
+  .change-pair > div {
+    padding: 10px;
+    font-size: 11px;
+  }
+  .query-pair > pre {
+    font-size: 10px;
+  }
+  .comparison-labels {
+    font-size: 10px;
+  }
+  .attempt-strip > .text-button {
+    font-size: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .focused-workbench .breadcrumb {
+    display: none;
+  }
+  .mobile-category-select {
+    display: block;
+    max-width: 185px;
+    font-size: 12px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 5px 9px;
+    background: var(--panel);
+    color: var(--text);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focused-workbench * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
