@@ -1,0 +1,932 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+  "source_commit": "3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a",
+  "generated_by": "build_dataset.py (offline)",
+  "entries": {
+    "sql_injection-attack-001": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 8819,
+      "byte_end": 8833,
+      "line_start": 139,
+      "line_end": 139,
+      "payload_sha256": "fa4a34fc3bae7244e7792caf54232c2dd6b61c8f3ff343315fa28f6ccb0d4420"
+    },
+    "sql_injection-attack-002": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 9805,
+      "byte_end": 9824,
+      "line_start": 156,
+      "line_end": 156,
+      "payload_sha256": "f65cfa1c3309a2b21a14ad7148897d687a9a315afe0e0b534163ca1aa898cc39"
+    },
+    "sql_injection-attack-003": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 3991,
+      "byte_end": 4007,
+      "line_start": 58,
+      "line_end": 58,
+      "payload_sha256": "b171fa01397bd35696593579ffe76537875906da40442870a67ef4038ee9f08b"
+    },
+    "sql_injection-attack-004": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 14087,
+      "byte_end": 14135,
+      "line_start": 225,
+      "line_end": 225,
+      "payload_sha256": "54ab9fdd69659b8f63033bb131442d53863e56397c1575bd92df2402c676181d"
+    },
+    "sql_injection-attack-005": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 27408,
+      "byte_end": 27440,
+      "line_start": 520,
+      "line_end": 520,
+      "payload_sha256": "c502758b3b776babc7b50de979081366a70d2ebc7b71c69a3671c2a350ccc538"
+    },
+    "sql_injection-attack-006": {
+      "local_path": "sources/SQL Injection__README.md",
+      "byte_start": 27476,
+      "byte_end": 27515,
+      "line_start": 521,
+      "line_end": 521,
+      "payload_sha256": "6b2561e630efe30f214e5a01e80daf3900c2dfeef78a5b51d140b7beb7fb478a"
+    },
+    "sql_injection-attack-007": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 4591,
+      "byte_end": 4598,
+      "line_start": 102,
+      "line_end": 102,
+      "payload_sha256": "2dc548ce0e5c7162e40d6470f216268595b0dcb95888877113dc1010fd9c60f5"
+    },
+    "sql_injection-attack-008": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 4603,
+      "byte_end": 4614,
+      "line_start": 103,
+      "line_end": 103,
+      "payload_sha256": "5ddfa710f457b666f12387c2df661069eb9d70f9db7c022861d7e97293ae373e"
+    },
+    "sql_injection-attack-009": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 4619,
+      "byte_end": 4630,
+      "line_start": 104,
+      "line_end": 104,
+      "payload_sha256": "4a736f00a88486c7a661d9adc2f136b5f368ef9f40b04756b98678fbe9703c87"
+    },
+    "sql_injection-attack-010": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 5111,
+      "byte_end": 5131,
+      "line_start": 122,
+      "line_end": 122,
+      "payload_sha256": "483b703d9a45210498b71907c255be6af05e96e1c1f5f1439adc6047526ed8de"
+    },
+    "sql_injection-attack-011": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 5132,
+      "byte_end": 5159,
+      "line_start": 123,
+      "line_end": 123,
+      "payload_sha256": "9506ee8272c7ca82e60ce788f7cb9ba089fbd74b25d99c68b14c129c1073d72d"
+    },
+    "sql_injection-attack-012": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 5160,
+      "byte_end": 5193,
+      "line_start": 124,
+      "line_end": 124,
+      "payload_sha256": "f0e2905dd74fde4a6e3ec3d9e2ab7c066146cd57e7a52937f06148a97015b4fd"
+    },
+    "sql_injection-attack-013": {
+      "local_path": "sources/SQL Injection__MSSQL Injection.md",
+      "byte_start": 2731,
+      "byte_end": 2747,
+      "line_start": 59,
+      "line_end": 59,
+      "payload_sha256": "491f237ebe99d8044b299e677e729402d2561be7fa46a27af4aaad60c131d6d4"
+    },
+    "sql_injection-attack-014": {
+      "local_path": "sources/SQL Injection__MSSQL Injection.md",
+      "byte_start": 2795,
+      "byte_end": 2811,
+      "line_start": 60,
+      "line_end": 60,
+      "payload_sha256": "c3e39ca883c9b32574dff90d27072b8e5b7c00e84c55a40144b326a73b17c7c0"
+    },
+    "sql_injection-attack-015": {
+      "local_path": "sources/SQL Injection__MSSQL Injection.md",
+      "byte_start": 2859,
+      "byte_end": 2879,
+      "line_start": 61,
+      "line_end": 61,
+      "payload_sha256": "16c700cfd70c6292d63507526bd0d238e934e85715e7ec429581f613558e4601"
+    },
+    "sql_injection-attack-016": {
+      "local_path": "sources/SQL Injection__MSSQL Injection.md",
+      "byte_start": 3115,
+      "byte_end": 3154,
+      "line_start": 65,
+      "line_end": 65,
+      "payload_sha256": "1ad23fb98aaed22f12f1798da5e0e9cda73220260f2bf65ff690a38d25494789"
+    },
+    "sql_injection-attack-017": {
+      "local_path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "byte_start": 3936,
+      "byte_end": 3981,
+      "line_start": 70,
+      "line_end": 70,
+      "payload_sha256": "072be8b50f7783fee0fc1452858afcdcdf743d29507d1c96da23fdc163fc950e"
+    },
+    "sql_injection-attack-018": {
+      "local_path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "byte_start": 4019,
+      "byte_end": 4053,
+      "line_start": 71,
+      "line_end": 71,
+      "payload_sha256": "3e15e6c2c1b60af198237e1a05f204469216807997f01ef4ffb2cde2f660fd51"
+    },
+    "sql_injection-attack-019": {
+      "local_path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "byte_start": 4526,
+      "byte_end": 4606,
+      "line_start": 81,
+      "line_end": 81,
+      "payload_sha256": "cb7a051563e93f6d2f758aed898c6a4d62674ad1672dc104aabeefea7f2af164"
+    },
+    "sql_injection-attack-020": {
+      "local_path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "byte_start": 1890,
+      "byte_end": 1915,
+      "line_start": 42,
+      "line_end": 42,
+      "payload_sha256": "816ae1953ad4255cee9bcd69487619fcc7d6477bdeda665ebea466f77214303d"
+    },
+    "sql_injection-attack-021": {
+      "local_path": "sources/SQL Injection__OracleSQL Injection.md",
+      "byte_start": 2273,
+      "byte_end": 2330,
+      "line_start": 49,
+      "line_end": 49,
+      "payload_sha256": "fc5b17abaa46631e48aa82a7df5e4e028f5edd67b5789db6e6b18375eae12fe8"
+    },
+    "sql_injection-attack-022": {
+      "local_path": "sources/SQL Injection__OracleSQL Injection.md",
+      "byte_start": 2354,
+      "byte_end": 2408,
+      "line_start": 50,
+      "line_end": 50,
+      "payload_sha256": "b2e7957ec044e0747d24876a427b269cd2b2b61548c34870b9d14a1bf53e4772"
+    },
+    "sql_injection-attack-023": {
+      "local_path": "sources/SQL Injection__OracleSQL Injection.md",
+      "byte_start": 2435,
+      "byte_end": 2482,
+      "line_start": 51,
+      "line_end": 51,
+      "payload_sha256": "7a40f83c9d904e1d05b7c7967c728188a013bb089ab2b219b5fea0113d876dc3"
+    },
+    "sql_injection-attack-024": {
+      "local_path": "sources/SQL Injection__OracleSQL Injection.md",
+      "byte_start": 7840,
+      "byte_end": 7887,
+      "line_start": 118,
+      "line_end": 118,
+      "payload_sha256": "281aec28a1e28f75ccf6c79cfdc08dd7b3a06432139064fff782fb38aa169e0e"
+    },
+    "sql_injection-attack-025": {
+      "local_path": "sources/SQL Injection__SQLite Injection.md",
+      "byte_start": 1548,
+      "byte_end": 1572,
+      "line_start": 35,
+      "line_end": 35,
+      "payload_sha256": "e425dbdafd615a84db4d0aeea6e9b059b7b729c55e831b86a06308388a47439a"
+    },
+    "sql_injection-attack-026": {
+      "local_path": "sources/SQL Injection__SQLite Injection.md",
+      "byte_start": 2008,
+      "byte_end": 2037,
+      "line_start": 43,
+      "line_end": 43,
+      "payload_sha256": "0c0af7096b66871c86880db75313dcf07bfeafedd8787231f2bb92fa153260c3"
+    },
+    "sql_injection-attack-027": {
+      "local_path": "sources/SQL Injection__SQLite Injection.md",
+      "byte_start": 2170,
+      "byte_end": 2199,
+      "line_start": 44,
+      "line_end": 44,
+      "payload_sha256": "d792490b74c4b5ed4e650d4b6d8a04377fb47e0e8f9c35066b691abbd6caf6c1"
+    },
+    "sql_injection-attack-028": {
+      "local_path": "sources/SQL Injection__SQLite Injection.md",
+      "byte_start": 2332,
+      "byte_end": 2385,
+      "line_start": 45,
+      "line_end": 45,
+      "payload_sha256": "989bee3829f0e40d341882c441712adabeba98d950e2d93907ff26884208df17"
+    },
+    "sql_injection-uncertain-001": {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "byte_start": 700,
+      "byte_end": 702,
+      "line_start": 13,
+      "line_end": 13,
+      "payload_sha256": "829e5b28af38ab3379fd0b4f3fd4f2f161326bb38dfeaf83bc97d08f60f84c88"
+    },
+    "xss-attack-001": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 8848,
+      "byte_end": 8877,
+      "line_start": 177,
+      "line_end": 177,
+      "payload_sha256": "41f152968d8d75de3055b59b194f3a5a993b65b06c1586d7dda9d73be115271d"
+    },
+    "xss-attack-002": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 8878,
+      "byte_end": 8923,
+      "line_start": 178,
+      "line_end": 178,
+      "payload_sha256": "465a03e17a802c1b514d33e398eb08791a8f7cea85637b0c2c241db4bf3c5894"
+    },
+    "xss-attack-003": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 8924,
+      "byte_end": 8955,
+      "line_start": 179,
+      "line_end": 179,
+      "payload_sha256": "b0601be72885cb3c5e0cd05fea715962aae750f35b2dbb4269f612a5e762fade"
+    },
+    "xss-attack-004": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 8956,
+      "byte_end": 9011,
+      "line_start": 180,
+      "line_end": 180,
+      "payload_sha256": "f858809241c5586000819053ceb1a1b9576e3ddc5f863d8a37fceaf93b1174c8"
+    },
+    "xss-attack-005": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9312,
+      "byte_end": 9345,
+      "line_start": 187,
+      "line_end": 187,
+      "payload_sha256": "1caafb53c2a2d26ef21197280e657fbcfa81b6625b7b1c3ba03760c0b725760d"
+    },
+    "xss-attack-006": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9346,
+      "byte_end": 9379,
+      "line_start": 188,
+      "line_end": 188,
+      "payload_sha256": "ef86959f20914df8573af86783b0f26178be17dbad2b5c77b7f9f5cad53b4f88"
+    },
+    "xss-attack-007": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9380,
+      "byte_end": 9437,
+      "line_start": 189,
+      "line_end": 189,
+      "payload_sha256": "0d9fbd76fcf632b84d3a7bc334791914bfda5dfac43def2742c5d2bf70090ce4"
+    },
+    "xss-attack-008": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9648,
+      "byte_end": 9678,
+      "line_start": 194,
+      "line_end": 194,
+      "payload_sha256": "66519f2a355d750d42750b0a3c24520ff06b5113799f8fee8598e609b0786ecc"
+    },
+    "xss-attack-009": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9695,
+      "byte_end": 9716,
+      "line_start": 197,
+      "line_end": 197,
+      "payload_sha256": "68a9388fd63af0a2ff3dd9ea7c89a06bc537990f84ea5b20b61375eb9aa5380b"
+    },
+    "xss-attack-010": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9717,
+      "byte_end": 9742,
+      "line_start": 198,
+      "line_end": 198,
+      "payload_sha256": "093a94d6099a752a34f860c41eedeb322435865710f82760a3503e8ab85085d8"
+    },
+    "xss-attack-011": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9743,
+      "byte_end": 9765,
+      "line_start": 199,
+      "line_end": 199,
+      "payload_sha256": "681af42c11fd7621131ec657ba9d0e8f36b819259c0bb240a898172036009394"
+    },
+    "xss-attack-012": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 9766,
+      "byte_end": 9815,
+      "line_start": 200,
+      "line_end": 200,
+      "payload_sha256": "5f10883f09978a607583988c8358cb8e0d2aadf2428b7d5f13f72b2441f339f4"
+    },
+    "xss-attack-013": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10105,
+      "byte_end": 10151,
+      "line_start": 209,
+      "line_end": 209,
+      "payload_sha256": "e4ac2b0a2c90233a4179b9216b15f420410fc3ca881302c79a6da19afd1c342b"
+    },
+    "xss-attack-014": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10152,
+      "byte_end": 10198,
+      "line_start": 210,
+      "line_end": 210,
+      "payload_sha256": "66e73ef39dabdc64390d61dc546d64df8dd776708098d93d9d4a5c61a5ddbb40"
+    },
+    "xss-attack-015": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10512,
+      "byte_end": 10546,
+      "line_start": 222,
+      "line_end": 222,
+      "payload_sha256": "10e48e9ae98a0f743601e7505ab86a28273a1e33ccdcacdf496803df2184e41b"
+    },
+    "xss-attack-016": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10547,
+      "byte_end": 10582,
+      "line_start": 223,
+      "line_end": 223,
+      "payload_sha256": "edd075cb7f8fc075bec86790a877574fb1e865ad28a39ba61f944211db993326"
+    },
+    "xss-attack-017": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10583,
+      "byte_end": 10620,
+      "line_start": 224,
+      "line_end": 224,
+      "payload_sha256": "7178ed1421d4e87018db3b4de49191eec508e691c0c9c3f0d5f48de2d4ca765d"
+    },
+    "xss-attack-018": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10657,
+      "byte_end": 10688,
+      "line_start": 226,
+      "line_end": 226,
+      "payload_sha256": "fc176eb69354401933adda076ebcc6f724f1f158a2e1d46e123420fd9bb3a1f9"
+    },
+    "xss-attack-019": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10735,
+      "byte_end": 10771,
+      "line_start": 228,
+      "line_end": 228,
+      "payload_sha256": "be42b72a4a054ce36c3fa75cbc533966cf01954d115c3987def498bf6d9fcc52"
+    },
+    "xss-attack-020": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 10772,
+      "byte_end": 10806,
+      "line_start": 229,
+      "line_end": 229,
+      "payload_sha256": "d0c57da5ac719d5422d0c0396accda729891ee435f71d6eacac205b5dfc47131"
+    },
+    "xss-attack-021": {
+      "local_path": "sources/XSS Injection__1 - XSS Filter Bypass.md",
+      "byte_start": 2386,
+      "byte_end": 2411,
+      "line_start": 48,
+      "line_end": 48,
+      "payload_sha256": "a1c716065e5dcf82a298e655fd7db33b948fa91cfd7d80e15e176b716140b863"
+    },
+    "xss-attack-022": {
+      "local_path": "sources/XSS Injection__1 - XSS Filter Bypass.md",
+      "byte_start": 2412,
+      "byte_end": 2437,
+      "line_start": 49,
+      "line_end": 49,
+      "payload_sha256": "cd87e4b72639169a740026f48877ab3e4989dd92594d59facbd3c9a6fe3be058"
+    },
+    "xss-attack-023": {
+      "local_path": "sources/XSS Injection__1 - XSS Filter Bypass.md",
+      "byte_start": 3612,
+      "byte_end": 3664,
+      "line_start": 109,
+      "line_end": 109,
+      "payload_sha256": "782fb0b61c4e23040f871fe0cc925bf1f6d9855a943e8e9d5977c290735fe672"
+    },
+    "xss-attack-024": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 12151,
+      "byte_end": 12171,
+      "line_start": 288,
+      "line_end": 288,
+      "payload_sha256": "83b4ffc4109f30551e1f62d7642872f75c61fb316d57506ed5ac8b791cbc62a1"
+    },
+    "xss-uncertain-001": {
+      "local_path": "sources/XSS Injection__README.md",
+      "byte_start": 7160,
+      "byte_end": 7168,
+      "line_start": 139,
+      "line_end": 139,
+      "payload_sha256": "6e11c72f7cf6bc383152dd16ddd5903aba6bb1c99d6b6639a4bb0b838185fa92"
+    },
+    "command_injection-attack-001": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 4455,
+      "byte_end": 4473,
+      "line_start": 92,
+      "line_end": 92,
+      "payload_sha256": "f6c117902d3aaeb0cf203c4f8c264535144e4b980f3d900149312183b58b055d"
+    },
+    "command_injection-attack-002": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 4513,
+      "byte_end": 4533,
+      "line_start": 93,
+      "line_end": 93,
+      "payload_sha256": "55c345c32284ae14bbd4dba7019700e3ddb3cf0aacf1a371fb1798466f89b1d8"
+    },
+    "command_injection-attack-003": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 4579,
+      "byte_end": 4599,
+      "line_start": 94,
+      "line_end": 94,
+      "payload_sha256": "17b8fb8d46bbcf72b2767299db3377f07b84065cfef9748beded6495185bfde4"
+    },
+    "command_injection-attack-004": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 4642,
+      "byte_end": 4661,
+      "line_start": 95,
+      "line_end": 95,
+      "payload_sha256": "e0f6a471c05d1fd271daf422c355891c1d93562221d130f93defa26fceba293b"
+    },
+    "command_injection-attack-005": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 4700,
+      "byte_end": 4719,
+      "line_start": 96,
+      "line_end": 96,
+      "payload_sha256": "d6bd2a95ba94690957e1730055d45f8587028fc97f6d91dbf47ab6a6253d39bb"
+    },
+    "command_injection-attack-006": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6090,
+      "byte_end": 6130,
+      "line_start": 145,
+      "line_end": 145,
+      "payload_sha256": "0d6bf164d1a689bddecde5b12ce5e055c6068176c20d83e9fa4580f37d0b40cf"
+    },
+    "command_injection-attack-007": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6190,
+      "byte_end": 6231,
+      "line_start": 151,
+      "line_end": 151,
+      "payload_sha256": "2c1778ad544dcd94825db5d731751edfa8717446d0a22578f182796fff7ef712"
+    },
+    "command_injection-attack-008": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6629,
+      "byte_end": 6649,
+      "line_start": 161,
+      "line_end": 161,
+      "payload_sha256": "74694b1e9c3e974b0eae6e0ade7d435dbf8b05e857229941b68c2da363282208"
+    },
+    "command_injection-attack-009": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6652,
+      "byte_end": 6663,
+      "line_start": 162,
+      "line_end": 162,
+      "payload_sha256": "1c5de51f11d25446a2ec7116ab76dba694aea0ff48217f9f8837776e2c8e61c7"
+    },
+    "command_injection-attack-010": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6852,
+      "byte_end": 6869,
+      "line_start": 168,
+      "line_end": 168,
+      "payload_sha256": "846c2df5b16f2507fe1ed8c3c16e712eb8a178641cb5246207415eb068943715"
+    },
+    "command_injection-attack-011": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 6993,
+      "byte_end": 7008,
+      "line_start": 174,
+      "line_end": 174,
+      "payload_sha256": "1b31223e8fe4e9c99b80aecc173b445742ddd0b3c862621086421120aaf18845"
+    },
+    "command_injection-attack-012": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 7081,
+      "byte_end": 7101,
+      "line_start": 181,
+      "line_end": 181,
+      "payload_sha256": "903d79f5e91a0c2af4c4821c193addfbc23778e1781da6b13bbaec04003bb555"
+    },
+    "command_injection-attack-013": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 7273,
+      "byte_end": 7290,
+      "line_start": 187,
+      "line_end": 187,
+      "payload_sha256": "6ad6477f553e7f4ce7d4b245e508e1e7ee6409199a2343f958d6ef39b3a07d70"
+    },
+    "command_injection-attack-014": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 7603,
+      "byte_end": 7628,
+      "line_start": 202,
+      "line_end": 203,
+      "payload_sha256": "670bde4beee9a260d3f00c78780bbb6986b987f313a77f7bdabe4b184ea88aca"
+    },
+    "command_injection-attack-015": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 7858,
+      "byte_end": 7887,
+      "line_start": 219,
+      "line_end": 219,
+      "payload_sha256": "9d7bf319fc965704246e0ccfda77404dd79d1860e189f3b523ac2a12fd6a6a54"
+    },
+    "command_injection-attack-016": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 8010,
+      "byte_end": 8017,
+      "line_start": 232,
+      "line_end": 232,
+      "payload_sha256": "9b48941c5c40a19eda5ad05216a8c95d8e616f8129708b121f78d3d874a975b4"
+    },
+    "command_injection-attack-017": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 8018,
+      "byte_end": 8029,
+      "line_start": 233,
+      "line_end": 233,
+      "payload_sha256": "10829c92c5cb0a6b38b76bf96ac2465e1e3d6440eb84b8890ca2a9fb82de7ca7"
+    },
+    "command_injection-attack-018": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 8030,
+      "byte_end": 8046,
+      "line_start": 234,
+      "line_end": 234,
+      "payload_sha256": "7dbfe1bfb9e82564c69aad87360e48bebf94624b71e8784ead5c224be29b7f39"
+    },
+    "command_injection-attack-019": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9448,
+      "byte_end": 9458,
+      "line_start": 293,
+      "line_end": 293,
+      "payload_sha256": "daef7cf8aac7c939de7da0a8a73182a6a294bce41a59a951a7cc5d93e7250f1f"
+    },
+    "command_injection-attack-020": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9459,
+      "byte_end": 9467,
+      "line_start": 294,
+      "line_end": 294,
+      "payload_sha256": "363402a85ec9a2531e8be315eb67efafb648a954cbc08a6bf897208bdf0fc1bf"
+    },
+    "command_injection-attack-021": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9468,
+      "byte_end": 9476,
+      "line_start": 295,
+      "line_end": 295,
+      "payload_sha256": "1295f7a2c6bc73ea25e4b316cced077f035b579ea2ba0c9d9a7d27cdc9203048"
+    },
+    "command_injection-attack-022": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9526,
+      "byte_end": 9536,
+      "line_start": 301,
+      "line_end": 301,
+      "payload_sha256": "f59160e877d354443196feacdc0622a4ae0f4b85785634387240b7e44e789789"
+    },
+    "command_injection-attack-023": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9537,
+      "byte_end": 9545,
+      "line_start": 302,
+      "line_end": 302,
+      "payload_sha256": "a357456868b5a76c187a8fab6628a3748184ece89badf3a06317961dafc7c7de"
+    },
+    "command_injection-attack-024": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 9666,
+      "byte_end": 9675,
+      "line_start": 315,
+      "line_end": 315,
+      "payload_sha256": "d8cf737d8b012a94bb0e02bfb25388f9acab160395b2d41fa021c1e934d41149"
+    },
+    "command_injection-attack-025": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 5452,
+      "byte_end": 5478,
+      "line_start": 124,
+      "line_end": 124,
+      "payload_sha256": "d918fa244d598f79b08fb5ef166ac67062d6e4755475bf0d3b4448b590733306"
+    },
+    "command_injection-uncertain-001": {
+      "local_path": "sources/Command Injection__README.md",
+      "byte_start": 175,
+      "byte_end": 177,
+      "line_start": 7,
+      "line_end": 7,
+      "payload_sha256": "c7b68ac37f364473e922936708e7f43c293dd07b295171566c07ff5fe024fab9"
+    },
+    "ssrf-attack-001": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3258,
+      "byte_end": 3298,
+      "line_start": 69,
+      "line_end": 69,
+      "payload_sha256": "195fe4b8c8c0b182afd0495ea735d65b5abbd8cac0df6b2eb2123fd62031287e"
+    },
+    "ssrf-attack-002": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3582,
+      "byte_end": 3601,
+      "line_start": 83,
+      "line_end": 83,
+      "payload_sha256": "1f204ed8225bffa5340170256ffbc40b88226e2be1956e43b424fd84d0562fc3"
+    },
+    "ssrf-attack-003": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3604,
+      "byte_end": 3623,
+      "line_start": 84,
+      "line_end": 84,
+      "payload_sha256": "187080f716514ef2b1a69d1979ccddd508d6a18e50df37ed5226109a8f520ed3"
+    },
+    "ssrf-attack-004": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3626,
+      "byte_end": 3647,
+      "line_start": 85,
+      "line_end": 85,
+      "payload_sha256": "8fab5fcd12fce891678ccccde8dd5657440490b23462ef5ae460f5f811651d45"
+    },
+    "ssrf-attack-005": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3694,
+      "byte_end": 3713,
+      "line_start": 91,
+      "line_end": 91,
+      "payload_sha256": "e79d0b65276c07c71c85449933f964fb160753a704d54eada6f7bd682b7b27da"
+    },
+    "ssrf-attack-006": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3716,
+      "byte_end": 3735,
+      "line_start": 92,
+      "line_end": 92,
+      "payload_sha256": "7f11c932fbc2b40833d8d6f303ccd10b6c24be9be776ae75d4978943683c57d9"
+    },
+    "ssrf-attack-007": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3738,
+      "byte_end": 3759,
+      "line_start": 93,
+      "line_end": 93,
+      "payload_sha256": "11b21fb8676258e185ada24d866f8eafac5b953732d4c046eaf59a63440d1cbc"
+    },
+    "ssrf-attack-008": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3804,
+      "byte_end": 3821,
+      "line_start": 99,
+      "line_end": 99,
+      "payload_sha256": "15008b878838f856d8df4c6eebb64397d022f42d15921b76d5c6ac79c0dd350d"
+    },
+    "ssrf-attack-009": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3978,
+      "byte_end": 3993,
+      "line_start": 109,
+      "line_end": 109,
+      "payload_sha256": "0d62b5df3a8f699ab65ec30100f168f62fd6986facaa41341c49b36c1a7ff61c"
+    },
+    "ssrf-attack-010": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 4066,
+      "byte_end": 4086,
+      "line_start": 115,
+      "line_end": 115,
+      "payload_sha256": "56b85f7b91c5d1be6c8a2160cfc92aece982f317844cc44dc62923d89fd4a0e9"
+    },
+    "ssrf-attack-011": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 4220,
+      "byte_end": 4253,
+      "line_start": 121,
+      "line_end": 121,
+      "payload_sha256": "16bf3bc10b140a8a24c4f941b5f0aa56a3127b7e7c8c18e8e253b929e51cb29d"
+    },
+    "ssrf-attack-012": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 4258,
+      "byte_end": 4283,
+      "line_start": 122,
+      "line_end": 122,
+      "payload_sha256": "3ed4da833e13b40a0bd5c7c447aa95c7e860bad5cd87a616f27fe6cf7817d7d2"
+    },
+    "ssrf-attack-013": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5007,
+      "byte_end": 5029,
+      "line_start": 146,
+      "line_end": 146,
+      "payload_sha256": "bc3f1952955681c7f06182698f300a9b0f9b791ba8241e3688619421d0b5b541"
+    },
+    "ssrf-attack-014": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5030,
+      "byte_end": 5046,
+      "line_start": 147,
+      "line_end": 147,
+      "payload_sha256": "16f0fde204fbaf10a32c6aa451afcadf4ed2edb550f0d1164c57baf8d50adce3"
+    },
+    "ssrf-attack-015": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5047,
+      "byte_end": 5063,
+      "line_start": 148,
+      "line_end": 148,
+      "payload_sha256": "69d58687cfd61b4fe5438b18f0e8cfd39e40b802d24e4cf32e21003a6b477a25"
+    },
+    "ssrf-attack-016": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5300,
+      "byte_end": 5309,
+      "line_start": 158,
+      "line_end": 158,
+      "payload_sha256": "19b31fb0d220f551ab8b7a34fd9406de465b4702ce162640138086900894b462"
+    },
+    "ssrf-attack-017": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5007,
+      "byte_end": 5019,
+      "line_start": 146,
+      "line_end": 146,
+      "payload_sha256": "02cde7bf61249445ff859e68f75a9946ae69ab747700935a121df364f5c508a1"
+    },
+    "ssrf-attack-018": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5030,
+      "byte_end": 5044,
+      "line_start": 147,
+      "line_end": 147,
+      "payload_sha256": "9ed8c139a70df5837a11265c1adadf79f5ace99e73c3e43be32c36f46631a60e"
+    },
+    "ssrf-attack-019": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5428,
+      "byte_end": 5446,
+      "line_start": 168,
+      "line_end": 168,
+      "payload_sha256": "6fdc9e99a22a223712c6c8d6aa118011d0cb8ea417faf3a42c4582e72d1d61da"
+    },
+    "ssrf-attack-020": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5708,
+      "byte_end": 5726,
+      "line_start": 177,
+      "line_end": 177,
+      "payload_sha256": "c23edade1b59cad4c618b717859c38609aa3ff78d3808bc4590447e256f4c0d9"
+    },
+    "ssrf-attack-021": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5914,
+      "byte_end": 5931,
+      "line_start": 186,
+      "line_end": 186,
+      "payload_sha256": "5aeec174e29ff8ae3cb6aa93da8621de3cebd3b0fe05a69bdc952f9463864a7f"
+    },
+    "ssrf-attack-022": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 6185,
+      "byte_end": 6209,
+      "line_start": 196,
+      "line_end": 196,
+      "payload_sha256": "60f8b38b1c1e2d9b56d50e9913b3ceb4990e1b0876f4b6670dcc736035b65f4c"
+    },
+    "ssrf-attack-023": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 6214,
+      "byte_end": 6240,
+      "line_start": 197,
+      "line_end": 197,
+      "payload_sha256": "3820df5e7801f419c63a5f8a3f6096411c194215139e095daf1512528060b473"
+    },
+    "ssrf-attack-024": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 5470,
+      "byte_end": 5488,
+      "line_start": 169,
+      "line_end": 169,
+      "payload_sha256": "e4216ddb2140f143dc0b6871f12ab6abf2c582153faf32f0dc5ac9cc3cb54a92"
+    },
+    "ssrf-uncertain-001": {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "byte_start": 3582,
+      "byte_end": 3601,
+      "line_start": 83,
+      "line_end": 83,
+      "payload_sha256": "1f204ed8225bffa5340170256ffbc40b88226e2be1956e43b424fd84d0562fc3"
+    }
+  },
+  "sources": [
+    {
+      "local_path": "sources/Command Injection__README.md",
+      "source_path": "Command Injection/README.md",
+      "sha256": "90ce8a7d48c390dc897de5e62576de27c9ec049dd588ae85438a932bb556c87c",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/Command%20Injection/README.md"
+    },
+    {
+      "local_path": "sources/Server Side Request Forgery__README.md",
+      "source_path": "Server Side Request Forgery/README.md",
+      "sha256": "91d3ecd0ca7c45382415de7fe676205162cd31bfd24453251fa3492e4fb80324",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/Server%20Side%20Request%20Forgery/README.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__MSSQL Injection.md",
+      "source_path": "SQL Injection/MSSQL Injection.md",
+      "sha256": "8aa71b7ce2f251cd54853739f81aeefe7b9e0deae493bdaeca10fd1e7fbadbf1",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/MSSQL%20Injection.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__MySQL Injection.md",
+      "source_path": "SQL Injection/MySQL Injection.md",
+      "sha256": "8fd90e87a6ccce3dde2b673492c0b975296a16d90f1c8f5833a63e4b2f0fc6d9",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/MySQL%20Injection.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__OracleSQL Injection.md",
+      "source_path": "SQL Injection/OracleSQL Injection.md",
+      "sha256": "d11a3b01c41ca38acba3ec20c5b3985cfd4a81269c285ce9ce1c05ba2e851871",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/OracleSQL%20Injection.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "source_path": "SQL Injection/PostgreSQL Injection.md",
+      "sha256": "df10acafdc75ef880f8090df8a65424b692785f8fbf497e5656dc900e7ba3265",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/PostgreSQL%20Injection.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__README.md",
+      "source_path": "SQL Injection/README.md",
+      "sha256": "8f68e5b948ca8a253527e98542e022c03028f481ea287d9fbf79044a26b140e3",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/README.md"
+    },
+    {
+      "local_path": "sources/SQL Injection__SQLite Injection.md",
+      "source_path": "SQL Injection/SQLite Injection.md",
+      "sha256": "f6bad93117b22ac5575260d55967cb030f2780d8dcb70f5a9a5e16e82f1dbf36",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/SQLite%20Injection.md"
+    },
+    {
+      "local_path": "sources/XSS Injection__1 - XSS Filter Bypass.md",
+      "source_path": "XSS Injection/1 - XSS Filter Bypass.md",
+      "sha256": "f8e40d7dbdff25eae40ab8fb8c2e9833c9c6a86d1e81c48536ac03b2254c7fb2",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/XSS%20Injection/1%20-%20XSS%20Filter%20Bypass.md"
+    },
+    {
+      "local_path": "sources/XSS Injection__README.md",
+      "source_path": "XSS Injection/README.md",
+      "sha256": "c91931c0c75171cbad660b9eaf0483fe56013e9e98e9d229e25e9c25e9a49cdb",
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/XSS%20Injection/README.md"
+    }
+  ],
+  "counts": {
+    "sql_injection": {
+      "attack": 28,
+      "benign": 8,
+      "uncertain": 1
+    },
+    "xss": {
+      "attack": 24,
+      "benign": 8,
+      "uncertain": 1
+    },
+    "command_injection": {
+      "attack": 25,
+      "benign": 8,
+      "uncertain": 1
+    },
+    "ssrf": {
+      "attack": 24,
+      "benign": 8,
+      "uncertain": 1
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Source byte offsets and payload characters must survive Windows Git checkouts.
+sources/** -text
+*.csv -text
+manifest.json -text
