@@ -32,6 +32,24 @@ it('does not confuse UTF-16 offsets with codepoint positions',()=>{
     .toBe('Permission denied');
 });
 
+it('links the denied file path to the exact input without blaming command spelling',()=>{
+  const trace=denied('cat: /lab/보고서🔒.txt: Permission denied\n');
+  trace.raw_input='  cat /lab/보고서🔒.txt  ';
+  const [diagnostic]=terminalDiagnostics(trace);
+  const target=diagnostic.targets.find(target=>target.source==='input');
+  expect(target).toBeDefined();
+  expect(Array.from(trace.raw_input).slice(target.start,target.end).join('')).toBe('/lab/보고서🔒.txt');
+  expect(diagnostic.category).toBe('permission');
+});
+
+it('does not underline a different draft or an analysis-only input',()=>{
+  const trace=denied();
+  trace.raw_input='whoami';
+  expect(terminalDiagnostics(trace)[0].targets.some(target=>target.source==='input')).toBe(false);
+  expect(terminalDiagnostics({...trace,phase:'analysis',execution:null})).toEqual([]);
+  expect(terminalDiagnostics({...trace,phase:'analysis'})).toEqual([]);
+});
+
 it.each([
   null,
   {category:'permissions',execution:{status:'command_ok',stderr:''}},

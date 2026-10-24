@@ -6,10 +6,10 @@
 
 - **실제 수정 저장소:** `C:/Users/ts825/OneDrive/문서/캡스톤디자인/.worktrees/payloadlab-team-repository`, 원격 `ts825360/-PayloadLab-`. 상위 폴더는 별도 구형 저장소다. 이 경로를 작업 디렉터리로 지정하고 상위 저장소는 수정/커밋하지 않는다.
 - **갱신일:** 2026-10-24 / 착수 기준 main `4392096`. 이 문서의 정확한 커밋은 `git log -1 -- docs/WORK-STATE.md`로 확인한다.
-- **현재 단계:** UX-02 구현·자동 검사 완료, 브라우저 대기. 다음 안전한 코드 작업 UX-03으로 진행한다.
+- **현재 단계:** UX-02/03 구현·자동 검사 완료, 브라우저 대기. UX-04 명령·출력 기록을 진행한다.
 - **마지막 완료 작업:** UX-01 — 신규 8개 및 전체 프론트 62개·빌드 통과. [검증 근거](verification/2026-10-24-terminal-ux-implementation.md). 아직 화면 연결은 없음.
-- **진행 중 작업:** UX-02. DiagnosticText.jsx·테스트·전용 CSS와 이 상태표. 실제 git status와 대조한다.
-- **바로 다음 작업:** **UX-03 / 전용 터미널 입력면** — 기존 textarea·Enter/IME 처리를 재사용하고 정렬·높이·진단 표시를 분리한다. UX-02 브라우저 검증은 도구 복구 시 진행한다.
+- **진행 중 작업:** UX-03. TerminalInput·CSS·테스트, InputDock/PracticeEnvironment/DiagnosticText/diagnostics와 관련 검사, [입력면 계획](superpowers/plans/2026-10-24-terminal-input.md). 실제 git status와 대조한다.
+- **바로 다음 작업:** **UX-04 / 터미널 기록** — 기존 시도 목록을 읽기 전용으로 표시하고 현재/지난 진단·실행 전후 프롬프트를 구분한다. UX-02/03 브라우저 검증은 도구 복구 시 진행한다.
 - **착수 조건:** 2026-10-24 사용자 “문서가 완료되면 바로 작업” 요청으로 착수 승인됨. 이미 합의한 목표를 다시 묻지 않는다. 새 의존성·기능 범위·중요 설계 변경이 필요할 때만 별도 승인받는다.
 - **공개 상태:** 공개 보류. 자문 결정 DEC-01–06과 보안 보완은 완료되지 않았다. UI 구현을 공개 승인으로 간주하지 않는다.
 
@@ -17,12 +17,12 @@
 
 | 항목 | 저장한 내용 |
 | --- | --- |
-| 작업 ID / 세부 단계 | UX-02 원문 밑줄→툴팁→기존 Lens 초점 연결, 자동 검사 완료 |
-| 수정 범위 | terminal/DiagnosticText·CSS·테스트, PracticeSimulation/ExecutionCanvas/ObservationStage/InputDock/WorkspaceParts/App 및 관련 테스트 |
-| 마지막 검사 | 전체 Vitest 14파일·71개 통과, 단독 Vite build 481모듈·종료0. [근거](verification/2026-10-24-terminal-ux-implementation.md) |
-| 검사 의미 | Esc 충돌 수정·기존 기능 회귀 자동 확인. 실제 브라우저 검증은 미실시 |
-| 다음 파일 / 명령 | UX-03 상세 작업만 구체화한 뒤 TerminalInput 집중 테스트 작성/실패 확인 |
-| 다음 기대 결과 | 네이티브 입력을 유지하며 프롬프트와 입력 기준선이 같고 같은 진단만 표시 |
+| 작업 ID / 세부 단계 | UX-03 전용 네이티브 입력·장식 면·권한 대상 표시 자동 검사 완료 |
+| 수정 범위 | TerminalInput·CSS·테스트, InputDock/PracticeEnvironment/DiagnosticText/diagnostics 및 관련 테스트 |
+| 마지막 검사 | 전체 Vitest 15파일·79개 통과. Vite build 483모듈·종료0. [근거](verification/2026-10-24-terminal-ux-implementation.md) |
+| 검사 의미 | 원문·한글/이모지·스크롤 동기화·폼 단축키·지난 진단 제거 자동 확인. 실제 픽셀 정렬은 미검증 |
+| 다음 파일 / 명령 | UX-04 TerminalTranscript의 복수 시도·원문/설명 분리·프롬프트·진단 선택 테스트 작성 |
+| 다음 기대 결과 | 현재 시도만 Lens 선택 가능, 과거 오류 요약은 원래 시도의 근거를 유지 |
 | 남겨진 실패 / 차단 | 브라우저 도구가 Work 설정에서 비활성화됨. UX-02 완료 체크는 보류. SEC-01은 별도 자문 대기 |
 
 ## 2. 재개·완료 기록 규칙
@@ -65,7 +65,7 @@
 | --- | --- | --- |
 | [x] UX-01 | 권한 오류 공통 진단 어댑터 | [검증 근거](verification/2026-10-24-terminal-ux-implementation.md). 신규8·전체62·빌드 통과. 원문·코드포인트·폴백 확인. 아직 화면 연결 없음 |
 | [ ] UX-02 | 원문 구절의 밑줄·짧은 설명 | 구현·자동 검사 완료(전체71·빌드). [근거](verification/2026-10-24-terminal-ux-implementation.md). 실제 브라우저 hover/초점/터치·원문 복사·확대 검증 대기 |
-| [ ] UX-03 | 실제 같은 터미널 입력면 | UX-02. TerminalInput: 프롬프트 기준선·컴팩트 높이·필요시 확장, 입력 중 밑줄, Enter/Shift+Enter/IME, 확대·스크롤 정렬 검증. 편집기 도입이 필요하면 먼저 승인 |
+| [ ] UX-03 | 실제 같은 터미널 입력면 | 구현·자동 검사 완료(전체79·빌드). [입력면 계획](superpowers/plans/2026-10-24-terminal-input.md), [근거](verification/2026-10-24-terminal-ux-implementation.md). 실제 확대/스크롤 정렬·IME는 브라우저 대기 |
 | [ ] UX-04 | 명령/출력이 쌓이는 터미널 기록 | UX-03. TerminalTranscript: 시도별 prompt·raw stdout/stderr·종료 상태, 이전/현재 진단 분리. 화면 기록과 백엔드 권한 history 재생을 혼동하지 않음 |
 | [ ] UX-05 | 권한 Easy 한 장면의 학습 완결 | UX-04. 입력→거부→밑줄→요약→고정 Lens→사용자/파일 권한 TUI→수정→결과 변화. 모두 같은 trace/시도에 연결되는 실제 브라우저 근거 필요 |
 | [ ] UX-06 | Linux 모드 진입/웹 복귀 | UX-05. 5–7 진입, 준비 건너뛰기/reduced-motion, 내부 전환 재연출 방지, 로고 복귀/재진입 때 유형별 입력·기록·단계 보존. 새로고침·늦은 응답 교차 검사 |

@@ -77,6 +77,7 @@ it('connects the current raw error to Lens and keeps old diagnostics local after
   fireEvent.change(input,{target:{value:command}});
   fireEvent.click(screen.getByRole('button',{name:'실행하기'}));
   const mark=await screen.findByRole('button',{name:'Permission denied'});
+  expect(input.closest('.terminal-input').querySelector('mark').textContent).toBe('/lab/report.txt');
   fireEvent.mouseEnter(mark);
   await screen.findByRole('tooltip');
   fireEvent.keyDown(document,{key:'Escape'});
@@ -86,6 +87,7 @@ it('connects the current raw error to Lens and keeps old diagnostics local after
   expect(screen.getByRole('region',{name:'Lens 설명'})).toHaveFocus();
   input.focus();
   fireEvent.change(input,{target:{value:'whoami'}});
+  expect(input.closest('.terminal-input').querySelector('mark')).toBeNull();
   expect(screen.queryByRole('button',{name:'Permission denied'})).not.toBeInTheDocument();
   expect(input).toHaveFocus();
   expect(screen.getByLabelText('터미널 원문 출력')).toHaveTextContent('Permission denied');

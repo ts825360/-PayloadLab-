@@ -2,6 +2,8 @@ import { useLayoutEffect, useRef } from "react";
 import Icon from "./Icon.jsx";
 import { LensPanel } from "./WorkspaceParts.jsx";
 import PracticeEnvironment from './PracticeEnvironment.jsx';
+import TerminalInput from './terminal/TerminalInput.jsx';
+import {terminalDiagnostics} from './terminal/diagnostics.js';
 
 export default function InputDock({
   category,
@@ -67,6 +69,15 @@ export default function InputDock({
         {planned ? <div className="planned-panel" role="status"><strong>Normal은 구현 예정</strong><p>현재 제공되는 Easy를 먼저 연습할 수 있어요. 서버 연결 오류가 아닙니다.</p></div> : <form onSubmit={onRun}>
           <PracticeEnvironment category={category} trace={trace} onInput={onInput}>
           <div className="primary-input-control">
+          {category.terminal ? <TerminalInput
+            value={input} label={category.fieldLabel} placeholder={category.placeholder}
+            prompt={trace?.terminal?.prompt} inputRef={inputRef} onChange={onInput}
+            onKeyDown={handleEnter}
+            onCompositionStart={()=>{composing.current=true;}}
+            onCompositionEnd={()=>{composing.current=false;}}
+            diagnostics={trace?.raw_input===input ? terminalDiagnostics(trace) : []}
+            onDiagnostic={()=>lensRef?.current?.focus({preventScroll:true})}
+          /> : <>
           <label htmlFor="payload-input">
             {category.fieldLabel}
             <span>{category.field}</span>
@@ -99,9 +110,10 @@ export default function InputDock({
               maxLength={2000}
             />
           </div>
+          </>}
           </div>
           </PracticeEnvironment>
-          {trace?.lens && input && <div className="inline-diagnostic" aria-label="입력 위치 설명">
+          {!category.terminal && trace?.lens && input && <div className="inline-diagnostic" aria-label="입력 위치 설명">
             <code>{(() => {
               const text = trace.effective_input ?? input;
               const start = Math.max(0, Math.min(text.length, trace.lens.focus?.start ?? 0));

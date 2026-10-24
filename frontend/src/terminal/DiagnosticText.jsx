@@ -42,7 +42,7 @@ function DiagnosticMark({text, diagnostic, onSelect}) {
 }
 
 /** Render raw text with exact codepoint marks. Descriptions live outside the raw node. */
-export default function DiagnosticText({text='',source,diagnostics=[],onSelect}) {
+export default function DiagnosticText({text='',source,diagnostics=[],onSelect,decorative=false}) {
   const raw=typeof text==='string'?text:'';
   const characters=Array.from(raw);
   const marks=[];
@@ -61,8 +61,10 @@ export default function DiagnosticText({text='',source,diagnostics=[],onSelect})
   for(const mark of marks){
     if(mark.start<cursor)continue;
     pieces.push(characters.slice(cursor,mark.start).join(''));
-    pieces.push(<DiagnosticMark key={`${mark.diagnostic.id}-${mark.start}-${mark.end}`}
-      text={characters.slice(mark.start,mark.end).join('')}
+    const key=`${mark.diagnostic.id}-${mark.start}-${mark.end}`;
+    const markedText=characters.slice(mark.start,mark.end).join('');
+    pieces.push(decorative ? <mark className="terminal-input-mark" key={key}>{markedText}</mark> : <DiagnosticMark key={key}
+      text={markedText}
       diagnostic={mark.diagnostic} onSelect={onSelect}/>);
     cursor=mark.end;
   }

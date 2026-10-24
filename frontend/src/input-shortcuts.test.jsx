@@ -18,7 +18,7 @@ function setup(overrides = {}) {
       {...overrides}
     />,
   );
-  return { input: screen.getByLabelText("사용자 이름"), onRun };
+  return { input: screen.getByLabelText(overrides.category?.fieldLabel || "사용자 이름"), onRun };
 }
 
 it("submits on Enter and reserves Shift+Enter for the native newline", () => {
@@ -46,4 +46,20 @@ it("does not submit from the shortcut while execution is busy", () => {
   const { input, onRun } = setup({ busy: true });
   fireEvent.keyDown(input, { key: "Enter" });
   expect(onRun).not.toHaveBeenCalled();
+});
+
+it('keeps native Enter, Shift+Enter and Korean composition in the terminal input',()=>{
+  const {input,onRun}=setup({category:{id:'permissions',short:'PERM',terminal:true,fieldLabel:'터미널 명령어',field:'command'}});
+  expect(screen.getByLabelText('가상 터미널 프롬프트')).toHaveTextContent('student@practice:/lab$');
+  expect(input.closest('.terminal-input-row')).not.toBeNull();
+  expect(fireEvent.keyDown(input,{key:'Enter',shiftKey:true})).toBe(true);
+  fireEvent.compositionStart(input);
+  fireEvent.keyDown(input,{key:'Enter'});
+  fireEvent.compositionEnd(input);
+  fireEvent.keyDown(input,{key:'Enter',isComposing:true});
+  fireEvent.keyDown(input,{key:'Enter',keyCode:229});
+  fireEvent.keyDown(input,{key:'Enter',repeat:true});
+  expect(onRun).not.toHaveBeenCalled();
+  fireEvent.keyDown(input,{key:'Enter'});
+  expect(onRun).toHaveBeenCalledTimes(1);
 });

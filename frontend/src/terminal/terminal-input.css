@@ -1,0 +1,39 @@
+.terminal-input { min-width:0; }
+.terminal-input > label { display:block; margin-bottom:6px; font-size:11px; color:var(--muted); }
+.terminal-input-row {
+  display:flex; align-items:flex-start; gap:9px; padding:11px 13px;
+  border:1px solid var(--line); border-radius:8px;
+  background:var(--terminal-bg); color:var(--terminal-fg);
+  font:13px/26px 'IBM Plex Mono','Noto Sans KR',Consolas,monospace;
+}
+.terminal-input-row:focus-within { border-color:var(--focus-ring); }
+.terminal-input-prompt { flex-shrink:0; color:var(--terminal-muted); font:inherit; white-space:pre; }
+.terminal-input-field { position:relative; flex:1; min-width:0; }
+.terminal-input-field textarea,.terminal-input-mirror {
+  box-sizing:border-box; margin:0; padding:0; border:0; border-radius:0;
+  font:inherit; letter-spacing:normal; tab-size:4; text-align:left;
+  white-space:pre-wrap; overflow-wrap:break-word; word-break:normal;
+  scrollbar-width:none;
+}
+.terminal-input-mirror {
+  position:absolute; inset:0; overflow:hidden; pointer-events:none; color:transparent;
+}
+.terminal-input-row .terminal-input-field textarea {
+  display:block; position:relative; width:100%; min-height:26px; max-height:144px;
+  resize:none; outline:none; overflow:auto;
+  color:var(--terminal-fg); background:transparent; caret-color:var(--terminal-fg);
+  box-shadow:none;
+}
+.terminal-input-row .terminal-input-field textarea::placeholder { color:var(--terminal-muted); opacity:.75; }
+.terminal-input-mirror .terminal-input-mark {
+  background:transparent; color:transparent; padding:0; border:0;
+  text-decoration:underline wavy var(--terminal-error); text-underline-offset:4px;
+  text-decoration-skip-ink:none;
+}
+.terminal-input-note { display:flex; align-items:start; gap:10px; margin-top:7px; font-size:11px; }
+.terminal-input-note button { flex-shrink:0; padding:3px 6px; border:1px solid var(--warning-line); border-radius:4px; background:var(--warning-bg); color:var(--warning-text); font:inherit; }
+.terminal-input-note > span { color:var(--muted); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.8; }
+@media(max-width:600px) {
+  .terminal-input-row { flex-wrap:wrap; gap:0; }
+  .terminal-input-field { flex-basis:100%; }
+}
