@@ -86,10 +86,10 @@ it.each([
 저장소 루트의 frontend 의존성이 설치된 환경에서:
 
 ```powershell
-npm --prefix frontend test -- src/terminal/diagnostics.test.js --reporter=dot
+npm --prefix frontend test -- src/terminal/diagnostics.test.js --reporter=dot --maxWorkers=1 --minWorkers=1
 ```
 
-기대: 진단 모듈이 없어 실패한다. 패키지/환경 오류는 기능 실패와 구분해 먼저 해결한다. Docker에서 파일이 bind mount된 경우 `docker compose exec -T frontend npm test -- src/terminal/diagnostics.test.js --reporter=dot`로 같은 검사를 할 수 있다.
+기대: 진단 모듈이 없어 실패한다. 패키지/환경 오류는 기능 실패와 구분해 먼저 해결한다. Docker에서 파일이 bind mount된 경우 `docker compose exec -T frontend npm test -- src/terminal/diagnostics.test.js --reporter=dot --maxWorkers=1 --minWorkers=1`로 같은 검사를 할 수 있다. 실제 실행에서 기본 워커가 컨테이너 제한으로 EAGAIN을 발생시켜 단일 워커로 한정했다. 모듈 부재 확인 후 빈 함수를 먼저 두어 정상 진단 assertion 실패도 확인한다.
 
 **Step 3: 최소 어댑터를 작성한다.**
 
