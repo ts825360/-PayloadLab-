@@ -200,6 +200,7 @@ export function Composition({
 
 export function LensPanel({
   panelRef,
+  focusLabel,
   trace,
   guide,
   difficulty,
@@ -209,9 +210,10 @@ export function LensPanel({
   onRetry,
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [lensMode, setLensMode] = useState(trace ? 'input' : 'guide');
+  const [lensChoice,setLensChoice]=useState(null);
+  const lensMode=lensChoice && lensChoice.trace===trace ? lensChoice.mode : trace ? 'input' : 'guide';
+  const setLensMode=mode=>setLensChoice({trace,mode});
   useEffect(() => setExpanded(false), [trace]);
-  useEffect(() => setLensMode(trace ? 'input' : 'guide'), [trace]);
   const hint = trace?.lens;
   return (
     <section
@@ -221,6 +223,7 @@ export function LensPanel({
       role="region"
       aria-label="Lens 설명"
       aria-live="polite"
+      onFocus={event=>{if(event.target===event.currentTarget && hint)setLensMode('input');}}
     >
       <div className="panel-heading">
         <div>
@@ -268,7 +271,7 @@ export function LensPanel({
           <h3>{hint.title}</h3>
           <p>{hint.what}</p>
           <button className="locate-button" onClick={onFocus}>
-            <span>⌖</span>문장에서 해당 위치 보기
+            <span aria-hidden="true">⌖</span>{focusLabel || '문장에서 해당 위치 보기'}
             <Icon name="arrow" size={15} />
           </button>
           {difficulty === "easy" || expanded ? (

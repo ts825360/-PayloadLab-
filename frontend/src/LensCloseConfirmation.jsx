@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-export default function LensCloseConfirmation({ onConfirm, onCancel }) {
+export default function LensCloseConfirmation({ onConfirm, onCancel, className='' }) {
   const confirmRef = useRef(null),
     cancelRef = useRef(null),
     restoreFocus = useRef(true);
@@ -44,7 +44,7 @@ export default function LensCloseConfirmation({ onConfirm, onCancel }) {
     };
   }, [onConfirm, onCancel]);
   return createPortal(
-    <div className="lens-close-backdrop">
+    <div className={`lens-close-backdrop ${className}`}>
       <section
         className="lens-close-confirmation"
         role="alertdialog"

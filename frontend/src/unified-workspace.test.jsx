@@ -53,10 +53,12 @@ it('uses real task-specific controls rather than only renaming one text box',()=
   expect(screen.getByLabelText('가상 터미널 프롬프트')).toHaveTextContent('student@practice:/lab$');
 });
 
-it('puts the current input explanation first without losing the guided lesson',()=>{
+it('puts the current input explanation first without losing the guided lesson',async()=>{
   render(<LensPanel guide={<section aria-label="학습 안내">단계형 안내</section>} trace={{lens:{title:'이름을 비교했어요',what:'admin과 다른 이름이에요.',why:'값을 비교해요',next:'다시 입력해보세요'}}} difficulty="easy" onFocus={()=>{}} onLesson={()=>{}} onRetry={()=>{}}/>);
   expect(screen.getByRole('button',{name:'이번 입력 설명'})).toHaveAttribute('aria-pressed','true');
   expect(screen.getByText('admin과 다른 이름이에요.')).toBeVisible();
   fireEvent.click(screen.getByRole('button',{name:'학습 단계'}));
   expect(screen.getByRole('region',{name:'학습 안내'})).toBeVisible();
+  screen.getByRole('region',{name:'Lens 설명'}).focus();
+  await waitFor(()=>expect(screen.getByRole('button',{name:'이번 입력 설명'})).toHaveAttribute('aria-pressed','true'));
 });

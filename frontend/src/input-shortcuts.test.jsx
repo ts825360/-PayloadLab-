@@ -48,6 +48,12 @@ it("does not submit from the shortcut while execution is busy", () => {
   expect(onRun).not.toHaveBeenCalled();
 });
 
+it('starts a web input on the same compact first line as its ASCII prompt',()=>{
+  const {input}=setup();
+  expect(screen.getByText('>',{selector:'.editor-prompt'})).toBeInTheDocument();
+  expect(input.style.height).toBe('24px');
+});
+
 it('keeps native Enter, Shift+Enter and Korean composition in the terminal input',()=>{
   const {input,onRun}=setup({category:{id:'permissions',short:'PERM',terminal:true,fieldLabel:'터미널 명령어',field:'command'}});
   expect(screen.getByLabelText('가상 터미널 프롬프트')).toHaveTextContent('student@practice:/lab$');

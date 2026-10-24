@@ -20,6 +20,8 @@ export default function InputDock({
   error,
   inputRef,
   lensRef,
+  terminalPrompt,
+  focusLabel,
   trace,
   analysisStatus,
   onFocus,
@@ -50,7 +52,7 @@ export default function InputDock({
     const area = areaRef.current;
     if (area) {
       area.style.height = "auto";
-      area.style.height = `${Math.min(104, Math.max(52, area.scrollHeight))}px`;
+      area.style.height = `${Math.min(96, Math.max(24, area.scrollHeight))}px`;
     }
   }, [input]);
   return (
@@ -71,7 +73,7 @@ export default function InputDock({
           <div className="primary-input-control">
           {category.terminal ? <TerminalInput
             value={input} label={category.fieldLabel} placeholder={category.placeholder}
-            prompt={trace?.terminal?.prompt} inputRef={inputRef} onChange={onInput}
+            prompt={terminalPrompt ?? trace?.terminal?.prompt} inputRef={inputRef} onChange={onInput}
             onKeyDown={handleEnter}
             onCompositionStart={()=>{composing.current=true;}}
             onCompositionEnd={()=>{composing.current=false;}}
@@ -84,7 +86,7 @@ export default function InputDock({
           </label>
           <div className="payload-editor">
             <span className="editor-prompt" aria-hidden="true">
-              ›
+              {'>'}
             </span>
             <textarea
               ref={(el) => {
@@ -165,6 +167,7 @@ export default function InputDock({
       </section>
       <LensPanel
         panelRef={lensRef}
+        focusLabel={focusLabel}
         trace={trace}
         guide={guide}
         difficulty={difficulty}

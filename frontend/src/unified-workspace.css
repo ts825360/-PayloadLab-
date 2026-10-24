@@ -1,13 +1,13 @@
-/* One tool, not a third navigation column. Composer → processing → fixed Lens. */
+/* One learning workspace: processing above the composer and fixed Lens. */
 .unified-layout .lab-main { padding:16px 22px; gap:12px; }
 .unified-layout .lab-heading h1 { font-size:23px; margin:3px 0; line-height:1.4; }
 .unified-layout .lab-heading p { margin:5px 0 0; font-size:11px; }
 .unified-layout .lab-heading .eyebrow { font-size:9px; margin:0; line-height:1.5; }
 .unified-layout .difficulty-control > span { display:none; }
 .unified-layout .difficulty-control { line-height:1.5; }
-.unified-layout .integrated-workspace { display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:'composer' 'processing' 'lens'; grid-template-rows:auto minmax(130px,1fr) minmax(180px,29%); gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow); }
+.unified-layout .integrated-workspace { display:grid; grid-template-columns:minmax(0,1fr); grid-template-areas:'processing' 'composer' 'lens'; grid-template-rows:minmax(130px,1fr) auto minmax(180px,29%); gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow); }
 .unified-layout .input-dock { display:contents; }
-.unified-layout .input-panel { grid-area:composer; border:0; border-radius:0; border-bottom:1px solid var(--line); padding:12px 18px; max-height:30dvh; background:var(--surface-inset); overflow:auto; scrollbar-width:thin; }
+.unified-layout .input-panel { grid-area:composer; border:0; border-radius:0; border-top:1px solid var(--line); padding:12px 18px; max-height:30dvh; background:var(--surface-inset); overflow:auto; scrollbar-width:thin; }
 .unified-layout .input-panel-heading,.unified-layout .environment-description { display:none; }
 .environment-identity { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
 .environment-icon { display:grid; place-items:center; width:36px; height:30px; border:1px solid var(--line); background:var(--panel); color:var(--accent); border-radius:7px; font:9px/1 monospace; }
@@ -18,8 +18,10 @@
 .primary-input-control { flex:1; min-width:0; }
 .unified-layout .primary-input-control > label { display:flex; gap:9px; margin:0 0 3px; font-size:10px; }
 .unified-layout .primary-input-control > label span { color:var(--muted); font:9px/1.9 monospace; }
-.unified-layout .payload-editor { border-radius:7px; padding:0 10px; }
-.unified-layout .payload-editor textarea { min-height:38px; max-height:76px; font-size:12px; padding:6px 0; line-height:1.8; }
+.unified-layout .payload-editor { align-items:flex-start; border-radius:7px; padding:8px 10px; gap:10px; font:13px/24px 'IBM Plex Mono','Noto Sans KR',monospace; }
+.unified-layout .payload-editor .editor-prompt { display:block; flex-shrink:0; margin:0; padding:0; font:inherit; line-height:24px; }
+.unified-layout .payload-editor textarea { box-sizing:border-box; min-height:24px; max-height:96px; margin:0; padding:0; font:inherit; line-height:24px; }
+.unified-layout .payload-editor textarea::placeholder { font:inherit; line-height:24px; }
 .unified-layout .fixed-password { display:block; flex:0 0 210px; white-space:nowrap; font-size:10px!important; }
 .fixed-password input { display:block; width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:7px; opacity:.8; margin-top:3px; }
 .fixed-password small { font-size:9px; color:var(--muted); }
@@ -124,7 +126,7 @@
 @media (max-height:780px) and (min-width:761px) {
   .unified-layout .lab-heading p { display:none; }
   .unified-layout .lab-main { padding-top:10px; padding-bottom:10px; gap:8px; }
-  .unified-layout .integrated-workspace { grid-template-rows:auto minmax(125px,1fr) minmax(155px,28%); }
+  .unified-layout .integrated-workspace { grid-template-rows:minmax(125px,1fr) auto minmax(155px,28%); }
   .unified-layout .input-panel { max-height:28dvh; }
 }
 @media (max-width:1000px) { .learning-primer { gap:18px; padding:18px; } .concept-flow { gap:12px; } .concept-flow li { padding:9px; } }
@@ -140,7 +142,7 @@
   .unified-layout .lab-main { padding:10px; gap:8px; }
   .unified-layout .lab-heading h1 { font-size:17px; }
   .unified-layout .lab-heading p,.unified-layout .lab-heading .eyebrow { display:none; }
-  .unified-layout .integrated-workspace { display:grid; grid-template-rows:auto minmax(110px,1fr) minmax(160px,30%); }
+  .unified-layout .integrated-workspace { display:grid; grid-template-rows:minmax(110px,1fr) auto minmax(160px,30%); }
   .unified-layout .input-panel { padding:10px 12px; max-height:29dvh; }
   .unified-layout .fixed-password { flex-basis:115px; }
   .unified-layout .input-panel form { column-gap:8px; }

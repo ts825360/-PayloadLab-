@@ -80,6 +80,8 @@ it('connects the current raw error to Lens and keeps old diagnostics local after
   fireEvent.change(input,{target:{value:command}});
   fireEvent.click(screen.getByRole('button',{name:'실행하기'}));
   const mark=await screen.findByRole('button',{name:'Permission denied'});
+  expect(input).toHaveValue('');
+  fireEvent.change(input,{target:{value:command}});
   expect(input.closest('.terminal-input').querySelector('mark').textContent).toBe('/lab/report.txt');
   fireEvent.mouseEnter(mark);
   await screen.findByRole('tooltip');

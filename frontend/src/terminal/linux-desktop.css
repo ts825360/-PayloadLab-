@@ -1,0 +1,159 @@
+.linux-mode-shell,.linux-close-layer {
+  --bg:#101218; --panel:#181c24; --soft:#1f2530; --heading:#f1f3f7;
+  --text:#d3d8e2; --muted:#a3adbd; --line:#343d4d; --accent:#addcc5; --accent-soft:#233b32;
+  --surface-inset:#14181f; --surface-raised:#202733; --surface-hover:#293342;
+  --terminal-bg:#12161d; --terminal-fg:#e4e9f1; --terminal-muted:#a9b7c8; --terminal-error:#f4c28d;
+  --input-bg:#12161d; --input-fg:#e4e9f1; --input-border:#47556b; --terminal-bar:#1d242e;
+  --warning-text:#f4ce9c; --warning-bg:#362d23; --warning-line:#826a48; --focus-ring:#addcc5;
+  --info-bg:#23344a; --info-text:#bad7fa; --diagram-line:#657587;
+  color-scheme:dark;
+}
+.linux-mode-shell { height:100dvh; min-height:0; overflow:hidden; background:var(--bg); color:var(--text); }
+.linux-desktop { height:100%; display:flex; flex-direction:column; position:relative; isolation:isolate; background:radial-gradient(ellipse at 78% 20%,#42435b4d,transparent 57%),radial-gradient(ellipse at 10% 90%,#34555040,transparent 55%),#101218; }
+.linux-desktop button { cursor:pointer; font-family:inherit; }
+.linux-desktop :is(button,textarea,select,[tabindex]):focus-visible { outline:2px solid var(--focus-ring); outline-offset:3px; }
+.linux-desktop-bar { display:flex; align-items:center; gap:28px; min-height:64px; padding:0 30px; border-bottom:1px solid #ffffff0c; background:#0e1117a6; }
+.linux-brand { display:flex; align-items:center; gap:15px; padding:0; border:0; background:none; color:var(--muted); }
+.linux-brand img { width:142px; height:auto; }
+.linux-brand > span { border-left:1px solid var(--line); padding-left:15px; font-size:11px; }
+.linux-desktop-name { margin:auto; display:flex; align-items:center; gap:10px; color:var(--muted); font:10px/1.6 'IBM Plex Mono','Noto Sans KR',monospace; letter-spacing:.08em; }
+.linux-desktop-name i { width:5px; height:5px; border-radius:50%; background:var(--accent); }
+.linux-desktop-name > span { letter-spacing:0; }
+.linux-connection { color:var(--accent); font-size:10px; }
+.linux-desktop-main { flex:1; min-height:0; display:flex; flex-direction:column; padding:22px 3.5vw 10px; gap:8px; }
+.linux-window { flex:1; min-height:0; display:flex; flex-direction:column; overflow:hidden; border:1px solid #62708865; border-radius:13px; background:var(--terminal-bg); box-shadow:0 28px 100px #0008,0 2px 8px #0004; animation:linux-window-open .58s cubic-bezier(.2,.75,.2,1) both; }
+.linux-window-titlebar { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-shrink:0; height:37px; padding:0 15px; background:#252c36; border-bottom:1px solid #ffffff0c; color:#b6c2d3; font:10px 'IBM Plex Mono',monospace; }
+.linux-window-dots { display:flex; gap:6px; }
+.linux-window-dots i { width:8px; height:8px; border-radius:50%; background:#e58d88; }
+.linux-window-dots i:nth-child(2) { background:#d8b772; }
+.linux-window-dots i:nth-child(3) { background:#91baa3; }
+.linux-window-titlebar > button { width:23px; height:23px; border:0; border-radius:4px; background:transparent; color:#bdc8d6; font-size:19px; line-height:1; }
+.linux-window-titlebar > button:hover { background:#ffffff15; }
+.linux-window-toolbar { display:flex; align-items:center; gap:12px; flex-shrink:0; padding:0 16px; min-height:52px; background:#1b212b; border-bottom:1px solid var(--line); }
+.linux-window-toolbar nav { display:flex; gap:3px; align-self:stretch; }
+.linux-window-toolbar nav button { display:flex; align-items:center; gap:8px; border:0; border-bottom:2px solid transparent; padding:0 14px; background:transparent; color:var(--muted); font-size:12px; }
+.linux-window-toolbar nav button > span { display:grid; place-items:center; min-width:28px; height:21px; border:1px solid var(--line); border-radius:4px; font:9px 'IBM Plex Mono',monospace; }
+.linux-window-toolbar nav button[aria-current='page'] { color:var(--heading); border-bottom-color:var(--accent); background:#ffffff04; }
+.linux-window-toolbar nav button[aria-current='page'] > span { border-color:#709f88; color:var(--accent); }
+.linux-difficulty { display:flex; gap:2px; padding:3px; margin-left:auto; border:1px solid var(--line); border-radius:6px; }
+.linux-difficulty button { border:0; padding:4px 10px; border-radius:3px; background:none; color:var(--muted); font-size:10px; }
+.linux-difficulty button[aria-pressed='true'] { background:#34473d; color:#d0eddc; }
+.linux-help-toggle { background:transparent; color:var(--text); border:1px solid var(--line); border-radius:5px; padding:7px 10px; font-size:10px; }
+.linux-help-toggle[aria-expanded='true'] { color:var(--accent); border-color:#709f88; }
+.linux-window-body { position:relative; flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,28%); grid-template-rows:minmax(0,1fr) auto minmax(160px,27%); grid-template-areas:'log inspect' 'composer inspect' 'lens lens'; }
+.linux-terminal-log { grid-area:log; min-height:0; min-width:0; display:flex; flex-direction:column; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+.linux-terminal-banner { display:flex; align-items:center; flex-shrink:0; gap:22px; padding:19px 24px 10px; }
+.linux-terminal-banner pre { margin:0; color:#98b8b0; font:11px/1.6 'IBM Plex Mono',monospace; white-space:pre; }
+.linux-terminal-banner > span { color:#98a8bc; font:10px/1.8 'IBM Plex Mono','Noto Sans KR',monospace; }
+.linux-desktop .learning-primer { padding:5px 24px 16px; gap:10px; display:block; }
+.linux-desktop .learning-primer h2 { font-size:15px; margin:5px 0; }
+.linux-desktop .learning-primer h3 { font-size:11px; margin:8px 0 3px; }
+.linux-desktop .learning-primer p { font-size:11px; line-height:1.8; }
+.linux-desktop .learning-primer .concept-flow { gap:18px; margin-top:12px; }
+.linux-desktop .learning-primer .concept-flow li { border:0; border-left:1px solid var(--line); border-radius:0; padding:0 10px; background:transparent; }
+.linux-desktop .learning-primer .concept-flow li::after { content:'→'; }
+.linux-desktop .learning-primer .concept-flow strong { font-size:11px; }
+.linux-desktop .learning-primer .primer-goal { background:var(--surface-inset); border-left-color:#779e8b; }
+.linux-desktop .learning-primer .primer-next button { background:#1c2d25; color:var(--accent); }
+.linux-desktop .terminal-transcript { margin:0; border:0; border-radius:0; min-height:54px; flex:1; display:flex; flex-direction:column; overflow:visible; }
+.linux-desktop .terminal-transcript > .terminal-bar { display:none; }
+.linux-desktop .terminal-transcript-entries { flex:1; min-height:0; max-height:none; }
+.linux-desktop .terminal-transcript .terminal-raw { padding:8px 24px 5px; }
+.linux-desktop .terminal-raw pre { font-size:13px; }
+.linux-desktop .terminal-entry-status { padding:8px 24px 0; font-size:9px; }
+.linux-desktop .terminal-transcript .terminal-annotation { margin:0 24px 10px; border:0; border-left:2px solid #688c79; padding:4px 10px; background:#1d2a242e; }
+.linux-desktop .terminal-transcript .terminal-annotation.warning { border-color:var(--warning-line); background:#342b212e; }
+.linux-desktop .terminal-annotation strong { font-size:11px; }
+.linux-desktop .terminal-annotation p { color:var(--muted); font-size:11px; }
+.linux-desktop .terminal-composed-command { color:#b0c8ef; }
+.linux-desktop .input-dock { display:contents; }
+.linux-desktop .input-panel { grid-area:composer; min-height:0; padding:12px 24px; border:0; border-top:1px solid #ffffff10; border-radius:0; background:#151b23; box-shadow:none; }
+.linux-desktop .input-panel form { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 16px; align-items:center; }
+.linux-desktop .input-panel :is(.environment-identity,.environment-description,.environment-context,.input-panel-heading,.terminal-input > label) { display:none; }
+.linux-desktop .environment-controls { display:block; }
+.linux-desktop .terminal-input-row { border:0; padding:0; border-radius:0; background:transparent; }
+.linux-desktop .terminal-input-row .terminal-input-field textarea { min-height:26px; }
+.linux-desktop .input-footer { margin:0; }
+.linux-desktop .input-footer > span { display:none; }
+.linux-desktop .input-footer .primary-button { background:#a9d5bc; color:#13251c; border:0; border-radius:5px; padding:8px 13px; font-size:11px; }
+.linux-desktop .input-footer .primary-button:disabled { opacity:.45; }
+.linux-desktop .terminal-input-note { grid-column:1/-1; }
+.linux-desktop .inline-error { grid-column:1/-1; color:var(--warning-text); }
+.linux-desktop .lens-panel { grid-area:lens; border:0; border-top:1px solid var(--line); border-radius:0; padding:10px 24px; overflow:hidden; display:flex; flex-direction:column; min-height:0; background:#1d242e; box-shadow:none; }
+.linux-desktop .lens-panel > .panel-heading { flex-shrink:0; margin:0 0 5px; padding:0 0 6px; border-color:#ffffff0e; }
+.linux-desktop .lens-panel .lens-body { min-height:0; overflow:auto; display:block; scrollbar-width:thin; }
+.linux-desktop .lens-panel .lens-guide-content { padding-bottom:5px; }
+.linux-desktop .lens-panel .lens-caption { font-size:10px; }
+.linux-desktop .lens-panel .lens-result-detail { margin:0; padding:0 0 8px; border:0; }
+.linux-desktop .lens-panel h3 { color:var(--heading); font-size:13px; margin:0 0 5px; }
+.linux-desktop .lens-panel p { font-size:12px; line-height:1.8; margin:4px 0; }
+.linux-desktop .lens-panel .locate-button { padding:5px 9px; font-size:11px; background:#29372f; color:var(--accent); border-color:#4a6757; }
+.linux-desktop .lens-panel .guided-lesson { padding:0; background:transparent; }
+.linux-desktop .guided-suggestion { background:var(--surface-inset); border-color:var(--line); }
+.linux-desktop .guided-lesson button { color:var(--accent); background:var(--soft); border-color:var(--line); }
+.linux-desktop .lens-panel:focus-visible { outline-offset:-3px; }
+.linux-inspector { grid-area:inspect; overflow:auto; min-height:0; min-width:0; padding:18px 19px; border-left:1px solid var(--line); background:#191f28; scrollbar-width:thin; }
+.linux-inspector > header { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:18px; }
+.terminal-section-label { color:#8e9eb4; font:9px/1.8 'IBM Plex Mono',monospace; letter-spacing:.14em; }
+.linux-inspector h2 { margin:3px 0 0; font-size:12px; font-weight:500; color:var(--heading); }
+.linux-inspector > header > button { border:1px solid var(--line); border-radius:4px; background:#202a36; color:var(--text); padding:5px 8px; font-size:11px; }
+.terminal-tui { white-space:pre-wrap; overflow-wrap:anywhere; margin:15px 0; color:#b6d6c7; font:12px/2 'IBM Plex Mono','Noto Sans KR',monospace; }
+.terminal-composition { padding:10px 0; border-block:1px solid #ffffff0c; }
+.terminal-composition h3,.terminal-next h3 { font-size:10px; color:var(--muted); margin:0 0 7px; }
+.terminal-composition pre { font:11px/1.9 'IBM Plex Mono',monospace; white-space:pre-wrap; overflow-wrap:anywhere; color:var(--text); margin:0; }
+.terminal-next { color:var(--muted); font-size:11px; line-height:1.9; padding-top:14px; }
+.terminal-next p { margin:0; }
+.linux-inspector[data-expanded='true'] { display:block; position:absolute; inset:0 0 max(160px,27%) 0; z-index:5; padding:22px 30px; border-left:0; background:#171e28; }
+.linux-inspector[data-expanded='true'] .terminal-tui { font-size:16px; line-height:2; }
+.terminal-stale { color:var(--warning-text); background:var(--warning-bg); padding:7px; border-radius:4px; font-size:10px; }
+.linux-command-help p { font-size:11px; line-height:1.9; color:var(--muted); }
+.linux-command-help ul { list-style:none; padding:0; margin:16px 0; }
+.linux-command-help li > button { display:flex; justify-content:space-between; align-items:center; gap:8px; width:100%; margin:3px 0; padding:8px; border:1px solid transparent; border-radius:5px; color:var(--text); background:none; font-size:11px; text-align:left; }
+.linux-command-help li > button:hover { background:#26332d; border-color:#476052; }
+.linux-command-help code { font:11px/1.5 'IBM Plex Mono',monospace; overflow-wrap:anywhere; }
+.linux-command-help li > button > span { color:var(--accent); }
+.linux-window-footer { display:flex; justify-content:space-between; gap:16px; flex-shrink:0; padding:7px 20px; background:#232b36; color:#a7b3c4; font-size:9px; }
+.linux-desktop-caption { color:#8793a6; font-size:10px; text-align:center; line-height:1.7; }
+.linux-offline { margin:8px 24px; padding:9px; border:1px solid var(--warning-line); border-radius:5px; color:var(--warning-text); font-size:11px; }
+.linux-offline button { background:transparent; border:0; color:inherit; text-decoration:underline; }
+.linux-boot { position:absolute; inset:0; z-index:20; display:grid; place-items:center; background:#0d1117f2; backdrop-filter:blur(12px); animation:linux-boot-in .2s ease both; }
+.linux-boot > div { width:min(420px,calc(100% - 48px)); }
+.linux-boot > div > span { color:#8b9caf; font:10px 'IBM Plex Mono',monospace; letter-spacing:.14em; }
+.linux-boot pre { white-space:pre-wrap; font:13px/2.3 'IBM Plex Mono','Noto Sans KR',monospace; color:#bfdcca; margin:25px 0; }
+.linux-boot button { padding:9px 0; width:100%; display:flex; justify-content:space-between; color:var(--text); background:transparent; border:0; border-top:1px solid var(--line); font-size:11px; }
+.linux-close-layer .lens-close-confirmation { background:#1d242e; color:#d3d8e2; border-color:#47566b; }
+.linux-close-layer .lens-close-confirmation h2 { color:#f1f3f7; }
+@keyframes linux-window-open { from { opacity:0; transform:translateY(32px) scale(.96); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes linux-boot-in { from { opacity:0; } to { opacity:1; } }
+@media(max-width:1050px) {
+  .linux-desktop-main { padding:12px 14px 8px; }
+  .linux-window-toolbar { flex-wrap:wrap; gap:6px; padding:5px 10px; }
+  .linux-window-toolbar nav button { padding:9px; font-size:11px; }
+  .linux-window-toolbar nav button > span { display:none; }
+  .linux-terminal-banner > span { display:none; }
+}
+@media(max-width:760px) {
+  .linux-desktop-bar { min-height:50px; padding:0 14px; gap:10px; }
+  .linux-desktop-name { display:none; }
+  .linux-connection { margin-left:auto; }
+  .linux-brand img { width:112px; }
+  .linux-desktop-main { padding:8px; }
+  .linux-window-titlebar { height:30px; }
+  .linux-window-toolbar nav { width:100%; }
+  .linux-window-toolbar nav button { flex:1; justify-content:center; }
+  .linux-difficulty { margin:0; }
+  .linux-help-toggle { margin-left:auto; }
+  .linux-window-body { grid-template-columns:minmax(0,1fr); grid-template-areas:'log' 'composer' 'lens'; grid-template-rows:minmax(0,1fr) auto minmax(160px,30%); }
+  .linux-inspector { display:none; }
+  .linux-inspector[data-expanded='true'] { bottom:max(160px,30%); padding:15px; }
+  .linux-inspector:has(.linux-command-help) { display:block; position:absolute; inset:0 0 max(160px,30%) 0; z-index:5; padding:15px; border-left:0; }
+  .linux-terminal-banner { padding:10px 14px; }
+  .linux-terminal-banner pre { font-size:9px; }
+  .linux-desktop :is(.input-panel,.lens-panel) { padding:9px 14px; }
+  .linux-desktop .terminal-raw { padding-inline:14px; }
+  .linux-desktop .terminal-input-row { flex-wrap:nowrap; }
+  .linux-desktop .terminal-input-prompt { font-size:10px; }
+  .linux-desktop .terminal-input-field { flex-basis:auto; }
+  .linux-window-footer > span:last-child,.linux-desktop-caption { display:none; }
+}
+@media(prefers-reduced-motion:reduce) { .linux-window,.linux-boot { animation:none; } }

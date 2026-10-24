@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { MotionConfig } from "motion/react";
 import { fetchLabs, attemptLab } from "./api.js";
 import { CATEGORIES, labId } from "./learning-content.js";
@@ -9,6 +9,7 @@ import useInputAnalysis from "./useInputAnalysis.js";
 import { ConceptPanel } from "./WorkspaceParts.jsx";
 import GuidedLesson from "./GuidedLesson.jsx";
 import { getLesson } from "./lesson-catalog.js";
+import LinuxDesktop,{isLinuxCategory} from './terminal/LinuxDesktop.jsx';
 export { CATEGORIES } from "./learning-content.js";
 
 export default function App() {
@@ -26,6 +27,9 @@ export default function App() {
   const [stepIndex, setStepIndex] = useState(0);
   const [acknowledged, setAcknowledged] = useState(false);
   const [stepAfterAttempt, setStepAfterAttempt] = useState(0);
+  const [booting,setBooting]=useState(false);
+  const snapshots=useRef(new Map()),lastWeb=useRef({id:'sql_injection',level:'easy'}),linuxVisited=useRef(false);
+  const completeBoot=useCallback(()=>setBooting(false),[]);
   const [lesson, setLesson] = useState(null),
     [activeGroup, setActiveGroup] = useState("input");
   const [theme, setTheme] = useState(
@@ -37,11 +41,12 @@ export default function App() {
     lensRef = useRef(null);
   const category = CATEGORIES.find((c) => c.id === categoryId),
     currentLab = labId(categoryId, difficulty);
+  const linuxMode=isLinuxCategory(categoryId);
   const history = attempts.filter((a) => a.lab === currentLab);
   const selected = history.find((a) => a.id === viewId);
   const trace = selected?.result.learning_trace;
   const stale = Boolean(
-    selected && (selected.input !== input || selected.claim !== claim),
+    selected && !(linuxMode && input==='') && (selected.input !== input || selected.claim !== claim),
   );
   const available = labs.some((l) => l.id === currentLab);
   const planned = category.plannedLevels?.includes(difficulty);
@@ -58,9 +63,9 @@ export default function App() {
   const { trace: analysis, status: analysisStatus } = useInputAnalysis(
     currentLab,
     payload,
-    available && Boolean(input) && validId,
+    available && (Boolean(input) || linuxMode) && validId,
   );
-  const currentTrace = stale || !trace ? analysis : trace;
+  const currentTrace = linuxMode && !input && !trace ? null : stale || !trace ? analysis : trace;
   const guideTrace = !stale && selected?.id > stepAfterAttempt ? trace : null;
   function editInput(value) { setInput(value); setAcknowledged(false); }
   function editClaim(value) { setClaim(value); setAcknowledged(false); }
@@ -81,21 +86,31 @@ export default function App() {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("payloadlab-workspace-theme", theme);
   }, [theme]);
-  function changeContext(id, level = difficulty) {
+  function changeContext(id, requestedLevel) {
+    const targetLinux=isLinuxCategory(id);
+    const level=requestedLevel ?? (!linuxMode && targetLinux?'easy':difficulty);
+    if(linuxMode || targetLinux)snapshots.current.set(currentLab,{input,claim,viewId,view,stepIndex,acknowledged,stepAfterAttempt,activeGroup});
+    if(!linuxMode && targetLinux){
+      lastWeb.current={id:categoryId,level:difficulty};
+      setBooting(!linuxVisited.current);
+      linuxVisited.current=true;
+    }
+    if(!targetLinux)setBooting(false);
+    const saved=(linuxMode || targetLinux)?snapshots.current.get(labId(id,level)):null;
     generation.current++;
     setCategoryId(id);
     setDifficulty(level);
-    setInput("");
-    setClaim("");
-    setViewId(null);
-    setView("overview");
+    setInput(saved?.input ?? "");
+    setClaim(saved?.claim ?? "");
+    setViewId(saved?.viewId ?? null);
+    setView(saved?.view ?? "overview");
     setBusy(false);
     setError("");
     setLesson(null);
-    setActiveGroup("input");
-    setStepIndex(0);
-    setAcknowledged(false);
-    setStepAfterAttempt(nextId.current);
+    setActiveGroup(saved?.activeGroup ?? "input");
+    setStepIndex(saved?.stepIndex ?? 0);
+    setAcknowledged(saved?.acknowledged ?? false);
+    setStepAfterAttempt(saved?.stepAfterAttempt ?? nextId.current);
   }
   function focusGroup(group = "focus") {
     setActiveGroup(group);
@@ -135,6 +150,7 @@ export default function App() {
       setAcknowledged(false);
       setActiveGroup("focus");
       setView("result");
+      if(linuxMode)setInput(current=>current===submitted.input?'':current);
     } catch {
       if (version === generation.current)
         setError(
@@ -144,12 +160,36 @@ export default function App() {
       if (version === generation.current) setBusy(false);
     }
   }
+  function renderDock(onFocus){
+    return <InputDock
+      category={linuxMode && categoryId==='command_injection'?{...category,terminal:true}:category}
+      difficulty={difficulty} input={input} claim={claim} onInput={editInput} onClaim={editClaim}
+      onRun={run} busy={busy} available={available} planned={planned}
+      guide={planned ? <section className="guided-lesson" aria-label="학습 안내"><h3>Normal은 다음 단계로 준비합니다</h3><p>권한상승 기초는 Easy에서 사용자·파일 소유자·접근 거부를 먼저 관찰해요. Normal은 구현 예정이며 현재 실행할 수 없어요.</p></section> : <GuidedLesson
+        lesson={guideLesson} stepIndex={stepIndex} trace={guideTrace}
+        result={guideTrace?selected?.result:null} acknowledged={acknowledged} onAcknowledge={setAcknowledged}
+        onFill={value=>{editInput(value);inputRef.current?.focus();}}
+        onAdvance={()=>{setStepIndex(n=>n+1);setAcknowledged(false);setStepAfterAttempt(nextId.current);}}/>}
+      error={error} inputRef={inputRef} lensRef={lensRef} trace={currentTrace}
+      analysisStatus={analysisStatus} onFocus={onFocus} onLesson={setLesson}
+      focusLabel={linuxMode?'처리 흐름 크게 보기':undefined}
+      terminalPrompt={linuxMode?(categoryId==='command_injection'?'hostname > ':
+        analysis?.terminal?.prompt || history.at(-1)?.result.learning_trace?.terminal?.prompt || currentTrace?.terminal?.prompt):undefined}
+    />;
+  }
   return (
     <MotionConfig
       reducedMotion="user"
       transition={{ duration: 0.2, ease: [0.22, 0.68, 0, 1] }}
     >
-      <div className="workspace-shell focused-workbench unified-layout">
+      <div className={linuxMode?'linux-mode-shell':'workspace-shell focused-workbench unified-layout'}>
+        {linuxMode ? <LinuxDesktop category={category} difficulty={difficulty}
+          onCategory={changeContext} onDifficulty={level=>changeContext(categoryId,level)}
+          onReturn={()=>changeContext(lastWeb.current.id,lastWeb.current.level)}
+          history={history} selected={selected} trace={currentTrace} analysisTrace={analysis}
+          stale={stale} inputRef={inputRef} lensRef={lensRef} onInput={editInput}
+          renderDock={renderDock} booting={booting} onBootComplete={completeBoot}
+          connection={connection} onConnect={connect}/> : <>
         <a href="#lab-main" className="skip-link">
           실습으로 바로가기
         </a>
@@ -272,32 +312,7 @@ export default function App() {
               </div>
             )}
             <section className="workbench-grid integrated-workspace" aria-label="통합 학습 작업 공간" data-phase={busy ? 'executing' : !input ? 'before-input' : currentTrace?.phase === 'analysis' || stale ? 'analyzing' : trace ? 'result' : 'editing'}>
-              <InputDock
-                category={category}
-                difficulty={difficulty}
-                input={input}
-                claim={claim}
-                onInput={editInput}
-                onClaim={editClaim}
-                onRun={run}
-                busy={busy}
-                available={available}
-                planned={planned}
-                guide={planned ? <section className="guided-lesson" aria-label="학습 안내"><h3>Normal은 다음 단계로 준비합니다</h3><p>권한상승 기초는 Easy에서 사용자·파일 소유자·접근 거부를 먼저 관찰해요. Normal은 구현 예정이며 현재 실행할 수 없어요.</p></section> : <GuidedLesson
-                  lesson={guideLesson} stepIndex={stepIndex}
-                  trace={guideTrace} result={guideTrace ? selected?.result : null}
-                  acknowledged={acknowledged} onAcknowledge={setAcknowledged}
-                  onFill={(value) => { editInput(value); inputRef.current?.focus(); }}
-                  onAdvance={() => { setStepIndex((n) => n + 1); setAcknowledged(false); setStepAfterAttempt(nextId.current); }}
-                />}
-                error={error}
-                inputRef={inputRef}
-                lensRef={lensRef}
-                trace={currentTrace}
-                analysisStatus={analysisStatus}
-                onFocus={() => focusGroup("focus")}
-                onLesson={setLesson}
-              />
+              {renderDock(()=>focusGroup('focus'))}
               <ObservationStage
                 integrated
                 category={category}
@@ -329,6 +344,7 @@ export default function App() {
             </section>
           </main>
         </div>
+        </>}
         {lesson && (
           <ConceptPanel lesson={lesson} onClose={() => setLesson(null)} />
         )}

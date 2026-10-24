@@ -5,6 +5,7 @@ import {terminalDiagnostics} from './diagnostics.js';
 import './terminal-transcript.css';
 
 function promptBefore(trace) {
+  if(trace.category==='command_injection')return 'hostname > ';
   const user=trace.simulation?.nodes?.find(node=>node.id==='identity')?.value;
   return user ? `${user}@practice:/lab${user==='root'?'#':'$'} `
     : trace.terminal?.prompt || 'student@practice:/lab$ ';
@@ -32,6 +33,7 @@ export default function TerminalTranscript({entries=[],selectedId,onDiagnostic})
           <div className="terminal-entry-status"><span>시도 {index+1}{current?' · 선택한 시도':''}</span><span>종료 코드 {execution.exit_code}</span></div>
           <div className="terminal-raw" aria-label="터미널 원문 출력">
             <pre className="terminal-command" aria-label="명령 원문">{promptBefore(trace)}{trace.raw_input ?? entry.input}</pre>
+            {trace.category==='command_injection' && trace.composition?.full && <pre className="terminal-composed-command" aria-label="조립된 명령">{trace.composition.full}</pre>}
             {execution.stdout && <pre aria-label="표준 출력">{execution.stdout}</pre>}
             {execution.stderr && <pre className="terminal-stderr" aria-label="표준 오류"><DiagnosticText
               text={execution.stderr} source="stderr" diagnostics={terminalDiagnostics(trace)}
