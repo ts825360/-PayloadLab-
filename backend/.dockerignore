@@ -1,0 +1,15 @@
+.git
+.codex
+.agents
+.claude
+.env
+.env.*
+!.env.example
+.venv
+venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.coverage
+htmlcov
+**/*.log

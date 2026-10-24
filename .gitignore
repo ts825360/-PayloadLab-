@@ -12,3 +12,11 @@ dist/
 
 # Local linked worktrees
 .worktrees/
+
+# Local agent tools and reports, not application sources
+.codex/
+.agents/
+.superpowers/
+coverage/
+.pytest_cache/
+*.log

@@ -51,7 +51,9 @@ export default function App() {
   };
   if (category.numeric && difficulty === "medium" && /^\d+$/.test(claim))
     payload.claimed_user_id = Number(claim);
-  if (categoryId === "permissions") payload.history = history.map((entry) => entry.input);
+  if (categoryId === "permissions") payload.history = history
+    .filter((entry) => entry.result.learning_trace?.execution?.status !== 'unsupported')
+    .map((entry) => entry.input);
   const { trace: analysis, status: analysisStatus } = useInputAnalysis(
     currentLab,
     payload,
@@ -131,7 +133,7 @@ export default function App() {
       setViewId(entry.id);
       setAcknowledged(false);
       setActiveGroup("focus");
-      setView(history.length ? "compare" : "focus");
+      setView("result");
     } catch {
       if (version === generation.current)
         setError(
@@ -146,7 +148,7 @@ export default function App() {
       reducedMotion="user"
       transition={{ duration: 0.2, ease: [0.22, 0.68, 0, 1] }}
     >
-      <div className="workspace-shell focused-workbench">
+      <div className="workspace-shell focused-workbench unified-layout">
         <a href="#lab-main" className="skip-link">
           실습으로 바로가기
         </a>
@@ -273,7 +275,7 @@ export default function App() {
                 <button onClick={connect}>연결 다시 시도</button>
               </div>
             )}
-            <div className="workbench-grid">
+            <section className="workbench-grid integrated-workspace" aria-label="통합 학습 작업 공간" data-phase={busy ? 'executing' : !input ? 'before-input' : currentTrace?.phase === 'analysis' || stale ? 'analyzing' : trace ? 'result' : 'editing'}>
               <InputDock
                 category={category}
                 difficulty={difficulty}
@@ -300,6 +302,7 @@ export default function App() {
                 onLesson={setLesson}
               />
               <ObservationStage
+                integrated
                 category={category}
                 difficulty={difficulty}
                 input={input}
@@ -323,8 +326,9 @@ export default function App() {
                   setView("overview");
                   setActiveGroup("focus");
                 }}
+                onStart={() => inputRef.current?.focus()}
               />
-            </div>
+            </section>
           </main>
         </div>
         {lesson && (

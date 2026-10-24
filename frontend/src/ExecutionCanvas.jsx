@@ -277,6 +277,7 @@ export default function ExecutionCanvas({
       {sql ? (
         <div className="sql-execution-grid">
           <div className="condition-zone">
+            {trace.table?.rows && <label className="account-inspector">관찰할 계정 <select aria-label="조건을 관찰할 계정" value={row} onChange={(event)=>setRow(Number(event.target.value))}>{trace.table.rows.map((item,index)=><option key={index} value={index}>{item.cells[1]}</option>)}</select></label>}
             <div className="zone-title">
               <span className="mini-label">CONDITION MAP</span>
               <span>

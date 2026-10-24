@@ -4,11 +4,13 @@
 
 처음 참여한 팀원은 먼저 [프로젝트 한눈에 보기](planning/2026-09-07-project-brief.md)를 읽고, 맡은 이슈와 관련된 문서만 추가로 읽습니다. 모든 이슈를 처음부터 읽을 필요는 없습니다.
 
+현재 실행 코드는 이 저장소의 `frontend/`와 `backend/`에 함께 있습니다. 시작 명령은 [루트 README](../README.md), 현재 코드의 연결은 [저장소 구조](architecture/repository-structure.md)를 기준으로 확인합니다. 과거 결정·회의 문서의 별도 구현 저장소 설명과 검증 수치는 당시 기록으로 보존합니다.
+
 ## 팀 운영 방식
 
 - 모든 기획서·조사 자료·결정 기록·회의 결과는 `docs/`에 저장합니다.
 - 의견 제안, 질문, 작업 배정, 진행 상황은 GitHub Issue에서 남깁니다.
-- 코드·문서·디자인 결과물의 변경은 Pull Request로 올려 검토합니다.
+- 공통 기준은 `main`입니다. 총괄·AI 보조 작업은 사용자 승인 범위에서 검증 후 main에 커밋하고, 팀원 개인 브랜치의 작업은 Pull Request로 올려 검토합니다. 자세한 기준은 [이슈·운영 가이드](ISSUE-GUIDE.md)를 따릅니다.
 - 팀은 **격주 수요일**에 모여 열린 이슈와 Pull Request를 검토하고, 어떤 결과물을 확정할지 토의합니다.
 - 확정한 내용은 `docs/decisions/` 문서와 관련 이슈 댓글에 함께 기록합니다.
 
@@ -18,6 +20,10 @@
 | --- | --- |
 | `docs/planning/` | 기획 의도, 범위, 사용자 흐름, 발표용 핵심 정리 |
 | `docs/research/` | SQL Injection·XSS·IDOR·SSRF 등 유형별 조사 자료와 학습 시나리오 |
+| [현재 저장소 구조](architecture/repository-structure.md) | 실행 진입점·API 연결, 구형 UI 검토 후보, 소스·생성물 구분 |
+| [로컬 안전·보관 정책](deployment/local-safety-and-retention.md) | 실제 실행/모형 경계, 상태 수명·로그·캐시, 공개 전 검증 |
+| [보안 검토 이슈 초안](deployment/security-review-issue-draft.md) | #6·#12·#24에 연결할 등록 전 스파이크 제안. 새 이슈 미등록 |
+| [브랜드 원본 확인](branding/README.md) | 현재 문자 브랜드와 로고 SVG/PNG 원본 필요사항 |
 | [공격 입력 데이터 초안](datasets/payloads-all-the-things/README.md) | SQLi·XSS·CMDi·SSRF 공통 CSV, 원문 근거·정상 예시·라벨 검토 기준 |
 | `docs/decisions/` | 팀이 확정한 범위, 안전 원칙, UX, 기술 선택의 결정 기록 |
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |

@@ -19,6 +19,7 @@ import ExecutionCanvas from "./ExecutionCanvas.jsx";
 import ChangeComparison from "./ChangeComparison.jsx";
 import Icon from "./Icon.jsx";
 import LensCloseConfirmation from "./LensCloseConfirmation.jsx";
+import LearningPrimer from './LearningPrimer.jsx';
 
 function FocusScene({ trace, group }) {
   const reduce = useReducedMotion();
@@ -152,6 +153,8 @@ export default function ObservationStage({
   history,
   selected,
   onSelect,
+  onStart,
+  integrated = false,
 }) {
   const regionRef = useRef(null),
     scrollRef = useRef(null),
@@ -203,7 +206,7 @@ export default function ObservationStage({
         e.stopPropagation();
         if (!e.repeat) setCloseRequested(true);
       }
-      if (e.key === "Tab" && narrow && view !== "overview") {
+      if (e.key === "Tab" && narrow && !integrated && view !== "overview") {
         const controls = [
           ...regionRef.current.querySelectorAll(
             'button:not(:disabled),a[href],input,textarea,[tabindex="0"]',
@@ -222,7 +225,7 @@ export default function ObservationStage({
     }
     document.addEventListener("keydown", escape);
     return () => document.removeEventListener("keydown", escape);
-  }, [view, onView, narrow]);
+  }, [view, onView, narrow, integrated]);
   const trace = currentTrace || (!stale ? executedTrace : null);
   const compositionProps = {
     category,
@@ -240,14 +243,14 @@ export default function ObservationStage({
       ref={regionRef}
       className={`observation-stage view-${view}`}
       aria-label="실습 관찰 화면"
-      role={narrow && view !== "overview" ? "dialog" : "region"}
-      aria-modal={narrow && view !== "overview" ? true : undefined}
+      role={narrow && !integrated && view !== "overview" ? "dialog" : "region"}
+      aria-modal={narrow && !integrated && view !== "overview" ? true : undefined}
       data-view={view}
     >
       <header className="observation-header">
         <div>
           <span className="stage-dot" />
-          <h2>관찰 공간</h2>
+          <h2>처리 흐름과 결과</h2>
           <span className="stage-state">
             {trace?.phase === "analysis"
               ? "입력 분석"
@@ -296,6 +299,8 @@ export default function ObservationStage({
               <ChangeComparison history={history} selected={selected} />
             ) : (
               <>
+                {!input && !category.plannedLevels?.includes(difficulty) && <LearningPrimer category={category} difficulty={difficulty} onStart={onStart} />}
+                {view==='result' && trace?.composition && <div className="result-query-strip" aria-label="이번 입력이 결합된 문장"><code>{trace.composition.prefix}<mark>{trace.composition.value}</mark>{trace.composition.suffix}</code><button type="button" onClick={()=>onView('focus')}>문장 위치 확대 ↗</button></div>}
                 {view === "focus" && (
                   <div className="focus-view">
                     <div className="focus-title">
@@ -304,9 +309,9 @@ export default function ObservationStage({
                         <h2>선택한 부분 자세히 보기</h2>
                       </div>
                       <span>
-                        {narrow
+                        {narrow && !integrated
                           ? "돌아가기를 누르면 입력을 수정할 수 있어요."
-                          : "입력은 왼쪽에서 계속 수정할 수 있어요."}
+                          : "위 입력창과 아래 Lens가 같은 흐름으로 이어져요."}
                       </span>
                     </div>
                     {trace?.composition ? (
@@ -318,7 +323,7 @@ export default function ObservationStage({
                     )}
                   </div>
                 )}
-                {(view === "overview" || !trace?.composition) && (
+                {Boolean(input || executedTrace) && (view === "overview" || !trace?.composition) && (
                   <Composition {...compositionProps} />
                 )}
                 {trace?.phase === "analysis" && (
@@ -336,15 +341,15 @@ export default function ObservationStage({
                     입력이 바뀌었어요. 아래는 이전 실행 결과입니다.
                   </div>
                 )}
-                <ExecutionCanvas
+                {Boolean(input || executedTrace) && <ExecutionCanvas
                   key={selected?.id || labId}
                   trace={executedTrace}
                   category={category}
                   labId={labId}
                   activeGroup={activeGroup}
                   onGroup={onGroup}
-                />
-                {!resultAvailable && (
+                />}
+                {!resultAvailable && Boolean(input) && (
                   <div className="observation-tip">
                     Lens에서 확인 위치를 누르면 이 공간이 해당 부분에 초점을
                     맞춥니다.

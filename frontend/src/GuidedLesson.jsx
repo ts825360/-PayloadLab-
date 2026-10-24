@@ -30,7 +30,7 @@ export default function GuidedLesson({ lesson, stepIndex, onAdvance, onFill, tra
         <button type="button" onClick={() => onFill(step.suggestion)}>입력 예시 넣기</button>
         <small>입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.</small>
       </div>}
-      <p className="guided-observation">{step.observation}</p>
+      {showSuggestion && <p className="guided-observation">{step.observation}</p>}
       <p role="status">{observed ? "이번 실행에서 단계의 관찰 근거를 확인할 수 있어요." : "아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요."}</p>
       <label className="guided-acknowledgement"><input type="checkbox" checked={Boolean(acknowledged)} onChange={(event) => onAcknowledge(event.target.checked)} />코드와 실행 결과에서 위 내용을 직접 관찰했어요</label>
       {step.question && <fieldset className="guided-question">

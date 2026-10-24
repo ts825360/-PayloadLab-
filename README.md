@@ -1,121 +1,130 @@
 # PayloadLab
 
-> **보안 입문자가 웹 입력의 처리 과정을 관찰하면서, 공격문이 왜 위험하고 어떤 조건에서 성공하거나 실패하는지 이해하도록 돕는 교육용 웹 학습 프로젝트**
+보안 입문자가 입력이 처리되는 과정을 보며, 취약점이 어떤 조건에서 생기는지 배우는 로컬 웹 학습 앱입니다. 입력을 바꾸고 **입력 → 처리 과정 → 결과 → Lens 설명 → 재시도·비교**를 같은 학습 공간에서 확인합니다.
 
-PayloadLab은 단순히 공격 문자열을 입력하고 정답 여부만 확인하는 방식에서 벗어나, **입력 → 교육용 처리 과정 → 결과 → Lens 설명·시각화 → 재시도**의 흐름으로 학습하는 것을 목표로 합니다.
+이 저장소 [`ts825360/-PayloadLab-`](https://github.com/ts825360/-PayloadLab-)가 프론트엔드, 백엔드, Docker 설정, 팀 문서를 함께 관리합니다. 이전 문서의 별도 구현 저장소 안내는 당시의 개발 경위이며, 현재 실행에는 이 저장소를 사용합니다. 과거 검증 기록은 [decisions](docs/decisions/README.md)에 남아 있습니다.
 
-> **저장소 구분:** 현재 저장소 [`ts825360/-PayloadLab-`](https://github.com/ts825360/-PayloadLab-)는 **기획·이슈·연구 근거·데이터 초안**을 관리합니다. 실행 코드는 별도의 [`ts825360/payload-lab`](https://github.com/ts825360/payload-lab) 저장소에서 개발된 것으로 문서화되어 있습니다. 이 저장소 자체에는 웹 앱의 실행 코드와 Docker Compose 설정이 없습니다.
+## 무엇을 배울 수 있나요?
 
-## 주요 학습 흐름
+최신 변경의 검증 범위는 [통합 학습 공간 검증 기록](docs/decisions/2026-10-23-unified-workspace.md#2026-10-24-검증-결과)을 참고하세요. 백엔드 100개·프론트엔드 52개 테스트와 빌드가 통과했으며, Docker 실제 기동·공개 배포 검증과는 구분합니다.
 
-1. SQL Injection·Reflected XSS·IDOR 중 학습할 유형을 선택합니다.
-2. 실습 난이도를 선택하고 교육용 입력을 작성합니다.
-3. 서버가 입력을 어떤 코드·쿼리·권한 확인 문맥에서 처리하는지 확인합니다.
-4. Lens가 **어디에서, 무엇이, 왜** 문제가 되었는지 설명합니다.
-5. 처리 단계와 결과를 시각적으로 관찰한 뒤 입력을 수정해 재시도합니다.
+현재 백엔드 등록 기준은 **13개 랩**입니다. 아래 6개 유형은 Easy와 Normal을 각각 제공하고, 권한상승 기초는 Easy만 제공합니다. 화면의 Normal은 API 식별자에서 `medium`으로 표현됩니다.
 
-**Lens**는 공격 문자열을 자동으로 만들어 주는 기능이 아니라, 해당 입력이 교육용 시나리오에서 갖는 의미와 부족한 조건을 설명하는 학습 보조 기능입니다. 공격처럼 보이는 문자열이 곧바로 실제 공격 성공을 의미하지는 않습니다.
+| 유형 | 난이도 | 실제로 하는 일 |
+| --- | --- | --- |
+| SQL Injection | Easy / Normal | 매번 새 SQLite 메모리 DB에서 취약한 조회를 실행하고 반환된 행을 관찰 |
+| Reflected XSS | Easy / Normal | 입력이 HTML이 되는 과정을 분석하고, 사용자가 결과 열기를 선택하면 격리된 iframe에서 실제 HTML·스크립트를 렌더링 |
+| IDOR | Easy / Normal | 고정된 더미 주문·사용자로 객체 번호와 소유자 검사의 차이를 관찰 |
+| SSRF | Easy / Normal | URL 문자열과 hostname을 파싱해 가상 목적지·응답을 표시. DNS 조회·HTTP 요청 없음 |
+| Command Injection | Easy / Normal | 제한된 토큰·명령 목록으로 경계와 가상 출력을 표시. 셸·ping 실행 없음 |
+| Linux 명령어 | Easy / Normal | `ls` 등 명령 토큰을 채점하는 가상 파일 목록 퀴즈. OS 명령 실행 없음 |
+| 권한상승 기초 | Easy | 허용된 가상 명령과 사용자·파일 권한을 비교. 실제 sudo·파일·OS 권한 변경 없음. Normal은 구현 예정 |
 
-## 개발 범위 및 현황
+Lens는 입력의 **어디에서, 무엇이, 왜** 달라졌는지 설명합니다. 규칙과 제한된 교육용 모형에 기반하며, 모든 공격문을 이해하는 AI 판별기나 범용 SQL·HTML·셸 해석기는 아닙니다. XSS의 태그 인식이나 랩의 성공 판정만으로 실제 브라우저 실행이 증명되지는 않습니다.
 
-| 구분 | 범위 / 현황 |
-| --- | --- |
-| 핵심 학습 유형 | SQL Injection, Reflected XSS, IDOR |
-| 후속 검토 | SSRF 모의 실습, Command Injection 안전 시나리오, 리눅스 명령어 퀴즈 |
-| 설명·시각화 | Lens 피드백, 입력과 교육용 코드·결과의 연결 |
-| 공격 입력 참고 자료 | SQLi·XSS·Command Injection·SSRF CSV 4종, 총 137행 |
-| 데이터셋 성격 | **문서에서 선별한 공격 시도 101행**, 자체 정상 예시 32행, 문맥 미정 4행. **실행 검증 또는 AI 학습 완료 데이터가 아님** |
-| 통합 상태 | 2026-10-23 기록 기준 구현 브랜치 검증과 기본 브랜치 통합은 별개이며, 통합 작업 [#23](https://github.com/ts825360/-PayloadLab-/issues/23)은 진행 중 |
+입력 전에는 정의·성립 조건·처리 단계·학습 목표를 읽고 시작할 수 있습니다. 유형별 로그인·검색·주문 조회·URL·진단·가상 터미널 문맥에서 입력하고, 같은 작업 공간의 처리·결과·Lens를 이어서 관찰합니다. Easy는 단계 안내를, Normal은 목표와 선택형 단서를 제공합니다.
 
-2026-10-23 작성된 [구현 검증 기록](docs/decisions/2026-10-23-implementation-review.md)에 따르면 특정 구현 브랜치 기준 **백엔드 47개, 프론트엔드 25개 테스트**가 통과했습니다. 그러나 해당 문서는 원격 `main`과의 충돌 및 브라우저 화면 직접 검증 미완료를 명시하고 있습니다. **이 결과는 통합·운영 배포 완료를 뜻하지 않습니다.**
+## 처음 실행하기
 
-## 저장소와 문서 구조
+Git과 Docker Desktop 또는 Docker Engine + Compose 플러그인이 필요합니다. Docker가 실행 중인지 확인한 뒤 저장소를 내려받습니다.
 
-```text
--PayloadLab-/                         # 이 저장소: 기획·근거·협업
-├── README.md                          # 프로젝트 소개·시작 안내
-├── .github/
-│   └── ISSUE_TEMPLATE/               # 이슈 유형별 입력 양식
-└── docs/
-    ├── README.md                     # 팀 문서 작성 및 관리 규칙
-    ├── ISSUE-GUIDE.md                # 이슈·브랜치·PR·검증 운영 가이드
-    ├── planning-prompt.md            # 이슈 기획 프롬프트
-    ├── planning/                     # 프로젝트 범위 및 역할 분담
-    ├── decisions/                    # 설계 판단과 구현 검증 기록
-    ├── research/                     # 유형별 연구·조사 문서
-    ├── meeting-notes/                # 회의·교수님 보고 자료
-    └── datasets/
-        └── payloads-all-the-things/
-            ├── README.md            # 데이터 목적·레이블·제약
-            ├── *.csv                # SQLi·XSS·CMDi·SSRF 입력 사례
-            ├── curated_samples.py   # 선별 사례와 메타데이터
-            ├── sources/             # 고정 원본 Markdown 발췌
-            ├── manifest.json        # 원문 위치·바이트·해시 추적
-            ├── build_dataset.py     # 오프라인 CSV 재생성
-            ├── test_dataset.py      # 데이터 무결성 검사
-            └── LICENSE              # 원본 라이선스 고지
-```
-
-위 트리는 **이 문서 저장소의 실제 파일 배치에 근거한 요약**입니다. 구현 저장소의 상세 디렉터리 구조는 코드 접근 및 통합 이후 확인하여 별도로 기록합니다. 향후 모듈 구조 원칙은 신규 `docs/architecture/repository-structure.md` 문서로 분리해 관리하는 것을 제안합니다. **이 경로는 아직 생성되지 않은 설계안**입니다.
-
-## 실행 방법
-
-### 사전 준비
-
-- Git
-- Docker 및 Docker Compose 플러그인 (`docker compose` 명령 사용 가능)
-- 구현 저장소에 접근할 수 있는 GitHub 권한
-
-> **확인 상태:** 아래 명령과 URL은 현재 기획 저장소의 기존 README 및 2026-10-23 구현 검증 문서에 기재된 내용입니다. 연결된 GitHub 환경에서는 구현 저장소를 조회하지 못해 **최신 구현 브랜치의 실행 성공을 재검증하지 못했습니다.** PR 통합 뒤 구현 저장소 README 및 Compose 설정과 대조해야 합니다.
-
-### 웹 학습 앱 실행 (구현 저장소에서)
-
-```bash
-git clone https://github.com/ts825360/payload-lab.git
-cd payload-lab
+```powershell
+git clone https://github.com/ts825360/-PayloadLab-.git
+Set-Location -LiteralPath '.\-PayloadLab-'
 docker compose up --build
 ```
 
-기존 문서에 기록된 로컬 접근 주소:
+이미 내려받았다면 `docker-compose.yml`이 있는 저장소 루트에서 마지막 명령만 실행합니다. 처음에는 이미지 다운로드와 의존성 설치 시간이 필요합니다.
 
-| 항목 | 주소 |
+| 용도 | 로컬 주소 |
 | --- | --- |
-| 프론트엔드 학습 화면 | http://localhost:5173 |
-| 백엔드 실습 API | http://localhost:8001/labs |
+| 학습 화면 | [http://127.0.0.1:5173](http://127.0.0.1:5173) |
+| API 상태 확인 | [http://127.0.0.1:8001/health](http://127.0.0.1:8001/health) — 정상 응답 `{"status":"ok"}` |
+| 등록된 랩 목록 | [http://127.0.0.1:8001/labs](http://127.0.0.1:8001/labs) |
+| 개발용 API 문서 | [http://127.0.0.1:8001/docs](http://127.0.0.1:8001/docs) |
 
-컨테이너를 중지하려면 실행한 터미널에서 `Ctrl+C`를 사용하고, 별도 터미널에서 `docker compose down`을 실행합니다. 실제 서비스의 Compose 파일·환경변수·포트 매핑은 통합 후 재확인해야 합니다.
+Compose의 호스트 포트는 `127.0.0.1:5173`과 `127.0.0.1:8001`에 묶습니다. 컨테이너 내부 API 포트는 `8000`입니다. 이 설정은 개인 PC에서 개발하기 위한 것으로, 인터넷 공개 배포 승인을 뜻하지 않습니다.
 
-**주의:** 지금 보고 있는 `-PayloadLab-` 문서 저장소에서 `docker compose up`을 실행하는 절차가 아닙니다.
+Compose에는 컨테이너 자원 상한·권한 제한·로그 회전도 설정되어 있습니다. 실제 적용 여부와 부하에서의 적정성은 Docker 실행 검증이 필요하며, 자세한 값과 한계는 [로컬 안전 문서](docs/deployment/local-safety-and-retention.md)에 있습니다.
 
-### 공격 입력 자료 재생성·검증 (이 문서 저장소에서)
+실행한 터미널에서 `Ctrl+C`로 중지할 수 있습니다. 별도 터미널에서 루트 기준으로 상태·로그·종료를 확인할 수도 있습니다.
 
-Python 사용 환경에서 저장소 루트 기준:
+```powershell
+docker compose ps
+docker compose logs --tail=100 -f backend frontend
+docker compose down
+```
 
-```bash
-python docs/datasets/payloads-all-the-things/build_dataset.py
+`/health`는 API 응답 여부를 확인하며, 학습 화면·13개 랩·XSS 격리·보안 전체를 검사하는 기능은 아닙니다. 현재 Compose는 Vite 개발 서버와 Uvicorn 자동 재시작을 사용합니다. 이 문서 개정에서 Docker 이미지 빌드·기동 성공을 확인한 것은 아닙니다.
+
+## Docker 없이 개발하기
+
+로컬 개발에는 Node.js 20 계열과 pnpm, Python 3.12 계열을 준비합니다. 실제 의존성은 [frontend/package.json](frontend/package.json), [pnpm-lock.yaml](frontend/pnpm-lock.yaml), [backend/requirements.txt](backend/requirements.txt)에 있습니다.
+
+저장소 루트에서 백엔드를 시작합니다. 필요하면 먼저 본인 환경에 맞는 Python 가상환경을 사용하세요.
+
+```powershell
+python -m pip install -r backend/requirements-dev.txt
+python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8001 --reload
+```
+
+다른 터미널에서 프론트엔드를 시작합니다. 로컬 Vite 설정의 `/api` 프록시가 `127.0.0.1:8001`로 연결합니다.
+
+```powershell
+pnpm --dir frontend install --frozen-lockfile
+pnpm --dir frontend dev --host 127.0.0.1 --strictPort
+```
+
+로컬 개발은 pnpm lockfile을 사용하지만 현재 프론트엔드 Dockerfile은 `npm install`을 사용합니다. 두 설치 경로의 일관성은 [배포 검토 초안](docs/deployment/security-review-issue-draft.md)에서 확인할 항목입니다.
+
+## 검증 명령
+
+백엔드 테스트는 `backend` 디렉터리에서 실행합니다.
+
+```powershell
+cd backend
+python -m pytest -q
+cd ..
+```
+
+프론트엔드 테스트·정적 빌드와 데이터 무결성 검사는 루트에서 실행합니다.
+
+```powershell
+pnpm --dir frontend test
+pnpm --dir frontend build
 python docs/datasets/payloads-all-the-things/test_dataset.py -v
 ```
 
-이 검증은 CSV 형식, 원문과의 일치, 고정 해시 등을 확인합니다. **공격 유효성·라벨의 교육적 적절성·모델 성능을 검증하지는 않습니다.** CSV에 있는 문자열을 실행 환경에 자동으로 전달하지 않습니다.
+의도적으로 CSV를 다시 만들 때만 `python docs/datasets/payloads-all-the-things/build_dataset.py`를 실행합니다. 데이터 검사는 형식·원문 바이트·고정 해시를 대조하며 공격 성공·교육적 라벨·AI 모델 성능을 검증하지 않습니다. 원문과 manifest, 라이선스를 함께 보존합니다.
 
-## 교육용 안전 원칙
+테스트·빌드 통과, 실제 브라우저 화면 확인, Docker 실행, 공개 배포 보안 검토는 서로 다른 검증입니다. 과거 [구현 검증 기록](docs/decisions/2026-10-23-implementation-review.md)의 결과를 최신 실행 결과로 간주하지 않습니다.
 
-- 승인되지 않은 외부 웹사이트·IP·계정 대상 테스트는 제공하지 않습니다.
-- 외부 네트워크 요청과 임의 셸 명령 실행 대신 교육용 시나리오·더미 데이터·모의 결과를 사용합니다.
-- 취약한 교육용 실습을 공개 서비스로 배포하기 전에 별도의 안전성 검토가 필요합니다.
-- 공격문 자료는 **문자열 데이터**로 취급합니다. CSV를 스프레드시트에서 직접 열면 수식으로 해석될 위험이 있으므로 [데이터 관리 안내](docs/datasets/payloads-all-the-things/README.md)를 먼저 확인하세요.
+## 코드와 문서 위치
 
-안전 기준: [#6 시뮬레이션 안전 모델](https://github.com/ts825360/-PayloadLab-/issues/6), [#24 공개 전 점검](https://github.com/ts825360/-PayloadLab-/issues/24).
+| 위치 | 역할 |
+| --- | --- |
+| `frontend/src/` | React 학습 화면, 단계형 안내, 입력 분석, 실행 결과·시도 비교 |
+| `backend/app/` | FastAPI, 랩 등록·판정, Lens·학습 추적, 더미 데이터와 제한된 모형 |
+| `backend/tests/`, `frontend/src/*.test.*` | 기능·입력·화면 동작 회귀 검사 |
+| `docker-compose.yml`, `backend/Dockerfile`, `frontend/Dockerfile` | 로컬 개발 실행·이미지 빌드 설정 |
+| `docs/` | 기획·조사·결정·회의·구조·배포 검토 기록 |
+| `docs/datasets/payloads-all-the-things/` | 문자열 참고 자료 137행, 고정 원문, 출처 manifest·검사 코드·라이선스 |
+| `.github/ISSUE_TEMPLATE/` | 이슈 작성 양식 |
 
-## 기여·협업
+현재 진입점과 참조 관계, 구형 UI 후보, 생성물의 구분은 [저장소 구조](docs/architecture/repository-structure.md)를 보세요. 기술 스택은 React 18·Vite 5·JavaScript, FastAPI·Pydantic·Python, SQLite, Vitest·Testing Library·pytest, Docker Compose입니다. 현재 런타임에 학습된 AI 모델이나 별도 운영 DB는 없습니다.
 
-모든 작업은 GitHub Issue에서 계획·근거·검증을 남기고, 별도 작업 브랜치와 Pull Request로 변경을 검토합니다. 외부 자료를 활용한 경우 해당 이슈에 출처를 기록하고, 연구 문서에는 원문 URL·버전·활용 근거를 연결하여 보고서와 논문에서 재사용할 수 있도록 합니다. **출처 기록 세부 운영 규칙은 별도 가이드 개정안으로 검토 중이며 현재 `main` 반영 여부를 확인해야 합니다.**
+## 로컬 실습의 안전 범위
 
-- [이슈 목록](https://github.com/ts825360/-PayloadLab-/issues)
-- [이슈·운영 가이드](docs/ISSUE-GUIDE.md)
-- [팀 문서 가이드](docs/README.md)
-- [프로젝트 기획안](docs/planning/2026-09-07-project-brief.md)
-- [2026-10-23 구현 검증 기록](docs/decisions/2026-10-23-implementation-review.md)
-- [공격 입력 데이터·원문·검증 방법](docs/datasets/payloads-all-the-things/README.md)
+취약한 SQL 구성과 원본 HTML 응답은 학습을 위해 의도적으로 남겨 둔 코드입니다. 실제 개인정보·계정·토큰을 입력하지 말고, 승인되지 않은 외부 사이트·IP·계정을 대상으로 사용하지 마세요. XSS의 선택적 실행은 실제 브라우저 동작이므로 iframe sandbox만으로 네트워크·자원 위험을 모두 해결했다고 볼 수 없습니다. 서버의 SSRF 모형이 외부 요청을 하지 않는 것과 XSS 문서의 브라우저 요청 위험은 별개입니다.
 
-> 문서·이슈에는 근거가 있는 사실과 미검증·검토 중인 제안을 구분합니다. 최종 지원 범위와 실행 방법은 기본 브랜치 통합 검증 결과에 따라 갱신합니다.
+학습 시도는 현재 브라우저 메모리에 최대 40개이며 새로고침하면 초기화됩니다. 테마만 `localStorage`에 남습니다. 서버 세션·영구 학습 기록·DNS 캐시는 구현되어 있지 않습니다. 자세한 근거와 로그·캐시 처리, 공개 전 검증 항목은 [로컬 안전·보관 정책](docs/deployment/local-safety-and-retention.md), [보안 검토 이슈 초안](docs/deployment/security-review-issue-draft.md)을 확인하세요.
+
+공격 입력 CSV는 문자열 참고 자료입니다. 수식으로 해석될 수 있어 Excel에서 더블클릭으로 열지 말고 [데이터 안내](docs/datasets/payloads-all-the-things/README.md)에 따라 다룹니다.
+
+## 팀 문서와 협업
+
+- [이슈 목록](https://github.com/ts825360/-PayloadLab-/issues) · [이슈·운영 가이드](docs/ISSUE-GUIDE.md) · [팀 문서 안내](docs/README.md)
+- [기획안](docs/planning/2026-09-07-project-brief.md) · [이번 작업의 승인 범위](docs/decisions/2026-10-23-unified-workspace.md) · [브랜드 원본 확인](docs/branding/README.md)
+- [#6 안전 모델](https://github.com/ts825360/-PayloadLab-/issues/6) · [#12](https://github.com/ts825360/-PayloadLab-/issues/12) · [#24 공개 전 점검](https://github.com/ts825360/-PayloadLab-/issues/24)
+
+기본 협업 규칙은 이슈 가이드를 따릅니다. 이번 통합 작업은 사용자가 승인한 `main` 작업 범위를 [결정 기록](docs/decisions/2026-10-23-unified-workspace.md)에 명시했습니다. 새 이슈 등록과 공개 배포는 별도 승인이 필요합니다. 외부 자료는 원문 URL·버전·활용 이유를 남기고 사실·해석·미검증 제안을 구분합니다.

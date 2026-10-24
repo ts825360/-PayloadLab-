@@ -1,0 +1,56 @@
+/* Shared semantic roles. Surfaces and text change together in both themes. */
+:root,[data-theme="light"] {
+  color-scheme:light;
+  --muted:#5c6c62;
+  --surface-raised:#ffffff; --surface-inset:#f1f5f1; --surface-hover:#e8efe8;
+  --success-text:#285d3b; --success-bg:#e9f3e9; --success-line:#a9c8b1;
+  --danger-text:#9d3039; --danger-bg:#fff0f0; --danger-line:#dcb0b3;
+  --warning-text:#83501b; --warning-bg:#fff5e6; --warning-line:#d7b582;
+  --info-text:#285d92; --info-bg:#edf4fc; --info-line:#abc4df;
+  --input-bg:#ffffff; --input-border:#a9bbb0; --input-fg:#172d23;
+  --button-solid:#326b50; --button-solid-fg:#ffffff;
+  --diagram-line:#abbcad; --highlight-bg:#ffe5b1; --highlight-fg:#634016;
+  --terminal-bg:#14211b; --terminal-fg:#e2ede5; --terminal-muted:#b4cabb;
+  --terminal-error:#ffcb91; --terminal-bar:#24372d; --scrim:#10271c80;
+  --focus-ring:#397451;
+}
+[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#111a16; --sidebar:#14211a; --panel:#1a2920; --soft:#203127;
+  --heading:#eff7ef; --text:#d6e4d9; --muted:#b0c2b5; --line:#3c5545;
+  --accent:#a7d8b5; --accent-soft:#2a4735;
+  --surface-raised:#22362a; --surface-inset:#15231b; --surface-hover:#2d4636;
+  --success-text:#b3e5bc; --success-bg:#203e2b; --success-line:#527b5d;
+  --danger-text:#ffbec3; --danger-bg:#43282d; --danger-line:#8d5962;
+  --warning-text:#f2ce98; --warning-bg:#3b3224; --warning-line:#90774f;
+  --info-text:#b8d8fa; --info-bg:#25394c; --info-line:#587694;
+  --input-bg:#122017; --input-border:#5b7865; --input-fg:#edf7ee;
+  --button-solid:#add8b8; --button-solid-fg:#12261a;
+  --diagram-line:#6a8d76; --highlight-bg:#554323; --highlight-fg:#ffdda3;
+  --terminal-bg:#0d1811; --terminal-fg:#e1eee3; --terminal-muted:#b0cbb8;
+  --terminal-error:#ffcd9a; --terminal-bar:#203227; --scrim:#08130ed1;
+  --focus-ring:#c3e7cb;
+}
+.unified-layout { background:var(--bg); color:var(--text); }
+.unified-layout :is(button,input,textarea,select,a):focus-visible { outline:2px solid var(--focus-ring); outline-offset:3px; }
+.unified-layout :is(input,textarea,select) { color:var(--input-fg); background:var(--input-bg); border-color:var(--input-border); }
+.unified-layout .payload-editor { background:var(--input-bg); border-color:var(--input-border); }
+.unified-layout .payload-editor textarea { color:var(--input-fg); }
+.unified-layout :is(.primary-button,.guided-lesson > button:last-child) { color:var(--button-solid-fg); background:var(--button-solid); border-color:var(--button-solid); }
+.unified-layout :is(.truth.yes,.condition-operator.yes,.row-match.yes,.ownership-result.yes,.result-badge.positive) { color:var(--success-text); background:var(--success-bg); border-color:var(--success-line); }
+.unified-layout :is(.truth.no,.condition-operator.no,.ownership-result.no) { color:var(--danger-text); background:var(--danger-bg); border-color:var(--danger-line); }
+.unified-layout :is(.result-badge.warning,.syntax-stop,.inline-error) { color:var(--warning-text); background:var(--warning-bg); border-color:var(--warning-line); }
+.unified-layout :is(.evidence-table tr.matched td,.evidence-table tr.inspected td) { background:var(--info-bg); color:var(--info-text); }
+.unified-layout :is(.condition-text,.condition-leaf,.entity,.focus-magnifier,.composition-panel,.execution-panel) { background:var(--panel); color:var(--text); border-color:var(--line); }
+.unified-layout .magnified-context,.unified-layout .magnifier-heading { color:var(--muted); }
+.unified-layout :is(.input-code,.input-code mark) { color:var(--info-text); background:var(--info-bg); }
+.unified-layout :is(.lens-focus,.magnified-target,.edit-highlight,.context-selection,.inline-diagnostic mark) { color:var(--highlight-fg); background:var(--highlight-bg); border-color:var(--warning-line); }
+.unified-layout :is(.condition-operator,.condition-zone,.data-zone,.condition-children,.condition-child) { border-color:var(--diagram-line); }
+.unified-layout :is(.lens-close-backdrop,.concept-backdrop) { background:var(--scrim); }
+.unified-layout .terminal-raw { background:var(--terminal-bg); color:var(--terminal-fg); }
+.unified-layout .terminal-bar { background:var(--terminal-bar); color:var(--terminal-muted); }
+.unified-layout .terminal-command { color:var(--terminal-muted); }
+.unified-layout .terminal-stderr { color:var(--terminal-error); border-color:var(--warning-line); }
+.unified-layout :is(.quiet-badge,.evidence-tag,.stage-state,.connection-indicator,.input-diagnostic small) { color:var(--muted); }
+.unified-layout .target-annotation { background:var(--warning-bg); border-color:var(--warning-line); color:var(--warning-text); }
+.unified-layout .target-annotation :is(strong,span) { color:var(--warning-text); }

@@ -208,7 +208,9 @@ export function LensPanel({
   onRetry,
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [lensMode, setLensMode] = useState(trace ? 'input' : 'guide');
   useEffect(() => setExpanded(false), [trace]);
+  useEffect(() => setLensMode(trace ? 'input' : 'guide'), [trace]);
   const hint = trace?.lens;
   return (
     <section
@@ -225,6 +227,10 @@ export function LensPanel({
           <h2>Lens</h2>
           <span className="lens-caption">입력을 읽는 작은 단서</span>
         </div>
+        {guide && hint && <div className="lens-mode-control" role="group" aria-label="Lens 내용 선택">
+          <button type="button" aria-pressed={lensMode==='guide'} onClick={()=>setLensMode('guide')}>학습 단계</button>
+          <button type="button" aria-pressed={lensMode==='input'} onClick={()=>setLensMode('input')}>이번 입력 설명</button>
+        </div>}
         <span className="lens-state">
           {trace
             ? trace.phase === "analysis"
@@ -254,8 +260,8 @@ export function LensPanel({
         </div>
       ) : (
         <div className="lens-body">
-          {guide}
-          {hint && <div className="lens-result-detail">
+          {guide && <div className="lens-guide-content" hidden={Boolean(hint) && lensMode!=='guide'}>{guide}</div>}
+          {hint && <div className="lens-result-detail" hidden={Boolean(guide) && lensMode!=='input'}>
           <h3>{hint.title}</h3>
           <p>{hint.what}</p>
           <button className="locate-button" onClick={onFocus}>

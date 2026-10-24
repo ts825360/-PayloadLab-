@@ -74,7 +74,7 @@ describe("learning workspace", () => {
     input.focus();
     expect(fireEvent.keyDown(input, { key: "Enter" })).toBe(false);
     const stage = screen.getByRole("region", { name: "실습 관찰 화면" });
-    await waitFor(() => expect(stage).toHaveAttribute("data-view", "focus"));
+    await waitFor(() => expect(stage).toHaveAttribute("data-view", "result"));
     expect(stage).toContainElement(document.activeElement);
     expect(input).toHaveValue("박태성");
     expect(
@@ -87,7 +87,7 @@ describe("learning workspace", () => {
       await waitFor(() =>
         expect(screen.getByRole("button", { name: "실행하기" })).toBeEnabled(),
       );
-      expect(stage).toHaveAttribute("data-view", "compare");
+      expect(stage).toHaveAttribute("data-view", "result");
       expect(stage).toContainElement(document.activeElement);
     }
   });
@@ -182,7 +182,7 @@ describe("learning workspace", () => {
       screen.queryByText("지금 입력은 이름이라는 값이에요"),
     ).not.toBeInTheDocument();
   });
-  it("opens a keyboard-contained observation dialog on mobile and restores its trigger", async () => {
+  it("keeps mobile observation inside the unified tool and restores its trigger on confirmed close", async () => {
     const media = vi
       .spyOn(window, "matchMedia")
       .mockImplementation((query) => ({
@@ -206,7 +206,8 @@ describe("learning workspace", () => {
       });
       trigger.focus();
       fireEvent.click(trigger);
-      const dialog = screen.getByRole("dialog", { name: "실습 관찰 화면" });
+      const dialog = screen.getByRole("region", { name: "실습 관찰 화면" });
+      expect(screen.queryByRole('dialog',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
       const back = screen.getByRole("button", { name: "관찰 전체로 돌아가기" });
       expect(back).toHaveFocus();
       fireEvent.keyDown(back, { key: "Tab", shiftKey: true });
@@ -225,9 +226,7 @@ describe("learning workspace", () => {
       fireEvent.keyDown(document, { key: "Enter", isComposing: true });
       expect(dialog).toBeInTheDocument();
       fireEvent.keyDown(document, { key: "Enter" });
-      expect(
-        screen.queryByRole("dialog", { name: "실습 관찰 화면" }),
-      ).not.toBeInTheDocument();
+      expect(dialog).toHaveAttribute('data-view','overview');
       expect(trigger).toHaveFocus();
     } finally {
       media.mockRestore();
@@ -248,6 +247,7 @@ describe("learning workspace", () => {
     fireEvent.change(input, { target: { value: "abc" } });
     fireEvent.click(run);
     await screen.findByText("지금 입력은 이름이라는 값이에요");
+    fireEvent.click(screen.getByRole('button',{name:/문장에서 해당 위치 보기/}));
     expect(
       await screen.findByRole("heading", { name: "선택한 부분 자세히 보기" }),
     ).toBeInTheDocument();

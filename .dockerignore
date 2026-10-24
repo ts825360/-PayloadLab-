@@ -1,0 +1,23 @@
+# Repository metadata and local tooling are not application image inputs.
+.git
+.worktrees
+.codex
+.agents
+.claude
+.env
+.env.*
+!.env.example
+
+# Generated dependencies, output, caches and local logs.
+**/node_modules
+**/dist
+**/.vite
+**/coverage
+**/.venv
+**/venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/*.log
+
+# Keep application source, tests, lockfiles and docs/source manifests.
