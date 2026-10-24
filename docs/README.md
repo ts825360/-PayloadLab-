@@ -22,8 +22,9 @@
 | `docs/research/` | SQL Injection·XSS·IDOR·SSRF 등 유형별 조사 자료와 학습 시나리오 |
 | [현재 저장소 구조](architecture/repository-structure.md) | 실행 진입점·API 연결, 구형 UI 검토 후보, 소스·생성물 구분 |
 | [로컬 안전·보관 정책](deployment/local-safety-and-retention.md) | 실제 실행/모형 경계, 상태 수명·로그·캐시, 공개 전 검증 |
+| [로컬 Docker 실행 기록](deployment/2026-10-24-local-compose-verification.md) | 이미지 빌드·기동·재시작, 13개 랩 API와 컨테이너 제한 적용 확인 |
 | [보안 검토 이슈 초안](deployment/security-review-issue-draft.md) | #6·#12·#24에 연결할 등록 전 스파이크 제안. 새 이슈 미등록 |
-| [브랜드 원본 확인](branding/README.md) | 현재 문자 브랜드와 로고 SVG/PNG 원본 필요사항 |
+| [브랜드 에셋·승인 기록](branding/README.md) | 승인된 문자 브랜드 SVG와 정식 원본 교체 시 확인할 사항 |
 | [공격 입력 데이터 초안](datasets/payloads-all-the-things/README.md) | SQLi·XSS·CMDi·SSRF 공통 CSV, 원문 근거·정상 예시·라벨 검토 기준 |
 | `docs/decisions/` | 팀이 확정한 범위, 안전 원칙, UX, 기술 선택의 결정 기록 |
 | `docs/meeting-notes/` | 회의 안건, 합의 내용, 다음 행동 |

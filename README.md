@@ -1,12 +1,17 @@
 # PayloadLab
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="frontend/public/brand/payloadlab-wordmark-dark.svg">
+  <img src="frontend/public/brand/payloadlab-wordmark.svg" alt="PayloadLab" width="190" height="44">
+</picture>
+
 보안 입문자가 입력이 처리되는 과정을 보며, 취약점이 어떤 조건에서 생기는지 배우는 로컬 웹 학습 앱입니다. 입력을 바꾸고 **입력 → 처리 과정 → 결과 → Lens 설명 → 재시도·비교**를 같은 학습 공간에서 확인합니다.
 
 이 저장소 [`ts825360/-PayloadLab-`](https://github.com/ts825360/-PayloadLab-)가 프론트엔드, 백엔드, Docker 설정, 팀 문서를 함께 관리합니다. 이전 문서의 별도 구현 저장소 안내는 당시의 개발 경위이며, 현재 실행에는 이 저장소를 사용합니다. 과거 검증 기록은 [decisions](docs/decisions/README.md)에 남아 있습니다.
 
 ## 무엇을 배울 수 있나요?
 
-최신 변경의 검증 범위는 [통합 학습 공간 검증 기록](docs/decisions/2026-10-23-unified-workspace.md#2026-10-24-검증-결과)을 참고하세요. 백엔드 100개·프론트엔드 52개 테스트와 빌드가 통과했으며, Docker 실제 기동·공개 배포 검증과는 구분합니다.
+검증 범위는 [통합 화면 기록](docs/decisions/2026-10-23-unified-workspace.md#2026-10-24-검증-결과)과 [Docker 후속 실행 기록](docs/deployment/2026-10-24-local-compose-verification.md)을 참고하세요. 백엔드 100개 검사와 Docker 내부 프론트엔드 54개 테스트·빌드·13개 랩 API 검사가 통과했습니다. 공개 배포 안전성 검증과는 구분합니다.
 
 현재 백엔드 등록 기준은 **13개 랩**입니다. 아래 6개 유형은 Easy와 Normal을 각각 제공하고, 권한상승 기초는 Easy만 제공합니다. 화면의 Normal은 API 식별자에서 `medium`으로 표현됩니다.
 
@@ -45,7 +50,7 @@ docker compose up --build
 
 Compose의 호스트 포트는 `127.0.0.1:5173`과 `127.0.0.1:8001`에 묶습니다. 컨테이너 내부 API 포트는 `8000`입니다. 이 설정은 개인 PC에서 개발하기 위한 것으로, 인터넷 공개 배포 승인을 뜻하지 않습니다.
 
-Compose에는 컨테이너 자원 상한·권한 제한·로그 회전도 설정되어 있습니다. 실제 적용 여부와 부하에서의 적정성은 Docker 실행 검증이 필요하며, 자세한 값과 한계는 [로컬 안전 문서](docs/deployment/local-safety-and-retention.md)에 있습니다.
+Compose에는 컨테이너 자원 상한·권한 제한·로그 회전도 설정되어 있습니다. 로컬 Docker 실행과 제한 적용을 확인했으며, 부하 적정성과 공개 전 점검은 별개입니다. 자세한 값과 한계는 [로컬 안전 문서](docs/deployment/local-safety-and-retention.md)에 있습니다.
 
 실행한 터미널에서 `Ctrl+C`로 중지할 수 있습니다. 별도 터미널에서 루트 기준으로 상태·로그·종료를 확인할 수도 있습니다.
 
@@ -55,7 +60,7 @@ docker compose logs --tail=100 -f backend frontend
 docker compose down
 ```
 
-`/health`는 API 응답 여부를 확인하며, 학습 화면·13개 랩·XSS 격리·보안 전체를 검사하는 기능은 아닙니다. 현재 Compose는 Vite 개발 서버와 Uvicorn 자동 재시작을 사용합니다. 이 문서 개정에서 Docker 이미지 빌드·기동 성공을 확인한 것은 아닙니다.
+`/health`는 API 응답 여부만 확인합니다. 13개 랩과 에셋은 실행 중인 Compose를 대상으로 `python scripts/verify_local_compose.py`로 추가 검사할 수 있습니다. 현재 Compose는 Vite 개발 서버와 Uvicorn 자동 재시작을 사용하는 로컬 개발 구성입니다. 운영 배포 구성이나 XSS 격리 전체의 검증을 뜻하지 않습니다.
 
 ## Docker 없이 개발하기
 

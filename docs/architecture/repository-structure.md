@@ -27,7 +27,9 @@
 │   ├── Dockerfile, .dockerignore
 │   ├── package.json, pnpm-lock.yaml, pnpm-workspace.yaml
 │   ├── index.html, vite.config.js
+│   ├── public/brand/                 # UI와 README가 함께 쓰는 승인된 문자 브랜드 SVG
 │   └── src/                          # 화면·교육 메타데이터·테스트
+├── scripts/verify_local_compose.py    # 실행 중인 로컬 Compose HTTP 검사
 └── docs/
     ├── architecture/                 # 이 구조와 참조 근거
     ├── branding/                     # 기존 브랜드·원본 자산 확인

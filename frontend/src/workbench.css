@@ -74,6 +74,12 @@
   gap: 9px;
   padding: 0 5px;
 }
+.focused-workbench .brand > img {
+  width: 180px;
+  height: 42px;
+  max-width: 100%;
+  object-fit: contain;
+}
 .focused-workbench .sidebar-intro {
   margin: 12px 5px 36px;
   font-size: 10px;
@@ -934,6 +940,11 @@
   .focused-workbench .brand {
     padding: 0;
     justify-content: center;
+  }
+  .focused-workbench .brand > img {
+    width: 36px;
+    object-fit: cover;
+    object-position: left;
   }
   .focused-workbench .brand > span:last-child,
   .focused-workbench .sidebar-intro,

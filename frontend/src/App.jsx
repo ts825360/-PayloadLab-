@@ -154,12 +154,7 @@ export default function App() {
         </a>
         <aside className="workspace-sidebar">
           <a href="#lab-main" className="brand">
-            <span className="brand-glyph">
-              p<span>·</span>
-            </span>
-            <span>
-              Payload<span className="brand-light">Lab</span>
-            </span>
+            <img src={theme === 'dark' ? '/brand/payloadlab-wordmark-dark.svg' : '/brand/payloadlab-wordmark.svg'} alt="PayloadLab" width="180" height="42" />
           </a>
           <div className="sidebar-intro">보안의 첫 단계를, 직접.</div>
           <div className="nav-label">LEARNING SPACE</div>
