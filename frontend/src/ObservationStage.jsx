@@ -154,6 +154,7 @@ export default function ObservationStage({
   selected,
   onSelect,
   onStart,
+  onDiagnostic,
   integrated = false,
 }) {
   const regionRef = useRef(null),
@@ -196,7 +197,7 @@ export default function ObservationStage({
   useEffect(() => {
     function escape(e) {
       if (
-        document.querySelector(".concept-dialog, .lens-close-confirmation") ||
+        document.querySelector(".concept-dialog, .lens-close-confirmation, .terminal-diagnostic-tooltip") ||
         e.isComposing ||
         e.keyCode === 229
       )
@@ -348,6 +349,7 @@ export default function ObservationStage({
                   labId={labId}
                   activeGroup={activeGroup}
                   onGroup={onGroup}
+                  onDiagnostic={stale ? undefined : onDiagnostic}
                 />}
                 {!resultAvailable && Boolean(input) && (
                   <div className="observation-tip">

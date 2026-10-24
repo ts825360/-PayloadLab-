@@ -199,6 +199,7 @@ export function Composition({
 }
 
 export function LensPanel({
+  panelRef,
   trace,
   guide,
   difficulty,
@@ -214,6 +215,8 @@ export function LensPanel({
   const hint = trace?.lens;
   return (
     <section
+      ref={panelRef}
+      tabIndex={-1}
       className={`panel lens-panel ${trace ? "has-result" : ""}`}
       role="region"
       aria-label="Lens 설명"

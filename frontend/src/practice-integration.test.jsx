@@ -56,3 +56,37 @@ it('does not let an unsupported permission command poison later virtual history'
   const attempts=fetch.mock.calls.filter(([url])=>String(url).endsWith('/attempt'));
   expect(JSON.parse(attempts[1][1].body).history).toEqual([]);
 });
+
+it('connects the current raw error to Lens and keeps old diagnostics local after editing',async()=>{
+  const command='cat /lab/report.txt';
+  const trace={category:'permissions',simulated:true,phase:'result',raw_input:command,
+    composition:{prefix:'',value:command,suffix:'',full:command},
+    lens:{title:'읽기 권한을 확인하세요',what:'읽기가 거부됐어요.',
+      why:'소유자와 현재 사용자를 비교해요.',next:'whoami',focus:{start:0,end:3}},
+    execution:{status:'permission_denied',stdout:'',stderr:'cat: /lab/report.txt: Permission denied\n',exit_code:1},
+    simulation:{nodes:[],edges:[]},terminal:{prompt:'student@practice:/lab$ ',files:[]}};
+  fetch.mockImplementation(async url=>({ok:true,json:async()=>{
+    if(String(url).endsWith('/labs'))return [{id:'permissions-easy'}];
+    if(String(url).endsWith('/analyze'))return {...trace,phase:'analysis',execution:null};
+    return {success:false,learning_trace:trace};
+  }}));
+  render(<App/>);
+  fireEvent.click(screen.getByRole('button',{name:/권한상승 기초/}));
+  await waitFor(()=>expect(screen.getByRole('button',{name:'실행하기'})).toBeEnabled());
+  const input=screen.getByLabelText('터미널 명령어');
+  fireEvent.change(input,{target:{value:command}});
+  fireEvent.click(screen.getByRole('button',{name:'실행하기'}));
+  const mark=await screen.findByRole('button',{name:'Permission denied'});
+  fireEvent.mouseEnter(mark);
+  await screen.findByRole('tooltip');
+  fireEvent.keyDown(document,{key:'Escape'});
+  await waitFor(()=>expect(screen.queryByRole('tooltip')).not.toBeInTheDocument());
+  expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+  fireEvent.click(mark);
+  expect(screen.getByRole('region',{name:'Lens 설명'})).toHaveFocus();
+  input.focus();
+  fireEvent.change(input,{target:{value:'whoami'}});
+  expect(screen.queryByRole('button',{name:'Permission denied'})).not.toBeInTheDocument();
+  expect(input).toHaveFocus();
+  expect(screen.getByLabelText('터미널 원문 출력')).toHaveTextContent('Permission denied');
+});

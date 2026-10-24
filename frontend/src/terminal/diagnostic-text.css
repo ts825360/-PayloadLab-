@@ -1,0 +1,20 @@
+.terminal-diagnostic-mark {
+  display:inline; margin:0; padding:0; border:0; border-radius:2px;
+  background:transparent; color:inherit; font:inherit; line-height:inherit;
+  white-space:inherit; text-align:inherit; vertical-align:baseline; cursor:help;
+  text-decoration-line:underline; text-decoration-style:wavy;
+  text-decoration-color:var(--terminal-error,#d5964b); text-underline-offset:4px;
+  text-decoration-skip-ink:none;
+}
+.terminal-diagnostic-mark:focus-visible {
+  outline:2px solid var(--focus-ring,#397451); outline-offset:3px;
+}
+.terminal-diagnostic-tooltip {
+  z-index:90; max-width:min(360px,calc(100vw - 24px)); padding:12px 14px;
+  border:1px solid var(--warning-line,#90774f); border-radius:9px;
+  background:var(--panel,#1a2920); color:var(--text,#eff7ef);
+  box-shadow:0 10px 32px #0003; font:12px/1.7 'Noto Sans KR',sans-serif;
+  overflow-wrap:anywhere; white-space:normal;
+}
+.terminal-diagnostic-tooltip strong {display:block;margin-bottom:4px;color:var(--heading,#eff7ef);}
+.terminal-diagnostic-tooltip span {display:block;}

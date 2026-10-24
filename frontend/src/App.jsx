@@ -33,7 +33,8 @@ export default function App() {
   );
   const generation = useRef(0),
     nextId = useRef(0),
-    inputRef = useRef(null);
+    inputRef = useRef(null),
+    lensRef = useRef(null);
   const category = CATEGORIES.find((c) => c.id === categoryId),
     currentLab = labId(categoryId, difficulty);
   const history = attempts.filter((a) => a.lab === currentLab);
@@ -291,6 +292,7 @@ export default function App() {
                 />}
                 error={error}
                 inputRef={inputRef}
+                lensRef={lensRef}
                 trace={currentTrace}
                 analysisStatus={analysisStatus}
                 onFocus={() => focusGroup("focus")}
@@ -322,6 +324,7 @@ export default function App() {
                   setActiveGroup("focus");
                 }}
                 onStart={() => inputRef.current?.focus()}
+                onDiagnostic={() => lensRef.current?.focus({preventScroll:true})}
               />
             </section>
           </main>

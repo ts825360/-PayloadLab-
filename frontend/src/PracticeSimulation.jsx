@@ -1,4 +1,6 @@
 import { statusLabel } from './learning-content.js';
+import DiagnosticText from './terminal/DiagnosticText.jsx';
+import { terminalDiagnostics } from './terminal/diagnostics.js';
 
 const starts = {
   permissions: ['현재 사용자', '파일 소유자·권한', '접근 허용 / 거부'],
@@ -7,9 +9,10 @@ const starts = {
   ssrf: ['입력 URL', '정책과 실제 hostname', '더미 목적지 응답'],
 };
 
-export default function PracticeSimulation({ trace, category }) {
+export default function PracticeSimulation({ trace, category, onDiagnostic }) {
   const executed = trace?.phase !== 'analysis' && Boolean(trace?.execution);
   const execution = executed ? trace.execution : null;
+  const diagnostics = executed ? terminalDiagnostics(trace) : [];
   const terminal = trace?.terminal;
   const nodes = executed ? trace.simulation?.nodes || [] : [];
   const previousUser = nodes.find((node) => node.id === 'identity')?.value;
@@ -35,7 +38,7 @@ export default function PracticeSimulation({ trace, category }) {
       <div className="terminal-raw" aria-label="터미널 원문 출력">
         <pre className="terminal-command">{commandPrompt}{trace.raw_input}</pre>
         {execution.stdout && <pre>{execution.stdout}</pre>}
-        {execution.stderr && <pre className="terminal-stderr">{execution.stderr}</pre>}
+        {execution.stderr && <pre className="terminal-stderr"><DiagnosticText text={execution.stderr} source="stderr" diagnostics={diagnostics} onSelect={onDiagnostic} /></pre>}
         {!execution.stdout && !execution.stderr && <pre>(출력 없음)</pre>}
       </div>
       <div className={`terminal-annotation ${execution.stderr ? 'warning' : ''}`}><span>↳ Lens · {statusLabel(execution.status)}</span><strong>{trace.lens?.title}</strong><p>{trace.lens?.what}</p></div>

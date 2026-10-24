@@ -17,6 +17,7 @@ export default function InputDock({
   guide,
   error,
   inputRef,
+  lensRef,
   trace,
   analysisStatus,
   onFocus,
@@ -151,6 +152,7 @@ export default function InputDock({
         </form>}
       </section>
       <LensPanel
+        panelRef={lensRef}
         trace={trace}
         guide={guide}
         difficulty={difficulty}

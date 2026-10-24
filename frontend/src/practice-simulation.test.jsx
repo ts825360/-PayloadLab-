@@ -1,6 +1,6 @@
 import React from 'react';
-import {render,screen} from '@testing-library/react';
-import {it,expect} from 'vitest';
+import {render,screen,fireEvent} from '@testing-library/react';
+import {it,expect,vi} from 'vitest';
 import PracticeSimulation from './PracticeSimulation.jsx';
 
 it('keeps raw terminal errors and educational notes distinct without executing HTML',()=>{
@@ -21,4 +21,21 @@ it('never presents an analysis as a completed terminal command',()=>{
   render(<PracticeSimulation category={{id:'permissions',terminal:true,label:'권한상승 기초'}} trace={{phase:'analysis',execution:null,terminal:{prompt:'student@practice:/lab$ '}}}/>);
   expect(screen.queryByLabelText('터미널 원문 출력')).not.toBeInTheDocument();
   expect(screen.getByText(/실행 전/)).toBeInTheDocument();
+});
+
+it('selects a permission diagnostic without changing the raw error output',()=>{
+  const onDiagnostic=vi.fn();
+  const stderr='cat: /lab/report.txt: Permission denied\n';
+  render(<PracticeSimulation onDiagnostic={onDiagnostic}
+    category={{id:'permissions',terminal:true,label:'권한상승 기초'}} trace={{
+      category:'permissions',phase:'result',raw_input:'cat /lab/report.txt',
+      execution:{status:'permission_denied',stdout:'',stderr,exit_code:1},
+      lens:{title:'읽기 권한을 확인하세요',why:'소유자와 현재 사용자를 비교해요.'},
+    }}/>);
+  const mark=screen.getByRole('button',{name:'Permission denied'});
+  expect(mark.closest('pre').textContent).toBe(stderr);
+  fireEvent.click(mark);
+  expect(onDiagnostic).toHaveBeenCalledWith(expect.objectContaining({
+    id:'permission-denied',why:'소유자와 현재 사용자를 비교해요.',
+  }));
 });
