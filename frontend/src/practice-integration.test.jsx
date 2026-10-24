@@ -55,6 +55,9 @@ it('does not let an unsupported permission command poison later virtual history'
   }
   const attempts=fetch.mock.calls.filter(([url])=>String(url).endsWith('/attempt'));
   expect(JSON.parse(attempts[1][1].body).history).toEqual([]);
+  expect(screen.getByRole('region',{name:'터미널 기록'}).querySelectorAll('article')).toHaveLength(2);
+  expect(screen.getAllByLabelText('터미널 원문 출력')[0]).toHaveTextContent('not-a-command');
+  expect(screen.getAllByLabelText('터미널 원문 출력')[1]).toHaveTextContent('whoami');
 });
 
 it('connects the current raw error to Lens and keeps old diagnostics local after editing',async()=>{

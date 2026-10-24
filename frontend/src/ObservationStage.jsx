@@ -350,6 +350,8 @@ export default function ObservationStage({
                   activeGroup={activeGroup}
                   onGroup={onGroup}
                   onDiagnostic={stale ? undefined : onDiagnostic}
+                  history={history}
+                  selectedId={selected?.id}
                 />}
                 {!resultAvailable && Boolean(input) && (
                   <div className="observation-tip">

@@ -1,0 +1,9 @@
+.terminal-transcript-entries { position:relative; max-height:clamp(200px,34dvh,480px); overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; background:var(--terminal-bg); }
+.terminal-transcript-entries:focus-visible { outline:2px solid var(--focus-ring); outline-offset:-3px; }
+.terminal-transcript article + article { border-top:1px solid var(--line); }
+.terminal-entry-status { display:flex; justify-content:space-between; gap:12px; padding:7px 16px 0; color:var(--terminal-muted); font:10px/1.6 'IBM Plex Mono','Noto Sans KR',monospace; }
+.terminal-transcript article[data-selected='true'] .terminal-entry-status > span:first-child { color:var(--terminal-fg); }
+.terminal-transcript .terminal-raw { padding-top:8px; padding-bottom:8px; }
+.terminal-transcript .terminal-annotation { padding:7px 16px; font-size:11px; }
+.terminal-transcript .terminal-annotation p { margin:3px 0; }
+.terminal-transcript-empty { color:var(--terminal-muted); padding:16px; font-size:12px; }

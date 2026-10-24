@@ -1,6 +1,7 @@
 import { statusLabel } from './learning-content.js';
 import DiagnosticText from './terminal/DiagnosticText.jsx';
 import { terminalDiagnostics } from './terminal/diagnostics.js';
+import TerminalTranscript from './terminal/TerminalTranscript.jsx';
 
 const starts = {
   permissions: ['현재 사용자', '파일 소유자·권한', '접근 허용 / 거부'],
@@ -9,7 +10,7 @@ const starts = {
   ssrf: ['입력 URL', '정책과 실제 hostname', '더미 목적지 응답'],
 };
 
-export default function PracticeSimulation({ trace, category, onDiagnostic }) {
+export default function PracticeSimulation({ trace, category, onDiagnostic, history, selectedId }) {
   const executed = trace?.phase !== 'analysis' && Boolean(trace?.execution);
   const execution = executed ? trace.execution : null;
   const diagnostics = executed ? terminalDiagnostics(trace) : [];
@@ -33,7 +34,10 @@ export default function PracticeSimulation({ trace, category, onDiagnostic }) {
         <small>소유자 / 그룹 / 다른 사용자 순서 · r 읽기 · w 쓰기 · x 실행</small>
       </div>)}
     </div>}
-    {execution ? <div className="terminal-card">
+    {execution ? category.terminal ? <TerminalTranscript
+      entries={history || [{id:'current',input:trace.raw_input,result:{learning_trace:trace}}]}
+      selectedId={selectedId ?? 'current'} onDiagnostic={onDiagnostic}/>
+      : <div className="terminal-card">
       <div className="terminal-bar"><span>VIRTUAL OUTPUT · {category.short || 'LAB'}</span><span>종료 코드 {execution.exit_code}</span></div>
       <div className="terminal-raw" aria-label="터미널 원문 출력">
         <pre className="terminal-command">{commandPrompt}{trace.raw_input}</pre>

@@ -204,9 +204,11 @@ export default function ExecutionCanvas({
   activeGroup,
   onGroup,
   onDiagnostic,
+  history,
+  selectedId,
 }) {
   const [row, setRow] = useState(0);
-  if (category.simulated) return <PracticeSimulation trace={trace} category={category} onDiagnostic={onDiagnostic} />;
+  if (category.simulated) return <PracticeSimulation trace={trace} category={category} onDiagnostic={onDiagnostic} history={history} selectedId={selectedId} />;
   if (!trace)
     return (
       <section className="execution-placeholder">
