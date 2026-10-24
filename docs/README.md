@@ -24,6 +24,7 @@
 | [로컬 안전·보관 정책](deployment/local-safety-and-retention.md) | 실제 실행/모형 경계, 상태 수명·로그·캐시, 공개 전 검증 |
 | [로컬 Docker 실행 기록](deployment/2026-10-24-local-compose-verification.md) | 이미지 빌드·기동·재시작, 13개 랩 API와 컨테이너 제한 적용 확인 |
 | [공개 배포 전 1차 점검](deployment/2026-10-24-public-readiness-review.md) | 현재 공개 보류 판단, 실제 코드/응답·의존성 경고, 우선 수정 사항 |
+| [A–Z 검증 체크리스트](verification/2026-10-24-release-checklist.md) | 기능·보안·사용자 편의성의 시험 방법·통과 기준·자문 항목과 결과 양식 |
 | [이슈 완료 기준 재확인](decisions/2026-10-24-issue-completion-review.md) | 완료로 종료할 항목과 열어 둘 항목의 근거 |
 | [보안 검토 이슈 초안](deployment/security-review-issue-draft.md) | #6·#12·#24에 연결할 등록 전 스파이크 제안. 새 이슈 미등록 |
 | [브랜드 에셋·승인 기록](branding/README.md) | 승인된 문자 브랜드 SVG와 정식 원본 교체 시 확인할 사항 |
