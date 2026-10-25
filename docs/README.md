@@ -2,6 +2,8 @@
 
 **수정 작업을 재개한다면 [작업 상태](WORK-STATE.md)를 먼저 확인합니다.** 마지막 완료 작업·다음 작업 ID·검사 결과를 한곳에 관리하며, 전체 이슈/채팅을 매번 다시 읽지 않습니다.
 
+**현재 구현 마감 후 팀원은 [작업 인계 안내](planning/2026-10-25-team-handoff.md)와 [#46](https://github.com/ts825360/-PayloadLab-/issues/46)에서 맡을 이슈를 고릅니다.** 해당 이슈의 Assignee로 본인을 지정하고 본인 커밋·PR·검증 결과를 남깁니다.
+
 이 폴더는 팀이 합의한 기획, 자료조사, 의사결정, 회의 기록을 저장하는 공용 공간입니다. 이슈는 **할 일과 논의**, `docs`는 **다시 참고해야 할 근거와 결과물**을 담당합니다.
 
 처음 참여한 팀원은 먼저 [프로젝트 한눈에 보기](planning/2026-09-07-project-brief.md)를 읽고, 맡은 이슈와 관련된 문서만 추가로 읽습니다. 모든 이슈를 처음부터 읽을 필요는 없습니다.
@@ -28,7 +30,7 @@
 | [공개 배포 전 1차 점검](deployment/2026-10-24-public-readiness-review.md) | 현재 공개 보류 판단, 실제 코드/응답·의존성 경고, 우선 수정 사항 |
 | [A–Z 검증 체크리스트](verification/2026-10-24-release-checklist.md) | 기능·보안·사용자 편의성의 시험 방법·통과 기준·자문 항목과 결과 양식 |
 | [이슈 완료 기준 재확인](decisions/2026-10-24-issue-completion-review.md) | 완료로 종료할 항목과 열어 둘 항목의 근거 |
-| [보안 검토 이슈 초안](deployment/security-review-issue-draft.md) | #6·#12·#24에 연결할 등록 전 스파이크 제안. 새 이슈 미등록 |
+| [보안 검토 이슈 초안](deployment/security-review-issue-draft.md) | 기존 제안과 근거. 현재 팀 작업은 #42~#46 및 #6·#12·#24에서 진행 |
 | [브랜드 에셋·승인 기록](branding/README.md) | 승인된 문자 브랜드 SVG와 정식 원본 교체 시 확인할 사항 |
 | [공격 입력 데이터 초안](datasets/payloads-all-the-things/README.md) | SQLi·XSS·CMDi·SSRF 공통 CSV, 원문 근거·정상 예시·라벨 검토 기준 |
 | `docs/decisions/` | 팀이 확정한 범위, 안전 원칙, UX, 기술 선택의 결정 기록 |
