@@ -73,7 +73,7 @@ describe("learning workspace", () => {
     fireEvent.change(input, { target: { value: "박태성" } });
     input.focus();
     expect(fireEvent.keyDown(input, { key: "Enter" })).toBe(false);
-    const stage = screen.getByRole("region", { name: "실습 관찰 화면" });
+    let stage = await screen.findByRole("dialog", { name: "실습 관찰 화면" });
     await waitFor(() => expect(stage).toHaveAttribute("data-view", "result"));
     expect(stage).toContainElement(document.activeElement);
     expect(input).toHaveValue("박태성");
@@ -81,12 +81,14 @@ describe("learning workspace", () => {
       fetch.mock.calls.filter(([url]) => String(url).endsWith("/attempt")),
     ).toHaveLength(1);
     for (const value of ["abc", "abc'"]) {
+      fireEvent.click(screen.getByRole('button',{name:'처리 흐름과 결과 닫기'}));
       fireEvent.change(input, { target: { value } });
       input.focus();
       fireEvent.keyDown(input, { key: "Enter" });
       await waitFor(() =>
         expect(screen.getByRole("button", { name: "실행하기" })).toBeEnabled(),
       );
+      stage = await screen.findByRole('dialog',{name:'실습 관찰 화면'});
       expect(stage).toHaveAttribute("data-view", "result");
       expect(stage).toContainElement(document.activeElement);
     }
@@ -100,7 +102,8 @@ describe("learning workspace", () => {
       target: { value: "abc" },
     });
     fireEvent.click(screen.getByRole("button", { name: "실행하기" }));
-    await screen.findByText("지금 입력은 이름이라는 값이에요");
+    await screen.findByRole('dialog',{name:'실습 관찰 화면'});
+    fireEvent.click(screen.getByRole('button',{name:'처리 흐름과 결과 닫기'}));
     fireEvent.click(screen.getByRole("button", { name: /Reflected XSS/ }));
     fireEvent.click(screen.getByRole("button", { name: /SQL Injection/ }));
     expect(screen.getByLabelText("사용자 이름")).toHaveValue("");
@@ -110,9 +113,8 @@ describe("learning workspace", () => {
     expect(
       screen.queryByRole("table", { name: "교육용 데이터와 실제 반환 결과" }),
     ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "시도 1 불러오기" }),
-    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button',{name:'시도 기록 1'}));
+    expect(screen.getByRole('dialog',{name:'실습 관찰 화면'})).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "시도 1 불러오기" }));
     expect(screen.getByLabelText("사용자 이름")).toHaveValue("abc");
     expect(
@@ -121,7 +123,7 @@ describe("learning workspace", () => {
       }),
     ).toBeInTheDocument();
   });
-  it("keeps Lens in a stable slot below the input and opens an in-place focus view", async () => {
+  it("keeps Lens below the input and opens focus without scrolling the page", async () => {
     const scroll = vi.fn();
     HTMLElement.prototype.scrollIntoView = scroll;
     render(<App />);
@@ -137,17 +139,14 @@ describe("learning workspace", () => {
     expect(
       fetch.mock.calls.some(([url]) => String(url).endsWith("/attempt")),
     ).toBe(false);
-    const observation = screen
-      .getByRole("region", { name: "실습 관찰 화면" })
-      .querySelector(".observation-scroll");
-    observation.scrollTop = 180;
+    expect(screen.queryByRole('dialog',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
     fireEvent.click(
       screen.getByRole("button", { name: /문장에서 해당 위치 보기/ }),
     );
     expect(
       await screen.findByRole("heading", { name: "선택한 부분 자세히 보기" }),
     ).toBeInTheDocument();
-    expect(observation.scrollTop).toBe(0);
+    expect(screen.getByRole('dialog',{name:'실습 관찰 화면'}).querySelector('.observation-scroll').scrollTop).toBe(0);
     expect(scroll).not.toHaveBeenCalled();
     expect(input).toBeInTheDocument();
   });
@@ -182,7 +181,7 @@ describe("learning workspace", () => {
       screen.queryByText("지금 입력은 이름이라는 값이에요"),
     ).not.toBeInTheDocument();
   });
-  it("keeps mobile observation inside the unified tool and restores its trigger on confirmed close", async () => {
+  it("opens a mobile dialog and restores its trigger on confirmed close", async () => {
     const media = vi
       .spyOn(window, "matchMedia")
       .mockImplementation((query) => ({
@@ -206,9 +205,9 @@ describe("learning workspace", () => {
       });
       trigger.focus();
       fireEvent.click(trigger);
-      const dialog = screen.getByRole("region", { name: "실습 관찰 화면" });
-      expect(screen.queryByRole('dialog',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
-      const back = screen.getByRole("button", { name: "관찰 전체로 돌아가기" });
+      const dialog = screen.getByRole("dialog", { name: "실습 관찰 화면" });
+      expect(screen.queryByRole('region',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
+      const back = screen.getByRole("button", { name: "처리 흐름과 결과 닫기" });
       expect(back).toHaveFocus();
       fireEvent.keyDown(back, { key: "Tab", shiftKey: true });
       expect(dialog).toContainElement(document.activeElement);
@@ -226,7 +225,8 @@ describe("learning workspace", () => {
       fireEvent.keyDown(document, { key: "Enter", isComposing: true });
       expect(dialog).toBeInTheDocument();
       fireEvent.keyDown(document, { key: "Enter" });
-      expect(dialog).toHaveAttribute('data-view','overview');
+      expect(dialog).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
       expect(trigger).toHaveFocus();
     } finally {
       media.mockRestore();
@@ -246,16 +246,19 @@ describe("learning workspace", () => {
     const input = screen.getByLabelText("사용자 이름");
     fireEvent.change(input, { target: { value: "abc" } });
     fireEvent.click(run);
-    await screen.findByText("지금 입력은 이름이라는 값이에요");
+    await screen.findByRole('dialog',{name:'실습 관찰 화면'});
+    fireEvent.click(screen.getByRole('button',{name:'처리 흐름과 결과 닫기'}));
     fireEvent.click(screen.getByRole('button',{name:/문장에서 해당 위치 보기/}));
     expect(
       await screen.findByRole("heading", { name: "선택한 부분 자세히 보기" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("region", { name: "실습 관찰 화면" }),
+      screen.getByRole("dialog", { name: "실습 관찰 화면" }),
     ).toHaveTextContent("SQLite 실제 조회");
+    fireEvent.click(screen.getByRole('button',{name:'처리 흐름과 결과 닫기'}));
     fireEvent.change(input, { target: { value: "abc'" } });
-    expect(await screen.findByText("SQL 조립 미리보기")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button',{name:'시도 기록 1'}));
+    expect(screen.getByRole('dialog',{name:'실습 관찰 화면'})).toHaveTextContent('SQLite 실제 조회');
     expect(
       screen.getByText("입력이 바뀌었어요. 아래는 이전 실행 결과입니다."),
     ).toBeInTheDocument();
@@ -310,6 +313,8 @@ describe("learning workspace", () => {
       expect(screen.getByRole("button", { name: "실행하기" })).toBeEnabled(),
     );
     for (const value of ["abc", "abc'"]) {
+      if(screen.queryByRole('dialog',{name:'실습 관찰 화면'}))
+        fireEvent.click(screen.getByRole('button',{name:'처리 흐름과 결과 닫기'}));
       fireEvent.change(screen.getByLabelText("사용자 이름"), {
         target: { value },
       });

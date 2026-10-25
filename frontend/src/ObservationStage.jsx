@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
+import {createPortal} from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   autoUpdate,
@@ -155,6 +156,8 @@ export default function ObservationStage({
   onSelect,
   onStart,
   onDiagnostic,
+  popup = false,
+  returnFocusRef,
   integrated = false,
 }) {
   const regionRef = useRef(null),
@@ -187,11 +190,13 @@ export default function ObservationStage({
   }, []);
   useEffect(() => {
     if (view !== "overview" && previousView.current === "overview") {
-      restoreRef.current = document.activeElement;
+      restoreRef.current = returnFocusRef?.current || document.activeElement;
     }
     if (view !== "overview") backRef.current?.focus({ preventScroll: true });
-    if (view === "overview" && previousView.current !== "overview")
-      restoreRef.current?.focus();
+    if (view === "overview" && previousView.current !== "overview") {
+      if(restoreRef.current?.isConnected && restoreRef.current!==document.body)restoreRef.current.focus({preventScroll:true});
+      else onStart?.();
+    }
     previousView.current = view;
   }, [view, selected?.id]);
   useEffect(() => {
@@ -207,12 +212,12 @@ export default function ObservationStage({
         e.stopPropagation();
         if (!e.repeat) setCloseRequested(true);
       }
-      if (e.key === "Tab" && narrow && !integrated && view !== "overview") {
+      if (e.key === "Tab" && (popup || (narrow && !integrated)) && view !== "overview") {
         const controls = [
           ...regionRef.current.querySelectorAll(
             'button:not(:disabled),a[href],input,textarea,[tabindex="0"]',
           ),
-        ];
+        ].filter(element=>!element.closest('[hidden]'));
         const first = controls[0],
           last = controls.at(-1);
         if (e.shiftKey && document.activeElement === first) {
@@ -226,7 +231,7 @@ export default function ObservationStage({
     }
     document.addEventListener("keydown", escape);
     return () => document.removeEventListener("keydown", escape);
-  }, [view, onView, narrow, integrated]);
+  }, [view, onView, narrow, integrated, popup]);
   const trace = currentTrace || (!stale ? executedTrace : null);
   const compositionProps = {
     category,
@@ -239,13 +244,14 @@ export default function ObservationStage({
     onLesson,
   };
   const resultAvailable = Boolean(executedTrace);
-  return (
+  if(popup && view==='overview')return null;
+  const content = (
     <section
       ref={regionRef}
-      className={`observation-stage view-${view}`}
+      className={`observation-stage view-${view} ${popup?'web-observation-dialog':''}`}
       aria-label="실습 관찰 화면"
-      role={narrow && !integrated && view !== "overview" ? "dialog" : "region"}
-      aria-modal={narrow && !integrated && view !== "overview" ? true : undefined}
+      role={popup || (narrow && !integrated && view !== "overview") ? "dialog" : "region"}
+      aria-modal={popup || (narrow && !integrated && view !== "overview") ? true : undefined}
       data-view={view}
     >
       <header className="observation-header">
@@ -261,7 +267,7 @@ export default function ObservationStage({
           </span>
         </div>
         <div className="stage-controls">
-          <button
+          {!popup && <button
             ref={backRef}
             className="stage-back"
             onClick={requestClose}
@@ -270,12 +276,13 @@ export default function ObservationStage({
           >
             <Icon name="arrow" size={14} />
             돌아가기
-          </button>
+          </button>}
           <button
-            className={`stage-tab ${view === "overview" ? "active" : ""}`}
-            onClick={requestClose}
+            className={`stage-tab ${view === (popup?'result':'overview') ? "active" : ""}`}
+            onClick={()=>popup?onView('result'):requestClose()}
+            disabled={popup && !executedTrace}
           >
-            전체
+            {popup?'실행 결과':'전체'}
           </button>
           <button
             className={`stage-tab ${view === "compare" ? "active" : ""}`}
@@ -284,6 +291,7 @@ export default function ObservationStage({
           >
             변화 비교
           </button>
+          {popup && <button ref={backRef} className="stage-close" type="button" aria-label="처리 흐름과 결과 닫기" onClick={confirmClose}>×</button>}
         </div>
       </header>
       <div ref={scrollRef} className="observation-scroll">
@@ -310,7 +318,7 @@ export default function ObservationStage({
                         <h2>선택한 부분 자세히 보기</h2>
                       </div>
                       <span>
-                        {narrow && !integrated
+                        {popup ? '닫으면 입력창과 Lens로 돌아가요.' : narrow && !integrated
                           ? "돌아가기를 누르면 입력을 수정할 수 있어요."
                           : "위 입력창과 아래 Lens가 같은 흐름으로 이어져요."}
                       </span>
@@ -399,4 +407,5 @@ export default function ObservationStage({
       )}
     </section>
   );
+  return popup?createPortal(<div className="unified-layout web-observation-backdrop">{content}</div>,document.body):content;
 }

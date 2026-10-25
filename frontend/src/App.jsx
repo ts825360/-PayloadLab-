@@ -9,6 +9,7 @@ import useInputAnalysis from "./useInputAnalysis.js";
 import { ConceptPanel } from "./WorkspaceParts.jsx";
 import GuidedLesson from "./GuidedLesson.jsx";
 import { getLesson } from "./lesson-catalog.js";
+import LearningPrimer from './LearningPrimer.jsx';
 import LinuxDesktop,{isLinuxCategory} from './terminal/LinuxDesktop.jsx';
 export { CATEGORIES } from "./learning-content.js";
 
@@ -38,7 +39,8 @@ export default function App() {
   const generation = useRef(0),
     nextId = useRef(0),
     inputRef = useRef(null),
-    lensRef = useRef(null);
+    lensRef = useRef(null),
+    observationReturnRef = useRef(null);
   const category = CATEGORIES.find((c) => c.id === categoryId),
     currentLab = labId(categoryId, difficulty);
   const linuxMode=isLinuxCategory(categoryId);
@@ -114,7 +116,12 @@ export default function App() {
   }
   function focusGroup(group = "focus") {
     setActiveGroup(group);
-    setView("focus");
+    openObservation("focus");
+  }
+  function openObservation(nextView, origin = document.activeElement) {
+    // Capture before inert is committed; browsers may blur the opener immediately.
+    if (!linuxMode && view === 'overview') observationReturnRef.current = origin;
+    setView(nextView);
   }
   async function run(event) {
     event.preventDefault();
@@ -132,6 +139,7 @@ export default function App() {
       return;
     }
     const version = ++generation.current;
+    const opener = document.activeElement;
     setBusy(true);
     setError("");
     const submitted = { input, claim, lab: currentLab };
@@ -149,7 +157,7 @@ export default function App() {
       setViewId(entry.id);
       setAcknowledged(false);
       setActiveGroup("focus");
-      setView("result");
+      openObservation("result", opener);
       if(linuxMode)setInput(current=>current===submitted.input?'':current);
     } catch {
       if (version === generation.current)
@@ -165,14 +173,17 @@ export default function App() {
       category={linuxMode && categoryId==='command_injection'?{...category,terminal:true}:category}
       difficulty={difficulty} input={input} claim={claim} onInput={editInput} onClaim={editClaim}
       onRun={run} busy={busy} available={available} planned={planned}
-      guide={planned ? <section className="guided-lesson" aria-label="학습 안내"><h3>Normal은 다음 단계로 준비합니다</h3><p>권한상승 기초는 Easy에서 사용자·파일 소유자·접근 거부를 먼저 관찰해요. Normal은 구현 예정이며 현재 실행할 수 없어요.</p></section> : <GuidedLesson
+      guide={planned ? <section className="guided-lesson" aria-label="학습 안내"><h3>Normal은 다음 단계로 준비합니다</h3><p>권한상승 기초는 Easy에서 사용자·파일 소유자·접근 거부를 먼저 관찰해요. Normal은 구현 예정이며 현재 실행할 수 없어요.</p></section> : <><GuidedLesson
         lesson={guideLesson} stepIndex={stepIndex} trace={guideTrace}
         result={guideTrace?selected?.result:null} acknowledged={acknowledged} onAcknowledge={setAcknowledged}
         onFill={value=>{editInput(value);inputRef.current?.focus();}}
-        onAdvance={()=>{setStepIndex(n=>n+1);setAcknowledged(false);setStepAfterAttempt(nextId.current);}}/>}
+        onAdvance={()=>{setStepIndex(n=>n+1);setAcknowledged(false);setStepAfterAttempt(nextId.current);}}/>
+        {!linuxMode && !input && !trace && <LearningPrimer category={category} difficulty={difficulty} onStart={()=>inputRef.current?.focus()}/>}</>}
       error={error} inputRef={inputRef} lensRef={lensRef} trace={currentTrace}
       analysisStatus={analysisStatus} onFocus={onFocus} onLesson={setLesson}
       focusLabel={linuxMode?'처리 흐름 크게 보기':undefined}
+      attemptCount={linuxMode?0:history.length}
+      onOpenResult={linuxMode?undefined:()=>{if(!selected && history.length)setViewId(history.at(-1).id);openObservation('result');}}
       terminalPrompt={linuxMode?(categoryId==='command_injection'?'hostname > ':
         analysis?.terminal?.prompt || history.at(-1)?.result.learning_trace?.terminal?.prompt || currentTrace?.terminal?.prompt):undefined}
     />;
@@ -182,7 +193,7 @@ export default function App() {
       reducedMotion="user"
       transition={{ duration: 0.2, ease: [0.22, 0.68, 0, 1] }}
     >
-      <div className={linuxMode?'linux-mode-shell':'workspace-shell focused-workbench unified-layout'}>
+      <div className={linuxMode?'linux-mode-shell':`workspace-shell focused-workbench unified-layout ${view!=='overview'?'web-observation-open':''}`}>
         {linuxMode ? <LinuxDesktop category={category} difficulty={difficulty}
           onCategory={changeContext} onDifficulty={level=>changeContext(categoryId,level)}
           onReturn={()=>changeContext(lastWeb.current.id,lastWeb.current.level)}
@@ -193,7 +204,7 @@ export default function App() {
         <a href="#lab-main" className="skip-link">
           실습으로 바로가기
         </a>
-        <aside className="workspace-sidebar">
+        <aside className="workspace-sidebar" inert={view!=='overview'?'':undefined}>
           <a href="#lab-main" className="brand">
             <img src={theme === 'dark' ? '/brand/payloadlab-wordmark-dark.svg' : '/brand/payloadlab-wordmark.svg'} alt="PayloadLab" width="180" height="42" />
           </a>
@@ -233,7 +244,7 @@ export default function App() {
             </span>
           </div>
         </aside>
-        <div className="workspace-body">
+        <div className="workspace-body" inert={view!=='overview'?'':undefined}>
           <header className="workspace-topbar">
             <div className="breadcrumb">
               학습 공간 <span>/</span>
@@ -314,7 +325,8 @@ export default function App() {
             <section className="workbench-grid integrated-workspace" aria-label="통합 학습 작업 공간" data-phase={busy ? 'executing' : !input ? 'before-input' : currentTrace?.phase === 'analysis' || stale ? 'analyzing' : trace ? 'result' : 'editing'}>
               {renderDock(()=>focusGroup('focus'))}
               <ObservationStage
-                integrated
+                popup
+                returnFocusRef={observationReturnRef}
                 category={category}
                 difficulty={difficulty}
                 input={input}
@@ -335,7 +347,7 @@ export default function App() {
                   setInput(entry.input);
                   setClaim(entry.claim);
                   setAcknowledged(false);
-                  setView("overview");
+                  setView("result");
                   setActiveGroup("focus");
                 }}
                 onStart={() => inputRef.current?.focus()}

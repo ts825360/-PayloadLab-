@@ -201,6 +201,8 @@ export function Composition({
 export function LensPanel({
   panelRef,
   focusLabel,
+  onOpenResult,
+  attemptCount=0,
   trace,
   guide,
   difficulty,
@@ -233,6 +235,7 @@ export function LensPanel({
           <h2>Lens</h2>
           <span className="lens-caption">입력을 읽는 작은 단서</span>
         </div>
+        {attemptCount>0 && onOpenResult && <button className="lens-history-button" type="button" onClick={onOpenResult}>시도 기록 {attemptCount}</button>}
         {guide && hint && <div className="lens-mode-control" role="group" aria-label="Lens 내용 선택">
           <button type="button" aria-pressed={lensMode==='guide'} onClick={()=>setLensMode('guide')}>학습 단계</button>
           <button type="button" aria-pressed={lensMode==='input'} onClick={()=>setLensMode('input')}>이번 입력 설명</button>

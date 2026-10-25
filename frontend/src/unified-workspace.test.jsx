@@ -8,12 +8,13 @@ import {LensPanel} from './WorkspaceParts.jsx';
 const labs=CATEGORIES.flatMap(category=>['easy','medium'].filter(d=>!category.plannedLevels?.includes(d)).map(d=>({id:`${category.id.replaceAll('_','-')}-${d}`})));
 beforeEach(()=>{localStorage.clear();vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>labs})));});
 
-it('contains input, fixed Lens, and observation in a single named learning tool',()=>{
+it('contains only input and fixed Lens before opening observation',()=>{
   render(<App/>);
   const work=screen.getByRole('region',{name:'통합 학습 작업 공간'});
   expect(work).toContainElement(screen.getByLabelText('사용자 이름'));
   expect(work).toContainElement(screen.getByRole('region',{name:'Lens 설명'}));
-  expect(work).toContainElement(screen.getByRole('region',{name:'실습 관찰 화면'}));
+  expect(screen.queryByRole('dialog',{name:'실습 관찰 화면'})).not.toBeInTheDocument();
+  expect(screen.queryByText('처리 흐름과 결과')).not.toBeInTheDocument();
   expect(work).toHaveAttribute('data-phase','before-input');
 });
 

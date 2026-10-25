@@ -22,6 +22,8 @@ export default function InputDock({
   lensRef,
   terminalPrompt,
   focusLabel,
+  onOpenResult,
+  attemptCount,
   trace,
   analysisStatus,
   onFocus,
@@ -168,6 +170,8 @@ export default function InputDock({
       <LensPanel
         panelRef={lensRef}
         focusLabel={focusLabel}
+        onOpenResult={onOpenResult}
+        attemptCount={attemptCount}
         trace={trace}
         guide={guide}
         difficulty={difficulty}
