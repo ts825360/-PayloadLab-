@@ -84,7 +84,7 @@ const normal = {
     step("ssrf-apply", "새 조건: 신뢰 주소 문자열 검사", "목표: 주소에 신뢰 문자열이 있다는 사실과 실제 목적지 호스트가 같은지 비교하고 내부 자원에 도달하는 구성을 찾아보세요.", "http://preview.lab.invalid@127.0.0.1/admin", "URL 전체의 부분 문자열과 파싱된 hostname은 달라요. URL의 사용자 정보·호스트 경계를 살펴보세요.", internalTarget, quiz("목적지 검사는 어떤 정보를 기준으로 해야 하나요?", "parsed_host", [choice("substring", "전체 문자열에 신뢰 단어가 들어가는지"), choice("parsed_host", "파싱한 실제 호스트와 접근 가능한 주소 범위")])),
   ],
   command_injection: [
-    step("cmd-apply", "새 조건: 한 구분자만 제거", "목표: 세미콜론 검사 뒤에도 명령을 연결할 수 있는지 모의 명령 구성과 stdout으로 확인하세요.", "example.com && whoami", "하나의 문자만 막는 검사와 셸의 전체 문법은 다릅니다. 허용된 교육용 명령과 구분자 범위 안에서 비교하세요.", status("command_injection", "injected"), quiz("세미콜론 하나를 막으면 충분할까요?", "other_syntax", [choice("enough", "네, 명령 연결 문법은 하나뿐이에요"), choice("other_syntax", "아니요, 다른 연결 문법도 있으므로 인자를 셸 코드와 분리해야 해요")])),
+    step("cmd-apply", "새 조건: 한 구분자만 검사", "목표: 세미콜론 검사 뒤에도 명령을 연결할 수 있는지 모의 명령 구성과 stdout으로 확인하세요.", "example.com && whoami", "입력에 ;가 있으면 전체 처리를 차단하며 문자를 제거하지는 않아요. 다른 연결 기호도 검사하는지 허용된 교육용 명령과 구분자 범위 안에서 비교하세요.", status("command_injection", "injected"), quiz("세미콜론 하나를 막으면 충분할까요?", "other_syntax", [choice("enough", "네, 명령 연결 문법은 하나뿐이에요"), choice("other_syntax", "아니요, 다른 연결 문법도 있으므로 인자를 셸 코드와 분리해야 해요")])),
   ],
   linux_basics: [
     step("linux-apply", "새 목표에 맞는 옵션 적용하기", "목표: 퀴즈의 새 작업에 맞는 명령과 옵션을 선택하세요. 옵션이 결과에 더하는 정보를 설명해보세요.", "ls -l /lab", "단서: 긴 목록 형식은 파일 권한·소유자 등의 정보를 함께 보여줘요. 실제 파일은 조회하지 않는 명령 퀴즈입니다.", executed("linux_basics", (trace) => trace.execution.status === "quiz_correct" && trace.terminal?.mode === "quiz"), quiz("ls -l의 -l은 어떤 역할인가요?", "long", [choice("delete", "파일을 삭제한다"), choice("long", "권한과 소유자 등이 포함된 긴 목록 형식을 고른다")])),

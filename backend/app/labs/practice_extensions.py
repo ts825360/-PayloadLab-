@@ -54,13 +54,25 @@ def _graph(trace, entries, analysis):
 def _ssrf(raw, medium, analysis):
     trace = _base('ssrf', raw, 'fetch("', '")  # 교육용 모형')
     host, internal, error = '', False, ''
+    start, end = 0, len(raw)
     try:
         parsed = urlsplit(raw)
         host = parsed.hostname or ''
         # Accessing port validates malformed port literals without resolving anything.
         _ = parsed.port
-        if parsed.scheme not in ('http', 'https') or not host or any(c.isspace() for c in raw):
+        if (parsed.scheme not in ('http', 'https') or not host
+                or any(c.isspace() or ord(c) < 32 or ord(c) == 127 for c in raw)):
             raise ValueError('HTTP/HTTPS URL 형식을 사용하세요.')
+        # Locate the authority host, not the same text repeated in a path/query.
+        authority_start = raw.find('//') + 2
+        host_offset = parsed.netloc.rfind('@') + 1
+        host_port = parsed.netloc[host_offset:]
+        if host_port.startswith('['):
+            start = authority_start + host_offset + 1
+            end = start + host_port.index(']') - 1
+        else:
+            start = authority_start + host_offset
+            end = start + len(host_port.split(':', 1)[0])
         if host == 'localhost':
             internal = True
         else:
@@ -72,24 +84,52 @@ def _ssrf(raw, medium, analysis):
         error = '지원하지 않는 URL입니다. HTTP/HTTPS와 올바른 호스트·포트를 확인하세요.'
     allowed = not error and (not medium or TRUSTED_HOST in raw)
     status = 'unsupported' if error else 'fetched' if allowed else 'blocked'
-    stdout = ('모의 내부 응답: internal-admin (dummy)\n' if internal else '모의 공개 페이지: preview (dummy)\n') if allowed else ''
+    stdout = ('모의 내부 응답: internal-admin (dummy)\n' if internal else '모의 일반 목적지 응답: preview (dummy)\n') if allowed else ''
     stderr = error or ('' if allowed else '교육용 문자열 정책이 요청을 차단했습니다.')
     trace['network'] = dict(hostname=host, destination='loopback' if internal else 'public/symbolic',
                             internal=internal, policy_allowed=allowed, requested=False,
                             dns_resolved=False, trusted_substring=TRUSTED_HOST if medium else None)
-    why = ('Normal의 불완전한 정책은 전체 URL에 신뢰 호스트 문자열이 포함되는지만 검사합니다. '
-           '@ 앞은 사용자 정보이고 실제 목적지는 파싱된 hostname입니다.' if medium else
-           '서버 관점의 loopback은 서버 자신입니다. 목적지 검사가 빠진 상황을 문자열 모형으로 비교합니다. DNS와 HTTP 요청은 수행하지 않습니다.')
-    start = max(0, raw.rfind(host)) if host else 0
+    if error:
+        what = f"내 URL 입력은 {raw!r}입니다. 이 모형이 지원하는 HTTP/HTTPS 주소 형식에 맞지 않아 가상 응답을 만들 수 없어요."
+        why = '지원 범위 밖의 주소이며 실제 서버의 연결 실패가 아닙니다. DNS 조회나 HTTP 연결 자체를 시도하지 않았어요.'
+        next_action = '가져올 주소를 https://example.com/ 같은 HTTP/HTTPS 형식으로 바꿔 다시 관찰해보세요.'
+    else:
+        what = f"내가 입력한 URL은 {raw!r}입니다. 서버 역할의 모형이 주소를 나눠 읽으면 목적지 호스트(hostname)는 {host!r}입니다. "
+        if medium:
+            what += (f"전체 URL에 {TRUSTED_HOST!r} 문자열이 있어서 교육용 정책이 허용했어요. " if allowed
+                     else f"전체 URL에 {TRUSTED_HOST!r} 문자열이 없어서 교육용 정책이 차단했어요. ")
+        else:
+            what += 'Easy 모형은 목적지를 제한하지 않고 가상 결과를 보여줘요. '
+        if analysis:
+            what += '아직 실행 전 분석이라 가상 응답은 만들지 않았어요.'
+        elif not allowed:
+            what += '따라서 이번에는 가상 응답도 반환되지 않아요.'
+        else:
+            what += ('이 호스트를 서버 자신의 루프백 주소로 분류해 가상 내부 응답을 표시했어요.' if internal
+                     else '이 호스트는 모형의 루프백 목록에 해당하지 않아 일반 목적지용 가상 응답을 표시했어요.')
+        why = ('루프백은 요청하는 서버 자신을 가리키는 주소예요. 이 모형은 localhost·루프백 IP만 구분하며, '
+               '다른 주소의 실제 공개 여부나 안전성을 확인하지는 않아요. DNS 조회와 HTTP 요청은 수행하지 않습니다.')
+        if medium:
+            why += ' Normal은 호스트의 정확한 일치가 아니라 URL 전체의 부분 문자열만 검사해요.'
+            if '@' in parsed.netloc:
+                why += f" 이 모형은 마지막 @ 앞을 사용자 정보로 읽고, 뒤의 {host!r}를 목적지 호스트로 읽어요. 사용자 정보에 믿는 이름을 적어도 목적지가 그 이름으로 바뀌지는 않아요."
+            if TRUSTED_HOST in parsed.path:
+                why += ' 이 URL에서는 믿는 문자열이 호스트가 아닌 경로에 있어도 정책을 통과해요.'
+            elif TRUSTED_HOST in parsed.query:
+                why += ' 이 URL에서는 믿는 문자열이 호스트가 아닌 쿼리(물음표 뒤의 값)에 있어도 정책을 통과해요.'
+            elif TRUSTED_HOST in parsed.fragment:
+                why += ' 이 URL에서는 믿는 문자열이 호스트가 아닌 조각(# 뒤의 값)에 있어도 정책을 통과해요.'
+            if not allowed:
+                why += ' 이번 차단은 교육용 문자열 정책의 판단이며 실제 연결 실패가 아니에요.'
+        next_action = ('결과 창에서 URL의 마지막 @ 뒤 호스트와 파싱된 목적지를 비교해보세요.' if '@' in parsed.netloc
+                       else '결과 창에서 입력 URL의 서버 이름 부분과 파싱된 목적지 호스트를 비교해보세요.')
     trace['lens'] = _lens(status, 'URL의 실제 목적지를 확인하세요',
-                          'URL 구조를 분석하는 단계입니다. 응답은 아직 만들지 않았습니다.' if analysis else
-                          error or ('가상 내부 목적지 응답을 표시했습니다.' if internal and allowed else
-                                    '가상 공개 목적지 응답을 표시했습니다.' if allowed else stderr),
-                          why, '원본 URL의 권한부와 파싱된 hostname을 비교하세요.', raw, start,
-                          start + len(host) if host else len(raw), lesson='network')
+                          what, why, next_action, raw, start, end, lesson='network')
     _graph(trace, [('url', '입력 URL', raw, 'input'),
-                   ('policy', '교육용 목적지 정책', '허용' if allowed else '차단', 'passed' if allowed else 'blocked'),
-                   ('destination', '파싱된 목적지 (연결 없음)', host or '형식 오류', 'internal' if internal else 'public'),
+                   ('policy', '교육용 목적지 정책', '지원 형식 밖' if error else '허용' if allowed else '차단',
+                    'unsupported' if error else 'passed' if allowed else 'blocked'),
+                   ('destination', '파싱된 목적지 (연결 없음)', '형식 확인 필요' if error else host,
+                    'unsupported' if error else 'internal' if internal else 'public'),
                    ('response', '가상 응답', '실행 전' if analysis else stdout or stderr, status)], analysis)
     if not analysis:
         trace['execution'] = _execution(status, stdout, stderr, int(allowed))
@@ -111,18 +151,71 @@ def _command_injection(raw, medium, analysis):
     elif valid_host and len(parts) == 3 and parts[2] in allowed_outputs and parts[1] in (';', '&&'):
         status, stdout = 'injected', f'PING {host}: 모의 응답 1개\n' + allowed_outputs[parts[2]]
     else:
-        stderr = '지원하지 않는 명령 형태입니다. 호스트와 구분자 ; 또는 && 뒤의 whoami, pwd, id만 모형화합니다.'
+        stderr = '모형의 지원 범위 밖입니다. 호스트 하나 또는 호스트와 구분자 ; / && 뒤의 whoami, pwd, id 하나만 모형화합니다.'
     trace['command_model'] = dict(hostname=host, separator=separator.group() if separator else None,
                                  supported_commands=list(allowed_outputs), real_shell=False)
+    what = f"호스트 이름 칸에 {raw!r}를 넣었어요. 입력은 ping -c 1 뒤에 붙어 {('ping -c 1 ' + raw)!r}라는 문장으로 조립됩니다. "
+    why = 'ping은 대상에 응답을 요청하는 명령이고 -c 1은 한 번 요청한다는 뜻이에요. 여기서는 실제 셸 실행이나 네트워크 연결 없이 정해진 모의 출력만 만듭니다. '
+    if raw != raw.strip():
+        why += '조립 화면에는 원문을 보존하지만, 모형이 호스트와 명령 조각을 읽을 때는 바깥쪽 공백을 제외해요. '
+    if medium:
+        why += 'Normal은 입력에서 ;가 있는지만 검사해요. 문자를 지우거나 바꾼 것이 아니라, 있으면 처리 전체를 차단하는 불완전한 필터입니다. '
+    else:
+        why += 'Easy는 이 구분자를 막는 필터가 없어요. '
+    if status == 'blocked':
+        detail = '입력에 ;가 있어 Normal 필터가 차단 대상으로 판단했어요. '
+        if not analysis:
+            detail += 'ping과 뒤의 추가 명령 모두 모의 실행하지 않았어요. 명령의 표준 출력은 없고, 표준 오류에는 필터의 차단 안내만 표시해요. '
+        next_action = '차단된 입력에서 필터가 검사한 ; 위치 하나를 확인해보세요.'
+    elif status == 'command_ok':
+        detail = f"{host!r} 전체를 ping의 대상 값으로 읽는 일반 입력이며 추가 명령은 없어요. "
+        if not analysis:
+            detail += f"그래서 {host!r}에 대한 모의 응답 1개만 표시했어요. 추가 명령을 관찰하는 실습 목표는 아직 충족하지 않았지만, 잘못된 공격이나 연결 실패라는 뜻은 아니에요. "
+        next_action = ('example.com; whoami를 입력해 ; 앞뒤가 각각 어디에 붙는지 관찰해보세요.' if not medium else
+                       '세미콜론만 막는 필터에서 다른 명령 연결 기호가 남는지 관찰해보세요.')
+    elif status == 'injected':
+        command = parts[2]
+        detail = f"{host!r}는 ping 대상이고, {parts[1]!r} 뒤의 {command!r}는 추가 명령 조각으로 인식돼요. "
+        why += (';는 앞 명령의 성공 여부와 관계없이 다음 명령으로 이어가는 경계예요. ' if parts[1] == ';' else
+                '&&는 앞 명령이 성공했을 때 다음 명령으로 이어가는 경계예요. 이 모형은 지원하는 호스트의 ping이 성공한 상황을 가정해요. ')
+        if medium:
+            why += '이 입력에는 ;가 없고 &&는 필터에 걸리지 않고 남아 있어 추가 명령도 인식해요. '
+        meaning = {'whoami': '사용자 이름', 'pwd': '작업 폴더', 'id': '사용자·그룹 번호'}[command]
+        why += f"{command}는 {meaning} 확인에 쓰이는 명령이며, 여기서 값은 교육용으로 고정된 예시예요. "
+        if not analysis:
+            detail += f"모의 ping 응답 뒤에 {allowed_outputs[command].strip()!r}가 표시됐어요. 호스트 하나를 기대한 자리에 추가 명령이 들어가 이 실습의 목표를 충족한 거예요. "
+        next_action = ('실행한 뒤 모의 출력에서 PING 줄 바로 다음 줄과 추가 명령 조각을 비교해보세요.' if analysis else
+                       '모의 출력에서 PING 줄 바로 다음 줄과 추가 명령 조각을 비교해보세요.')
+    else:
+        if not raw.strip():
+            detail = '호스트 입력이 비어 있어 ping의 대상 값을 읽을 수 없어요. '
+            next_action = '호스트 이름 칸에 example.com만 넣어 기본 모의 출력을 확인해보세요.'
+        elif valid_host and len(parts) == 3 and not parts[2]:
+            detail = f"{parts[1]!r} 뒤에 추가 명령이 없어 모형이 처리할 조각이 완성되지 않았어요. "
+            next_action = '표시된 구분자 바로 뒤에 명령 조각이 있는지 확인해보세요.'
+        elif valid_host and len(parts) == 3 and parts[1] == '||':
+            detail = '||는 앞 명령이 실패했을 때 이어가는 기호지만, 이 모형은 그 분기를 해석하지 않아요. '
+            next_action = '지원하는 구분자 ; 또는 && 중 하나와 현재 기호를 비교해보세요.'
+        elif valid_host and len(parts) == 3:
+            detail = f"구분자 뒤의 {parts[2]!r}는 모형이 지원하는 whoami, pwd, id 중 하나와 일치하지 않아요. "
+            next_action = '구분자 뒤 조각을 화면의 지원 명령 목록과 비교해보세요.'
+        else:
+            detail = '이 입력은 호스트 하나 또는 호스트와 추가 명령 하나라는 모형의 지원 범위에 맞지 않아요. '
+            next_action = '입력을 example.com 하나로 줄여 기본 구조부터 관찰해보세요.'
+        why += '모형의 지원 범위 밖이라는 뜻이며 실제 셸의 문법 오류나 명령 존재 여부를 단정하지 않아요. '
+        if not analysis:
+            detail += '따라서 모의 출력은 없고 지원 범위 안내를 표시했어요. '
+    what += detail
+    if analysis:
+        what += '지금은 실행 전 분석이며 모의 출력을 만들지 않았어요.'
+    focus_start = raw.index(';') if status == 'blocked' else separator.start() if separator else 0
+    focus_end = focus_start + 1 if status == 'blocked' else separator.end() if separator else len(raw)
     trace['lens'] = _lens(status, '호스트 값과 명령 경계를 구분하세요',
-                         '명령 토큰을 확인하는 분석 단계입니다. 모의 명령도 아직 실행하지 않았습니다.' if analysis else
-                         stderr or ('추가 명령을 교육용 모형이 인식했습니다.' if status == 'injected' else '호스트 하나를 모의 ping 대상으로 사용했습니다.'),
-                         '실제 셸은 사용하지 않습니다. 이 모형에서는 ;와 &&가 명령 경계이고, Normal은 ;만 막아 &&가 남는 불완전한 정책입니다.',
-                         '입력의 어느 부분이 호스트이고 어느 부분이 추가 명령인지 비교하세요.', raw,
-                         separator.start() if separator else 0, separator.end() if separator else len(raw), 'commands')
+                         what, why, next_action, raw,
+                         focus_start, focus_end, 'commands')
     _graph(trace, [('input', '호스트 입력', raw, 'input'),
-                   ('policy', '교육용 필터', '세미콜론 차단' if medium else '필터 없음', 'blocked' if status == 'blocked' else 'passed'),
-                   ('command', '가상 명령 경계', separator.group() if separator else '호스트 하나', status),
+                   ('policy', '교육용 필터', ('; 발견: 처리 차단' if status == 'blocked' else '; 없음: 필터 통과') if medium else '필터 없음', 'blocked' if status == 'blocked' else 'passed'),
+                   ('command', '가상 명령 경계', separator.group() if separator else '호스트 하나' if valid_host else '지원 범위 확인 필요', status),
                    ('output', '모의 출력', '실행 전' if analysis else stdout or stderr, status)], analysis)
     if not analysis:
         trace['execution'] = _execution(status, stdout, stderr, int(status in ('command_ok', 'injected')))
@@ -146,19 +239,71 @@ def _linux(raw, medium, analysis):
     correct = tokens == ['ls', '-l', '/lab'] if medium else tokens in (['ls'], ['ls', '/lab'])
     status = 'quiz_correct' if correct else 'quiz_incorrect'
     stdout = ('-rw------- mentor /lab/report.txt\n-rw-r--r-- student /lab/readme.txt\n' if medium else 'report.txt  readme.txt\n') if correct else ''
-    stderr = '' if correct else '이 명령어 퀴즈의 목표와 토큰을 다시 비교하세요.'
-    trace['quiz'] = dict(kind='token_exercise', goal='long_listing' if medium else 'list_directory')
-    trace['lens'] = _lens('quiz_pending' if analysis else status, 'Linux 명령어 빈칸 퀴즈',
-                         '입력 토큰을 읽는 분석 단계입니다. 아직 채점하지 않았습니다.' if analysis else
-                         '목표에 맞는 명령어 토큰입니다. 표시된 파일은 퀴즈용 가상 예시입니다.' if correct else stderr,
-                         '-l은 소유자와 권한이 포함된 긴 목록 형식을 뜻합니다.' if medium else
-                         'ls는 디렉터리의 항목 이름을 나열하는 명령입니다. 여기서는 실제 명령 실행 없이 토큰을 채점합니다.',
-                         '/lab의 긴 목록을 만드는 명령어와 옵션을 구성하세요.' if medium else '/lab의 항목 이름을 나열하는 명령어를 구성하세요.',
-                         raw, lesson='linux')
+    goal = '/lab의 이름·소유자·권한이 포함된 긴 목록' if medium else '/lab의 항목 이름만 나열한 목록'
+    comparison, detail = 'unmodeled', '이 입력은 퀴즈가 설명하는 명령 조합의 지원 범위 밖이에요. 따옴표·연결 기호·다른 명령의 의미는 여기서 해석하지 않아요.'
+    next_action = ('명령 이름, 긴 목록 옵션, 대상 경로라는 세 조각이 있는지 살펴보세요.' if medium else
+                   'ls만 입력하고 이름 목록이 나오는지 확인해보세요.')
+    start, end = 0, len(raw)
+    if correct:
+        comparison = 'matched'
+        detail = ('명령 ls, 긴 목록 옵션 -l, 대상 경로 /lab이 이 순서로 있어 Normal의 목표와 일치해요. '
+                  '그래서 report.txt와 readme.txt의 권한·소유자·경로를 간략히 적은 가상 목록을 표시했어요. '
+                  '첫 줄의 mentor는 report.txt의 소유자이고, 둘째 줄의 student는 readme.txt의 소유자예요.' if medium else
+                  'ls는 항목 이름을 나열하는 명령이에요. 이 퀴즈의 현재 가상 폴더는 /lab이므로 ls만 쓰거나 /lab을 붙인 답을 받아요. '
+                  '이름만 보는 Easy 목표와 일치해서 report.txt와 readme.txt 두 이름을 표시했어요.')
+        next_action = ('가상 출력 첫 줄에서 권한 -rw-------, 소유자 mentor, 경로 /lab/report.txt를 구분해보세요.' if medium else
+                       'ls와 ls /lab을 한 번씩 입력하고 같은 두 이름이 나오는지 비교해보세요.')
+    elif not tokens:
+        comparison, detail = 'empty', '입력이 비어 있어 비교할 명령 조각이 없어요.'
+        next_action = '먼저 명령 이름 ls 한 조각을 넣어보세요.'
+    elif tokens[0] == 'ls':
+        # Explain only small, explicit shapes; never infer general shell syntax.
+        path = r'/[A-Za-z0-9_./-]*'
+        known_shape = (tokens in (['ls'], ['ls', '-l'])
+                       or len(tokens) == 2 and re.fullmatch(path, tokens[1])
+                       or len(tokens) == 3 and (tokens[1] == '-l' and re.fullmatch(path, tokens[2])
+                                                or re.fullmatch(path, tokens[1]) and tokens[2] == '-l'))
+        if known_shape:
+            comparison = 'goal_mismatch'
+            if medium and '-l' not in tokens:
+                detail = 'ls는 이름을 나열하지만, Normal의 긴 목록 목표에는 -l 옵션과 명시적인 /lab 경로가 필요해요. 현재 입력에는 -l이 없어요.'
+                match = next(re.finditer(r'\S+', raw))
+                start = end = match.end()
+                next_action = '명령 이름 ls 바로 뒤에 긴 목록 옵션 -l이 있는지 확인해보세요.'
+            elif medium and tokens == ['ls', '-l']:
+                detail = '긴 목록 옵션 -l은 있지만, 이 퀴즈가 요구하는 대상 경로 /lab이 명시되지 않았어요.'
+                next_action = '옵션 다음에 대상 경로 /lab을 적었는지 확인해보세요.'
+            elif medium and tokens == ['ls', '/lab', '-l']:
+                detail = '필요한 조각은 있지만 이 퀴즈의 답은 명령 이름 → 옵션 → 경로 순서로 비교해요. 현재 순서는 그 답과 달라요.'
+                next_action = '긴 목록 옵션과 대상 경로의 순서만 바꿔 비교해보세요.'
+            elif any(token.startswith('/') and token != '/lab' for token in tokens[1:]):
+                target = next(token for token in tokens[1:] if token.startswith('/') and token != '/lab')
+                detail = f'대상으로 적은 {target!r}는 퀴즈 목표의 /lab과 달라요. 그 경로가 실제로 존재하는지는 검사하지 않았어요.'
+                next_action = '입력한 경로와 퀴즈 목표의 /lab을 비교해보세요.'
+            else:
+                detail = '이름만 보는 Easy 목표와 달리 -l은 권한·소유자도 포함한 긴 목록을 뜻해요. 이 퀴즈의 Easy 답은 ls 또는 ls /lab과 비교해요.'
+                next_action = 'Easy에서 -l을 뺀 입력과 현재 입력을 비교해보세요.'
+    labels = dict(matched='목표 일치', empty='입력 없음', goal_mismatch='목표 조건 다름', unmodeled='해석 지원 범위 밖')
+    stderr = '' if correct else f'퀴즈 안내: {detail}'
+    trace['quiz'] = dict(kind='token_exercise', goal='long_listing' if medium else 'list_directory',
+                         tokens=tokens, comparison='pending' if analysis else comparison,
+                         comparison_label='채점 전' if analysis else labels[comparison], goal_description=goal)
+    what = f'내 명령 입력은 {raw!r}입니다. 퀴즈는 공백으로 나눈 {tokens!r}를 명령 조각(토큰)으로 읽어요. 이번 목표는 {goal}이에요. '
+    what += '지금은 실행 전 분석이라 아직 채점하지 않았고 가상 목록도 만들지 않았어요.' if analysis else detail
+    if not analysis and not correct:
+        what += ' 가상 목록 대신 표준 오류 영역에 퀴즈 안내를 표시했어요.'
+    why = ('ls는 목록을 보는 명령, -l은 권한과 소유자까지 보는 긴 목록 옵션, /lab은 대상 폴더 경로예요. '
+           '이 연습은 실제 셸 실행이나 파일 조회 없이 공백으로 나눈 조각과 순서를 정해진 답과 비교합니다. '
+           '퀴즈 답과 다르다는 것이 실제 Linux의 오류나 존재하지 않는 명령이라는 뜻은 아니에요. '
+           'Normal 출력도 실제 ls의 모든 열을 재현한 것이 아니라 권한·소유자·경로만 남긴 간략한 가상 예시예요.')
+    if analysis and correct:
+        next_action = '직접 실행한 뒤 가상 목록의 항목과 이번 목표를 비교해보세요.'
+    trace['lens'] = _lens('quiz_pending' if analysis else status, '입력 조각과 Linux 퀴즈 목표를 비교해요',
+                         what, why, next_action, raw, start, end, lesson='linux')
     trace['terminal'] = _terminal(raw, 'student', '' if analysis else stdout, '' if analysis else stderr, 'quiz')
     _graph(trace, [('input', '입력 토큰', ' | '.join(tokens), 'input'),
-                   ('goal', '퀴즈 목표', '권한 포함 긴 목록' if medium else '항목 이름 목록', 'goal'),
-                   ('quiz', '명령어 퀴즈 채점', '채점 전' if analysis else status, status)], analysis)
+                   ('goal', '퀴즈 목표', goal, 'goal'),
+                   ('quiz', '명령어 퀴즈 채점', trace['quiz']['comparison_label'], status)], analysis)
     if not analysis:
         trace['execution'] = _execution(status, stdout, stderr, int(correct))
     return trace

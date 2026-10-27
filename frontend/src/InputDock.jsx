@@ -4,6 +4,7 @@ import { LensPanel } from "./WorkspaceParts.jsx";
 import PracticeEnvironment from './PracticeEnvironment.jsx';
 import TerminalInput from './terminal/TerminalInput.jsx';
 import {terminalDiagnostics} from './terminal/diagnostics.js';
+import {codepointRange} from './text-ranges.js';
 
 export default function InputDock({
   category,
@@ -120,8 +121,7 @@ export default function InputDock({
           {!category.terminal && trace?.lens && input && <div className="inline-diagnostic" aria-label="입력 위치 설명">
             <code>{(() => {
               const text = trace.effective_input ?? input;
-              const start = Math.max(0, Math.min(text.length, trace.lens.focus?.start ?? 0));
-              const end = Math.max(start, Math.min(text.length, trace.lens.focus?.end ?? text.length));
+              const {start,end} = codepointRange(text, trace.lens.focus);
               return <>{text.slice(0, start)}<mark>{text.slice(start, end) || '┆'}</mark>{text.slice(end)}</>;
             })()}</code><span>↳ {trace.lens.title}</span>
             {trace.raw_input !== trace.effective_input && <small>필터가 적용된 값을 표시합니다. 원본 입력은 위에서 수정할 수 있어요.</small>}

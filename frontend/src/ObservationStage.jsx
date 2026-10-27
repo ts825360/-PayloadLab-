@@ -21,12 +21,13 @@ import ChangeComparison from "./ChangeComparison.jsx";
 import Icon from "./Icon.jsx";
 import LensCloseConfirmation from "./LensCloseConfirmation.jsx";
 import LearningPrimer from './LearningPrimer.jsx';
+import {codepointRange} from './text-ranges.js';
 
 function FocusScene({ trace, group }) {
   const reduce = useReducedMotion();
   const comp = trace.composition;
   const range = group === "focus" ? trace.lens.focus : comp.ranges?.[group];
-  const focus = range || { start: 0, end: comp.value.length };
+  const focus = codepointRange(comp.value, range);
   const full = comp.full || comp.prefix + comp.value + comp.suffix;
   const start =
     group === "password"
@@ -38,9 +39,10 @@ function FocusScene({ trace, group }) {
       ? full.length
       : comp.prefix.length +
         Math.max(focus.start, Math.min(focus.end, comp.value.length));
-  const left = full.slice(Math.max(0, start - 24), start),
-    right = full.slice(end, end + 24);
+  const left = Array.from(full.slice(0, start)).slice(-24).join(''),
+    right = Array.from(full.slice(end)).slice(0, 24).join('');
   const target = full.slice(start, end);
+  const targetCharacters = Array.from(target);
   const { refs, floatingStyles } = useFloating({
     placement: "bottom-start",
     strategy: "absolute",
@@ -100,8 +102,8 @@ function FocusScene({ trace, group }) {
             >
               {start === end ? (
                 <span aria-label="연결이 필요한 위치">┆</span>
-              ) : target.length > 160 ? (
-                target.slice(0, 160) + "…"
+              ) : targetCharacters.length > 160 ? (
+                targetCharacters.slice(0, 160).join('') + "…"
               ) : (
                 target || "입력 위치"
               )}
