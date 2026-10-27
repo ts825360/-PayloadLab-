@@ -46,3 +46,8 @@
 백엔드226개, 프론트19파일113개와 빌드488모듈이 이번 변경 후보에서 모두 통과했다. [백엔드](evidence/2026-10-27-pr-backend-tests.txt), [프론트](evidence/2026-10-27-pr-frontend-tests.txt), [빌드](evidence/2026-10-27-pr-frontend-build.txt).
 
 현재 감사·과거 스냅샷 검증의 고정 기준은 공통 main 조상23b0559다. 이후 PR의 merge 방식과 관계없이 원래 자료를 조회할 수 있도록, 데이터 바이트가 같은 개인 브랜치 커밋 대신 공통 조상을 사용한다.
+
+## PR 연결
+
+- 발췌본·검증 커밋: `bd72d45`.
+- [PR #48](https://github.com/ts825360/-PayloadLab-/pull/48)에서 팀 검토를 받는다. 실제 승인 전 main 반영·#19 종료하지 않는다.
