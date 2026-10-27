@@ -335,6 +335,87 @@ def _permission_command(command, user):
     return user, 'unsupported', '', '지원하지 않는 명령입니다. 표시된 가상 명령 목록을 확인하세요.'
 
 
+def _permission_target(command):
+    if command not in PERMISSION_COMMANDS:
+        return None
+    return next((item for item in FILES if command.endswith(item['path'])), None)
+
+
+def _permission_story(raw, command, before, after, status, stdout, valid_history, analysis):
+    target = _permission_target(command)
+    title = '가상 명령과 이번 결과를 연결해요'
+    what = f"내 명령 입력은 {raw!r}입니다. 기록에서 복원한 현재 가상 사용자는 {before}예요. "
+    why = '허용된 이전 명령 기록을 메모리 모형에서 재생해 가상 사용자를 정해요. 실제 셸·파일·OS 권한은 바뀌지 않습니다. '
+    next_action = 'whoami를 입력해 현재 가상 사용자를 확인해보세요.'
+    start, end = 0, len(raw)
+    if target:
+        start = raw.find(target['path'])
+        end = start + len(target['path'])
+    if raw != command:
+        what += '원문은 보존하고 허용 명령과 비교할 때는 입력 앞뒤 공백만 제외해요. '
+    if not valid_history:
+        title = '이전 명령 기록의 지원 범위를 확인해요'
+        what += '이전 기록이 허용 목록·개수·길이 기준에 맞지 않아 일부만 재생하지 않고 기록 전체를 재생하지 않았어요. 가상 사용자는 시작값 student이고 현재 명령도 처리하지 않아요.'
+        why += '기록은 허용 명령 최대40개·총2000자 범위에서만 받아요. 이것은 실제 인증 세션이 아니라 교육용 상태 재생 규칙이에요.'
+        next_action = '새 실습에서 whoami 한 명령으로 시작 상태를 확인해보세요.'
+    elif command not in PERMISSION_COMMANDS:
+        title = '이 가상 환경의 명령 지원 범위를 확인해요'
+        what += ('입력이 비어 있어 처리할 명령이 없어요. ' if not command else '이 명령은 모형의 지원 범위에 포함되지 않아요. ')
+        why += '지원 범위 밖이라는 뜻이며 실제 Linux의 명령 존재 여부나 문법 오류·권한 거부를 판정하지 않아요.'
+        next_action = '지원 명령 보기에서 입력한 명령이 목록에 있는지 확인해보세요.'
+    elif analysis:
+        what += f"{command!r}는 허용 목록에 있지만 아직 실행 전 분석이라 현재 명령을 처리하거나 출력을 만들지 않았어요."
+        next_action = '직접 실행한 뒤 원문 출력과 현재 가상 사용자 표시를 비교해보세요.'
+    elif command in ('whoami', 'id', 'pwd'):
+        meaning = {'whoami': '현재 가상 사용자 이름', 'id': '현재 가상 사용자와 그룹 번호', 'pwd': '현재 가상 작업 폴더'}[command]
+        what += f"{command!r}는 {meaning}을 확인하는 명령이에요. 그래서 {stdout.strip()!r}를 모의 출력으로 표시했어요."
+        why += '이번 명령은 파일 내용을 읽거나 가상 사용자를 바꾸지 않아요.'
+        next_action = 'ls -l /lab/report.txt를 입력해 파일의 소유자·권한과 비교해보세요.' if command != 'pwd' else 'ls /lab을 입력해 이 가상 폴더의 목록을 확인해보세요.'
+    elif command.startswith('ls'):
+        items = [target] if target else list(FILES)
+        paths = ', '.join(item['path'] for item in items)
+        what += f"{command!r}가 가리킨 {paths}의 목록을 표시했어요. "
+        if '-l' in command.split():
+            what += '권한·소유자·경로를 간략히 적은 가상 긴 목록이에요.'
+        else:
+            what += '이번에는 가상 파일 경로의 목록만 보여줘요.'
+        why += '목록을 본 것은 파일 내용을 읽은 것이 아니에요. -l은 권한과 소유자도 보는 옵션이며 실제 ls의 모든 열을 재현한 출력은 아니에요.'
+        next_action = '목록에서 report.txt의 소유자 mentor와 현재 가상 사용자를 비교해보세요.' if '-l' in command.split() else '같은 대상의 목록에 -l을 붙여 소유자와 권한이 추가되는지 비교해보세요.'
+    elif command.startswith('cat '):
+        path, owner, permissions = target['path'], target['owner'], target['permissions']
+        what += f"{command!r}로 {path}의 내용을 읽으려 했어요. 이 파일의 소유자는 {owner}, 권한 표시는 {permissions}예요. "
+        if status == 'permission_denied':
+            title = '현재 사용자에게 읽기가 거부된 이유를 확인해요'
+            what += f"{before}는 소유자 {owner}와 다르고 다른 사용자에게 읽기 권한이 없어 모형이 읽기를 거부했어요. 표준 출력은 없고 표준 오류에 Permission denied가 표시됐어요."
+            why = (f'{before}는 {path}의 소유자 {owner}와 다르고, {permissions}(0600)은 다른 사용자 읽기를 허용하지 않아요. '
+                   '명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.')
+            next_action = 'ls -l /lab/report.txt로 소유자와 권한 표시를 확인해보세요.'
+        else:
+            why += ('현재 사용자는 가상 root라서 이 모형의 읽기 허용 규칙을 통과해요. 파일 소유자나 권한 자체를 바꾼 것은 아니에요.' if before == 'root' else
+                    '현재 가상 사용자가 파일의 소유자이고 이 예시 파일에는 소유자의 읽기 권한이 있어요.')
+            what += f"모형의 읽기 규칙을 통과해 {stdout.strip()!r}를 가상 파일 내용으로 표시했어요."
+            if path == '/lab/report.txt' and before == 'root':
+                what += ' 가상 사용자 변화 뒤 이 파일을 읽는 이번 실습 목표를 확인했어요.'
+            next_action = 'exit 뒤 같은 파일을 읽어 가상 사용자에 따라 결과가 달라지는지 비교해보세요.' if before == 'root' else 'report.txt와 readme.txt의 소유자·읽기 권한을 비교해보세요.'
+    elif command == 'sudo -l':
+        what += 'sudo -l은 가상 허용 규칙을 보여줘요. (root) NOPASSWD: /lab/maintenance는 이 모형에서 비밀번호 질문 없이 해당 도우미를 허용한다는 규칙이에요. 아직 도우미를 실행하지 않아 사용자는 그대로예요.'
+        why += '허용 목록 조회와 실제 도우미 실행은 다른 단계예요. 이 목록은 실제 서버의 sudo 설정이 아니에요.'
+        next_action = '허용 규칙에서 도우미 경로 /lab/maintenance를 찾아보세요.'
+    elif command == 'sudo /lab/maintenance':
+        what += (f"도우미 명령 {command!r}를 인식해 가상 사용자가 {before}에서 root로 바뀌었어요. " if before != 'root' else
+                 f"도우미 명령 {command!r}를 인식했지만 이미 root였으므로 가상 root 상태를 유지해요. ")
+        what += '아직 report.txt 파일을 읽은 것은 아니에요.'
+        why += '이 실습의 도우미가 인위적으로 가상 root 상태를 만드는 규칙이에요. 실제 sudo 실행이나 운영체제의 관리자 권한 획득은 아닙니다.'
+        next_action = 'whoami로 변경 뒤 가상 사용자가 root인지 확인해보세요.'
+    elif command == 'exit':
+        what += (f'exit로 가상 사용자가 {before}에서 student로 돌아왔어요.' if before != 'student' else
+                 'exit를 입력했지만 이미 student였으므로 가상 student 상태를 유지해요.')
+        why += '이 모형은 exit를 시작 사용자로 되돌리는 명령으로 처리해요. 실제 터미널이나 서버 프로세스를 종료하지 않아요.'
+        next_action = 'whoami로 돌아온 가상 사용자를 확인해보세요.'
+    return _lens('permissions_pending' if analysis else status, title, what, why,
+                 next_action, raw, start, end, lesson='permissions')
+
+
 def _permissions(raw, payload, analysis):
     trace = _base('permissions', raw)
     history = payload.get('history', [])
@@ -357,16 +438,13 @@ def _permissions(raw, payload, analysis):
     else:
         user, status, stdout, stderr = _permission_command(command, user)
     trace['terminal'] = _terminal(raw, user, '' if analysis else stdout, '' if analysis else stderr)
-    trace['lens'] = _lens('permissions_pending' if analysis else status, '가상 사용자와 파일 권한을 비교하세요',
-                         '이전 명령 기록으로 현재 사용자만 복원했습니다. 현재 명령은 아직 실행하지 않았습니다.' if analysis else
-                         stderr or '표시된 사용자·권한·출력은 메모리 안의 교육용 모형 결과입니다.',
-                         'report.txt는 mentor 소유의 0600 파일입니다. student의 Permission denied는 명령 오타가 아닙니다. '
-                         'sudo /lab/maintenance는 이 실습에서만 인위적으로 가상 root 셸을 시작하는 helper입니다. '
-                         '실제 sudo나 운영체제 권한은 바뀌지 않습니다.',
-                         'whoami, ls -l /lab/report.txt, cat /lab/report.txt를 비교하고 sudo -l로 가상 허용 목록을 확인하세요.',
-                         raw, lesson='permissions')
+    trace['lens'] = _permission_story(raw, command, previous_user, user, status, stdout, valid_history, analysis)
+    target = _permission_target(command)
+    file_info = (f"{target['owner']} / {target['permissions']} / {target['path']}" if target else
+                 '가상 /lab 목록: report.txt · readme.txt' if command.startswith('ls') else
+                 '참고 파일 정보이며 이번 명령의 파일 접근 결과가 아님')
     _graph(trace, [('identity', '기록에서 복원한 가상 사용자', previous_user, 'identity'),
-                   ('file', '가상 파일의 소유자와 권한', 'mentor / -rw------- / /lab/report.txt', 'permissions'),
+                   ('file', '가상 파일 정보', file_info, 'permissions'),
                    ('command', '허용 목록의 가상 명령', raw, 'input'),
                    ('result', '권한 검사 결과', '실행 전' if analysis else status + ' / ' + user, status)], analysis)
     if not analysis:

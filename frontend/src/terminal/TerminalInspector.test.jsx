@@ -56,3 +56,10 @@ it('keeps the first command boundary distinct from the later blocking filter tok
   expect(diagram).toHaveTextContent('필터 ; 발견: 처리 차단');
   expect(diagram).toHaveTextContent('RESULT 처리 차단');
 });
+
+it('shows the user change on exit as well as on elevation',()=>{
+  render(<TerminalInspector category={{id:'permissions'}} trace={{phase:'result',
+    simulation:{nodes:[{id:'identity',value:'root'}]},
+    terminal:{current_user:'student',files:[]},execution:{status:'command_ok'}}}/>);
+  expect(screen.getByLabelText('터미널 처리 흐름')).toHaveTextContent('root → student');
+});

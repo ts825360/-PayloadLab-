@@ -10,7 +10,7 @@ export default function TerminalInspector({trace,category}) {
     lines=[`┌─ USER  ${user || 'student (시작 사용자)'}`,'│',
       ...files.flatMap(file=>[`├─ FILE  ${file.path}`,`│  소유자 ${file.owner}`,`│  권한   ${file.permissions}`,'│']),
       `└─ RESULT  ${result}`];
-    if(executed && trace.execution.status==='elevated')lines.push(`   ${user} → ${trace.terminal?.current_user} (가상 사용자)`);
+    if(executed && trace.terminal?.current_user && user!==trace.terminal.current_user)lines.push(`   ${user} → ${trace.terminal?.current_user} (가상 사용자)`);
   } else if(category.id==='command_injection') {
     const policy=trace?.simulation?.nodes?.find(node=>node.id==='policy')?.value;
     lines=[`┌─ HOST  ${trace?.command_model?.hostname || '호스트 입력'}`,

@@ -1,0 +1,9 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/terminal/TerminalInspector.test.jsx (7 tests) 82ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  14:45:44
+   Duration  5.99s (transform 123ms, setup 1.84s, collect 123ms, tests 82ms, environment 2.88s, prepare 541ms)

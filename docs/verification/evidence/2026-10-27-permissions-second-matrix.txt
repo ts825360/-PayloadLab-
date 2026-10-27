@@ -1,0 +1,1 @@
+1088 baseline comparisons passed: 17 commands x 8 histories x 4 whitespace variants x 2 phases. Execution, terminal, composition, raw/effective input and phase preserved; attempt goal, focus bounds and payload immutability passed. Includes unknown/Unicode commands, 40/41 history and invalid history. Direct model calls, not browser/OS execution.
