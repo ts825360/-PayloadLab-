@@ -1,0 +1,407 @@
+{
+  "baseline": "71c4daa6f600ab176c15f9472e8b3cddaaa1a653",
+  "method": "actual Playwright clicks/keyboard and viewport resize; no real touch, pure mouse hover or applied browser zoom",
+  "zoom": {
+    "before": {
+      "dpr": 1.0000000149011612,
+      "height": 900,
+      "visualScale": 1,
+      "width": 1280
+    },
+    "after": {
+      "dpr": 1.0000000149011612,
+      "height": 900,
+      "visualScale": 1,
+      "width": 1280
+    },
+    "applied": false
+  },
+  "before": [
+    {
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "layout": {
+        "input": {
+          "bottom": 628.1000366210938,
+          "right": 775.0499877929688,
+          "x": 254,
+          "y": 602.1000366210938
+        },
+        "page": {
+          "scrollWidth": 1280,
+          "width": 1280
+        },
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 554.2000045776367,
+          "height": 111.20000457763672,
+          "right": 499,
+          "width": 360,
+          "x": 139,
+          "y": 443
+        },
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.",
+      "escapeClosed": true,
+      "lensConnected": true
+    },
+    {
+      "size": {
+        "width": 640,
+        "height": 450
+      },
+      "layout": {
+        "input": {
+          "bottom": 227.9499969482422,
+          "right": 505.71250915527344,
+          "x": 174.8000030517578,
+          "y": 201.9499969482422
+        },
+        "page": {
+          "scrollWidth": 640,
+          "width": 640
+        },
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 308.2000045776367,
+          "height": 111.20000457763672,
+          "right": 462,
+          "width": 360,
+          "x": 102,
+          "y": 197
+        },
+        "viewport": {
+          "height": 450,
+          "width": 640
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.",
+      "escapeClosed": true,
+      "lensConnected": true
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "input": {
+          "bottom": 594.8500366210938,
+          "right": 256.1125030517578,
+          "x": 165.8000030517578,
+          "y": 568.8500366210938
+        },
+        "page": {
+          "scrollWidth": 390,
+          "width": 390
+        },
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 466.2000045776367,
+          "height": 111.20000457763672,
+          "right": 372,
+          "width": 360,
+          "x": 12,
+          "y": 355
+        },
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.",
+      "escapeClosed": true,
+      "lensConnected": true
+    },
+    {
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "input": {
+          "bottom": 342.0500183105469,
+          "right": 185.7125034332275,
+          "x": 165.8000030517578,
+          "y": 316.0500183105469
+        },
+        "page": {
+          "scrollWidth": 320,
+          "width": 320
+        },
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 416.6000061035156,
+          "height": 131.60000610351562,
+          "right": 308,
+          "width": 296,
+          "x": 12,
+          "y": 285
+        },
+        "viewport": {
+          "height": 568,
+          "width": 320
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.",
+      "escapeClosed": true,
+      "lensConnected": true
+    }
+  ],
+  "narrowBefore": {
+    "clientHeight": 144,
+    "height": 144,
+    "pageWidth": 320,
+    "scrollHeight": 260,
+    "value": "cat /lab/report.txt",
+    "viewportWidth": 320,
+    "width": 19.912500381469727
+  },
+  "after": [
+    {
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "layout": {
+        "input": {
+          "height": 26,
+          "scrollHeight": 26,
+          "value": "cat /lab/report.txt",
+          "width": 521.0499877929688
+        },
+        "pageWidth": 1280,
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 528.2000045776367,
+          "right": 499,
+          "x": 139,
+          "y": 417
+        },
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+    },
+    {
+      "size": {
+        "width": 640,
+        "height": 450
+      },
+      "layout": {
+        "input": {
+          "height": 26,
+          "scrollHeight": 26,
+          "value": "cat /lab/report.txt",
+          "width": 330.9125061035156
+        },
+        "pageWidth": 640,
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 308.2000045776367,
+          "right": 462,
+          "x": 102,
+          "y": 197
+        },
+        "viewport": {
+          "height": 450,
+          "width": 640
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "input": {
+          "height": 26,
+          "scrollHeight": 26,
+          "value": "cat /lab/report.txt",
+          "width": 228.3125
+        },
+        "pageWidth": 390,
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 466.2000045776367,
+          "right": 372,
+          "x": 12,
+          "y": 355
+        },
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+    },
+    {
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "input": {
+          "height": 26,
+          "scrollHeight": 26,
+          "value": "cat /lab/report.txt",
+          "width": 157.91250610351562
+        },
+        "pageWidth": 320,
+        "raw": "cat: /lab/report.txt: Permission denied\n",
+        "tooltip": {
+          "bottom": 362.6000061035156,
+          "right": 308,
+          "x": 12,
+          "y": 231
+        },
+        "viewport": {
+          "height": 568,
+          "width": 320
+        }
+      },
+      "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+    }
+  ],
+  "otherTerminals": [
+    {
+      "field": "호스트 이름",
+      "level": "easy",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "result": "시도 1 · 선택한 시도\n종료 코드 0\nhostname > example.com; whoami\nping -c 1 example.com; whoami  # 실제 셸 실행 없음\nPING example.com: 모의 응답 1개\nwebapp\n\n↳ Lens · 추가 명령 감지\n호스트 값과 명령 경계를 구분하세요\n\n호스트 이름 칸에 'example.com; whoami'를 넣었어요. 입력은 ping -c 1 뒤에 붙어 'ping -c 1 example.com; whoami'라는 문장으로 조립됩니다. 'example.com'는 ping 대상이고, ';' 뒤의 'whoami'는 추가 명령 조각으로 인식돼요. 모의 ping 응답 뒤에 'webapp'가 표시됐어요. 호스트 하나를 기대한 자리에 추가 명령이 들어가 이 실습의 목표를 충족한 거예요.",
+      "layout": {
+        "inputWidth": 228.3125,
+        "pageWidth": 390,
+        "runButton": true,
+        "viewportWidth": 390
+      }
+    },
+    {
+      "field": "호스트 이름",
+      "level": "easy",
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "result": "시도 2 · 선택한 시도\n종료 코드 0\nhostname > example.com; whoami\nping -c 1 example.com; whoami  # 실제 셸 실행 없음\nPING example.com: 모의 응답 1개\nwebapp\n\n↳ Lens · 추가 명령 감지\n호스트 값과 명령 경계를 구분하세요\n\n호스트 이름 칸에 'example.com; whoami'를 넣었어요. 입력은 ping -c 1 뒤에 붙어 'ping -c 1 example.com; whoami'라는 문장으로 조립됩니다. 'example.com'는 ping 대상이고, ';' 뒤의 'whoami'는 추가 명령 조각으로 인식돼요. 모의 ping 응답 뒤에 'webapp'가 표시됐어요. 호스트 하나를 기대한 자리에 추가 명령이 들어가 이 실습의 목표를 충족한 거예요.",
+      "layout": {
+        "inputWidth": 157.91250610351562,
+        "pageWidth": 320,
+        "runButton": true,
+        "viewportWidth": 320
+      }
+    },
+    {
+      "field": "호스트 이름",
+      "level": "medium",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "result": "시도 1 · 선택한 시도\n종료 코드 0\nhostname > example.com && whoami\nping -c 1 example.com && whoami  # 실제 셸 실행 없음\nPING example.com: 모의 응답 1개\nwebapp\n\n↳ Lens · 추가 명령 감지\n호스트 값과 명령 경계를 구분하세요\n\n호스트 이름 칸에 'example.com && whoami'를 넣었어요. 입력은 ping -c 1 뒤에 붙어 'ping -c 1 example.com && whoami'라는 문장으로 조립됩니다. 'example.com'는 ping 대상이고, '&&' 뒤의 'whoami'는 추가 명령 조각으로 인식돼요. 모의 ping 응답 뒤에 'webapp'가 표시됐어요. 호스트 하나를 기대한 자리에 추가 명령이 들어가 이 실습의 목표를 충족한 거예요.",
+      "layout": {
+        "inputWidth": 228.3125,
+        "pageWidth": 390,
+        "runButton": true,
+        "viewportWidth": 390
+      }
+    },
+    {
+      "field": "호스트 이름",
+      "level": "medium",
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "result": "시도 2 · 선택한 시도\n종료 코드 0\nhostname > example.com && whoami\nping -c 1 example.com && whoami  # 실제 셸 실행 없음\nPING example.com: 모의 응답 1개\nwebapp\n\n↳ Lens · 추가 명령 감지\n호스트 값과 명령 경계를 구분하세요\n\n호스트 이름 칸에 'example.com && whoami'를 넣었어요. 입력은 ping -c 1 뒤에 붙어 'ping -c 1 example.com && whoami'라는 문장으로 조립됩니다. 'example.com'는 ping 대상이고, '&&' 뒤의 'whoami'는 추가 명령 조각으로 인식돼요. 모의 ping 응답 뒤에 'webapp'가 표시됐어요. 호스트 하나를 기대한 자리에 추가 명령이 들어가 이 실습의 목표를 충족한 거예요.",
+      "layout": {
+        "inputWidth": 157.91250610351562,
+        "pageWidth": 320,
+        "runButton": true,
+        "viewportWidth": 320
+      }
+    },
+    {
+      "field": "명령어 빈칸",
+      "level": "easy",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "result": "시도 1 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls\nreport.txt  readme.txt\n\n↳ Lens · 빈칸 목표 충족\n입력 조각과 Linux 퀴즈 목표를 비교해요\n\n내 명령 입력은 'ls'입니다. 퀴즈는 공백으로 나눈 ['ls']를 명령 조각(토큰)으로 읽어요. 이번 목표는 /lab의 항목 이름만 나열한 목록이에요. ls는 항목 이름을 나열하는 명령이에요. 이 퀴즈의 현재 가상 폴더는 /lab이므로 ls만 쓰거나 /lab을 붙인 답을 받아요. 이름만 보는 Easy 목표와 일치해서 report.txt와 readme.txt 두 이름을 표시했어요.",
+      "layout": {
+        "inputWidth": 228.3125,
+        "pageWidth": 390,
+        "runButton": true,
+        "viewportWidth": 390
+      }
+    },
+    {
+      "field": "명령어 빈칸",
+      "level": "easy",
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "result": "시도 2 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls\nreport.txt  readme.txt\n\n↳ Lens · 빈칸 목표 충족\n입력 조각과 Linux 퀴즈 목표를 비교해요\n\n내 명령 입력은 'ls'입니다. 퀴즈는 공백으로 나눈 ['ls']를 명령 조각(토큰)으로 읽어요. 이번 목표는 /lab의 항목 이름만 나열한 목록이에요. ls는 항목 이름을 나열하는 명령이에요. 이 퀴즈의 현재 가상 폴더는 /lab이므로 ls만 쓰거나 /lab을 붙인 답을 받아요. 이름만 보는 Easy 목표와 일치해서 report.txt와 readme.txt 두 이름을 표시했어요.",
+      "layout": {
+        "inputWidth": 157.91250610351562,
+        "pageWidth": 320,
+        "runButton": true,
+        "viewportWidth": 320
+      }
+    },
+    {
+      "field": "명령어 빈칸",
+      "level": "medium",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "result": "시도 1 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls -l /lab\n-rw------- mentor /lab/report.txt\n-rw-r--r-- student /lab/readme.txt\n\n↳ Lens · 빈칸 목표 충족\n입력 조각과 Linux 퀴즈 목표를 비교해요\n\n내 명령 입력은 'ls -l /lab'입니다. 퀴즈는 공백으로 나눈 ['ls', '-l', '/lab']를 명령 조각(토큰)으로 읽어요. 이번 목표는 /lab의 이름·소유자·권한이 포함된 긴 목록이에요. 명령 ls, 긴 목록 옵션 -l, 대상 경로 /lab이 이 순서로 있어 Normal의 목표와 일치해요. 그래서 report.txt와 readme.txt의 권한·소유자·경로를 간략히 적은 가상 목록을 표시했어요. 첫 줄의 mentor는 report.txt의 소유자이고, 둘째 줄의 student는 readme.txt의 소유자예요.",
+      "layout": {
+        "inputWidth": 228.3125,
+        "pageWidth": 390,
+        "runButton": true,
+        "viewportWidth": 390
+      }
+    },
+    {
+      "field": "명령어 빈칸",
+      "level": "medium",
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "result": "시도 2 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls -l /lab\n-rw------- mentor /lab/report.txt\n-rw-r--r-- student /lab/readme.txt\n\n↳ Lens · 빈칸 목표 충족\n입력 조각과 Linux 퀴즈 목표를 비교해요\n\n내 명령 입력은 'ls -l /lab'입니다. 퀴즈는 공백으로 나눈 ['ls', '-l', '/lab']를 명령 조각(토큰)으로 읽어요. 이번 목표는 /lab의 이름·소유자·권한이 포함된 긴 목록이에요. 명령 ls, 긴 목록 옵션 -l, 대상 경로 /lab이 이 순서로 있어 Normal의 목표와 일치해요. 그래서 report.txt와 readme.txt의 권한·소유자·경로를 간략히 적은 가상 목록을 표시했어요. 첫 줄의 mentor는 report.txt의 소유자이고, 둘째 줄의 student는 readme.txt의 소유자예요.",
+      "layout": {
+        "inputWidth": 157.91250610351562,
+        "pageWidth": 320,
+        "runButton": true,
+        "viewportWidth": 320
+      }
+    }
+  ],
+  "final": {
+    "lens": "Lens\n입력을 읽는 작은 단서\n학습 단계\n이번 입력 설명\n결과 관찰\n현재 사용자에게 읽기가 거부된 이유를 확인해요\n\n내 명령 입력은 'cat /lab/report.txt'입니다. 기록에서 복원한 현재 가상 사용자는 student예요. 'cat /lab/report.txt'로 /lab/report.txt의 내용을 읽으려 했어요. 이 파일의 소유자는 mentor, 권한 표시는 -rw-------예요. student는 소유자 mentor와 다르고 다른 사용자에게 읽기 권한이 없어 모형이 읽기를 거부했어요. 표준 출력은 없고 표준 오류에 Permission denied가 표시됐어요.\n\n⌖\n처리 흐름 크게 보기\n왜 그럴까요?\n\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요.\n\n다음 관찰 지점\n\nls -l /lab/report.txt로 소유자와 권한 표시를 확인해보세요.\n\n필요한 개념 읽기\n입력 고쳐보기 ↗",
+    "tooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+  },
+  "pending": [
+    "actual mouse hover",
+    "real device touch",
+    "applied 200 percent browser zoom"
+  ]
+}
