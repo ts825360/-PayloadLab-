@@ -367,8 +367,8 @@ def _permission_story(raw, command, before, after, status, stdout, valid_history
         what += f"{command!r}는 허용 목록에 있지만 아직 실행 전 분석이라 현재 명령을 처리하거나 출력을 만들지 않았어요."
         next_action = '직접 실행한 뒤 원문 출력과 현재 가상 사용자 표시를 비교해보세요.'
     elif command in ('whoami', 'id', 'pwd'):
-        meaning = {'whoami': '현재 가상 사용자 이름', 'id': '현재 가상 사용자와 그룹 번호', 'pwd': '현재 가상 작업 폴더'}[command]
-        what += f"{command!r}는 {meaning}을 확인하는 명령이에요. 그래서 {stdout.strip()!r}를 모의 출력으로 표시했어요."
+        meaning = {'whoami': '현재 가상 사용자 이름을', 'id': '현재 가상 사용자와 그룹 번호를', 'pwd': '현재 가상 작업 폴더를'}[command]
+        what += f"{command!r}는 {meaning} 확인하는 명령이에요. 그래서 {stdout.strip()!r}를 모의 출력으로 표시했어요."
         why += '이번 명령은 파일 내용을 읽거나 가상 사용자를 바꾸지 않아요.'
         next_action = 'ls -l /lab/report.txt를 입력해 파일의 소유자·권한과 비교해보세요.' if command != 'pwd' else 'ls /lab을 입력해 이 가상 폴더의 목록을 확인해보세요.'
     elif command.startswith('ls'):

@@ -1,0 +1,13 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/guided-lessons.test.jsx (14 tests) 570ms
+ ✓ src/unified-workspace.test.jsx (4 tests) 4024ms
+   ✓ contains only input and fixed Lens before opening observation 394ms
+   ✓ provides definition, conditions, flow, goal and next action before input in all 13 supported lab combinations 2970ms
+   ✓ uses real task-specific controls rather than only renaming one text box 582ms
+
+ Test Files  2 passed (2)
+      Tests  18 passed (18)
+   Start at  15:25:57
+   Duration  25.17s (transform 998ms, setup 4.20s, collect 4.63s, tests 4.59s, environment 9.10s, prepare 1.15s)

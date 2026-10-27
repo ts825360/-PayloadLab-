@@ -141,3 +141,18 @@ describe("GuidedLesson", () => {
     expect(screen.queryByRole("button", { name: "다음 단계" })).not.toBeInTheDocument();
   });
 });
+
+
+it("accepts a supported directory listing that reveals the protected file permissions", () => {
+  const fileStep = getLesson("permissions", "easy").steps.find(step => step.id === "perm-file");
+  const listing = trace("permissions", "command_ok", {
+    raw_input: "ls -l /lab",
+    terminal: { command: "ls -l /lab", current_user: "student", files: [
+      { path: "/lab/report.txt", owner: "mentor", permissions: "-rw-------" },
+      { path: "/lab/readme.txt", owner: "student", permissions: "-rw-r--r--" },
+    ] },
+  });
+  expect(fileStep.accept(listing)).toBe(true);
+  expect(fileStep.accept({ ...listing, phase: "analysis" })).toBe(false);
+  expect(fileStep.accept({ ...listing, raw_input: "pwd", terminal: { ...listing.terminal, command: "pwd" } })).toBe(false);
+});

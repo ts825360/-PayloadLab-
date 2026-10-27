@@ -61,7 +61,7 @@ const easy = {
   ],
   permissions: [
     step("perm-user", "현재 사용자 확인하기", "whoami를 실행하고 모의 프롬프트의 사용자와 출력값을 비교하세요.", "whoami", "파일 접근은 현재 사용자 권한을 따릅니다. 이 실습은 학생 계정에서 시작하는 모의 환경이에요.", permissionsCommand(/^\s*whoami\s*$/)),
-    step("perm-file", "파일 소유자와 권한 읽기", "ls -l로 파일의 소유자와 r·w·x 권한을 확인하세요.", "ls -l /lab/report.txt", "r은 읽기, w는 쓰기, x는 실행이에요. 파일 소유자와 현재 사용자를 비교하면 접근 실패의 이유를 찾을 수 있어요.", permissionsCommand(/^\s*ls\s+-l(?:\s+\/lab\/report\.txt)?\s*$/)),
+    step("perm-file", "파일 소유자와 권한 읽기", "ls -l로 파일의 소유자와 r·w·x 권한을 확인하세요.", "ls -l /lab/report.txt", "r은 읽기, w는 쓰기, x는 실행이에요. 파일 소유자와 현재 사용자를 비교하면 접근 실패의 이유를 찾을 수 있어요.", permissionsCommand(/^\s*ls\s+-l\s+\/lab(?:\/report\.txt)?\s*$/)),
     step("perm-denied", "읽기 거부도 증거로 관찰하기", "보호된 보고서 읽기를 시도하고 stderr와 종료 상태를 확인하세요.", "cat /lab/report.txt", "permission denied는 파일이 없다는 뜻과 달라요. 현재 학생 계정의 읽기 권한이 부족한 결과입니다.", status("permissions", "permission_denied")),
     step("perm-rule", "허용된 sudo 규칙 찾기", "sudo -l 결과에서 허용된 명령을 확인하세요.", "sudo -l", "sudo 권한은 허용된 명령 범위로 읽어야 해요. 여기서는 교육용 유지보수 도우미 한 개만 허용됩니다.", permissionsCommand(/^\s*sudo\s+-l\s*$/)),
     step("perm-elevated", "허용 도우미와 사용자 변화 연결하기", "허용된 도우미를 실행하고 프롬프트·현재 사용자·권한 연결이 바뀌는지 확인하세요.", "sudo /lab/maintenance", "이 모의 도우미는 root로 전환되는 취약한 권한 구성을 보여줘요. 실제 운영체제의 권한이나 파일은 바뀌지 않아요.", executed("permissions", (trace) => trace.execution.status === "elevated" && trace.terminal?.current_user === "root"), quiz("이 실습에서 root로 바뀐 근거는 무엇인가요?", "allowed_helper", [choice("typed_root", "입력에 root라는 글자를 썼기 때문"), choice("allowed_helper", "sudo 규칙의 허용 도우미를 실행해 모의 사용자 상태가 바뀌었기 때문")])),
