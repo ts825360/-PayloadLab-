@@ -1,0 +1,9 @@
+test_all_137_real_rows (__main__.MetadataContractTests.test_all_137_real_rows) ... ok
+test_rejects_137_wrong_file_categories (__main__.MetadataContractTests.test_rejects_137_wrong_file_categories) ... ok
+test_rejects_32_invented_benign_sources (__main__.MetadataContractTests.test_rejects_32_invented_benign_sources) ... ok
+test_rejects_525_false_source_urls (__main__.MetadataContractTests.test_rejects_525_false_source_urls) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.051s
+
+OK

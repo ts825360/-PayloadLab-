@@ -14,7 +14,7 @@
 | `ssrf.csv` | 24 | 8 | 1 | 33 |
 | 전체 | 101 | 32 | 4 | 137 |
 
-SQL은 common/MySQL/MSSQL/PostgreSQL/Oracle/SQLite 예시를 포함합니다. 우회·변형은 별도 공격 유형이 아니라 `technique`, `variant_type`으로 표현합니다. 현재 서비스의 SQL/XSS/IDOR Easy·Normal 지원 범위를 이 자료가 확장하는 것은 아닙니다. CMDi·SSRF 구현이나 모든 DBMS의 실행 지원이 완료됐다는 의미도 아닙니다.
+SQL은 common/MySQL/MSSQL/PostgreSQL/Oracle/SQLite 예시를 포함합니다. 우회·변형은 별도 공격 유형이 아니라 `technique`, `variant_type`으로 표현합니다. 현재 서비스는 SQL/XSS/IDOR/SSRF/CMDi/Linux Easy·Normal과 권한 Easy의13개 랩을 제공하지만, 이 CSV는 런타임에 자동 연결되지 않습니다. CSV의 전체 기법이나 모든 DBMS를 실습이 해석·실행한다는 의미가 아닙니다. 유형별 연결과 검증 한계는 [#19 교육 범위 검토](../../research/csv-education-scope.md)를 참조하세요.
 
 자료는 검토 가능한 시작 묶음으로 제한했습니다. 원본의 공격 자동화 도구, 키로거·쿠키 유출, 셸 업로드·리버스 셸, 파괴적 명령과 큰 생성 프로그램은 이 초안에 넣지 않았습니다. 코드 블록 전체를 무조건 공격으로 라벨링하지 않았습니다. 정상 웹 서버 코드·공격 뒤 출력 결과는 수집 대상이 아닙니다. 일부 공격문은 원문에 담긴 템플릿 또는 SQL 코드 조각이며 완성된 공격 입력이 아닐 수 있습니다.
 

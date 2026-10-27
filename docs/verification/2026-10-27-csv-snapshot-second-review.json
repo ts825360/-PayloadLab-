@@ -1,0 +1,62 @@
+{
+  "base_commit": "fd106c93c4c37375bcc43aca4249dceea0dbeb12",
+  "method": "second review of Git snapshot verifier; 5 negative-control tests plus 2 original snapshot tests, distinct from ordinary test_dataset.py",
+  "tests_passed": 7,
+  "negative_control_cases": {
+    "changed_source_hashes": 10,
+    "invented_source_substrings": 105,
+    "missing_in_memory_sources": 10,
+    "changed_output_files": 5,
+    "source_path_escapes": 3
+  },
+  "negative_control_case_total": 133,
+  "failure_temporary_directories_cleaned": 5,
+  "artifacts_unchanged": [
+    {
+      "name": "sql_injection.csv",
+      "unchanged": true,
+      "comparison": "bytes",
+      "sha256": "f177a3229ca2690b7de0d8c0fa9f91711ddb88875889d7095d8acf1df48ec5fd"
+    },
+    {
+      "name": "xss.csv",
+      "unchanged": true,
+      "comparison": "bytes",
+      "sha256": "8bf06be3c3fef8e6ad81732b9e294405ecf37c927d63bbc85434af5913d6cf6b"
+    },
+    {
+      "name": "command_injection.csv",
+      "unchanged": true,
+      "comparison": "bytes",
+      "sha256": "7b40f010da721e8774967c304d0b56fcec8b8ee78e055e17daf815ff2cf4ca1f"
+    },
+    {
+      "name": "ssrf.csv",
+      "unchanged": true,
+      "comparison": "bytes",
+      "sha256": "83880182e6ae43ec10becfeeba3c0fe461541997677bc6b4cd88a688f2555dfe"
+    },
+    {
+      "name": "manifest.json",
+      "unchanged": true,
+      "comparison": "bytes",
+      "sha256": "08bb0f2b33beca8ab8b1fee3a4ee02bcc2af68098e6677ad79ab98b4c9cd9528"
+    },
+    {
+      "name": "build_dataset.py",
+      "unchanged": true,
+      "comparison": "CRLF/LF normalized Python source",
+      "sha256": "55da491c4cf7afbf9e2e808403a687e6536cd8c4e9889fd74058d8063a279c66"
+    },
+    {
+      "name": "curated_samples.py",
+      "unchanged": true,
+      "comparison": "CRLF/LF normalized Python source",
+      "sha256": "d72c37270b042dfa31f18da64e309844a1d89e52c0be7f925e4e537dcaba8fcf"
+    }
+  ],
+  "working_source_still_absent": true,
+  "ordinary_working_copy_errors_fixed": false,
+  "security_settings_changed": false,
+  "new_product_runtime_changes": false
+}

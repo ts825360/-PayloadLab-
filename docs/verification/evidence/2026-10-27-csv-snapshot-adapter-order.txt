@@ -1,0 +1,16 @@
+test_committed_source_bytes_and_105_original_builder_proofs (__main__.SnapshotVerificationTests.test_committed_source_bytes_and_105_original_builder_proofs) ... ok
+test_original_builder_reproduces_all_five_artifacts (__main__.SnapshotVerificationTests.test_original_builder_reproduces_all_five_artifacts) ... FAIL
+
+======================================================================
+FAIL: test_original_builder_reproduces_all_five_artifacts (__main__.SnapshotVerificationTests.test_original_builder_reproduces_all_five_artifacts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\docs\verification\scripts\csv_snapshot_verification.py", line 69, in test_original_builder_reproduces_all_five_artifacts
+    self.assertEqual(generated,expected,name)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: b'{\n[31857 chars]ces/SQL Injection__MSSQL Injection.md",\n     [3761 chars]n}\n' != b'{\n[31857 chars]ces/Server Side Request Forgery__README.md",\n[3761 chars]n}\n' : manifest.json
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.417s
+
+FAILED (failures=1)

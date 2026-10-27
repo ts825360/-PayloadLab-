@@ -1,0 +1,38 @@
+test_offline_builder_exists (__main__.BuildContractTests.test_offline_builder_exists) ... ok
+test_exact_schema_and_bom (__main__.DatasetTests.test_exact_schema_and_bom) ... ok
+test_generator_reproduces_committed_artifacts_offline (__main__.DatasetTests.test_generator_reproduces_committed_artifacts_offline) ... ERROR
+test_platform_coverage_variant_families_and_multiline (__main__.DatasetTests.test_platform_coverage_variant_families_and_multiline) ... ok
+test_source_bytes_substrings_hashes_and_line_citations (__main__.DatasetTests.test_source_bytes_substrings_hashes_and_line_citations) ... ERROR
+test_uncertain_review_only_and_documented_limits (__main__.DatasetTests.test_uncertain_review_only_and_documented_limits) ... ok
+test_unique_ids_counts_and_required_metadata (__main__.DatasetTests.test_unique_ids_counts_and_required_metadata) ... ok
+
+======================================================================
+ERROR: test_generator_reproduces_committed_artifacts_offline (__main__.DatasetTests.test_generator_reproduces_committed_artifacts_offline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\docs\datasets\payloads-all-the-things\test_dataset.py", line 104, in test_generator_reproduces_committed_artifacts_offline
+    subprocess.run([sys.executable, str(ROOT / 'build_dataset.py'), '--output-dir', output], check=True, capture_output=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 579, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\dtd24\\Documents\\Codex\\2026-10-26\\https-github-com-ts825360-payloadlab-https\\work\\issue19-venv\\Scripts\\python.exe', 'C:\\Users\\dtd24\\OneDrive\\문서\\GitHub\\-PayloadLab-\\docs\\datasets\\payloads-all-the-things\\build_dataset.py', '--output-dir', 'C:\\Users\\dtd24\\AppData\\Local\\Temp\\tmpvhr7lrsz']' returned non-zero exit status 1.
+
+======================================================================
+ERROR: test_source_bytes_substrings_hashes_and_line_citations (__main__.DatasetTests.test_source_bytes_substrings_hashes_and_line_citations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\docs\datasets\payloads-all-the-things\test_dataset.py", line 61, in test_source_bytes_substrings_hashes_and_line_citations
+    raw = (ROOT / source['local_path']).read_bytes()
+  File "C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\dtd24\\OneDrive\\문서\\GitHub\\-PayloadLab-\\docs\\datasets\\payloads-all-the-things\\sources\\SQL Injection__SQLite Injection.md'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.948s
+
+FAILED (errors=2)
