@@ -23,7 +23,7 @@
 | 권한 Easy 설명·진단 연결 | [명령별 설명·28개 새 검사·2차 화면 대조](2026-10-27-permissions-lens-review.md) 완료. 본인·팀 검토 대기. 권한 Normal은 구현 예정 유지 |
 | 13개 실습 학습 흐름 | [최초 안내13개·실제27단계·2차 전체 검사](2026-10-27-learning-flow-review.md) 대조와 대체 명령 보완 완료. 대표 안내 경로 검증이며 모든 입력·조작의 통합 검증은 아님 |
 | 터미널 작은 화면·조작 | [입력 폭·Lens CSS·resize 높이 보완, 실제 클릭/키보드·크기 변경과 전체113개 검사](2026-10-27-terminal-interaction-review.md). 실제 hover·터치·200% 확대는 미검증 |
-| CSV 유형별 교육 범위 | [137행 문맥·유형별 모형 범위 검토](../research/csv-education-scope.md). [Git 원문10개/출처105건·기존 생성기 재현2개 통과](2026-10-27-csv-snapshot-verification.md). 작업 원문1개 부재와 기존 파일 기반2오류는 별도 미해결 |
+| CSV 유형별 교육 범위 | [137행 문맥·유형별 모형 범위 검토](../research/csv-education-scope.md). [Git 원문10개/출처105건·기존 생성기 재현2개 통과](2026-10-27-csv-snapshot-verification.md). [SQLite 발췌본으로 파일 부재 해소·일반 데이터7개 통과](2026-10-27-sqlite-source-excerpt.md) |
 | 초보자 참여 시험·학습 효과 검증 | 미실시. 자동 검사나 AI의 화면 대조와 구분 |
 | commit / push / PR / main 반영 / 이슈 종료 | 코드·테스트·검증 문서 원격 공유. 공통 기준은 9b43f57로 공유. 권한 Easy 후속분은 사용자 승인에 따라 이 기록을 포함하는 커밋으로 공유하며 원격 전송 결과는 git으로 확인한다. PR·main 반영·이슈 종료는 미실시 |
 

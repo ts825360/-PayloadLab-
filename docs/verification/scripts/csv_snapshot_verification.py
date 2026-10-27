@@ -7,7 +7,7 @@ import csv,hashlib,importlib.util,json,subprocess,sys,tempfile,unittest
 from pathlib import Path,PurePosixPath
 ROOT=Path(__file__).resolve().parents[3]
 DATA=ROOT/'docs/datasets/payloads-all-the-things'
-BASE='fd106c93c4c37375bcc43aca4249dceea0dbeb12'
+BASE='23b05593b73f6d9c9556eecd68abad5fbb8f6801'
 NAMES=['sql_injection.csv','xss.csv','command_injection.csv','ssrf.csv','manifest.json']
 SUMMARY={}
 def git_bytes(path):
@@ -28,19 +28,20 @@ class ReadOnlyGitSource:
 class SnapshotVerificationTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
-  for name in [*NAMES,'build_dataset.py','curated_samples.py']:
+  # This verifier intentionally preserves the archived full-source baseline.
+  for name in [*NAMES[:-1],'build_dataset.py','curated_samples.py']:
    path=DATA/name
    current=path.read_bytes();committed=git_bytes(path)
    if name.endswith('.py'):
     current=current.replace(b'\r\n',b'\n');committed=committed.replace(b'\r\n',b'\n')
    if current!=committed:raise AssertionError('Working artifact/code differs from selected base: '+name)
-  cls.manifest=json.loads((DATA/'manifest.json').read_text(encoding='utf-8'))
+  cls.manifest=json.loads(git_bytes(DATA/'manifest.json').decode('utf-8'))
   cls.sources={entry['local_path']:git_bytes(DATA/entry['local_path']) for entry in cls.manifest['sources']}
   sys.path.insert(0,str(DATA))
   spec=importlib.util.spec_from_file_location('payloadlab_snapshot_builder',DATA/'build_dataset.py')
   cls.builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(cls.builder)
   cls.builder.ROOT=ReadOnlyGitSource(cls.sources)
-  SUMMARY.update(base_commit=BASE,method='original unchanged builder with a read-only in-memory Git source provider and real temporary CSV/manifest outputs',source_markdown_written=False,security_settings_changed=False,generator_and_curated_code_match_base=True,code_comparison="Python CRLF/LF normalized; CSV/manifest/source bytes exact",working_source_present=(DATA/'sources/SQL Injection__SQLite Injection.md').exists(),source_count=len(cls.sources),ordinary_working_copy_test_status='source absent; not fixed or represented as passing')
+  SUMMARY.update(base_commit=BASE,method='original unchanged builder with a read-only in-memory Git source provider and real temporary CSV/manifest outputs',source_markdown_written=False,security_settings_changed=False,generator_and_curated_code_match_base=True,code_comparison="Python CRLF/LF normalized; CSV/manifest/source bytes exact",working_source_present=(DATA/'sources/SQL Injection__SQLite Injection.md').exists(),source_count=len(cls.sources),expected_artifacts_mode='selected Git baseline blobs; current excerpt manifest is verified by test_dataset.py',ordinary_working_copy_test_status='working source representation is checked separately by ordinary test_dataset.py')
  def test_committed_source_bytes_and_105_original_builder_proofs(self):
   hashes=[];proofs=0
   paths={entry['local_path']:entry['source_path'] for entry in self.manifest['sources']}
@@ -65,7 +66,7 @@ class SnapshotVerificationTests(unittest.TestCase):
    self.assertEqual(counts,self.manifest['counts'])
    self.assertEqual({p.name for p in temp.iterdir()},set(NAMES))
    for name in NAMES:
-    generated=(temp/name).read_bytes();expected=(DATA/name).read_bytes()
+    generated=(temp/name).read_bytes();expected=git_bytes(DATA/name)
     self.assertEqual(generated,expected,name)
     artifacts.append(dict(name=name,bytes=len(generated),sha256=hashlib.sha256(generated).hexdigest(),byte_identical=True))
   SUMMARY.update(reproduced_artifacts=artifacts,temporary_outputs_cleaned=not temp.exists())

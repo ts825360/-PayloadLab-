@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import quote
 ROOT=Path(__file__).resolve().parents[3]
 DATA=ROOT/'docs/datasets/payloads-all-the-things'
-BASE='fd106c93c4c37375bcc43aca4249dceea0dbeb12'
+BASE='23b05593b73f6d9c9556eecd68abad5fbb8f6801'
 FIELDS='id,payload,label,attack_type,technique,target_platform,input_context,variant_type,family_id,source_url,source_commit,label_reason,validation_status,license'.split(',')
 def validate_row_metadata(row,expected_kind,source_commit,proof=None):
  assert row['attack_type']==expected_kind
@@ -26,6 +26,12 @@ def validate_row_metadata(row,expected_kind,source_commit,proof=None):
 
 def audit():
  manifest=json.loads((DATA/'manifest.json').read_text(encoding='utf-8'))
+ provenance=json.loads((DATA/'sources/SQL Injection__SQLite Injection.provenance.json').read_text(encoding='utf-8'))
+ excerpt_path=provenance['local_path']
+ retained=set(provenance['retained_ids'])
+ assert provenance['source_commit']==manifest['source_commit']
+ assert provenance['original_snapshot_git_commit']==BASE
+ assert set(provenance['retained_original_proofs'])==retained
  rows=[];summaries={};artifacts=[]
  for path in sorted(DATA.glob('*.csv')):
   with path.open(encoding='utf-8-sig',newline='') as f:
@@ -36,22 +42,47 @@ def audit():
   rows+=group
   summaries[path.stem]={'count':len(group),'labels':dict(Counter(r['label'] for r in group)),'platforms':dict(Counter(r['target_platform'] for r in group)),'techniques':dict(Counter(r['technique'] for r in group))}
   assert summaries[path.stem]['labels']==manifest['counts'][path.stem]
+ assert retained=={r['id'] for r in rows if r['target_platform']=='sqlite'}
  for path in [*sorted(DATA.glob('*.csv')),DATA/'manifest.json']:
   original=subprocess.check_output(['git','show',BASE+':'+path.relative_to(ROOT).as_posix()],cwd=ROOT)
-  current=path.read_bytes();assert current==original
-  artifacts.append({'path':path.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(current).hexdigest(),'unchanged_from_base':True})
+  current=path.read_bytes()
+  same=current==original
+  if path.suffix=='.csv':assert same
+  else:
+   before=json.loads(original.decode('utf-8'))
+   for key in retained:
+    assert provenance['retained_original_proofs'][key]['original_proof']==before['entries'][key]
+    assert provenance['retained_original_proofs'][key]['source_url']==next(r['source_url'] for r in rows if r['id']==key)
+    for field in ['local_path','line_start','line_end','payload_sha256']:assert before['entries'][key][field]==manifest['entries'][key][field]
+    before['entries'][key]=manifest['entries'][key]
+   for entry in before['sources']:
+    if entry['local_path']==excerpt_path:entry['sha256']=provenance['local_excerpt_sha256']
+   assert before==manifest
+  artifacts.append({'path':path.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(current).hexdigest(),'unchanged_from_base':same})
  source_bytes={};sources=[];unavailable=[]
  for entry in manifest['sources']:
   path=DATA/entry['local_path']
   raw=subprocess.check_output(['git','show',BASE+':'+path.relative_to(ROOT).as_posix()],cwd=ROOT)
-  assert hashlib.sha256(raw).hexdigest()==entry['sha256']
+  is_excerpt=entry['local_path']==excerpt_path
+  expected_upstream=provenance['upstream_full_sha256'] if is_excerpt else entry['sha256']
+  assert hashlib.sha256(raw).hexdigest()==expected_upstream
   source_bytes[entry['local_path']]=raw
-  record={'path':entry['local_path'],'committed_sha256_matches':True}
+  record={'path':entry['local_path'],'upstream_committed_sha256_matches':True,'representation':'selected_excerpt' if is_excerpt else 'full_snapshot'}
   try:
-   current=path.read_bytes();assert current==raw
-   record['working_copy_matches']=True
+   current=path.read_bytes()
+   if is_excerpt:
+    assert hashlib.sha256(current).hexdigest()==provenance['local_excerpt_sha256']==entry['sha256']
+    for key in retained:
+     prior=provenance['retained_original_proofs'][key]['original_proof']
+     present=manifest['entries'][key]
+     assert raw[prior['byte_start']:prior['byte_end']]==current[present['byte_start']:present['byte_end']]
+     assert prior['line_start']==present['line_start'] and prior['line_end']==present['line_end']
+    source_bytes[excerpt_path]=current
+   else:assert current==raw
+   record['working_copy_matches_manifest']=True
   except OSError as error:
-   record.update(working_copy_matches=None,error=type(error).__name__)
+   record.update(working_copy_matches_manifest=None,error=type(error).__name__)
+   if is_excerpt:raise RuntimeError('Selected source excerpt unavailable') from error
    unavailable.append(entry['local_path'])
   sources.append(record)
  assert len(rows)==137 and len({r['id'] for r in rows})==137
@@ -75,11 +106,11 @@ def audit():
   review.append({k:row[k] for k in FIELDS if k!='payload'})
   by_payload[row['payload']].append(row)
  collisions=[{'ids':[r['id'] for r in group],'labels':[r['label'] for r in group],'contexts':[r['input_context'] for r in group]} for group in by_payload.values() if len({r['label'] for r in group})>1]
- result={'base_commit':BASE,'source_commit_declared':manifest['source_commit'],'method':'CSV text parsing and committed Git blob/manifest proof comparison; no payload execution or remote authenticity verification','summaries':summaries,'total':len(rows),'labels':dict(Counter(r['label'] for r in rows)),'source_proofs':sources,'committed_substring_proofs':len(manifest['entries']),'working_sources_unavailable':unavailable,'artifacts_unchanged':artifacts,'cross_label_equal_strings':collisions,'row_metadata_review':review,'working_copy_source_checks_complete':not unavailable,'working_copy_full_reproduction_complete':False,'offline_regeneration':{'status':'not_run_by_scope_audit','required_check':'separate test_dataset.py reproduction test'}}
+ result={'base_commit':BASE,'source_commit_declared':manifest['source_commit'],'method':'Current source/manifest proof comparison; 9 full snapshots plus 1 explicit excerpt with original Git provenance; no payload execution','summaries':summaries,'total':len(rows),'labels':dict(Counter(r['label'] for r in rows)),'source_proofs':sources,'current_source_substring_proofs':len(manifest['entries']),'committed_substring_proofs':len(manifest['entries'])-len(retained),'excerpt_upstream_proofs':len(retained),'source_excerpt_provenance':provenance,'working_sources_unavailable':unavailable,'artifacts_unchanged':artifacts,'cross_label_equal_strings':collisions,'row_metadata_review':review,'working_copy_source_checks_complete':not unavailable,'working_copy_full_reproduction_complete':False,'offline_regeneration':{'status':'not_run_by_scope_audit','required_check':'separate test_dataset.py reproduction test'}}
  return result
 
 if __name__=='__main__':
  result=audit()
- output=ROOT/'docs/verification/2026-10-27-csv-scope-audit.json';output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
- print(f"137 row metadata checks, {len(result['source_proofs'])} committed source hashes and {result['committed_substring_proofs']} committed byte/line proofs passed. Working source files available: {len(result['source_proofs'])-len(result['working_sources_unavailable'])}/{len(result['source_proofs'])}. CSV/manifest unchanged: {len(result['artifacts_unchanged'])}. Cross-label equal-string groups: {len(result['cross_label_equal_strings'])}. No payload executed.")
+ output=ROOT/'docs/verification/2026-10-27-csv-excerpt-audit.json';output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ print(f"137 row metadata checks and {result['current_source_substring_proofs']} current byte/line proofs passed, including {result['excerpt_upstream_proofs']} excerpt-to-upstream proofs. Working source files available: {len(result['source_proofs'])-len(result['working_sources_unavailable'])}/{len(result['source_proofs'])}. Payload CSV files unchanged; manifest updates explicitly validated. No payload executed.")
  if result['working_sources_unavailable']:print('Working-copy full reproduction incomplete: '+', '.join(result['working_sources_unavailable']));raise SystemExit(2)

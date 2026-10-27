@@ -1,6 +1,8 @@
 """Text-only provenance controls; does not read or restore blocked source files."""
 import copy,csv,json,unittest
-from csv_scope_review import DATA,validate_row_metadata
+from pathlib import Path
+from unittest.mock import patch
+from csv_scope_review import DATA,validate_row_metadata,audit
 class MetadataContractTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
@@ -38,4 +40,21 @@ class MetadataContractTests(unittest.TestCase):
   for kind,row in self.rows:
    altered=copy.deepcopy(row);altered['attack_type']='different_category'
    with self.assertRaises(AssertionError):self.validate(kind,altered)
+ def test_current_excerpt_provenance(self):
+  result=audit()
+  self.assertTrue(result['working_copy_source_checks_complete'])
+  self.assertEqual(result['excerpt_upstream_proofs'],4)
+  self.assertEqual(result['current_source_substring_proofs'],105)
+ def test_rejects_three_tampered_excerpt_provenance_records(self):
+  path=DATA/'sources/SQL Injection__SQLite Injection.provenance.json'
+  original=Path.read_text;proof=json.loads(original(path,encoding='utf-8'))
+  variants=[]
+  altered=copy.deepcopy(proof);altered['local_excerpt_sha256']='0'*64;variants.append(altered)
+  altered=copy.deepcopy(proof);altered['retained_ids']=altered['retained_ids'][:-1];variants.append(altered)
+  altered=copy.deepcopy(proof);altered['source_commit']='0'*40;variants.append(altered)
+  for changed in variants:
+   def read_text(target,*args,**kwargs):
+    return json.dumps(changed) if target==path else original(target,*args,**kwargs)
+   with patch.object(Path,'read_text',read_text):
+    with self.assertRaises(AssertionError):audit()
 if __name__=='__main__':unittest.main()

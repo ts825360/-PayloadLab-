@@ -72,3 +72,12 @@ CSV는 UTF-8 BOM과 표준 quoting을 사용합니다. **Excel에서 더블클�
 ## 라이선스
 
 원본은 MIT, Copyright (c) 2019 Swissky입니다. [LICENSE](LICENSE)의 원문 고지를 함께 배포합니다. 원본 발췌를 수정하지 않았고 CSV 분류·설명·정상 예시를 추가했습니다. 별도 작성 부분은 Copyright (c) 2026 PayloadLab contributors, MIT로 제공합니다. 라이선스 허용은 임의의 외부 시스템에 공격할 권한을 뜻하지 않습니다.
+
+
+## 2026-10-27 SQLite 참고 문서 발췌본
+
+Windows Defender가 전체 SQLite 참고 Markdown 안의 PHP 백도어 예시를 탐지해 파일을 조치했다. 보호 설정을 바꾸거나 전체 파일을 복원하는 대신, 현재 CSV가 사용하는 메타데이터 조회문4개만 같은 줄35/43/44/45에 남긴 명시적 발췌본으로 교체했다. `sources/SQL Injection__SQLite Injection.md`의 머리말은 전체 원문이 아님을 밝힌다. 나머지9개 Markdown은 기존 전체 스냅샷이다.
+
+CSV4개의137행·문자열·라벨·source_url·source_commit은 바이트 단위로 유지했다. manifest는 발췌본의 실제 SHA-256과 바이트 위치로 재생성했다. `sources/SQL Injection__SQLite Injection.provenance.json`은 원래 전체 문서 해시·원래4개 바이트/줄 근거·발췌본 해시를 연결한다. 전체 원문과 동일한 파일이라고 주장하지 않는다.
+
+일반 `test_dataset.py`7개를 이 작업 폴더에서 다시 실행할 수 있다. 과거 전체 원문의 Git 스냅샷 재현은 별도 검증이며, 현재 발췌본 manifest 검사는 일반 데이터 검사로 구분한다.
