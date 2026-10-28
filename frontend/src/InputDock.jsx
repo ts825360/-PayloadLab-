@@ -26,6 +26,7 @@ export default function InputDock({
   attemptCount,
   trace,
   analysisStatus,
+  analysisError,
   onFocus,
   onLesson,
 }) {
@@ -176,6 +177,7 @@ export default function InputDock({
         guide={guide}
         difficulty={difficulty}
         analysisStatus={analysisStatus}
+        analysisError={analysisError}
         onFocus={onFocus}
         onLesson={onLesson}
         onRetry={() => inputRef.current?.focus()}

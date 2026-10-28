@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MotionConfig } from "motion/react";
-import { fetchLabs, attemptLab } from "./api.js";
+import { fetchLabs, attemptLab, LabRequestError } from "./api.js";
 import { CATEGORIES, labId } from "./learning-content.js";
 import Icon from "./Icon.jsx";
 import InputDock from "./InputDock.jsx";
@@ -62,7 +62,7 @@ export default function App() {
   if (categoryId === "permissions") payload.history = history
     .filter((entry) => entry.result.learning_trace?.execution?.status !== 'unsupported')
     .map((entry) => entry.input);
-  const { trace: analysis, status: analysisStatus } = useInputAnalysis(
+  const { trace: analysis, status: analysisStatus, error: analysisError } = useInputAnalysis(
     currentLab,
     payload,
     available && (Boolean(input) || linuxMode) && validId,
@@ -159,10 +159,10 @@ export default function App() {
       setActiveGroup("focus");
       openObservation("result", opener);
       if(linuxMode)setInput(current=>current===submitted.input?'':current);
-    } catch {
+    } catch (error) {
       if (version === generation.current)
         setError(
-          "실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.",
+          error instanceof LabRequestError ? error.message : "실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.",
         );
     } finally {
       if (version === generation.current) setBusy(false);
@@ -180,7 +180,7 @@ export default function App() {
         onAdvance={()=>{setStepIndex(n=>n+1);setAcknowledged(false);setStepAfterAttempt(nextId.current);}}/>
         {!linuxMode && !input && !trace && <LearningPrimer category={category} difficulty={difficulty} onStart={()=>inputRef.current?.focus()}/>}</>}
       error={error} inputRef={inputRef} lensRef={lensRef} trace={currentTrace}
-      analysisStatus={analysisStatus} onFocus={onFocus} onLesson={setLesson}
+      analysisStatus={analysisStatus} analysisError={analysisError} onFocus={onFocus} onLesson={setLesson}
       focusLabel={linuxMode?'처리 흐름 크게 보기':undefined}
       attemptCount={linuxMode?0:history.length}
       onOpenResult={linuxMode?undefined:()=>{if(!selected && history.length)setViewId(history.at(-1).id);openObservation('result');}}

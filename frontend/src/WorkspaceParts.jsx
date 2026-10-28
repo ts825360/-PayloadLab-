@@ -207,6 +207,7 @@ export function LensPanel({
   guide,
   difficulty,
   analysisStatus,
+  analysisError,
   onFocus,
   onLesson,
   onRetry,
@@ -247,9 +248,12 @@ export function LensPanel({
               : "결과 관찰"
             : analysisStatus === "pending"
               ? "분석 중"
-              : "대기 중"}
+              : analysisStatus === "error" ? "분석 중단" : "대기 중"}
         </span>
       </div>
+      {analysisStatus === "error" && analysisError && (
+        <p className="inline-error" role="status">{analysisError}</p>
+      )}
       {!hint && !guide ? (
         <div className="lens-waiting">
           <div className="lens-orbit">

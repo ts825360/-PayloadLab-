@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { analyzeLab } from "./api.js";
+import { analyzeLab, LabRequestError } from "./api.js";
 
 export default function useInputAnalysis(lab, payload, enabled) {
   const key = `${lab}:${JSON.stringify(payload)}`;
@@ -24,7 +24,7 @@ export default function useInputAnalysis(lab, payload, enabled) {
           id === sequence.current &&
           !controller.signal.aborted
         )
-          setState({ key, trace: null, status: "error" });
+          setState({ key, trace: null, status: "error", error: error instanceof LabRequestError ? error.message : "입력 분석 결과를 받지 못했습니다. 연결을 확인하고 다시 입력해 주세요." });
       }
     }, 320);
     return () => {

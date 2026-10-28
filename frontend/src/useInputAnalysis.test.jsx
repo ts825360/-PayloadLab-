@@ -53,3 +53,17 @@ describe("input analysis requests", () => {
     expect(result.current.status).toBe("pending");
   });
 });
+
+
+it('keeps safe analysis failure guidance and clears it for a new input',async()=>{
+ vi.useFakeTimers();
+ vi.stubGlobal('fetch',vi.fn(async()=>({ok:false,status:422})));
+ const {result,rerender}=renderHook(({value})=>useInputAnalysis('sql-injection-easy',{username:value},true),{initialProps:{value:'admin'}});
+ await act(()=>vi.advanceTimersByTimeAsync(320));
+ expect(result.current.status).toBe('error');
+ expect(result.current.error).toContain('입력 형식·길이·값이 실습 허용 범위를 벗어났습니다.');
+ rerender({value:'guest'});
+ expect(result.current.status).toBe('pending');
+ expect(result.current.error).toBeUndefined();
+ vi.unstubAllGlobals();
+});

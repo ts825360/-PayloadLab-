@@ -248,6 +248,22 @@ export default function ExecutionCanvas({
     );
   const sql = category.id === "sql_injection",
     error = trace.execution.status === "syntax_error";
+  if (sql && ["resource_limit", "blocked"].includes(trace.execution.status)) {
+    return (
+      <section className="panel execution-panel" aria-label="SQL 처리 중단 안내">
+        <div className="panel-heading">
+          <h2>{trace.lens.title}</h2>
+          <span className="result-badge warning">{statusLabel(trace.execution.status)}</span>
+        </div>
+        <div className="syntax-stop">
+          <p>{trace.lens.what}</p>
+          <p>{trace.lens.why}</p>
+          <strong>다음 관찰</strong>
+          <p>{trace.lens.next}</p>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="panel execution-panel">
       <div className="panel-heading">

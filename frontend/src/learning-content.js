@@ -135,6 +135,7 @@ export function statusLabel(status) {
       exposed: "타인 주문 노출",
       own: "본인 주문 조회",
       blocked: "조회 차단",
+      resource_limit: "실습 자원 한도",
       missing: "주문 없음",
       fetched:'모의 요청 도달',injected:'추가 명령 감지',command_ok:'가상 명령 처리',unsupported:'지원 범위 밖',permission_denied:'읽기 권한 없음',elevated:'가상 관리자 전환',quiz_correct:'빈칸 목표 충족',quiz_incorrect:'명령을 다시 관찰해요',allowed:'접근 허용',denied:'접근 거부',success:'목표 확인',invalid_input:'입력 형태 확인',normal_input:'일반 입력',public:'공개 목적지',internal:'내부 목적지',simulated:'모의 결과',
     }[status] || "결과 확인"
