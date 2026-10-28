@@ -1,0 +1,36 @@
+........................................................................ [ 22%]
+........................................................................ [ 45%]
+........................................................................ [ 68%]
+.....................................................................F.. [ 91%]
+..........................                                               [100%]
+================================== FAILURES ===================================
+_ test_bounded_executor_preserves_existing_educational_query_rows[admin' OR '1'='1'---True] _
+
+raw = "admin' OR '1'='1'--", medium = True
+
+    @pytest.mark.parametrize('raw,medium', [
+        ('���¼�',False),
+        ('',False),
+        ("admin' OR '1'='1'--",False),
+        ("admin' OR '1'='1'--",True),
+        ("admin' oR '1'='1'--",True),
+        ("' UNION ALL SELECT 3,'learner','dummy'--",False),
+    ])
+    def test_bounded_executor_preserves_existing_educational_query_rows(raw,medium):
+        filter_fn=lesson_sql._strip_uppercase_or if medium else lesson_sql._identity_filter
+        expected=lesson_sql._run_login_query(raw,filter_fn)[2]
+        def seed(c):
+            c.execute('CREATE TABLE users(id INTEGER PRIMARY KEY,username TEXT,password TEXT)')
+            c.executemany('INSERT INTO users VALUES(?,?,?)',lesson_sql._SEED_USERS)
+            c.commit()
+        result=run_bounded_query(lesson_sql.compose_query(filter_fn(raw)),LIMITS,authorize,initialize=seed)
+>       assert result.status=='ok'
+E       AssertionError: assert 'syntax_error' == 'ok'
+E
+E         - ok
+E         + syntax_error
+
+backend\tests\test_sql_limits.py:159: AssertionError
+=========================== short test summary info ===========================
+FAILED backend/tests/test_sql_limits.py::test_bounded_executor_preserves_existing_educational_query_rows[admin' OR '1'='1'---True]
+1 failed, 313 passed in 4.68s

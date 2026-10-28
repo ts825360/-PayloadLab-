@@ -1,0 +1,2758 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ❯ src/useInputAnalysis.test.jsx (3 tests | 1 failed) 81ms
+   × keeps safe analysis failure guidance and clears it for a new input 16ms
+     → the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ src/api-user-feedback.test.jsx (4 tests | 4 failed) 1776ms
+   × shows actionable 413 rejection and allows a subsequent successful request 329ms
+     → expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  입력 전체 크기가 실습 요청 한도를 넘었습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+   × shows actionable 422 rejection and allows a subsequent successful request 167ms
+     → expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  입력 형식이나 길이가 실습 범위를 벗어났습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+   × shows actionable 503 rejection and allows a subsequent successful request 175ms
+     → expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  조회 결과가 표시 가능한 크기를 넘었습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+   × shows input-analysis rejection instead of silently returning to waiting guidance 1101ms
+     → Unable to find an element with the text: /입력 형식이나 길이가 실습 범위를 벗어났습니다./. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"workspace-shell focused-workbench unified-layout "[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#lab-main"[39m
+      [36m>[39m
+        [0m실습으로 바로가기[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33mclass[39m=[32m"workspace-sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"brand"[39m
+          [33mhref[39m=[32m"#lab-main"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m"PayloadLab"[39m
+            [33mheight[39m=[32m"42"[39m
+            [33msrc[39m=[32m"/brand/payloadlab-wordmark.svg"[39m
+            [33mwidth[39m=[32m"180"[39m
+          [36m/>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-intro"[39m
+        [36m>[39m
+          [0m보안의 첫 단계를, 직접.[0m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"nav-label"[39m
+        [36m>[39m
+          [0mLEARNING SPACE[0m
+        [36m</div>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"공격 유형"[39m
+          [33mclass[39m=[32m"category-nav"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+            [33mclass[39m=[32m"selected"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m1[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mSQL Injection[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m데이터베이스 · 조회 조건[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m2[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mReflected XSS[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m브라우저 · HTML 해석[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m3[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mIDOR[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m접근 권한 · 객체 소유 관계[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m4[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mSSRF[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m서버 요청 · 목적지[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m5[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mCommand Injection[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m서버 명령 · 입력 경계[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m6[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mLinux 명령어[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m가상 파일 · 빈칸 연습[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m7[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0m권한상승 기초[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m가상 사용자 · 접근 권한[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-notes"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"mini-label"[39m
+          [36m>[39m
+            [0mTRY · UNDERSTAND · RETRY[0m
+          [36m</span>[39m
+          [36m<p>[39m
+            [0m작은 수정을 따라,[0m
+            [36m<br />[39m
+            [0m이해가 이어지도록.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.6"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0m교육용 로컬 실습[0m
+            [36m<br />[39m
+            [36m<small>[39m
+              [0m외부 대상은 사용하지 않아요.[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"workspace-body"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"workspace-topbar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"breadcrumb"[39m
+          [36m>[39m
+            [0m학습 공간 [0m
+            [36m<span>[39m
+              [0m/[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0mSQL Injection[0m
+            [36m</strong>[39m
+          [36m</div>[39m
+          [36m<select[39m
+            [33maria-label[39m=[32m"학습 유형 선택"[39m
+            [33mclass[39m=[32m"mobile-category-select"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"sql_injection"[39m
+            [36m>[39m
+              [0mSQL Injection[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"reflected_xss"[39m
+            [36m>[39m
+              [0mReflected XSS[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"idor"[39m
+            [36m>[39m
+              [0mIDOR[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ssrf"[39m
+            [36m>[39m
+              [0mSSRF[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"command_injection"[39m
+            [36m>[39m
+              [0mCommand Injection[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"linux_basics"[39m
+            [36m>[39m
+              [0mLinux 명령어[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"permissions"[39m
+            [36m>[39m
+              [0m권한상승 기초[0m
+            [36m</option>[39m
+          [36m</select>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"topbar-actions"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"connection-indicator ready"[39m
+            [36m>[39m
+              [36m<i />[39m
+              [0m실습 서버 연결됨[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"다크 모드로 전환"[39m
+              [33mclass[39m=[32m"icon-button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"18"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.6"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"18"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M20 15A8 8 0 0 1 9 4a8 8 0 1 0 11 11Z"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"lab-main"[39m
+          [33mid[39m=[32m"lab-main"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33mclass[39m=[32m"lab-heading"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"eyebrow"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"eyebrow-line"[39m
+                [36m/>[39m
+                [0mWEB SECURITY LAB / 0[0m
+                [0m1[0m
+              [36m</div>[39m
+              [36m<h1>[39m
+                [0m문자열이 조건이 되는 순간[0m
+              [36m</h1>[39m
+              [36m<p>[39m
+                [0m입력한 이름이 SQL에 들어가는 자리를 찾아보세요. 작은 변화가 조회 결과를 어떻게 바꾸는지 직접 확인할 수 있어요.[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"difficulty-control"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m학습 난이도[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"난이도 선택"[39m
+                [33mrole[39m=[32m"group"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"active"[39m
+                [36m>[39m
+                  [0mEasy[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mclass[39m=[32m""[39m
+                [36m>[39m
+                  [0mNormal[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<small>[39m
+                [0m원리를 따라 알아보기[0m
+              [36m</small>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"통합 학습 작업 공간"[39m
+            [33mclass[39m=[32m"workbench-grid integrated-workspace"[39m
+            [33mdata-phase[39m=[32m"editing"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"input-dock"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33mclass[39m=[32m"panel input-panel"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"panel-heading input-panel-heading"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"step-number"[39m
+                    [36m>[39m
+                      [0m01[0m
+                    [36m</span>[39m
+                    [36m<h2>[39m
+                      [0m직접 입력해보세요[0m
+                    [36m</h2>[39m
+                  [36m</div>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"quiet-badge"[39m
+                  [36m>[39m
+                    [0mSQL[0m
+                    [0m · [0m
+                    [0mEasy[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"scenario environment-description"[39m
+                [36m>[39m
+                  [0m비밀번호를 모르는 로그인 화면입니다. 이름 입력만 바꿀 수 있어요.[0m
+                [36m</p>[39m
+                [36m<form>[39m
+                  [36m<div[39m
+                    [33maria-label[39m=[32m"교육용 로그인"[39m
+                    [33mclass[39m=[32m"practice-environment environment-sql_injection"[39m
+                    [33mrole[39m=[32m"region"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"environment-identity"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"environment-icon"[39m
+                      [36m>[39m
+                        [0mSQL[0m
+                      [36m</span>[39m
+                      [36m<div>[39m
+                        [36m<strong>[39m
+                          [0m교육용 로그인[0m
+                        [36m</strong>[39m
+                        [36m<small>[39m
+                          [0m로컬 교육용 데이터[0m
+                        [36m</small>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"environment-controls"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"primary-input-control"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mfor[39m=[32m"payload-input"[39m
+                        [36m>[39m
+                          [0m사용자 이름[0m
+                          [36m<span>[39m
+                            [0musername[0m
+                          [36m</span>[39m
+                        [36m</label>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"payload-editor"[39m
+                        [36m>[39m
+                          [36m<span[39m
+                            [33maria-hidden[39m=[32m"true"[39m
+                            [33mclass[39m=[32m"editor-prompt"[39m
+                          [36m>[39m
+                            [0m&gt;[0m
+                          [36m</span>[39m
+                          [36m<textarea[39m
+                            [33maria-describedby[39m=[32m"payload-shortcuts"[39m
+                            [33maria-label[39m=[32m"사용자 이름"[39m
+                            [33mautocomplete[39m=[32m"off"[39m
+                            [33mid[39m=[32m"payload-input"[39m
+                            [33mmaxlength[39m=[32m"2000"[39m
+                            [33mplaceholder[39m=[32m"이름이나 짧은 문장을 입력해보세요"[39m
+                            [33mrows[39m=[32m"1"[39m
+                            [33mspellcheck[39m=[32m"false"[39m
+                            [33mstyle[39m=[32m"height: 24px;"[39m
+                          [36m>[39m
+                            [0madmin[0m
+                          [36m</textarea>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<label[39m
+                        [33mclass[39m=[32m"fixed-password"[39m
+                      [36m>[39m
+                        [0m비밀번호[0m
+                        [36m<input[39m
+                          [33maria-label[39m=[32m"실습용 고정 비밀번호"[39m
+                          [33mdisabled[39m=[32m""[39m
+                          [33mreadonly[39m=[32m""[39m
+                          [33mtype[39m=[32m"password"[39m
+                          [33mvalue[39m=[32m"this_is_definitely_wrong"[39m
+                        [36m/>[39m
+                        [36m<small>[39m
+                          [0m서버에서 틀린 값으로 고정 · 이름 조건에 집중해요[0m
+                        [36m</small>[39m
+                      [36m</label>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"input-footer"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m입력 분석은 자동으로, 실행은 직접.[0m
+                      [36m<br />[39m
+                      [36m<span[39m
+                        [33mid[39m=[32m"payload-shortcuts"[39m
+                      [36m>[39m
+                        [0mEnter 실행 · Shift+Enter 줄바꿈[0m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                    [36m<button[39m
+                      [33mclass[39m=[32m"primary-button"[39m
+                      [33mtype[39m=[32m"submit"[39m
+                    [36m>[39m
+                      [36m<svg[39m
+                        [33maria-hidden[39m=[32m"true"[39m
+                        [33mfill[39m=[32m"none"[39m
+                        [33mheight[39m=[32m"15"[39m
+                        [33mstroke[39m=[32m"currentColor"[39m
+                        [33mstroke-linecap[39m=[32m"round"[39m
+                        [33mstroke-linejoin[39m=[32m"round"[39m
+                        [33mstroke-width[39m=[32m"1.6"[39m
+                        [33mviewBox[39m=[32m"0 0 24 24"[39m
+                        [33mwidth[39m=[32m"15"[39m
+                      [36m>[39m
+                        [36m<path[39m
+                          [33md[39m=[32m"m9 5 10 7-10 7V5Z"[39m
+                        [36m/>[39m
+                      [36m</svg>[39m
+                      [0m실행하기[0m
+                    [36m</button>[39m
+                  [36m</div>[39m
+                [36m</form>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-label[39m=[32m"Lens 설명"[39m
+                [33maria-live[39m=[32m"polite"[39m
+                [33mclass[39m=[32m"panel lens-panel "[39m
+                [33mrole[39m=[32m"region"[39m
+                [33mtabindex[39m=[32m"-1"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"panel-heading"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"lens-emblem"[39m
+                    [36m>[39m
+                      [36m<svg[39m
+                        [33maria-hidden[39m=[32m"true"[39m
+                        [33mfill[39m=[32m"none"[39m
+                        [33mheight[39m=[32m"19"[39m
+                        [33mstroke[39m=[32m"currentColor"[39m
+                        [33mstroke-linecap[39m=[32m"round"[39m
+                        [33mstroke-linejoin[39m=[32m"round"[39m
+                        [33mstroke-width[39m=[32m"1.6"[39m
+                        [33mviewBox[39m=[32m"0 0 24 24"[39m
+                        [33mwidth[39m=[32m"19"[39m
+                      [36m>[39m
+                        [36m<path[39m
+                          [33md[39m=[32m"M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM16 16l5 5"[39m
+                        [36m/>[39m
+                      [36m</svg>[39m
+                    [36m</span>[39m
+                    [36m<h2>[39m
+                      [0mLens[0m
+                    [36m</h2>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"lens-caption"[39m
+                    [36m>[39m
+                      [0m입력을 읽는 작은 단서[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"lens-state"[39m
+                  [36m>[39m
+                    [0m대기 중[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"lens-body"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"lens-guide-content"[39m
+                  [36m>[39m
+                    [36m<section[39m
+                      [33maria-label[39m=[32m"학습 안내"[39m
+                      [33mclass[39m=[32m"guided-lesson"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mEasy · 따라 하며 이해하기[0m
+                      [36m</h2>[39m
+                      [36m<p>[39m
+                        [0m입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.[0m
+                      [36m</p>[39m
+                      [36m<p[39m
+                        [33maria-label[39m=[32m"학습 진행"[39m
+                        [33mclass[39m=[32m"guided-progress"[39m
+                      [36m>[39m
+                        [0m1[0m
+                        [0m / [0m
+                        [0m3[0m
+                      [36m</p>[39m
+                      [36m<h3>[39m
+                        [0m이름을 값으로 조회하기[0m
+                      [36m</h3>[39m
+                      [36m<p>[39m
+                        [0madmin을 넣고 실행한 뒤, 조립된 SQL의 따옴표와 이름·비밀번호 조건을 찾아보세요.[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"guided-suggestion"[39m
+                      [36m>[39m
+                        [36m<code>[39m
+                          [0madmin[0m
+                        [36m</code>[39m
+                        [36m<button[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0m입력 예시 넣기[0m
+                        [36m</button>[39m
+                        [36m<small>[39m
+                          [0m입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.[0m
+                        [36m</small>[39m
+                      [36m</div>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"guided-observation"[39m
+                      [36m>[39m
+                        [0madmin 이름 비교가 참이어도 잘못된 비밀번호와 AND로 묶이면 행이 반환되지 않아요.[0m
+                      [36m</p>[39m
+                      [36m<p[39m
+                        [33mrole[39m=[32m"status"[39m
+                      [36m>[39m
+                        [0m아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.[0m
+                      [36m</p>[39m
+                      [36m<label[39m
+                        [33mclass[39m=[32m"guided-acknowledgement"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [0m코드와 실행 결과에서 위 내용을 직접 관찰했어요[0m
+                      [36m</label>[39m
+                      [36m<button[39m
+                        [33mdisabled[39m=[32m""[39m
+                        [33mtype[39m=[32m"button"[39m
+                      [36m>[39m
+                        [0m다음 단계[0m
+                      [36m</button>[39m
+                    [36m</section>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</section>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"workspace-shell focused-workbench unified-layout "[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#lab-main"[39m
+      [36m>[39m
+        [0m실습으로 바로가기[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33mclass[39m=[32m"workspace-sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"brand"[39m
+          [33mhref[39m=[32m"#lab-main"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m"PayloadLab"[39m
+            [33mheight[39m=[32m"42"[39m
+            [33msrc[39m=[32m"/brand/payloadlab-wordmark.svg"[39m
+            [33mwidth[39m=[32m"180"[39m
+          [36m/>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-intro"[39m
+        [36m>[39m
+          [0m보안의 첫 단계를, 직접.[0m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"nav-label"[39m
+        [36m>[39m
+          [0mLEARNING SPACE[0m
+        [36m</div>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"공격 유형"[39m
+          [33mclass[39m=[32m"category-nav"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+            [33mclass[39m=[32m"selected"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m1[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mSQL Injection[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m데이터베이스 · 조회 조건[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m2[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mReflected XSS[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m브라우저 · HTML 해석[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m3[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mIDOR[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m접근 권한 · 객체 소유 관계[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m4[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mSSRF[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m서버 요청 · 목적지[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m5[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mCommand Injection[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m서버 명령 · 입력 경계[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m6[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0mLinux 명령어[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m가상 파일 · 빈칸 연습[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m""[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-number"[39m
+            [36m>[39m
+              [0m0[0m
+              [0m7[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [36m<strong>[39m
+                [0m권한상승 기초[0m
+              [36m</strong>[39m
+              [36m<small>[39m
+                [0m가상 사용자 · 접근 권한[0m
+              [36m</small>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"nav-chevron"[39m
+            [36m>[39m
+              [0m›[0m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-notes"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"mini-label"[39m
+          [36m>[39m
+            [0mTRY · UNDERSTAND · RETRY[0m
+          [36m</span>[39m
+          [36m<p>[39m
+            [0m작은 수정을 따라,[0m
+            [36m<br />[39m
+            [0m이해가 이어지도록.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"18"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.6"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0m교육용 로컬 실습[0m
+            [36m<br />[39m
+            [36m<small>[39m
+              [0m외부 대상은 사용하지 않아요.[0m
+            [36m</small>[39m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"workspace-body"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"workspace-topbar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"breadcrumb"[39m
+          [36m>[39m
+            [0m학습 공간 [0m
+            [36m<span>[39m
+              [0m/[0m
+            [36m</span>[39m
+            [36m<strong>[39m
+              [0mSQL Injection[0m
+            [36m</strong>[39m
+          [36m</div>[39m
+          [36m<select[39m
+            [33maria-label[39m=[32m"학습 유형 선택"[39m
+            [33mclass[39m=[32m"mobile-category-select"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"sql_injection"[39m
+            [36m>[39m
+              [0mSQL Injection[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"reflected_xss"[39m
+            [36m>[39m
+              [0mReflected XSS[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"idor"[39m
+            [36m>[39m
+              [0mIDOR[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"ssrf"[39m
+            [36m>[39m
+              [0mSSRF[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"command_injection"[39m
+            [36m>[39m
+              [0mCommand Injection[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"linux_basics"[39m
+            [36m>[39m
+              [0mLinux 명령어[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"permissions"[39m
+            [36m>[39m
+              [0m권한상승 기초[0m
+            [36m</option>[39m
+          [36m</select>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"topbar-actions"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"connection-indicator ready"[39m
+            [36m>[39m
+              [36m<i />[39m
+              [0m실습 서버 연결됨[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"다크 모드로 전환"[39m
+              [33mclass[39m=[32m"icon-button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"18"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.6"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"18"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M20 15A8 8 0 0 1 9 4a8 8 0 1 0 11 11Z"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"lab-main"[39m
+          [33mid[39m=[32m"lab-main"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33mclass[39m=[32m"lab-heading"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"eyebrow"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"eyebrow-line"[39m
+                [36m/>[39m
+                [0mWEB SECURITY LAB / 0[0m
+                [0m1[0m
+              [36m</div>[39m
+              [36m<h1>[39m
+                [0m문자열이 조건이 되는 순간[0m
+              [36m</h1>[39m
+              [36m<p>[39m
+                [0m입력한 이름이 SQL에 들어가는 자리를 찾아보세요. 작은 변화가 조회 결과를 어떻게 바꾸는지 직접 확인할 수 있어요.[0m
+              [36m</p>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"difficulty-control"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0m학습 난이도[0m
+              [36m</span>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"난이도 선택"[39m
+                [33mrole[39m=[32m"group"[39m
+              [36m>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"active"[39m
+                [36m>[39m
+                  [0mEasy[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33maria-pressed[39m=[32m"false"[39m
+                  [33mclass[39m=[32m""[39m
+                [36m>[39m
+                  [0mNormal[0m
+                [36m</button>[39m
+              [36m</div>[39m
+              [36m<small>[39m
+                [0m원리를 따라 알아보기[0m
+              [36m</small>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"통합 학습 작업 공간"[39m
+            [33mclass[39m=[32m"workbench-grid integrated-workspace"[39m
+            [33mdata-phase[39m=[32m"editing"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"input-dock"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33mclass[39m=[32m"panel input-panel"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"panel-heading input-panel-heading"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"step-number"[39m
+                    [36m>[39m
+                      [0m01[0m
+                    [36m</span>[39m
+                    [36m<h2>[39m
+                      [0m직접 입력해보세요[0m
+                    [36m</h2>[39m
+                  [36m</div>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"quiet-badge"[39m
+                  [36m>[39m
+                    [0mSQL[0m
+                    [0m · [0m
+                    [0mEasy[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"scenario environment-description"[39m
+                [36m>[39m
+                  [0m비밀번호를 모르는 로그인 화면입니다. 이름 입력만 바꿀 수 있어요.[0m
+                [36m</p>[39m
+                [36m<form>[39m
+                  [36m<div[39m
+                    [33maria-label[39m=[32m"교육용 로그인"[39m
+                    [33mclass[39m=[32m"practice-environment environment-sql_injection"[39m
+                    [33mrole[39m=[32m"region"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"environment-identity"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"environment-icon"[39m
+                      [36m>[39m
+                        [0mSQL[0m
+                      [36m</span>[39m
+                      [36m<div>[39m
+                        [36m<strong>[39m
+                          [0m교육용 로그인[0m
+                        [36m</strong>[39m
+                        [36m<small>[39m
+                          [0m로컬 교육용 데이터[0m
+                        [36m</small>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"environment-controls"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"primary-input-control"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mfor[39m=[32m"payload-input"[39m
+                        [36m>[39m
+                          [0m사용자 이름[0m
+                          [36m<span>[39m
+                            [0musername[0m
+                          [36m</span>[39m
+                        [36m</label>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"payload-editor"[39m
+                        [36m>[39m
+                          [36m<span[39m
+                            [33maria-hidden[39m=[32m"true"[39m
+                            [33mclass[39m=[32m"editor-prompt"[39m
+                          [36m>[39m
+                            [0m&gt;[0m
+                          [36m</span>[39m
+                          [36m<textarea[39m
+                            [33maria-describedby[39m=[32m"payload-shortcuts"[39m
+                            [33maria-label[39m=[32m"사용자 이름"[39m
+                            [33mautocomplete[39m=[32m"off"[39m
+                            [33mid[39m=[32m"payload-input"[39m
+                            [33mmaxlength[39m=[32m"2000"[39m
+                            [33mplaceholder[39m=[32m"이름이나 짧은 문장을 입력해보세요"[39m
+                            [33mrows[39m=[32m"1"[39m
+                            [33mspellcheck[39m=[32m"false"[39m
+                            [33mstyle[39m=[32m"height: 24px;"[39m
+                          [36m>[39m
+                            [0madmin[0m
+                          [36m</textarea>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<label[39m
+                        [33mclass[39m=[32m"fixed-password"[39m
+                      [36m>[39m
+                        [0m비밀번호[0m
+                        [36m<input[39m
+                          [33maria-label[39m=[32m"실습용 고정 비밀번호"[39m
+                          [33mdisabled[39m=[32m""[39m
+                          [33mreadonly[39m=[32m""[39m
+                          [33mtype[39m=[32m"password"[39m
+                          [33mvalue[39m=[32m"this_is_definitely_wrong"[39m
+                        [36m/>[39m
+                        [36m<small>[39m
+                          [0m서버에서 틀린 값으로 고정 · 이름 조건에 집중해요[0m
+                        [36m</small>[39m
+                      [36m</label>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"input-footer"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m입력 분석은 자동으로, 실행은 직접.[0m
+                      [36m<br />[39m
+                      [36m<span[39m
+                        [33mid[39m=[32m"payload-shortcuts"[39m
+                      [36m>[39m
+                        [0mEnter 실행 · Shift+Enter 줄바꿈[0m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                    [36m<button[39m
+                      [33mclass[39m=[32m"primary-button"[39m
+                      [33mtype[39m=[32m"submit"[39m
+                    [36m>[39m
+                      [36m<svg[39m
+                        [33maria-hidden[39m=[32m"true"[39m
+                        [33mfill[39m=[32m"none"[39m
+                        [33mheight[39m=[32m"15"[39m
+                        [33mstroke[39m=[32m"currentColor"[39m
+                        [33mstroke-linecap[39m=[32m"round"[39m
+                        [33mstroke-linejoin[39m=[32m"round"[39m
+                        [33mstroke-width[39m=[32m"1.6"[39m
+                        [33mviewBox[39m=[32m"0 0 24 24"[39m
+                        [33mwidth[39m=[32m"15"[39m
+                      [36m>[39m
+                        [36m<path[39m
+                          [33md[39m=[32m"m9 5 10 7-10 7V5Z"[39m
+                        [36m/>[39m
+                      [36m</svg>[39m
+                      [0m실행하기[0m
+                    [36m</button>[39m
+                  [36m</div>[39m
+                [36m</form>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-label[39m=[32m"Lens 설명"[39m
+                [33maria-live[39m=[32m"polite"[39m
+                [33mclass[39m=[32m"panel lens-panel "[39m
+                [33mrole[39m=[32m"region"[39m
+                [33mtabindex[39m=[32m"-1"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"panel-heading"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"lens-emblem"[39m
+                    [36m>[39m
+                      [36m<svg[39m
+                        [33maria-hidden[39m=[32m"true"[39m
+                        [33mfill[39m=[32m"none"[39m
+                        [33mheight[39m=[32m"19"[39m
+                        [33mstroke[39m=[32m"currentColor"[39m
+                        [33mstroke-linecap[39m=[32m"round"[39m
+                        [33mstroke-linejoin[39m=[32m"round"[39m
+                        [33mstroke-width[39m=[32m"1.6"[39m
+                        [33mviewBox[39m=[32m"0 0 24 24"[39m
+                        [33mwidth[39m=[32m"19"[39m
+                      [36m>[39m
+                        [36m<path[39m
+                          [33md[39m=[32m"M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM16 16l5 5"[39m
+                        [36m/>[39m
+                      [36m</svg>[39m
+                    [36m</span>[39m
+                    [36m<h2>[39m
+                      [0mLens[0m
+                    [36m</h2>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"lens-caption"[39m
+                    [36m>[39m
+                      [0m입력을 읽는 작은 단서[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"lens-state"[39m
+                  [36m>[39m
+                    [0m대기 중[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"lens-body"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"lens-guide-content"[39m
+                  [36m>[39m
+                    [36m<section[39m
+                      [33maria-label[39m=[32m"학습 안내"[39m
+                      [33mclass[39m=[32m"guided-lesson"[39m
+                    [36m>[39m
+                      [36m<h2>[39m
+                        [0mEasy · 따라 하며 이해하기[0m
+                      [36m</h2>[39m
+                      [36m<p>[39m
+                        [0m입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.[0m
+                      [36m</p>[39m
+                      [36m<p[39m
+                        [33maria-label[39m=[32m"학습 진행"[39m
+                        [33mclass[39m=[32m"guided-progress"[39m
+                      [36m>[39m
+                        [0m1[0m
+                        [0m / [0m
+                        [0m3[0m
+                      [36m</p>[39m
+                      [36m<h3>[39m
+                        [0m이름을 값으로 조회하기[0m
+                      [36m</h3>[39m
+                      [36m<p>[39m
+                        [0madmin을 넣고 실행한 뒤, 조립된 SQL의 따옴표와 이름·비밀번호 조건을 찾아보세요.[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"guided-suggestion"[39m
+                      [36m>[39m
+                        [36m<code>[39m
+                          [0madmin[0m
+                        [36m</code>[39m
+                        [36m<button[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0m입력 예시 넣기[0m
+                        [36m</button>[39m
+                        [36m<small>[39m
+                          [0m입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.[0m
+                        [36m</small>[39m
+                      [36m</div>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"guided-observation"[39m
+                      [36m>[39m
+                        [0madmin 이름 비교가 참이어도 잘못된 비밀번호와 AND로 묶이면 행이 반환되지 않아요.[0m
+                      [36m</p>[39m
+                      [36m<p[39m
+                        [33mrole[39m=[32m"status"[39m
+                      [36m>[39m
+                        [0m아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.[0m
+                      [36m</p>[39m
+                      [36m<label[39m
+                        [33mclass[39m=[32m"guided-acknowledgement"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [0m코드와 실행 결과에서 위 내용을 직접 관찰했어요[0m
+                      [36m</label>[39m
+                      [36m<button[39m
+                        [33mdisabled[39m=[32m""[39m
+                        [33mtype[39m=[32m"button"[39m
+                      [36m>[39m
+                        [0m다음 단계[0m
+                      [36m</button>[39m
+                    [36m</section>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</section>[39m
+            [36m</div>[39m
+          [36m</section>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/api-user-feedback.test.jsx > shows actionable 413 rejection and allows a subsequent successful request
+Error: expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  입력 전체 크기가 실습 요청 한도를 넘었습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+ ❯ src/api-user-feedback.test.jsx:25:43
+     23|  await vi.waitFor(()=>expect(run).toBeEnabled());
+     24|  fireEvent.click(run);
+     25|  expect(await screen.findByRole('alert')).toHaveTextContent(messages[s…
+       |                                           ^
+     26|  expect(screen.queryByText(/private\/internal/)).not.toBeInTheDocument…
+     27|  fireEvent.click(run);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/api-user-feedback.test.jsx > shows actionable 422 rejection and allows a subsequent successful request
+Error: expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  입력 형식이나 길이가 실습 범위를 벗어났습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+ ❯ src/api-user-feedback.test.jsx:25:43
+     23|  await vi.waitFor(()=>expect(run).toBeEnabled());
+     24|  fireEvent.click(run);
+     25|  expect(await screen.findByRole('alert')).toHaveTextContent(messages[s…
+       |                                           ^
+     26|  expect(screen.queryByText(/private\/internal/)).not.toBeInTheDocument…
+     27|  fireEvent.click(run);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/api-user-feedback.test.jsx > shows actionable 503 rejection and allows a subsequent successful request
+Error: expect(element).toHaveTextContent()
+
+Expected element to have text content:
+  조회 결과가 표시 가능한 크기를 넘었습니다.
+Received:
+  실행 결과를 받지 못했어요. 서버 연결을 확인한 뒤 다시 시도해주세요.
+ ❯ src/api-user-feedback.test.jsx:25:43
+     23|  await vi.waitFor(()=>expect(run).toBeEnabled());
+     24|  fireEvent.click(run);
+     25|  expect(await screen.findByRole('alert')).toHaveTextContent(messages[s…
+       |                                           ^
+     26|  expect(screen.queryByText(/private\/internal/)).not.toBeInTheDocument…
+     27|  fireEvent.click(run);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/api-user-feedback.test.jsx > shows input-analysis rejection instead of silently returning to waiting guidance
+TestingLibraryElementError: Unable to find an element with the text: /입력 형식이나 길이가 실습 범위를 벗어났습니다./. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="workspace-shell focused-workbench unified-layout "
+    >
+      <a
+        class="skip-link"
+        href="#lab-main"
+      >
+        실습으로 바로가기
+      </a>
+      <aside
+        class="workspace-sidebar"
+      >
+        <a
+          class="brand"
+          href="#lab-main"
+        >
+          <img
+            alt="PayloadLab"
+            height="42"
+            src="/brand/payloadlab-wordmark.svg"
+            width="180"
+          />
+        </a>
+        <div
+          class="sidebar-intro"
+        >
+          보안의 첫 단계를, 직접.
+        </div>
+        <div
+          class="nav-label"
+        >
+          LEARNING SPACE
+        </div>
+        <nav
+          aria-label="공격 유형"
+          class="category-nav"
+        >
+          <button
+            aria-current="page"
+            class="selected"
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              1
+            </span>
+            <span>
+              <strong>
+                SQL Injection
+              </strong>
+              <small>
+                데이터베이스 · 조회 조건
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              2
+            </span>
+            <span>
+              <strong>
+                Reflected XSS
+              </strong>
+              <small>
+                브라우저 · HTML 해석
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              3
+            </span>
+            <span>
+              <strong>
+                IDOR
+              </strong>
+              <small>
+                접근 권한 · 객체 소유 관계
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              4
+            </span>
+            <span>
+              <strong>
+                SSRF
+              </strong>
+              <small>
+                서버 요청 · 목적지
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              5
+            </span>
+            <span>
+              <strong>
+                Command Injection
+              </strong>
+              <small>
+                서버 명령 · 입력 경계
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              6
+            </span>
+            <span>
+              <strong>
+                Linux 명령어
+              </strong>
+              <small>
+                가상 파일 · 빈칸 연습
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              7
+            </span>
+            <span>
+              <strong>
+                권한상승 기초
+              </strong>
+              <small>
+                가상 사용자 · 접근 권한
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+        </nav>
+        <div
+          class="sidebar-notes"
+        >
+          <span
+            class="mini-label"
+          >
+            TRY · UNDERSTAND · RETRY
+          </span>
+          <p>
+            작은 수정을 따라,
+            <br />
+            이해가 이어지도록.
+          </p>
+        </div>
+        <div
+          class="sidebar-bottom"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.6"
+            viewBox="0 0 24 24"
+            width="18"
+          >
+            <path
+              d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"
+            />
+          </svg>
+          <span>
+            교육용 로컬 실습
+            <br />
+            <small>
+              외부 대상은 사용하지 않아요.
+            </small>
+          </span>
+        </div>
+      </aside>
+      <div
+        class="workspace-body"
+      >
+        <header
+          class="workspace-topbar"
+        >
+          <div
+            class="breadcrumb"
+          >
+            학습 공간
+            <span>
+              /
+            </span>
+            <strong>
+              SQL Injection
+            </strong>
+          </div>
+          <select
+            aria-label="학습 유형 선택"
+            class="mobile-category-select"
+          >
+            <option
+              value="sql_injection"
+            >
+              SQL Injection
+            </option>
+            <option
+              value="reflected_xss"
+            >
+              Reflected XSS
+            </option>
+            <option
+              value="idor"
+            >
+              IDOR
+            </option>
+            <option
+              value="ssrf"
+            >
+              SSRF
+            </option>
+            <option
+              value="command_injection"
+            >
+              Command Injection
+            </option>
+            <option
+              value="linux_basics"
+            >
+              Linux 명령어
+            </option>
+            <option
+              value="permissions"
+            >
+              권한상승 기초
+            </option>
+          </select>
+          <div
+            class="topbar-actions"
+          >
+            <span
+              class="connection-indicator ready"
+            >
+              <i />
+              실습 서버 연결됨
+            </span>
+            <button
+              aria-label="다크 모드로 전환"
+              class="icon-button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+                viewBox="0 0 24 24"
+                width="18"
+              >
+                <path
+                  d="M20 15A8 8 0 0 1 9 4a8 8 0 1 0 11 11Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <main
+          class="lab-main"
+          id="lab-main"
+        >
+          <section
+            class="lab-heading"
+          >
+            <div>
+              <div
+                class="eyebrow"
+              >
+                <span
+                  class="eyebrow-line"
+                />
+                WEB SECURITY LAB / 0
+                1
+              </div>
+              <h1>
+                문자열이 조건이 되는 순간
+              </h1>
+              <p>
+                입력한 이름이 SQL에 들어가는 자리를 찾아보세요. 작은 변화가 조회 결과를 어떻게 바꾸는지 직접 확인할 수 있어요.
+              </p>
+            </div>
+            <div
+              class="difficulty-control"
+            >
+              <span>
+                학습 난이도
+              </span>
+              <div
+                aria-label="난이도 선택"
+                role="group"
+              >
+                <button
+                  aria-pressed="true"
+                  class="active"
+                >
+                  Easy
+                </button>
+                <button
+                  aria-pressed="false"
+                  class=""
+                >
+                  Normal
+                </button>
+              </div>
+              <small>
+                원리를 따라 알아보기
+              </small>
+            </div>
+          </section>
+          <section
+            aria-label="통합 학습 작업 공간"
+            class="workbench-grid integrated-workspace"
+            data-phase="editing"
+          >
+            <div
+              class="input-dock"
+            >
+              <section
+                class="panel input-panel"
+              >
+                <div
+                  class="panel-heading input-panel-heading"
+                >
+                  <div>
+                    <span
+                      class="step-number"
+                    >
+                      01
+                    </span>
+                    <h2>
+                      직접 입력해보세요
+                    </h2>
+                  </div>
+                  <span
+                    class="quiet-badge"
+                  >
+                    SQL
+                     ·
+                    Easy
+                  </span>
+                </div>
+                <p
+                  class="scenario environment-description"
+                >
+                  비밀번호를 모르는 로그인 화면입니다. 이름 입력만 바꿀 수 있어요.
+                </p>
+                <form>
+                  <div
+                    aria-label="교육용 로그인"
+                    class="practice-environment environment-sql_injection"
+                    role="region"
+                  >
+                    <div
+                      class="environment-identity"
+                    >
+                      <span
+                        class="environment-icon"
+                      >
+                        SQL
+                      </span>
+                      <div>
+                        <strong>
+                          교육용 로그인
+                        </strong>
+                        <small>
+                          로컬 교육용 데이터
+                        </small>
+                      </div>
+                    </div>
+                    <div
+                      class="environment-controls"
+                    >
+                      <div
+                        class="primary-input-control"
+                      >
+                        <label
+                          for="payload-input"
+                        >
+                          사용자 이름
+                          <span>
+                            username
+                          </span>
+                        </label>
+                        <div
+                          class="payload-editor"
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="editor-prompt"
+                          >
+                            &gt;
+                          </span>
+                          <textarea
+                            aria-describedby="payload-shortcuts"
+                            aria-label="사용자 이름"
+                            autocomplete="off"
+                            id="payload-input"
+                            maxlength="2000"
+                            placeholder="이름이나 짧은 문장을 입력해보세요"
+                            rows="1"
+                            spellcheck="false"
+                            style="height: 24px;"
+                          >
+                            admin
+                          </textarea>
+                        </div>
+                      </div>
+                      <label
+                        class="fixed-password"
+                      >
+                        비밀번호
+                        <input
+                          aria-label="실습용 고정 비밀번호"
+                          disabled=""
+                          readonly=""
+                          type="password"
+                          value="this_is_definitely_wrong"
+                        />
+                        <small>
+                          서버에서 틀린 값으로 고정 · 이름 조건에 집중해요
+                        </small>
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="input-footer"
+                  >
+                    <span>
+                      입력 분석은 자동으로, 실행은 직접.
+                      <br />
+                      <span
+                        id="payload-shortcuts"
+                      >
+                        Enter 실행 · Shift+Enter 줄바꿈
+                      </span>
+                    </span>
+                    <button
+                      class="primary-button"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="15"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.6"
+                        viewBox="0 0 24 24"
+                        width="15"
+                      >
+                        <path
+                          d="m9 5 10 7-10 7V5Z"
+                        />
+                      </svg>
+                      실행하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+              <section
+                aria-label="Lens 설명"
+                aria-live="polite"
+                class="panel lens-panel "
+                role="region"
+                tabindex="-1"
+              >
+                <div
+                  class="panel-heading"
+                >
+                  <div>
+                    <span
+                      class="lens-emblem"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="19"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.6"
+                        viewBox="0 0 24 24"
+                        width="19"
+                      >
+                        <path
+                          d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM16 16l5 5"
+                        />
+                      </svg>
+                    </span>
+                    <h2>
+                      Lens
+                    </h2>
+                    <span
+                      class="lens-caption"
+                    >
+                      입력을 읽는 작은 단서
+                    </span>
+                  </div>
+                  <span
+                    class="lens-state"
+                  >
+                    대기 중
+                  </span>
+                </div>
+                <div
+                  class="lens-body"
+                >
+                  <div
+                    class="lens-guide-content"
+                  >
+                    <section
+                      aria-label="학습 안내"
+                      class="guided-lesson"
+                    >
+                      <h2>
+                        Easy · 따라 하며 이해하기
+                      </h2>
+                      <p>
+                        입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.
+                      </p>
+                      <p
+                        aria-label="학습 진행"
+                        class="guided-progress"
+                      >
+                        1
+                         /
+                        3
+                      </p>
+                      <h3>
+                        이름을 값으로 조회하기
+                      </h3>
+                      <p>
+                        admin을 넣고 실행한 뒤, 조립된 SQL의 따옴표와 이름·비밀번호 조건을 찾아보세요.
+                      </p>
+                      <div
+                        class="guided-suggestion"
+                      >
+                        <code>
+                          admin
+                        </code>
+                        <button
+                          type="button"
+                        >
+                          입력 예시 넣기
+                        </button>
+                        <small>
+                          입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.
+                        </small>
+                      </div>
+                      <p
+                        class="guided-observation"
+                      >
+                        admin 이름 비교가 참이어도 잘못된 비밀번호와 AND로 묶이면 행이 반환되지 않아요.
+                      </p>
+                      <p
+                        role="status"
+                      >
+                        아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.
+                      </p>
+                      <label
+                        class="guided-acknowledgement"
+                      >
+                        <input
+                          type="checkbox"
+                        />
+                        코드와 실행 결과에서 위 내용을 직접 관찰했어요
+                      </label>
+                      <button
+                        disabled=""
+                        type="button"
+                      >
+                        다음 단계
+                      </button>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="workspace-shell focused-workbench unified-layout "
+    >
+      <a
+        class="skip-link"
+        href="#lab-main"
+      >
+        실습으로 바로가기
+      </a>
+      <aside
+        class="workspace-sidebar"
+      >
+        <a
+          class="brand"
+          href="#lab-main"
+        >
+          <img
+            alt="PayloadLab"
+            height="42"
+            src="/brand/payloadlab-wordmark.svg"
+            width="180"
+          />
+        </a>
+        <div
+          class="sidebar-intro"
+        >
+          보안의 첫 단계를, 직접.
+        </div>
+        <div
+          class="nav-label"
+        >
+          LEARNING SPACE
+        </div>
+        <nav
+          aria-label="공격 유형"
+          class="category-nav"
+        >
+          <button
+            aria-current="page"
+            class="selected"
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              1
+            </span>
+            <span>
+              <strong>
+                SQL Injection
+              </strong>
+              <small>
+                데이터베이스 · 조회 조건
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              2
+            </span>
+            <span>
+              <strong>
+                Reflected XSS
+              </strong>
+              <small>
+                브라우저 · HTML 해석
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              3
+            </span>
+            <span>
+              <strong>
+                IDOR
+              </strong>
+              <small>
+                접근 권한 · 객체 소유 관계
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              4
+            </span>
+            <span>
+              <strong>
+                SSRF
+              </strong>
+              <small>
+                서버 요청 · 목적지
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              5
+            </span>
+            <span>
+              <strong>
+                Command Injection
+              </strong>
+              <small>
+                서버 명령 · 입력 경계
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              6
+            </span>
+            <span>
+              <strong>
+                Linux 명령어
+              </strong>
+              <small>
+                가상 파일 · 빈칸 연습
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+          <button
+            class=""
+          >
+            <span
+              class="nav-number"
+            >
+              0
+              7
+            </span>
+            <span>
+              <strong>
+                권한상승 기초
+              </strong>
+              <small>
+                가상 사용자 · 접근 권한
+              </small>
+            </span>
+            <span
+              class="nav-chevron"
+            >
+              ›
+            </span>
+          </button>
+        </nav>
+        <div
+          class="sidebar-notes"
+        >
+          <span
+            class="mini-label"
+          >
+            TRY · UNDERSTAND · RETRY
+          </span>
+          <p>
+            작은 수정을 따라,
+            <br />
+            이해가 이어지도록.
+          </p>
+        </div>
+        <div
+          class="sidebar-bottom"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.6"
+            viewBox="0 0 24 24"
+            width="18"
+          >
+            <path
+              d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"
+            />
+          </svg>
+          <span>
+            교육용 로컬 실습
+            <br />
+            <small>
+              외부 대상은 사용하지 않아요.
+            </small>
+          </span>
+        </div>
+      </aside>
+      <div
+        class="workspace-body"
+      >
+        <header
+          class="workspace-topbar"
+        >
+          <div
+            class="breadcrumb"
+          >
+            학습 공간
+            <span>
+              /
+            </span>
+            <strong>
+              SQL Injection
+            </strong>
+          </div>
+          <select
+            aria-label="학습 유형 선택"
+            class="mobile-category-select"
+          >
+            <option
+              value="sql_injection"
+            >
+              SQL Injection
+            </option>
+            <option
+              value="reflected_xss"
+            >
+              Reflected XSS
+            </option>
+            <option
+              value="idor"
+            >
+              IDOR
+            </option>
+            <option
+              value="ssrf"
+            >
+              SSRF
+            </option>
+            <option
+              value="command_injection"
+            >
+              Command Injection
+            </option>
+            <option
+              value="linux_basics"
+            >
+              Linux 명령어
+            </option>
+            <option
+              value="permissions"
+            >
+              권한상승 기초
+            </option>
+          </select>
+          <div
+            class="topbar-actions"
+          >
+            <span
+              class="connection-indicator ready"
+            >
+              <i />
+              실습 서버 연결됨
+            </span>
+            <button
+              aria-label="다크 모드로 전환"
+              class="icon-button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+                viewBox="0 0 24 24"
+                width="18"
+              >
+                <path
+                  d="M20 15A8 8 0 0 1 9 4a8 8 0 1 0 11 11Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <main
+          class="lab-main"
+          id="lab-main"
+        >
+          <section
+            class="lab-heading"
+          >
+            <div>
+              <div
+                class="eyebrow"
+              >
+                <span
+                  class="eyebrow-line"
+                />
+                WEB SECURITY LAB / 0
+                1
+              </div>
+              <h1>
+                문자열이 조건이 되는 순간
+              </h1>
+              <p>
+                입력한 이름이 SQL에 들어가는 자리를 찾아보세요. 작은 변화가 조회 결과를 어떻게 바꾸는지 직접 확인할 수 있어요.
+              </p>
+            </div>
+            <div
+              class="difficulty-control"
+            >
+              <span>
+                학습 난이도
+              </span>
+              <div
+                aria-label="난이도 선택"
+                role="group"
+              >
+                <button
+                  aria-pressed="true"
+                  class="active"
+                >
+                  Easy
+                </button>
+                <button
+                  aria-pressed="false"
+                  class=""
+                >
+                  Normal
+                </button>
+              </div>
+              <small>
+                원리를 따라 알아보기
+              </small>
+            </div>
+          </section>
+          <section
+            aria-label="통합 학습 작업 공간"
+            class="workbench-grid integrated-workspace"
+            data-phase="editing"
+          >
+            <div
+              class="input-dock"
+            >
+              <section
+                class="panel input-panel"
+              >
+                <div
+                  class="panel-heading input-panel-heading"
+                >
+                  <div>
+                    <span
+                      class="step-number"
+                    >
+                      01
+                    </span>
+                    <h2>
+                      직접 입력해보세요
+                    </h2>
+                  </div>
+                  <span
+                    class="quiet-badge"
+                  >
+                    SQL
+                     ·
+                    Easy
+                  </span>
+                </div>
+                <p
+                  class="scenario environment-description"
+                >
+                  비밀번호를 모르는 로그인 화면입니다. 이름 입력만 바꿀 수 있어요.
+                </p>
+                <form>
+                  <div
+                    aria-label="교육용 로그인"
+                    class="practice-environment environment-sql_injection"
+                    role="region"
+                  >
+                    <div
+                      class="environment-identity"
+                    >
+                      <span
+                        class="environment-icon"
+                      >
+                        SQL
+                      </span>
+                      <div>
+                        <strong>
+                          교육용 로그인
+                        </strong>
+                        <small>
+                          로컬 교육용 데이터
+                        </small>
+                      </div>
+                    </div>
+                    <div
+                      class="environment-controls"
+                    >
+                      <div
+                        class="primary-input-control"
+                      >
+                        <label
+                          for="payload-input"
+                        >
+                          사용자 이름
+                          <span>
+                            username
+                          </span>
+                        </label>
+                        <div
+                          class="payload-editor"
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="editor-prompt"
+                          >
+                            &gt;
+                          </span>
+                          <textarea
+                            aria-describedby="payload-shortcuts"
+                            aria-label="사용자 이름"
+                            autocomplete="off"
+                            id="payload-input"
+                            maxlength="2000"
+                            placeholder="이름이나 짧은 문장을 입력해보세요"
+                            rows="1"
+                            spellcheck="false"
+                            style="height: 24px;"
+                          >
+                            admin
+                          </textarea>
+                        </div>
+                      </div>
+                      <label
+                        class="fixed-password"
+                      >
+                        비밀번호
+                        <input
+                          aria-label="실습용 고정 비밀번호"
+                          disabled=""
+                          readonly=""
+                          type="password"
+                          value="this_is_definitely_wrong"
+                        />
+                        <small>
+                          서버에서 틀린 값으로 고정 · 이름 조건에 집중해요
+                        </small>
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    class="input-footer"
+                  >
+                    <span>
+                      입력 분석은 자동으로, 실행은 직접.
+                      <br />
+                      <span
+                        id="payload-shortcuts"
+                      >
+                        Enter 실행 · Shift+Enter 줄바꿈
+                      </span>
+                    </span>
+                    <button
+                      class="primary-button"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="15"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.6"
+                        viewBox="0 0 24 24"
+                        width="15"
+                      >
+                        <path
+                          d="m9 5 10 7-10 7V5Z"
+                        />
+                      </svg>
+                      실행하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+              <section
+                aria-label="Lens 설명"
+                aria-live="polite"
+                class="panel lens-panel "
+                role="region"
+                tabindex="-1"
+              >
+                <div
+                  class="panel-heading"
+                >
+                  <div>
+                    <span
+                      class="lens-emblem"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="19"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.6"
+                        viewBox="0 0 24 24"
+                        width="19"
+                      >
+                        <path
+                          d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM16 16l5 5"
+                        />
+                      </svg>
+                    </span>
+                    <h2>
+                      Lens
+                    </h2>
+                    <span
+                      class="lens-caption"
+                    >
+                      입력을 읽는 작은 단서
+                    </span>
+                  </div>
+                  <span
+                    class="lens-state"
+                  >
+                    대기 중
+                  </span>
+                </div>
+                <div
+                  class="lens-body"
+                >
+                  <div
+                    class="lens-guide-content"
+                  >
+                    <section
+                      aria-label="학습 안내"
+                      class="guided-lesson"
+                    >
+                      <h2>
+                        Easy · 따라 하며 이해하기
+                      </h2>
+                      <p>
+                        입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.
+                      </p>
+                      <p
+                        aria-label="학습 진행"
+                        class="guided-progress"
+                      >
+                        1
+                         /
+                        3
+                      </p>
+                      <h3>
+                        이름을 값으로 조회하기
+                      </h3>
+                      <p>
+                        admin을 넣고 실행한 뒤, 조립된 SQL의 따옴표와 이름·비밀번호 조건을 찾아보세요.
+                      </p>
+                      <div
+                        class="guided-suggestion"
+                      >
+                        <code>
+                          admin
+                        </code>
+                        <button
+                          type="button"
+                        >
+                          입력 예시 넣기
+                        </button>
+                        <small>
+                          입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.
+                        </small>
+                      </div>
+                      <p
+                        class="guided-observation"
+                      >
+                        admin 이름 비교가 참이어도 잘못된 비밀번호와 AND로 묶이면 행이 반환되지 않아요.
+                      </p>
+                      <p
+                        role="status"
+                      >
+                        아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.
+                      </p>
+                      <label
+                        class="guided-acknowledgement"
+                      >
+                        <input
+                          type="checkbox"
+                        />
+                        코드와 실행 결과에서 위 내용을 직접 관찰했어요
+                      </label>
+                      <button
+                        disabled=""
+                        type="button"
+                      >
+                        다음 단계
+                      </button>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+ ❯ waitForWrapper node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/api-user-feedback.test.jsx:36:22
+     34|  render(<App/>);
+     35|  fireEvent.change(screen.getByLabelText('사용자 이름'),{target:{value:…
+     36|  expect(await screen.findByText(new RegExp(messages[422]))).toBeInTheD…
+       |                      ^
+     37|  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+     38| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/useInputAnalysis.test.jsx > keeps safe analysis failure guidance and clears it for a new input
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ src/useInputAnalysis.test.jsx:64:31
+     62|  await act(()=>vi.advanceTimersByTimeAsync(320));
+     63|  expect(result.current.status).toBe('error');
+     64|  expect(result.current.error).toContain('입력 형식이나 길이가 실습 범…
+       |                               ^
+     65|  rerender({value:'guest'});
+     66|  expect(result.current.status).toBe('pending');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 2 passed (7)
+   Start at  17:19:00
+   Duration  12.93s (transform 735ms, setup 3.86s, collect 4.19s, tests 1.86s, environment 7.64s, prepare 909ms)

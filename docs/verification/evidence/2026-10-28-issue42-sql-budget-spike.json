@@ -1,0 +1,12 @@
+{
+  "main_sha": "64c9cb141108cafa5c6d215fc9eb4981c100b9b7",
+  "python": "3.13.2",
+  "sqlite": "3.45.3",
+  "callbacks": 10,
+  "test_budget_instructions": 1000,
+  "interrupted": true,
+  "closed": true,
+  "next_connection_ok": true,
+  "elapsed_ms": 79.36,
+  "scope": "mechanism only; production routes and policy not modified"
+}

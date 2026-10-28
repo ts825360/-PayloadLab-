@@ -1,0 +1,187 @@
+$ vitest run "--" "src/resource-limit-view.test.jsx" "src/api-limit-feedback.test.js"
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/guided-lessons.test.jsx (14 tests) 795ms
+   ✓ GuidedLesson > offers editable fill without running or advancing 333ms
+ ✓ src/execution-canvas.test.jsx (6 tests) 841ms
+   ✓ changes the condition explanation when selecting a different account 534ms
+ ✓ src/web-observation.test.jsx (4 tests) 3960ms
+   ✓ keeps only input and Lens on the base surface while typing and analyzing 1267ms
+   ✓ opens on Enter and really removes the dialog after Escape then Enter 1011ms
+   ✓ closes immediately with X and can reopen the preserved result from Lens 1077ms
+   ✓ remembers the submitting input before focus is lost while opening the dialog 602ms
+ ✓ src/practice-integration.test.jsx (5 tests) 6671ms
+   ✓ starts SQL Easy with an actionable guide rather than an empty Lens slogan 1105ms
+   ✓ distinguishes planned permission Normal from unavailable or failed server connection 684ms
+   ✓ keeps Normal available for every pre-agreed web/command-quiz category 2296ms
+   ✓ does not let an unsupported permission command poison later virtual history 1339ms
+   ✓ connects the current raw error to Lens and keeps old diagnostics local after editing 1240ms
+ ✓ src/unified-workspace.test.jsx (4 tests) 7404ms
+   ✓ contains only input and fixed Lens before opening observation 685ms
+   ✓ provides definition, conditions, flow, goal and next action before input in all 13 supported lab combinations 5530ms
+   ✓ uses real task-specific controls rather than only renaming one text box 1048ms
+ ✓ src/terminal/linux-desktop.test.jsx (8 tests) 7810ms
+   ✓ enters immediately when reduced motion is requested 1172ms
+   ✓ opens a full Linux workspace for /Command Injection/ instead of a small web input 747ms
+   ✓ opens a full Linux workspace for /Linux 명령어/ instead of a small web input 588ms
+   ✓ opens a full Linux workspace for /권한상승 기초/ instead of a small web input 568ms
+   ✓ preserves web and terminal drafts through the logo and does not replay preparation inside Linux 1555ms
+   ✓ runs into the transcript, opens Lens from the raw error, and confirms only observation close 1171ms
+   ✓ fills a server-provided supported command without executing it 1057ms
+   ✓ keeps a new draft written while an attempt is pending and ignores a late response after web return 946ms
+ ✓ src/terminal/TerminalTranscript.test.jsx (5 tests) 849ms
+   ✓ keeps command/output order, exact raw errors and educational notes separate 471ms
+   ✓ keeps old diagnoses local and connects only the selected attempt to Lens 303ms
+ ✓ src/terminal/DiagnosticText.test.jsx (7 tests) 812ms
+   ✓ marks exactly the codepoint range while preserving the entire raw text 379ms
+ ✓ src/learning-workspace.test.jsx (11 tests) 13431ms
+   ✓ learning workspace > opens and focuses the observation stage on desktop when Enter executes the first attempt 3199ms
+   ✓ learning workspace > clears the current result when changing category without deleting saved attempts 1869ms
+   ✓ learning workspace > keeps Lens below the input and opens focus without scrolling the page 1199ms
+   ✓ learning workspace > does not let old analysis replace a new lab 725ms
+   ✓ learning workspace > opens a mobile dialog and restores its trigger on confirmed close 1272ms
+   ✓ learning workspace > keeps an editable input while the API list is unavailable 414ms
+   ✓ learning workspace > renders evidence and Lens on failed attempts, preserving it during editing 1186ms
+   ✓ learning workspace > uses Normal as a label while retaining the existing medium API identifier 603ms
+   ✓ learning workspace > rejects a late response after switching labs 597ms
+   ✓ learning workspace > keeps both attempts available for comparison 1971ms
+   ✓ learning workspace > explains an older backend response instead of silently hiding results 386ms
+ ✓ src/terminal/diagnostics.test.js (10 tests) 19ms
+ ✓ src/input-shortcuts.test.jsx (5 tests) 471ms
+ ✓ src/useInputAnalysis.test.jsx (2 tests) 111ms
+ ✓ src/terminal/TerminalInput.test.jsx (5 tests) 689ms
+   ✓ keeps the real editable value and ref separate from a hidden decoration 424ms
+ ✓ src/practice-simulation.test.jsx (3 tests) 552ms
+   ✓ selects a permission diagnostic without changing the raw error output 325ms
+ ❯ src/resource-limit-view.test.jsx (0 test)
+ ✓ src/terminal/TerminalInspector.test.jsx (3 tests) 160ms
+ ✓ src/theme-tokens.test.js (3 tests) 31ms
+ ❯ src/api-limit-feedback.test.js (6 tests | 5 failed) 69ms
+   × explains input-size rejection instead of generic failure 40ms
+     → expected [Function] to throw error including '입력 전체 크기가 실습 요청 한도를 넘었습니다.' but got '시도 요청이 실패했습니다'
+   × explains input-size rejection instead of generic failure 15ms
+     → expected [Function] to throw error including '입력 전체 크기가 실습 요청 한도를 넘었습니다.' but got '입력 분석 요청이 실패했습니다'
+   × explains rejected input type or length 4ms
+     → expected [Function] to throw error including '입력 형식이나 길이가 실습 범위를 벗어났습니다.' but got '시도 요청이 실패했습니다'
+   × explains rejected input type or length 3ms
+     → expected [Function] to throw error including '입력 형식이나 길이가 실습 범위를 벗어났습니다.' but got '입력 분석 요청이 실패했습니다'
+   × explains response cap without exposing server details 3ms
+     → expected [Function] to throw error including '조회 결과가 표시 가능한 크기를 넘었습니다.' but got '시도 요청이 실패했습니다'
+ ✓ src/compare-inputs.test.js (2 tests) 8ms
+ ✓ src/change-comparison.test.jsx (1 test) 132ms
+ ✓ src/brand-assets.test.jsx (2 tests) 536ms
+   ✓ uses the approved static wordmark and selects the matching theme variant 530ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/resource-limit-view.test.jsx [ src/resource-limit-view.test.jsx ]
+Error: Transform failed with 1 error:
+C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend/src/resource-limit-view.test.jsx:20:297: ERROR: Unexpected ">"
+  Plugin: vite:esbuild
+  File: C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend/src/resource-limit-view.test.jsx:20:297
+
+  Unexpected ">"
+  19 |   const {rerender}=render(<ExecutionCanvas trace={stopped('resource_limit')} category={CATEGORIES[0]} onGroup={vi.fn()}/>);
+  20 |   rerender(<ExecutionCanvas category={CATEGORIES[0]} onGroup={vi.fn()} trace={{category:'sql_injection',execution:{status:'matched',count:2,label:'SQLite 실제 조회'},condition_tree:null,table:{columns:['id','username'],rows:[{cells:[1,'admin'],matched:true},{cells:[2,'guest'],matched:true}]}}/>);
+  21 |   expect(screen.getByRole('table')).toBeInTheDocument();
+     |      ^
+  22 |   expect(screen.queryByRole('heading',{name:'실습 계산 한도에 도달했어요'})).not.toBeInTheDocument();
+  23 |  });
+
+ ❯ failureErrorWithLog node_modules/.pnpm/esbuild@0.21.5/node_modules/esbuild/lib/main.js:1472:15
+ ❯ node_modules/.pnpm/esbuild@0.21.5/node_modules/esbuild/lib/main.js:755:50
+ ❯ responseCallbacks.<computed> node_modules/.pnpm/esbuild@0.21.5/node_modules/esbuild/lib/main.js:622:9
+ ❯ handleIncomingPacket node_modules/.pnpm/esbuild@0.21.5/node_modules/esbuild/lib/main.js:677:12
+ ❯ Socket.readFromStdout node_modules/.pnpm/esbuild@0.21.5/node_modules/esbuild/lib/main.js:600:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/api-limit-feedback.test.js > explains input-size rejection instead of generic failure
+AssertionError: expected [Function] to throw error including '입력 전체 크기가 실습 요청 한도를 넘었습니다.' but got '시도 요청이 실패했습니다'
+
+Expected: "입력 전체 크기가 실습 요청 한도를 넘었습니다."
+Received: "시도 요청이 실패했습니다"
+
+ ❯ src/api-limit-feedback.test.js:7:2
+      5| it.each([attemptLab,analyzeLab])('explains input-size rejection instea…
+      6|  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,status:413}…
+      7|  await expect(call('sql-injection-easy',{username:'a'})).rejects.toThr…
+       |  ^
+      8| });
+      9| it.each([attemptLab,analyzeLab])('explains rejected input type or leng…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/api-limit-feedback.test.js > explains input-size rejection instead of generic failure
+AssertionError: expected [Function] to throw error including '입력 전체 크기가 실습 요청 한도를 넘었습니다.' but got '입력 분석 요청이 실패했습니다'
+
+Expected: "입력 전체 크기가 실습 요청 한도를 넘었습니다."
+Received: "입력 분석 요청이 실패했습니다"
+
+ ❯ src/api-limit-feedback.test.js:7:2
+      5| it.each([attemptLab,analyzeLab])('explains input-size rejection instea…
+      6|  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,status:413}…
+      7|  await expect(call('sql-injection-easy',{username:'a'})).rejects.toThr…
+       |  ^
+      8| });
+      9| it.each([attemptLab,analyzeLab])('explains rejected input type or leng…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/api-limit-feedback.test.js > explains rejected input type or length
+AssertionError: expected [Function] to throw error including '입력 형식이나 길이가 실습 범위를 벗어났습니다.' but got '시도 요청이 실패했습니다'
+
+Expected: "입력 형식이나 길이가 실습 범위를 벗어났습니다."
+Received: "시도 요청이 실패했습니다"
+
+ ❯ src/api-limit-feedback.test.js:11:2
+      9| it.each([attemptLab,analyzeLab])('explains rejected input type or leng…
+     10|  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,status:422}…
+     11|  await expect(call('sql-injection-easy',{username:'a'})).rejects.toThr…
+       |  ^
+     12| });
+     13| it('explains response cap without exposing server details',async()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/api-limit-feedback.test.js > explains rejected input type or length
+AssertionError: expected [Function] to throw error including '입력 형식이나 길이가 실습 범위를 벗어났습니다.' but got '입력 분석 요청이 실패했습니다'
+
+Expected: "입력 형식이나 길이가 실습 범위를 벗어났습니다."
+Received: "입력 분석 요청이 실패했습니다"
+
+ ❯ src/api-limit-feedback.test.js:11:2
+      9| it.each([attemptLab,analyzeLab])('explains rejected input type or leng…
+     10|  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,status:422}…
+     11|  await expect(call('sql-injection-easy',{username:'a'})).rejects.toThr…
+       |  ^
+     12| });
+     13| it('explains response cap without exposing server details',async()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/api-limit-feedback.test.js > explains response cap without exposing server details
+AssertionError: expected [Function] to throw error including '조회 결과가 표시 가능한 크기를 넘었습니다.' but got '시도 요청이 실패했습니다'
+
+Expected: "조회 결과가 표시 가능한 크기를 넘었습니다."
+Received: "시도 요청이 실패했습니다"
+
+ ❯ src/api-limit-feedback.test.js:15:2
+     13| it('explains response cap without exposing server details',async()=>{
+     14|  vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,status:503,…
+     15|  await expect(attemptLab('sql-injection-easy',{})).rejects.toThrow('조…
+       |  ^
+     16| });
+     17| it('keeps unrelated server failure generic',async()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+ Test Files  2 failed | 19 passed (21)
+      Tests  5 failed | 101 passed (106)
+   Start at  17:06:24
+   Duration  108.00s (transform 3.05s, setup 201.63s, collect 46.55s, tests 45.35s, environment 348.50s, prepare 30.14s)
+
+[ELIFECYCLE] Test failed. See above for more details.

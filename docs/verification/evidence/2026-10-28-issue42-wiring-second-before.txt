@@ -1,0 +1,34 @@
+...........FFF                                                           [100%]
+================================== FAILURES ===================================
+________________ test_mounted_api_does_not_bypass_input_guard _________________
+
+    def test_mounted_api_does_not_bypass_input_guard():
+        r=mounted_client().post('/api/labs/sql-injection-easy/analyze',json={'username':'a'*2001})
+>       assert r.status_code==422
+E       assert 200 == 422
+E        +  where 200 = namespace(status_code=200, text='{"category":"sql_injection","raw_input":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...:true,"phase":"analysis"}', json=<function TestClient.request.<locals>.invoke.<locals>.<lambda> at 0x0000028326F1CCC0>).status_code
+
+backend\tests\test_review_app.py:155: AssertionError
+_______________ test_mounted_api_does_not_bypass_sql_authorizer _______________
+
+    def test_mounted_api_does_not_bypass_sql_authorizer():
+        r=mounted_client().post('/api/labs/sql-injection-easy/attempt',json={'username':"' UNION SELECT 3,sqlite_version(),''--"})
+        value=r.json()
+>       assert not value['success']
+E       assert not True
+
+backend\tests\test_review_app.py:161: AssertionError
+_______________ test_mounted_api_does_not_bypass_response_guard _______________
+
+    def test_mounted_api_does_not_bypass_response_guard():
+        r=mounted_client(1024).get('/api/labs/reflected-xss-easy/render',params={'query':'a'*2000})
+>       assert r.status_code==503
+E       assert 200 == 503
+E        +  where 200 = namespace(status_code=200, text="<!doctype html><html><head><meta charset='utf-8'><style>body{font-family:sans-serif;p...�� ����Դϴ�</p></body></html>", json=<function TestClient.request.<locals>.invoke.<locals>.<lambda> at 0x0000028326F4A980>).status_code
+
+backend\tests\test_review_app.py:167: AssertionError
+=========================== short test summary info ===========================
+FAILED backend/tests/test_review_app.py::test_mounted_api_does_not_bypass_input_guard
+FAILED backend/tests/test_review_app.py::test_mounted_api_does_not_bypass_sql_authorizer
+FAILED backend/tests/test_review_app.py::test_mounted_api_does_not_bypass_response_guard
+3 failed, 11 passed in 4.01s

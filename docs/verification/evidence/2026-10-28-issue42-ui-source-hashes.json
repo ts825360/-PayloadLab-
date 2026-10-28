@@ -1,0 +1,13 @@
+{
+  "base_sha": "64c9cb141108cafa5c6d215fc9eb4981c100b9b7",
+  "uncommitted": true,
+  "sha256": {
+    "frontend/src/ExecutionCanvas.jsx": "ddbd8097c78e45733f8fa6dcfa3a62a1f75b0738b2bb0022714e59df106a6434",
+    "frontend/src/api.js": "415494b521da567bf4ff1e5ec4245479a6229f99d4968018e228ae2c7b98b043",
+    "frontend/src/learning-content.js": "4a3172ea6f7a63d8cb7cdb85014f3686d05c08218eb5e46d03d43f925c6ea9ce",
+    "frontend/src/resource-limit-view.test.jsx": "78d704d46d93e337c6540b8315e2e5f933db57f394c579b1149f3373009f417f",
+    "frontend/src/api-limit-feedback.test.js": "b17eea4813e0d80b66d01150c69d1d88f06237cb018f2408c769737e37f288bf",
+    "frontend/vite.issue42-review.config.js": "1f46dc4d081b74a33c948b74fc8ae7f690f5d6bbcd6c8ef759d6697d4f384ba2",
+    "docs/verification/scripts/issue42_review_server.py": "609100417970e6bdf0fdcc4f783c280fe6a46a6679eaeb17a12d554355ef7c7d"
+  }
+}

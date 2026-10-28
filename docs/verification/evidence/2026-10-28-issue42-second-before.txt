@@ -1,0 +1,46 @@
+.............FFF                                                         [100%]
+================================== FAILURES ===================================
+__________ test_many_short_queries_cannot_skip_shared_vm_accounting ___________
+
+    def test_many_short_queries_cannot_skip_shared_vm_accounting():
+        limits=SQLLimits(256,1000,128,8192,32768,32768,8192)
+        budget=SQLBudget(limits)
+        results=[run('SELECT 1',limits,budget) for _ in range(60)]
+>       assert any(r.reason=='vm' for r in results)
+E       assert False
+E        +  where False = any(<generator object test_many_short_queries_cannot_skip_shared_vm_accounting.<locals>.<genexpr> at 0x0000014BBB77C930>)
+
+backend\tests\test_sql_limits.py:117: AssertionError
+_________ test_authorizer_ignore_cannot_silently_return_modified_rows _________
+
+    def test_authorizer_ignore_cannot_silently_return_modified_rows():
+        def seed(c):
+            c.execute('CREATE TABLE users(username TEXT)')
+            c.execute("INSERT INTO users VALUES('admin')")
+        def ignore_read(action,*args):
+            return sqlite3.SQLITE_IGNORE if action==sqlite3.SQLITE_READ else sqlite3.SQLITE_OK
+        result=run_bounded_query('SELECT username FROM users',LIMITS,ignore_read,initialize=seed)
+>       assert result.status=='blocked'
+E       AssertionError: assert 'ok' == 'blocked'
+E
+E         - blocked
+E         + ok
+
+backend\tests\test_sql_limits.py:129: AssertionError
+_______ test_authorizer_failure_is_a_controlled_block_not_syntax_error ________
+
+    def test_authorizer_failure_is_a_controlled_block_not_syntax_error():
+        def broken(*args): raise RuntimeError('/private/policy.py')
+        result=run_bounded_query('SELECT 1',LIMITS,broken)
+>       assert result.status=='blocked'
+E       AssertionError: assert 'syntax_error' == 'blocked'
+E
+E         - blocked
+E         + syntax_error
+
+backend\tests\test_sql_limits.py:136: AssertionError
+=========================== short test summary info ===========================
+FAILED backend/tests/test_sql_limits.py::test_many_short_queries_cannot_skip_shared_vm_accounting
+FAILED backend/tests/test_sql_limits.py::test_authorizer_ignore_cannot_silently_return_modified_rows
+FAILED backend/tests/test_sql_limits.py::test_authorizer_failure_is_a_controlled_block_not_syntax_error
+3 failed, 13 passed in 0.48s

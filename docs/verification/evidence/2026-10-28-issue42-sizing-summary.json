@@ -1,0 +1,27 @@
+{
+  "route_samples": 916,
+  "normal_route_samples": 624,
+  "normal_max_input": 42,
+  "normal_max_response": 5107,
+  "envelope_max_response": 107526,
+  "max_request_ascii_shape": 25028,
+  "max_sql_vm": 347,
+  "max_request_vm_upper": 800,
+  "max_sql_rows": 83,
+  "max_sql_result": 1345,
+  "max_route_ms": 4.735599999548867,
+  "route_errors": 0,
+  "guard_events": 0,
+  "proposal": {
+    "string_codepoints": 2000,
+    "history_count": 40,
+    "history_total_codepoints": 2000,
+    "body_bytes": 32768,
+    "sql_vm_shared_request": 8192,
+    "sql_request_deadline_ms": 80,
+    "returned_rows": 128,
+    "single_sql_value_bytes": 8192,
+    "sql_result_bytes": 32768,
+    "api_response_bytes": 262144
+  }
+}

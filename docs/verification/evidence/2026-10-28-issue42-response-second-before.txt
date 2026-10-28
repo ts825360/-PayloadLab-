@@ -1,0 +1,137 @@
+........F.FFF                                                            [100%]
+================================== FAILURES ===================================
+_ test_incomplete_or_invalid_stream_is_never_normalized_to_success[messages0] _
+
+messages = [{'headers': [], 'status': 200, 'type': 'http.response.start'}, {'body': b'partial', 'more_body': True, 'type': 'http.response.body'}]
+
+    @pytest.mark.parametrize('messages', [
+        [{'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.body','body':b'partial','more_body':True}],
+        [{'type':'http.response.body','body':b'body before start'}],
+        [{'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.body','body':b'wrong'}],
+    ])
+    def test_incomplete_or_invalid_stream_is_never_normalized_to_success(messages):
+        async def app(scope,receive,send):
+            for message in messages: await send(message)
+>       with pytest.raises(RuntimeError): asyncio.run(invoke(app))
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+backend\tests\test_response_limits.py:96: Failed
+_ test_incomplete_or_invalid_stream_is_never_normalized_to_success[messages2] _
+
+messages = [{'headers': [], 'status': 200, 'type': 'http.response.start'}, {'headers': [], 'status': 200, 'type': 'http.response.start'}, {'body': b'wrong', 'type': 'http.response.body'}]
+
+    @pytest.mark.parametrize('messages', [
+        [{'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.body','body':b'partial','more_body':True}],
+        [{'type':'http.response.body','body':b'body before start'}],
+        [{'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.start','status':200,'headers':[]}, {'type':'http.response.body','body':b'wrong'}],
+    ])
+    def test_incomplete_or_invalid_stream_is_never_normalized_to_success(messages):
+        async def app(scope,receive,send):
+            for message in messages: await send(message)
+>       with pytest.raises(RuntimeError): asyncio.run(invoke(app))
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+backend\tests\test_response_limits.py:96: Failed
+_________ test_no_buffered_response_is_sent_after_observed_disconnect _________
+
+    def test_no_buffered_response_is_sent_after_observed_disconnect():
+        async def scenario():
+            sent=[]
+            async def app(scope,receive,send):
+                await send({'type':'http.response.start','status':200,'headers':[]})
+                await send({'type':'http.response.body','body':b'partial','more_body':True})
+                assert (await receive())['type']=='http.disconnect'
+            async def receive(): return {'type':'http.disconnect'}
+            async def send(message): sent.append(message)
+            await ResponseGuard(app,1024)({'type':'http','method':'GET','path':'/labs/sample/render'},receive,send)
+            assert sent==[]
+>       asyncio.run(scenario())
+
+backend\tests\test_response_limits.py:110:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:725: in run_until_complete
+    return future.result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        sent=[]
+        async def app(scope,receive,send):
+            await send({'type':'http.response.start','status':200,'headers':[]})
+            await send({'type':'http.response.body','body':b'partial','more_body':True})
+            assert (await receive())['type']=='http.disconnect'
+        async def receive(): return {'type':'http.disconnect'}
+        async def send(message): sent.append(message)
+        await ResponseGuard(app,1024)({'type':'http','method':'GET','path':'/labs/sample/render'},receive,send)
+>       assert sent==[]
+E       AssertionError: assert [{'headers': ...sponse.body'}] == []
+E
+E         Left contains 2 more items, first extra item: {'headers': [(b'content-length', b'7')], 'status': 200, 'type': 'http.response.start'}
+E         Use -v to get more diff
+
+backend\tests\test_response_limits.py:109: AssertionError
+_ test_real_starlette_stream_disconnect_discards_prefix_and_closes_generator __
+
+    def test_real_starlette_stream_disconnect_discards_prefix_and_closes_generator():
+        async def scenario():
+            yielded=asyncio.Event()
+            closed=[]
+            async def body():
+                try:
+                    yielded.set()
+                    yield b'private prefix'
+                    await asyncio.sleep(10)
+                finally: closed.append(True)
+            sent=[]
+            async def receive():
+                await yielded.wait()
+                return {'type':'http.disconnect'}
+            async def send(message): sent.append(message)
+            app=StreamingResponse(body())
+            await ResponseGuard(app,1024)({'type':'http','method':'GET','path':'/labs/sample/render'},receive,send)
+            assert sent==[]
+            assert closed==[True]
+>       asyncio.run(scenario())
+
+backend\tests\test_response_limits.py:132:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+..\..\..\..\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:725: in run_until_complete
+    return future.result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        yielded=asyncio.Event()
+        closed=[]
+        async def body():
+            try:
+                yielded.set()
+                yield b'private prefix'
+                await asyncio.sleep(10)
+            finally: closed.append(True)
+        sent=[]
+        async def receive():
+            await yielded.wait()
+            return {'type':'http.disconnect'}
+        async def send(message): sent.append(message)
+        app=StreamingResponse(body())
+        await ResponseGuard(app,1024)({'type':'http','method':'GET','path':'/labs/sample/render'},receive,send)
+>       assert sent==[]
+E       AssertionError: assert [{'headers': ...sponse.body'}] == []
+E
+E         Left contains 2 more items, first extra item: {'headers': [(b'content-length', b'14')], 'status': 200, 'type': 'http.response.start'}
+E         Use -v to get more diff
+
+backend\tests\test_response_limits.py:130: AssertionError
+=========================== short test summary info ===========================
+FAILED backend/tests/test_response_limits.py::test_incomplete_or_invalid_stream_is_never_normalized_to_success[messages0]
+FAILED backend/tests/test_response_limits.py::test_incomplete_or_invalid_stream_is_never_normalized_to_success[messages2]
+FAILED backend/tests/test_response_limits.py::test_no_buffered_response_is_sent_after_observed_disconnect
+FAILED backend/tests/test_response_limits.py::test_real_starlette_stream_disconnect_discards_prefix_and_closes_generator
+4 failed, 9 passed in 2.20s
