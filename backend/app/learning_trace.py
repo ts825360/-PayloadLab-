@@ -6,6 +6,7 @@ matched below; arbitrary SQL receives actual query/error/rows, not a guessed tre
 """
 import re
 import sqlite3
+from app.core.sql_context import execute_active_sql, active_sql_failure
 from types import SimpleNamespace
 
 from app.labs import idor, reflected_xss as xss, sql_injection as sql
@@ -41,8 +42,16 @@ def sql_tree(query, raw):
         return None
     name['text'] = f"username = '{match[1]}'"
     name['values'] = [u[1] == match[1] for u in sql._SEED_USERS]
-    with sqlite3.connect(':memory:') as conn:
-        constant = bool(conn.execute('SELECT ' + match[3]).fetchone()[0])
+    guarded = execute_active_sql('SELECT ' + match[3])
+    if guarded is not None:
+        if guarded.status != 'ok': return None
+        constant = bool(guarded.rows[0][0])
+    else:
+        conn = sqlite3.connect(':memory:')
+        try:
+            constant = bool(conn.execute('SELECT ' + match[3]).fetchone()[0])
+        finally:
+            conn.close()
     condition = leaf('comparison', match[3], [constant, constant])
     op = match[2].upper()
     if match[4]:
@@ -127,22 +136,65 @@ def suffix_is_commented(prefix, value):
     return mode == 'comment'
 
 
+def _stopped_sql_trace(raw, filtered, query, medium, analysis, outcome):
+    blocked = outcome.status == 'blocked'
+    title = '허용된 실습 연산 범위를 확인하세요' if blocked else '실습 계산 한도에 도달했어요'
+    reasons = {
+        'vm': 'SQL 계산량이 실습 한도를 넘어 중단됐습니다.',
+        'time': 'SQL 처리 시간이 실습 예산을 넘어 중단됐습니다.',
+        'rows': '반환할 행 개수가 실습 한도를 넘어 중단됐습니다.',
+        'cell_bytes': '결과 문자열 하나가 실습 크기 한도를 넘었습니다.',
+        'result_bytes': '조회 결과의 전체 크기가 실습 한도를 넘었습니다.',
+        'statement_bytes': '조립한 SQL 문장이 실습 크기 한도를 넘었습니다.',
+        'engine_value_or_statement': 'SQL 문장이나 결과 값이 엔진 크기 한도를 넘었습니다.',
+    }
+    what = '이 SQL의 연산은 현재 검토 정책에서 허용하지 않습니다.' if blocked else reasons.get(outcome.reason,'SQL 처리가 실습 자원 한도에서 중단됐습니다.')
+    why = '이 상태는 SQL 문법 오류나 계정 조건 불충족과 다릅니다. 일부 결과를 성공으로 표시하지 않습니다.'
+    actions = {
+        'vm': '추가한 계산식이나 UNION 하나를 줄이고 다시 시도하세요.',
+        'time': '입력을 짧게 줄여 다시 시도하고, 반복되면 팀에 알려주세요.',
+        'rows': 'UNION으로 추가하는 행을 줄이고 반환 개수를 다시 관찰하세요.',
+        'cell_bytes': 'SQL 함수가 만드는 문자열 길이를 줄여 다시 관찰하세요.',
+        'result_bytes': '반환할 행이나 문자열 길이를 줄여 다시 관찰하세요.',
+        'statement_bytes': '입력 길이를 줄이고 조립되는 문장을 다시 확인하세요.',
+    }
+    next_action = '방금 추가한 함수나 조회 구문 하나를 빼고 다시 관찰하세요.' if blocked else actions.get(outcome.reason,'최근 추가한 입력 부분 하나를 빼고 다시 시도하세요.')
+    return dict(category='sql_injection', raw_input=raw, effective_input=filtered,
+        phase='analysis' if analysis else 'result',
+        analysis_status=outcome.status if analysis else None,
+        composition=dict(prefix=sql.QUERY_PREFIX, value=filtered, suffix=sql.QUERY_SUFFIX,
+                         full=query, ranges=dict(input=dict(start=0,end=len(filtered)))),
+        execution=None if analysis else dict(status=outcome.status,count=0,error=what,label='SQLite 제한 상태'),
+        lens=lens('operation_blocked' if blocked else 'resource_limit',title,what,why,next_action,0,len(filtered),'limits'),
+        condition_tree=None, table=None, interpretation_limited=True,
+        code=sql._CODE_SNIPPET_MEDIUM if medium else sql._CODE_SNIPPET_EASY)
+
+
 def sql_trace(raw, medium, analysis=False):
     filtered = sql._strip_uppercase_or(raw) if medium else raw
     query = sql.compose_query(filtered)
-    conn = sql._seed_db()
     error, rows = '', []
-    try:
-        if analysis:
-            # Compile only: EXPLAIN returns bytecode, not login rows.
-            conn.execute('EXPLAIN ' + query).fetchall()
-        else:
-            rows = conn.execute(query).fetchall()
-    except sqlite3.Error as exc:
-        error = str(exc)
-    finally:
-        conn.close()
+    guarded = execute_active_sql(query, initialize=sql._initialize_db, compile_only=analysis)
+    if guarded is not None:
+        if guarded.status in ('resource_limit', 'blocked'):
+            return _stopped_sql_trace(raw,filtered,query,medium,analysis,guarded)
+        rows = guarded.rows
+        if guarded.status != 'ok': error = '조립된 SQL 문장을 해석하지 못했습니다.'
+    else:
+        conn = sql._seed_db()
+        try:
+            if analysis:
+                conn.execute('EXPLAIN ' + query).fetchall()
+            else:
+                rows = conn.execute(query).fetchall()
+        except sqlite3.Error as exc:
+            error = str(exc)
+        finally:
+            conn.close()
     tree = None if error or analysis else sql_tree(query, filtered)
+    failure = active_sql_failure()
+    if failure is not None and failure.status in ('resource_limit','blocked'):
+        return _stopped_sql_trace(raw,filtered,query,medium,analysis,failure)
     ranges = dict(input=dict(start=0, end=len(filtered)))
     if tree:
         quote = filtered.find("'")

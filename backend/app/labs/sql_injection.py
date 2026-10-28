@@ -1,5 +1,6 @@
 import re
 import sqlite3
+from app.core.sql_context import execute_active_sql
 from typing import Callable, Optional
 
 from app.core.lab import (
@@ -22,11 +23,15 @@ _SEED_USERS = [
 ]
 
 
-def _seed_db() -> sqlite3.Connection:
-    conn = sqlite3.connect(":memory:")
+def _initialize_db(conn):
     conn.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
     conn.executemany("INSERT INTO users (id, username, password) VALUES (?, ?, ?)", _SEED_USERS)
     conn.commit()
+
+
+def _seed_db() -> sqlite3.Connection:
+    conn = sqlite3.connect(":memory:")
+    _initialize_db(conn)
     return conn
 
 
@@ -50,8 +55,11 @@ def compose_query(filtered: str) -> str:
 def _run_login_query(username: str, filter_fn: Callable[[str], str]) -> tuple[bool, str, list[tuple]]:
     """공격자는 비밀번호를 모른다고 가정 -- 항상 틀린 비밀번호로 시도."""
     filtered = filter_fn(username)
-    conn = _seed_db()
     query = compose_query(filtered)
+    guarded = execute_active_sql(query, initialize=_initialize_db)
+    if guarded is not None:
+        return bool(guarded.rows), query, guarded.rows
+    conn = _seed_db()
     try:
         rows = conn.execute(query).fetchall()
     except sqlite3.Error:

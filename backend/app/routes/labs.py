@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse
 
 from app.core.lab import AttemptResult, LabMetadata
+from app.core.sql_context import active_sql_failure
 from app.labs import get_lab, list_labs
 from app.learning_trace import build_learning_trace, build_input_analysis
 
@@ -28,6 +29,14 @@ def attempt_lab(lab_id: str, payload: dict) -> AttemptResult:
         raise HTTPException(status_code=404, detail=f"랩을 찾을 수 없습니다: {lab_id}")
     result = lab.attempt(payload)
     result.learning_trace = build_learning_trace(lab_id, payload, result)
+    failure = active_sql_failure()
+    if failure is not None and failure.status in ('resource_limit', 'blocked'):
+        result.success = False
+        result.flow_nodes = result.flow_edges = result.code_snippet = None
+        result.lens_steps = None
+        result.lens_passed_count = 0
+        result.lens_rule_id = 'resource_limit' if failure.status == 'resource_limit' else 'operation_blocked'
+        result.lens_message = result.learning_trace['lens']['what']
     return result
 
 
