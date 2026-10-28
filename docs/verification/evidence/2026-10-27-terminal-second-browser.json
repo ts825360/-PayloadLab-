@@ -1,0 +1,166 @@
+{
+  "baseline": "71c4daa6f600ab176c15f9472e8b3cddaaa1a653 plus uncommitted terminal changes",
+  "before": {
+    "wide": {
+      "height": 78,
+      "mirrorHeight": 78,
+      "scrollHeight": 78,
+      "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+      "width": 521
+    },
+    "narrow": {
+      "height": 78,
+      "mirrorHeight": 78,
+      "scrollHeight": 208,
+      "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+      "width": 158
+    }
+  },
+  "after": [
+    {
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "state": {
+        "height": 78,
+        "inputWidth": 521.0499877929688,
+        "mirrorHeight": 78,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 521.0499877929688,
+        "pageWidth": 1280,
+        "scrollHeight": 78,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 1280
+      }
+    },
+    {
+      "size": {
+        "width": 320,
+        "height": 568
+      },
+      "state": {
+        "height": 144,
+        "inputWidth": 157.91250610351562,
+        "mirrorHeight": 144,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 157.91250610351562,
+        "pageWidth": 320,
+        "scrollHeight": 208,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 320
+      }
+    },
+    {
+      "size": {
+        "width": 1280,
+        "height": 900
+      },
+      "state": {
+        "height": 78,
+        "inputWidth": 521.0499877929688,
+        "mirrorHeight": 78,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 521.0499877929688,
+        "pageWidth": 1280,
+        "scrollHeight": 78,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 1280
+      }
+    },
+    {
+      "size": {
+        "width": 600,
+        "height": 700
+      },
+      "state": {
+        "height": 78,
+        "inputWidth": 437.9125061035156,
+        "mirrorHeight": 78,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 437.9125061035156,
+        "pageWidth": 600,
+        "scrollHeight": 78,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 600
+      }
+    },
+    {
+      "size": {
+        "width": 601,
+        "height": 700
+      },
+      "state": {
+        "height": 130,
+        "inputWidth": 292.51251220703125,
+        "mirrorHeight": 130,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 292.51251220703125,
+        "pageWidth": 602,
+        "scrollHeight": 130,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 602
+      }
+    },
+    {
+      "size": {
+        "width": 760,
+        "height": 700
+      },
+      "state": {
+        "height": 78,
+        "inputWidth": 450.9125061035156,
+        "mirrorHeight": 78,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 450.9125061035156,
+        "pageWidth": 760,
+        "scrollHeight": 78,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 760
+      }
+    },
+    {
+      "size": {
+        "width": 761,
+        "height": 700
+      },
+      "state": {
+        "height": 144,
+        "inputWidth": 153.1125030517578,
+        "mirrorHeight": 144,
+        "mirrorScrollTop": 0,
+        "mirrorWidth": 153.1125030517578,
+        "pageWidth": 762,
+        "scrollHeight": 208,
+        "scrollTop": 0,
+        "value": "cat /lab/보고서🔒.txt 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 긴 입력 확인 ",
+        "width": 762
+      }
+    }
+  ],
+  "stress": {
+    "valueLength": 1000,
+    "end": {
+      "height": 144,
+      "mirrorScrollTop": 5082.39990234375,
+      "scrollHeight": 5226,
+      "scrollTop": 5082.39990234375,
+      "selection": 1000,
+      "valueLength": 1000
+    },
+    "home": {
+      "mirrorScrollTop": 3.200000047683716,
+      "scrollTop": 3.200000047683716,
+      "valuePreserved": true
+    },
+    "draftPreservedAfterOld": true,
+    "oldTooltip": "현재 사용자에게 읽기가 거부된 이유를 확인해요\nstudent는 /lab/report.txt의 소유자 mentor와 다르고, -rw-------(0600)은 다른 사용자 읽기를 허용하지 않아요. 명령 오타가 아니라 이 가상 모형의 읽기 거부이며 실제 OS 권한은 바뀌지 않아요."
+  },
+  "method": "actual viewport resize with unchanged value, keyboard scrolling, historical diagnostic focus; not actual touch/hover/200 percent zoom"
+}

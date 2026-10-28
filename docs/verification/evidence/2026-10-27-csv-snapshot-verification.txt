@@ -1,0 +1,7 @@
+test_committed_source_bytes_and_105_original_builder_proofs (__main__.SnapshotVerificationTests.test_committed_source_bytes_and_105_original_builder_proofs) ... ok
+test_original_builder_reproduces_all_five_artifacts (__main__.SnapshotVerificationTests.test_original_builder_reproduces_all_five_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.645s
+
+OK

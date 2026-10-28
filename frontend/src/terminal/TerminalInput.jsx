@@ -9,12 +9,17 @@ export default function TerminalInput({value='',prompt='student@practice:/lab$ '
   useLayoutEffect(()=>{
     const field=fieldRef.current;
     if(!field)return;
-    field.style.height='auto';
-    field.style.height=`${Math.min(144,Math.max(26,field.scrollHeight))}px`;
-    if(mirrorRef.current){
-      mirrorRef.current.scrollTop=field.scrollTop;
-      mirrorRef.current.scrollLeft=field.scrollLeft;
-    }
+    const resize=()=>{
+      field.style.height='auto';
+      field.style.height=`${Math.min(144,Math.max(26,field.scrollHeight))}px`;
+      if(mirrorRef.current){
+        mirrorRef.current.scrollTop=field.scrollTop;
+        mirrorRef.current.scrollLeft=field.scrollLeft;
+      }
+    };
+    resize();
+    window.addEventListener('resize',resize);
+    return ()=>window.removeEventListener('resize',resize);
   },[value]);
   const length=Array.from(value).length;
   const diagnostic=diagnostics.find(item=>item.targets?.some(target=>

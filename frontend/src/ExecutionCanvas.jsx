@@ -104,9 +104,9 @@ function Ownership({ trace }) {
     <div className="ownership-map">
       <div className="relation-top">
         <div className="entity mine">
-          <span>로그인 세션</span>
+          <span>교육용 현재 사용자</span>
           <strong>사용자 {r.current_user}</strong>
-          <small>서버가 알고 있는 나</small>
+          <small>고정된 더미 사용자 · 실제 인증 아님</small>
         </div>
         <div className="relation-link">
           <span>

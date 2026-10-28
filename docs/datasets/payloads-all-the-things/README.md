@@ -14,7 +14,7 @@
 | `ssrf.csv` | 24 | 8 | 1 | 33 |
 | 전체 | 101 | 32 | 4 | 137 |
 
-SQL은 common/MySQL/MSSQL/PostgreSQL/Oracle/SQLite 예시를 포함합니다. 우회·변형은 별도 공격 유형이 아니라 `technique`, `variant_type`으로 표현합니다. 현재 서비스의 SQL/XSS/IDOR Easy·Normal 지원 범위를 이 자료가 확장하는 것은 아닙니다. CMDi·SSRF 구현이나 모든 DBMS의 실행 지원이 완료됐다는 의미도 아닙니다.
+SQL은 common/MySQL/MSSQL/PostgreSQL/Oracle/SQLite 예시를 포함합니다. 우회·변형은 별도 공격 유형이 아니라 `technique`, `variant_type`으로 표현합니다. 현재 서비스는 SQL/XSS/IDOR/SSRF/CMDi/Linux Easy·Normal과 권한 Easy의13개 랩을 제공하지만, 이 CSV는 런타임에 자동 연결되지 않습니다. CSV의 전체 기법이나 모든 DBMS를 실습이 해석·실행한다는 의미가 아닙니다. 유형별 연결과 검증 한계는 [#19 교육 범위 검토](../../research/csv-education-scope.md)를 참조하세요.
 
 자료는 검토 가능한 시작 묶음으로 제한했습니다. 원본의 공격 자동화 도구, 키로거·쿠키 유출, 셸 업로드·리버스 셸, 파괴적 명령과 큰 생성 프로그램은 이 초안에 넣지 않았습니다. 코드 블록 전체를 무조건 공격으로 라벨링하지 않았습니다. 정상 웹 서버 코드·공격 뒤 출력 결과는 수집 대상이 아닙니다. 일부 공격문은 원문에 담긴 템플릿 또는 SQL 코드 조각이며 완성된 공격 입력이 아닐 수 있습니다.
 
@@ -72,3 +72,12 @@ CSV는 UTF-8 BOM과 표준 quoting을 사용합니다. **Excel에서 더블클�
 ## 라이선스
 
 원본은 MIT, Copyright (c) 2019 Swissky입니다. [LICENSE](LICENSE)의 원문 고지를 함께 배포합니다. 원본 발췌를 수정하지 않았고 CSV 분류·설명·정상 예시를 추가했습니다. 별도 작성 부분은 Copyright (c) 2026 PayloadLab contributors, MIT로 제공합니다. 라이선스 허용은 임의의 외부 시스템에 공격할 권한을 뜻하지 않습니다.
+
+
+## 2026-10-27 SQLite 참고 문서 발췌본
+
+Windows Defender가 전체 SQLite 참고 Markdown 안의 PHP 백도어 예시를 탐지해 파일을 조치했다. 보호 설정을 바꾸거나 전체 파일을 복원하는 대신, 현재 CSV가 사용하는 메타데이터 조회문4개만 같은 줄35/43/44/45에 남긴 명시적 발췌본으로 교체했다. `sources/SQL Injection__SQLite Injection.md`의 머리말은 전체 원문이 아님을 밝힌다. 나머지9개 Markdown은 기존 전체 스냅샷이다.
+
+CSV4개의137행·문자열·라벨·source_url·source_commit은 바이트 단위로 유지했다. manifest는 발췌본의 실제 SHA-256과 바이트 위치로 재생성했다. `sources/SQL Injection__SQLite Injection.provenance.json`은 원래 전체 문서 해시·원래4개 바이트/줄 근거·발췌본 해시를 연결한다. 전체 원문과 동일한 파일이라고 주장하지 않는다.
+
+일반 `test_dataset.py`7개를 이 작업 폴더에서 다시 실행할 수 있다. 과거 전체 원문의 Git 스냅샷 재현은 별도 검증이며, 현재 발췌본 manifest 검사는 일반 데이터 검사로 구분한다.

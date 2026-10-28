@@ -1,0 +1,12 @@
+test_offline_builder_exists (__main__.BuildContractTests.test_offline_builder_exists) ... ok
+test_exact_schema_and_bom (__main__.DatasetTests.test_exact_schema_and_bom) ... ok
+test_generator_reproduces_committed_artifacts_offline (__main__.DatasetTests.test_generator_reproduces_committed_artifacts_offline) ... ok
+test_platform_coverage_variant_families_and_multiline (__main__.DatasetTests.test_platform_coverage_variant_families_and_multiline) ... ok
+test_source_bytes_substrings_hashes_and_line_citations (__main__.DatasetTests.test_source_bytes_substrings_hashes_and_line_citations) ... ok
+test_uncertain_review_only_and_documented_limits (__main__.DatasetTests.test_uncertain_review_only_and_documented_limits) ... ok
+test_unique_ids_counts_and_required_metadata (__main__.DatasetTests.test_unique_ids_counts_and_required_metadata) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.673s
+
+OK

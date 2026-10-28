@@ -1,0 +1,2 @@
+137 row metadata checks, 10 committed source hashes and 105 committed byte/line proofs passed. Working source files available: 9/10. CSV/manifest unchanged: 5. Cross-label equal-string groups: 1. No payload executed.
+Working-copy full reproduction incomplete: sources/SQL Injection__SQLite Injection.md

@@ -71,7 +71,7 @@ export const CATEGORIES = [
     title:'파일을 찾고, 정보를 읽는 첫 명령',
     description:'빈칸에 맞는 명령어를 작성하고 가상 폴더의 결과를 확인해요.',
     field:'command',fieldLabel:'명령어 빈칸',placeholder:'목록을 보여주는 명령어는 무엇일까요?',prefix:'',suffix:'',composition:'명령',
-    context:'가상 /lab 폴더 연습입니다. Easy는 목록, Normal은 소유자와 권한까지 확인해요.',lesson:'commands',simulated:true,terminal:true,
+    context:'가상 /lab 폴더 연습입니다. Easy는 목록, Normal은 소유자와 권한까지 확인해요.',lesson:'linux',simulated:true,terminal:true,
   },
   {
     id:'permissions',label:'권한상승 기초',short:'PERM',subtitle:'가상 사용자 · 접근 권한',
@@ -82,6 +82,13 @@ export const CATEGORIES = [
   },
 ];
 export const LESSONS = {
+  linux: {
+    title:'명령 조각과 퀴즈 목표를 연결해요',
+    lead:'ls는 목록, -l은 긴 목록 옵션, /lab은 목록을 볼 대상 폴더예요.',
+    example:'ls -l /lab',
+    body:'Easy는 ls 또는 ls /lab으로 이름 목록을, Normal은 ls -l /lab으로 권한·소유자·경로를 간략히 표시해요. 이 퀴즈는 공백으로 나눈 조각과 순서를 정해진 답에 비교합니다. 실제 셸이나 파일을 조회하지 않으므로, 퀴즈 답과 다르다고 실제 Linux의 문법 오류라는 뜻은 아니에요.',
+    question:'이번 목표는 이름만 보는 목록인가요, 권한과 소유자도 보는 목록인가요?',
+  },
   strings: {
     title: "작은따옴표는 값의 경계예요",
     lead: "SQL은 작은따옴표 안의 내용을 문자열 값으로 읽습니다.",
@@ -134,7 +141,7 @@ export function statusLabel(status) {
       unrecognized: "태그 규칙 미충족",
       exposed: "타인 주문 노출",
       own: "본인 주문 조회",
-      blocked: "조회 차단",
+      blocked: "처리 차단",
       resource_limit: "실습 자원 한도",
       missing: "주문 없음",
       fetched:'모의 요청 도달',injected:'추가 명령 감지',command_ok:'가상 명령 처리',unsupported:'지원 범위 밖',permission_denied:'읽기 권한 없음',elevated:'가상 관리자 전환',quiz_correct:'빈칸 목표 충족',quiz_incorrect:'명령을 다시 관찰해요',allowed:'접근 허용',denied:'접근 거부',success:'목표 확인',invalid_input:'입력 형태 확인',normal_input:'일반 입력',public:'공개 목적지',internal:'내부 목적지',simulated:'모의 결과',

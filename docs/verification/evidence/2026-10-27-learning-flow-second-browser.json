@@ -1,0 +1,60 @@
+{
+  "before": {
+    "result": "시도 2 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls -l /lab\n-rw------- mentor /lab/report.txt\n-rw-r--r-- student /lab/readme.txt\n\n↳ Lens · 가상 명령 처리\n가상 명령과 이번 결과를 연결해요\n\n내 명령 입력은 'ls -l /lab'입니다. 기록에서 복원한 현재 가상 사용자는 student예요. 'ls -l /lab'가 가리킨 /lab/report.txt, /lab/readme.txt의 목록을 표시했어요. 권한·소유자·경로를 간략히 적은 가상 긴 목록이에요.",
+    "guide": "Easy · 따라 하며 이해하기\n\n입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.\n\n2 / 5\n\n파일 소유자와 권한 읽기\n\nls -l로 파일의 소유자와 r·w·x 권한을 확인하세요.\n\nls -l /lab/report.txt\n입력 예시 넣기\n입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.\n\nr은 읽기, w는 쓰기, x는 실행이에요. 파일 소유자와 현재 사용자를 비교하면 접근 실패의 이유를 찾을 수 있어요.\n\n아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.\n\n코드와 실행 결과에서 위 내용을 직접 관찰했어요\n다음 단계"
+  },
+  "checks": [
+    {
+      "case": "analysis-with-ack",
+      "blocked": true
+    },
+    {
+      "case": "execution-clears-ack",
+      "blocked": true
+    },
+    {
+      "case": "previous-step-result",
+      "blocked": true,
+      "guide": "Easy · 따라 하며 이해하기\n\n2 / 3\n\n따옴표 경계 확인하기\n\n이름 뒤에 작은따옴표 하나를 더하고 실행해보세요. 완성된 SQL과 오류 위치를 비교하세요.\n\nadmin'\n입력 예시 넣기\n입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.\n\n예상한 문법 오류도 관찰 결과예요. 입력의 따옴표가 문자열을 닫으면서 뒤에 붙는 문장과 짝이 달라졌어요.\n\n아직 이 단계의 실행 근거가 없어요. 직접 실행하고 코드와 결과를 비교해보세요. 자유롭게 다른 입력을 시도해도 좋아요.\n\n코드와 실행 결과에서 위 내용을 직접 관찰했어요\n다음 단계"
+    },
+    {
+      "case": "edited-input-not-executed",
+      "blocked": true
+    },
+    {
+      "case": "supported-directory-listing-after-fix",
+      "nextEnabled": true,
+      "guide": "Easy · 따라 하며 이해하기\n\n입력을 만들고 실행한 뒤, 코드와 결과에서 관찰한 내용을 확인하며 진행해요.\n\n2 / 5\n\n파일 소유자와 권한 읽기\n\nls -l로 파일의 소유자와 r·w·x 권한을 확인하세요.\n\nls -l /lab/report.txt\n입력 예시 넣기\n입력창만 채워요. 내용을 확인·수정하고 직접 실행하세요.\n\nr은 읽기, w는 쓰기, x는 실행이에요. 파일 소유자와 현재 사용자를 비교하면 접근 실패의 이유를 찾을 수 있어요.\n\n이번 실행에서 단계의 관찰 근거를 확인할 수 있어요.\n\n코드와 실행 결과에서 위 내용을 직접 관찰했어요\n다음 단계"
+    },
+    {
+      "case": "permission-file-control",
+      "command": "pwd",
+      "result": "시도 3 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ pwd\n/lab\n\n↳ Lens · 가상 명령 처리\n가상 명령과 이번 결과를 연결해요\n\n내 명령 입력은 'pwd'입니다. 기록에서 복원한 현재 가상 사용자는 student예요. 'pwd'는 현재 가상 작업 폴더을 확인하는 명령이에요. 그래서 '/lab'를 모의 출력으로 표시했어요.",
+      "nextEnabled": false
+    },
+    {
+      "case": "permission-file-control",
+      "command": "ls -l /lab/report.txt",
+      "result": "시도 4 · 선택한 시도\n종료 코드 0\nstudent@practice:/lab$ ls -l /lab/report.txt\n-rw------- mentor /lab/report.txt\n\n↳ Lens · 가상 명령 처리\n가상 명령과 이번 결과를 연결해요\n\n내 명령 입력은 'ls -l /lab/report.txt'입니다. 기록에서 복원한 현재 가상 사용자는 student예요. 'ls -l /lab/report.txt'가 가리킨 /lab/report.txt의 목록을 표시했어요. 권한·소유자·경로를 간략히 적은 가상 긴 목록이에요.",
+      "nextEnabled": true
+    },
+    {
+      "case": "wrong-final-answer",
+      "blocked": true
+    },
+    {
+      "case": "correct-final-answer",
+      "enabled": true
+    },
+    {
+      "case": "corrected-pwd-wording",
+      "result": "시도 8 · 선택한 시도\n종료 코드 0\nroot@practice:/lab# pwd\n/lab\n\n↳ Lens · 가상 명령 처리\n가상 명령과 이번 결과를 연결해요\n\n내 명령 입력은 'pwd'입니다. 기록에서 복원한 현재 가상 사용자는 root예요. 'pwd'는 현재 가상 작업 폴더를 확인하는 명령이에요. 그래서 '/lab'를 모의 출력으로 표시했어요."
+    },
+    {
+      "case": "permissions-normal",
+      "guide": "Normal은 다음 단계로 준비합니다\n\n권한상승 기초는 Easy에서 사용자·파일 소유자·접근 거부를 먼저 관찰해요. Normal은 구현 예정이며 현재 실행할 수 없어요.",
+      "runButtons": 0
+    }
+  ],
+  "method": "AI actual UI negative controls and listing regression; not human learner review"
+}
