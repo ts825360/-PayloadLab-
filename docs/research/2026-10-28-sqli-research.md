@@ -63,11 +63,6 @@
 - **근거:** DreamHack `simple_sqli`와 `simple_sqli_chatgpt`가 모두 로그인 조건 우회로 시작합니다. 그래서 초보자에게 가장 익숙한 형태로 판단했습니다.
 - **차별점:** DreamHack은 소스 코드를 읽고 플래그를 얻는 것이 목표입니다. PayloadLab은 코드를 몰라도 쿼리가 어떻게 바뀌는지 그림으로 보여 줍니다.
 
-## 3. 남은 질문
-
-- [ ] UNION 단계를 첫 버전에 넣을지, 확장으로 미룰지 (#5에서 결정)
-- [ ] Lens 규칙 SQLI-01~05를 조건 체인으로 어떻게 연결할지 (#32)
-- [ ] 방어 개념을 OWASP SQL Injection Prevention Cheat Sheet 원문 링크로 보강
 
 ## 출처
 
