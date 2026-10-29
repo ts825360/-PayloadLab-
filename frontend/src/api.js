@@ -18,11 +18,25 @@ async function failureMessage(res, fallback) {
     return "입력 전체 크기가 실습 요청 한도를 넘었습니다. 입력을 줄여 다시 시도하세요.";
   if (res.status === 422)
     return "입력 형식·길이·값이 실습 허용 범위를 벗어났습니다. 입력을 확인해 주세요.";
+  if (res.status === 429) {
+    try {
+      const body = await res.json();
+      if (body?.code === "rate_limit") {
+        const retry = res.headers?.get?.("Retry-After");
+        // Reflect only a short, positive integer; never server detail or HTML.
+        if (typeof retry === "string" && /^[1-9]\d{0,5}$/.test(retry))
+          return `요청이 잠시 몰렸습니다. ${Number(retry)}초 뒤 다시 시도해 주세요.`;
+        return "요청이 잠시 몰렸습니다. 잠시 기다린 뒤 다시 시도해 주세요.";
+      }
+    } catch { /* Unrelated/malformed responses stay generic. */ }
+  }
   if (res.status === 503) {
     try {
       const body = await res.json();
       if (body?.code === "response_limit")
         return "조회 결과가 표시 가능한 크기를 넘었습니다. 반환 범위를 줄여 다시 시도하세요.";
+      if (["concurrency_limit", "peer_capacity"].includes(body?.code))
+        return "실습 서버가 사용 중입니다. 잠시 후 다시 시도해 주세요.";
     } catch { /* Keep malformed or unrelated server errors generic. */ }
   }
   return fallback;

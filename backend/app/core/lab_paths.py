@@ -2,7 +2,7 @@
 import re
 
 
-def lab_route(scope):
+def relative_path(scope):
     path = scope.get('path', '')
     root = scope.get('root_path', '').rstrip('/')
     # Some ASGI servers include root_path in path; others already strip it.
@@ -11,4 +11,8 @@ def lab_route(scope):
         path = path[len(root):]
     elif root and path == root:
         path = '/'
-    return re.fullmatch(r'/labs/([^/]+)/(analyze|attempt|render)/?', path)
+    return path
+
+
+def lab_route(scope):
+    return re.fullmatch(r'/labs/([^/]+)/(analyze|attempt|render)/?', relative_path(scope))
