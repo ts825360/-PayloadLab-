@@ -1,0 +1,15 @@
+setUpClass (__main__.SnapshotVerificationTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.SnapshotVerificationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\docs\verification\scripts\csv_snapshot_verification.py", line 33, in setUpClass
+    if path.read_bytes()!=git_bytes(path):raise AssertionError('Working artifact/code differs from selected base: '+name)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Working artifact/code differs from selected base: build_dataset.py
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.710s
+
+FAILED (errors=1)

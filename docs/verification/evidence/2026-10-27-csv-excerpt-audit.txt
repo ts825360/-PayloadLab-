@@ -1,0 +1,1 @@
+137 row metadata checks and 105 current byte/line proofs passed, including 4 excerpt-to-upstream proofs. Working source files available: 10/10. Payload CSV files unchanged; manifest updates explicitly validated. No payload executed.

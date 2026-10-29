@@ -1,0 +1,1 @@
+13 labs / 27 actual route observations accepted; pending analysis and unrelated category rejected; 81 invalid-evidence checks and 18 real-input controls passed. permissions Normal has no lesson.

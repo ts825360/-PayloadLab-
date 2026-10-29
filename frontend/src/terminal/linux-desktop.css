@@ -156,4 +156,11 @@
   .linux-desktop .terminal-input-field { flex-basis:auto; }
   .linux-window-footer > span:last-child,.linux-desktop-caption { display:none; }
 }
+@media(max-width:600px) {
+  .linux-desktop .terminal-input-row { flex-wrap:wrap; gap:0; }
+  .linux-desktop .terminal-input-field { flex-basis:100%; }
+  .linux-desktop .lens-panel > .panel-heading { flex-wrap:wrap; gap:6px; }
+  .linux-desktop .lens-mode-control { flex-shrink:0; margin-left:0; }
+  .linux-desktop :is(.lens-mode-control button,.lens-state) { white-space:nowrap; }
+}
 @media(prefers-reduced-motion:reduce) { .linux-window,.linux-boot { animation:none; } }

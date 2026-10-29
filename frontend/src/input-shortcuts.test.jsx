@@ -54,6 +54,12 @@ it('starts a web input on the same compact first line as its ASCII prompt',()=>{
   expect(input.style.height).toBe('24px');
 });
 
+it('highlights the hostname after an emoji using API codepoint offsets',()=>{
+  const raw='http://😀@localhost/admin';
+  setup({input:raw,trace:{raw_input:raw,effective_input:raw,lens:{title:'호스트 확인',what:'모의 분석',why:'주소 비교',next:'호스트 확인',focus:{start:9,end:18}}}});
+  expect(screen.getByLabelText('입력 위치 설명').querySelector('mark')).toHaveTextContent(/^localhost$/);
+});
+
 it('keeps native Enter, Shift+Enter and Korean composition in the terminal input',()=>{
   const {input,onRun}=setup({category:{id:'permissions',short:'PERM',terminal:true,fieldLabel:'터미널 명령어',field:'command'}});
   expect(screen.getByLabelText('가상 터미널 프롬프트')).toHaveTextContent('student@practice:/lab$');

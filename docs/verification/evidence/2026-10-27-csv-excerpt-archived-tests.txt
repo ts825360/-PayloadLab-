@@ -1,0 +1,12 @@
+test_rejects_105_invented_payload_substrings (__main__.SnapshotNegativeControls.test_rejects_105_invented_payload_substrings) ... ok
+test_rejects_each_changed_output_and_cleans_all_five_temporary_directories (__main__.SnapshotNegativeControls.test_rejects_each_changed_output_and_cleans_all_five_temporary_directories) ... ok
+test_rejects_ten_changed_source_hashes (__main__.SnapshotNegativeControls.test_rejects_ten_changed_source_hashes) ... ok
+test_rejects_ten_missing_in_memory_sources (__main__.SnapshotNegativeControls.test_rejects_ten_missing_in_memory_sources) ... ok
+test_rejects_three_source_path_escapes (__main__.SnapshotNegativeControls.test_rejects_three_source_path_escapes) ... ok
+test_committed_source_bytes_and_105_original_builder_proofs (csv_snapshot_verification.SnapshotVerificationTests.test_committed_source_bytes_and_105_original_builder_proofs) ... ok
+test_original_builder_reproduces_all_five_artifacts (csv_snapshot_verification.SnapshotVerificationTests.test_original_builder_reproduces_all_five_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 5.282s
+
+OK

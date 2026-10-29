@@ -1,0 +1,24 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/terminal/linux-desktop.test.jsx (8 tests) 4180ms
+   ✓ enters immediately when reduced motion is requested 656ms
+   ✓ opens a full Linux workspace for /Command Injection/ instead of a small web input 334ms
+   ✓ opens a full Linux workspace for /Linux 명령어/ instead of a small web input 302ms
+   ✓ preserves web and terminal drafts through the logo and does not replay preparation inside Linux 699ms
+   ✓ runs into the transcript, opens Lens from the raw error, and confirms only observation close 628ms
+   ✓ fills a server-provided supported command without executing it 800ms
+   ✓ keeps a new draft written while an attempt is pending and ignores a late response after web return 492ms
+ ✓ src/terminal/DiagnosticText.test.jsx (9 tests) 559ms
+ ✓ src/unified-workspace.test.jsx (4 tests) 4387ms
+   ✓ contains only input and fixed Lens before opening observation 468ms
+   ✓ provides definition, conditions, flow, goal and next action before input in all 13 supported lab combinations 3007ms
+   ✓ uses real task-specific controls rather than only renaming one text box 801ms
+ ✓ src/terminal/TerminalTranscript.test.jsx (5 tests) 484ms
+ ✓ src/terminal/diagnostics.test.js (10 tests) 15ms
+ ✓ src/terminal/TerminalInput.test.jsx (5 tests) 461ms
+
+ Test Files  6 passed (6)
+      Tests  41 passed (41)
+   Start at  16:05:38
+   Duration  63.92s (transform 1.08s, setup 11.62s, collect 10.25s, tests 10.09s, environment 24.07s, prepare 3.38s)

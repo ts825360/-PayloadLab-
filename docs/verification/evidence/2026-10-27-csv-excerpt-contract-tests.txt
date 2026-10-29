@@ -1,0 +1,11 @@
+test_all_137_real_rows (__main__.MetadataContractTests.test_all_137_real_rows) ... ok
+test_current_excerpt_provenance (__main__.MetadataContractTests.test_current_excerpt_provenance) ... ok
+test_rejects_137_wrong_file_categories (__main__.MetadataContractTests.test_rejects_137_wrong_file_categories) ... ok
+test_rejects_32_invented_benign_sources (__main__.MetadataContractTests.test_rejects_32_invented_benign_sources) ... ok
+test_rejects_525_false_source_urls (__main__.MetadataContractTests.test_rejects_525_false_source_urls) ... ok
+test_rejects_three_tampered_excerpt_provenance_records (__main__.MetadataContractTests.test_rejects_three_tampered_excerpt_provenance_records) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.855s
+
+OK

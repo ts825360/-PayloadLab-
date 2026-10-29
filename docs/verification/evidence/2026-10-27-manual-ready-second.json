@@ -1,0 +1,12 @@
+{
+  "keyboardTooltip": true,
+  "escapeClosedOnlyTooltip": true,
+  "clickConnectedLens": true,
+  "rawPreserved": true,
+  "humanHoverResultReceived": false,
+  "logs": [],
+  "related_tests": 19,
+  "test_files": 3,
+  "product_code_changed": false,
+  "method": "actual keyboard focus/Escape and Playwright click; human mouse hover not confirmed"
+}

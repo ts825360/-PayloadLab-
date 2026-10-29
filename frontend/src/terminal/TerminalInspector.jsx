@@ -10,12 +10,16 @@ export default function TerminalInspector({trace,category}) {
     lines=[`┌─ USER  ${user || 'student (시작 사용자)'}`,'│',
       ...files.flatMap(file=>[`├─ FILE  ${file.path}`,`│  소유자 ${file.owner}`,`│  권한   ${file.permissions}`,'│']),
       `└─ RESULT  ${result}`];
-    if(executed && trace.execution.status==='elevated')lines.push(`   ${user} → ${trace.terminal?.current_user} (가상 사용자)`);
+    if(executed && trace.terminal?.current_user && user!==trace.terminal.current_user)lines.push(`   ${user} → ${trace.terminal?.current_user} (가상 사용자)`);
   } else if(category.id==='command_injection') {
+    const policy=trace?.simulation?.nodes?.find(node=>node.id==='policy')?.value;
     lines=[`┌─ HOST  ${trace?.command_model?.hostname || '호스트 입력'}`,
-      `│  경계  ${trace?.command_model?.separator || '호스트 인자'}`,'│',`└─ RESULT  ${result}`];
+      `│  경계  ${trace?.command_model?.separator || (trace?.lens?.id==='unsupported' ? '구조 미판정' : '호스트 인자')}`,
+      ...(policy ? [`│  필터  ${policy}`] : []),'│',`└─ RESULT  ${result}`];
   } else {
-    lines=['┌─ COMMAND  이름 + 옵션 + 경로','│','├─ /lab/',...files.map(file=>`│  └─ ${file.path.split('/').at(-1)}`),'│',`└─ RESULT  ${result}`];
+    lines=[`┌─ INPUT  ${trace?.quiz?.tokens?.join(' | ') || '입력 조각 없음'}`,
+      `│  목표  ${trace?.quiz?.goal_description || '이번 퀴즈 안내를 확인하세요'}`,
+      `│  비교  ${trace?.quiz?.comparison_label || '비교 전'}`,'│',`└─ RESULT  ${result}`];
   }
   return <div className="terminal-inspector-content">
     <span className="terminal-section-label">INPUT → PROCESS → RESULT</span>

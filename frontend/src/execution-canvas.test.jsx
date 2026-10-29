@@ -2,8 +2,18 @@ import React from "react";
 import { it, expect, vi } from "vitest";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import ExecutionCanvas from "./ExecutionCanvas.jsx";
+import ObservationStage from './ObservationStage.jsx';
 import { Composition, LensPanel, ConceptPanel } from "./WorkspaceParts.jsx";
 import { CATEGORIES } from "./learning-content.js";
+
+it('opens Linux quiz concepts rather than falling back to SQL strings',()=>{
+  render(<ConceptPanel lesson="linux" onClose={()=>{}}/>);
+  const dialog=screen.getByRole('dialog');
+  expect(dialog).toHaveTextContent('퀴즈');
+  expect(dialog).toHaveTextContent('ls -l /lab');
+  expect(dialog).not.toHaveTextContent('작은따옴표는 값의 경계');
+  expect(CATEGORIES.find(category=>category.id==='linux_basics').lesson).toBe('linux');
+});
 
 const sql = {
   category: "sql_injection",
@@ -91,6 +101,32 @@ it("connects the query logic segment to the condition group", () => {
   );
   fireEvent.click(screen.getByRole("button", { name: "조건 부분 강조" }));
   expect(group).toHaveBeenCalledWith("logic");
+});
+
+it('keeps emoji before a focused hostname out of the composition highlight',()=>{
+  const raw='http://😀@localhost/admin';
+  const trace={raw_input:raw,effective_input:raw,composition:{prefix:'fetch("',value:raw,suffix:'")'},lens:{title:'호스트',focus:{start:9,end:18}}};
+  const {container}=render(<Composition trace={trace} category={CATEGORIES[3]} activeGroup='focus' onGroup={()=>{}} onLesson={()=>{}}/>);
+  expect(container.querySelector('mark.lens-focus')).toHaveTextContent(/^localhost$/);
+});
+
+it('magnifies the same hostname when API offsets follow an emoji',()=>{
+  const raw='http://😀@localhost/admin';
+  const trace={phase:'analysis',raw_input:raw,effective_input:raw,composition:{prefix:'fetch("',value:raw,suffix:'")'},lens:{title:'호스트 확인',focus:{start:9,end:18}}};
+  const {container}=render(<ObservationStage category={CATEGORIES[3]} input={raw} currentTrace={trace} executedTrace={null} activeGroup='focus' view='focus' onView={()=>{}} history={[]} integrated labId='ssrf-easy'/>);
+  expect(container.querySelector('mark.magnified-target')).toHaveTextContent(/^localhost$/);
+});
+it("shows the selected account's story together with its condition verdict", () => {
+  const trace = {...sql, row_explanations: [
+    {explanation: 'admin 이름 비교는 참이고 이 행이 반환됐어요.'},
+    {explanation: 'guest 이름 비교는 거짓이어도 추가 비교가 참이라 이 행이 반환됐어요.'},
+  ]};
+  render(<ExecutionCanvas trace={trace} category={CATEGORIES[0]} onGroup={()=>{}}/>);
+  expect(screen.getByText(trace.row_explanations[0].explanation)).toBeInTheDocument();
+  fireEvent.change(screen.getByRole('combobox',{name:'조건을 관찰할 계정'}),{target:{value:'1'}});
+  expect(screen.getByText(trace.row_explanations[1].explanation)).toBeInTheDocument();
+  expect(screen.queryByText(trace.row_explanations[0].explanation)).not.toBeInTheDocument();
+  expect(screen.getByText('guest 계정 기준')).toBeInTheDocument();
 });
 it("does not load XSS HTML until the user explicitly opens it", () => {
   const trace = {

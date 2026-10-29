@@ -55,3 +55,20 @@ it('clears the old underline when the current diagnostics are removed',()=>{
   expect(screen.queryByRole('button',{name:'권한 검사 대상 설명'})).not.toBeInTheDocument();
   expect(screen.getByRole('textbox')).toHaveValue('whoami');
 });
+
+
+it('recalculates capped input height after viewport resize without changing the value',()=>{
+  const {input,unmount}=show({value:'긴 입력을 유지한 화면 크기 변경'});
+  let contentHeight=208;
+  Object.defineProperty(input,'scrollHeight',{configurable:true,get:()=>contentHeight});
+  fireEvent(window,new Event('resize'));
+  expect(input.style.height).toBe('144px');
+  expect(input).toHaveValue('긴 입력을 유지한 화면 크기 변경');
+  contentHeight=52;
+  fireEvent(window,new Event('resize'));
+  expect(input.style.height).toBe('52px');
+  const remove=vi.spyOn(window,'removeEventListener');
+  unmount();
+  expect(remove).toHaveBeenCalledWith('resize',expect.any(Function));
+  remove.mockRestore();
+});

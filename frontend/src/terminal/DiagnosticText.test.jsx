@@ -73,3 +73,28 @@ it('can explain older output without offering a misleading current-Lens action',
   fireEvent.focus(screen.getByText('Permission denied'));
   expect(await screen.findByRole('tooltip')).toHaveTextContent('읽기 권한이 없어요');
 });
+
+
+it('dismisses the noninteractive explanation when the mouse leaves', async()=>{
+  show();
+  const mark=screen.getByRole('button',{name:'Permission denied'});
+  fireEvent.mouseEnter(mark);
+  await screen.findByRole('tooltip');
+  fireEvent.mouseLeave(mark);
+  await waitFor(()=>expect(screen.queryByRole('tooltip')).not.toBeInTheDocument());
+  expect(screen.getByLabelText('원문').textContent).toBe(text);
+});
+
+it('keeps a touch-style activation connected to the same Lens without changing raw output',()=>{
+  const selected=vi.fn();
+  show({onSelect:selected});
+  const mark=screen.getByRole('button',{name:'Permission denied'});
+  fireEvent.pointerDown(mark,{pointerType:'touch',pointerId:1});
+  fireEvent.touchStart(mark,{touches:[{identifier:1,clientX:10,clientY:10}]});
+  fireEvent.touchEnd(mark,{touches:[],changedTouches:[{identifier:1,clientX:10,clientY:10}]});
+  fireEvent.pointerUp(mark,{pointerType:'touch',pointerId:1});
+  fireEvent.click(mark);
+  expect(selected).toHaveBeenCalledTimes(1);
+  expect(selected).toHaveBeenCalledWith(diagnostic);
+  expect(screen.getByLabelText('원문').textContent).toBe(text);
+});

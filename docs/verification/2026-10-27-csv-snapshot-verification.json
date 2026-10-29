@@ -1,0 +1,89 @@
+{
+  "base_commit": "fd106c93c4c37375bcc43aca4249dceea0dbeb12",
+  "method": "original unchanged builder with a read-only in-memory Git source provider and real temporary CSV/manifest outputs",
+  "source_markdown_written": false,
+  "security_settings_changed": false,
+  "generator_and_curated_code_match_base": true,
+  "code_comparison": "Python CRLF/LF normalized; CSV/manifest/source bytes exact",
+  "working_source_present": false,
+  "source_count": 10,
+  "ordinary_working_copy_test_status": "source absent; not fixed or represented as passing",
+  "source_hashes": [
+    {
+      "path": "sources/Command Injection__README.md",
+      "sha256": "90ce8a7d48c390dc897de5e62576de27c9ec049dd588ae85438a932bb556c87c"
+    },
+    {
+      "path": "sources/Server Side Request Forgery__README.md",
+      "sha256": "91d3ecd0ca7c45382415de7fe676205162cd31bfd24453251fa3492e4fb80324"
+    },
+    {
+      "path": "sources/SQL Injection__MSSQL Injection.md",
+      "sha256": "8aa71b7ce2f251cd54853739f81aeefe7b9e0deae493bdaeca10fd1e7fbadbf1"
+    },
+    {
+      "path": "sources/SQL Injection__MySQL Injection.md",
+      "sha256": "8fd90e87a6ccce3dde2b673492c0b975296a16d90f1c8f5833a63e4b2f0fc6d9"
+    },
+    {
+      "path": "sources/SQL Injection__OracleSQL Injection.md",
+      "sha256": "d11a3b01c41ca38acba3ec20c5b3985cfd4a81269c285ce9ce1c05ba2e851871"
+    },
+    {
+      "path": "sources/SQL Injection__PostgreSQL Injection.md",
+      "sha256": "df10acafdc75ef880f8090df8a65424b692785f8fbf497e5656dc900e7ba3265"
+    },
+    {
+      "path": "sources/SQL Injection__README.md",
+      "sha256": "8f68e5b948ca8a253527e98542e022c03028f481ea287d9fbf79044a26b140e3"
+    },
+    {
+      "path": "sources/SQL Injection__SQLite Injection.md",
+      "sha256": "f6bad93117b22ac5575260d55967cb030f2780d8dcb70f5a9a5e16e82f1dbf36"
+    },
+    {
+      "path": "sources/XSS Injection__1 - XSS Filter Bypass.md",
+      "sha256": "f8e40d7dbdff25eae40ab8fb8c2e9833c9c6a86d1e81c48536ac03b2254c7fb2"
+    },
+    {
+      "path": "sources/XSS Injection__README.md",
+      "sha256": "c91931c0c75171cbad660b9eaf0483fe56013e9e98e9d229e25e9c25e9a49cdb"
+    }
+  ],
+  "source_proofs_verified": 105,
+  "reproduced_artifacts": [
+    {
+      "name": "sql_injection.csv",
+      "bytes": 25192,
+      "sha256": "f177a3229ca2690b7de0d8c0fa9f91711ddb88875889d7095d8acf1df48ec5fd",
+      "byte_identical": true
+    },
+    {
+      "name": "xss.csv",
+      "bytes": 18880,
+      "sha256": "8bf06be3c3fef8e6ad81732b9e294405ecf37c927d63bbc85434af5913d6cf6b",
+      "byte_identical": true
+    },
+    {
+      "name": "command_injection.csv",
+      "bytes": 21989,
+      "sha256": "7b40f010da721e8774967c304d0b56fcec8b8ee78e055e17daf815ff2cf4ca1f",
+      "byte_identical": true
+    },
+    {
+      "name": "ssrf.csv",
+      "bytes": 21127,
+      "sha256": "83880182e6ae43ec10becfeeba3c0fe461541997677bc6b4cd88a688f2555dfe",
+      "byte_identical": true
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 34739,
+      "sha256": "08bb0f2b33beca8ab8b1fee3a4ee02bcc2af68098e6677ad79ab98b4c9cd9528",
+      "byte_identical": true
+    }
+  ],
+  "temporary_outputs_cleaned": true,
+  "snapshot_tests_run": 2,
+  "snapshot_tests_passed": true
+}

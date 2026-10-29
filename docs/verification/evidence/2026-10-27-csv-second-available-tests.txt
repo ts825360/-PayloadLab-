@@ -1,0 +1,10 @@
+test_offline_builder_exists (__main__.BuildContractTests.test_offline_builder_exists) ... ok
+test_exact_schema_and_bom (__main__.DatasetTests.test_exact_schema_and_bom) ... ok
+test_platform_coverage_variant_families_and_multiline (__main__.DatasetTests.test_platform_coverage_variant_families_and_multiline) ... ok
+test_uncertain_review_only_and_documented_limits (__main__.DatasetTests.test_uncertain_review_only_and_documented_limits) ... ok
+test_unique_ids_counts_and_required_metadata (__main__.DatasetTests.test_unique_ids_counts_and_required_metadata) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.026s
+
+OK

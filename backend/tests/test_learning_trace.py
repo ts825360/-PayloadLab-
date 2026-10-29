@@ -74,6 +74,36 @@ def test_escaped_quotes_remain_string_not_logic():
     assert t['condition_tree'] is None
 
 
+def test_escaped_names_do_not_receive_an_operator_insertion_instruction():
+    from app.routes.labs import analyze_lab
+
+    for raw in ["O''Reilly", "D''Angelo", "admin''"]:
+        executed = trace('sql-injection-easy', {'username': raw})
+        assert executed['execution']['status'] == 'empty'
+        for data in [executed, analyze_lab('sql-injection-easy', {'username': raw})]:
+            assert data['lens']['id'] == 'escaped_quote'
+            assert 'OR' not in data['lens']['next']
+            assert '이름' in data['lens']['next']
+
+    raw_expression = "admin''' AND 1=0--"
+    executed = trace('sql-injection-easy', {'username': raw_expression})
+    assert executed['execution']['status'] == 'empty'
+    for data in [executed, analyze_lab('sql-injection-easy', {'username': raw_expression})]:
+        assert data['lens']['id'] in {'inspect_result', 'ready_to_try'}
+
+
+def test_syntax_error_takes_precedence_over_an_escaped_quote_hint():
+    from app.routes.labs import analyze_lab
+
+    raw = "admin'' OR 1=1--'"
+    executed = trace('sql-injection-easy', {'username': raw})
+    assert executed['execution']['status'] == 'syntax_error'
+    assert executed['execution']['error']
+    for data in [executed, analyze_lab('sql-injection-easy', {'username': raw})]:
+        assert data['lens']['id'] == 'syntax_error'
+        assert 'OR' not in data['lens']['next']
+
+
 def test_xss_trace_reports_recognition_not_execution():
     t = trace('reflected-xss-easy', {'query': '<script></script>'})
     assert t['execution']['status'] == 'recognized'

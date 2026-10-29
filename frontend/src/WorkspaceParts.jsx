@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { LESSONS, statusLabel } from "./learning-content.js";
 import Icon from "./Icon.jsx";
 import { editWindow } from "./compare-inputs.js";
+import {codepointRange} from './text-ranges.js';
 
 export function Composition({
   category,
@@ -23,8 +24,8 @@ export function Composition({
         ? `?claimed_user_id=${claim}`
         : ""),
   };
-  const focus =
-    activeGroup === "focus" ? trace?.lens.focus : comp.ranges?.[activeGroup];
+  const sourceRange = activeGroup === "focus" ? trace?.lens.focus : comp.ranges?.[activeGroup];
+  const focus = sourceRange ? codepointRange(comp.value, sourceRange) : null;
   function marked(text, offset = 0) {
     if (!focus) return text || <span className="slot-label">입력 위치</span>;
     if (focus.end < offset || focus.start > offset + text.length) return text;
@@ -67,6 +68,7 @@ export function Composition({
     };
     const ranges = Object.entries(comp.ranges)
       .filter(([key, range]) => key !== "input" && range.end > range.start)
+      .map(([key, range]) => [key, codepointRange(comp.value, range)])
       .sort((a, b) => a[1].start - b[1].start);
     const elements = [];
     let cursor = 0;

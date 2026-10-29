@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "representation": "selected_metadata_queries_excerpt",
+  "upstream_source_path": "SQL Injection/SQLite Injection.md",
+  "source_commit": "3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a",
+  "upstream_full_sha256": "f6bad93117b22ac5575260d55967cb030f2780d8dcb70f5a9a5e16e82f1dbf36",
+  "original_snapshot_git_commit": "23b05593b73f6d9c9556eecd68abad5fbb8f6801",
+  "local_path": "sources/SQL Injection__SQLite Injection.md",
+  "local_excerpt_sha256": "6541c1e720b21df687e9ac5e46dbad339884ae794a08ca688fb6e45b38423eb0",
+  "retained_ids": [
+    "sql_injection-attack-025",
+    "sql_injection-attack-026",
+    "sql_injection-attack-027",
+    "sql_injection-attack-028"
+  ],
+  "retained_original_proofs": {
+    "sql_injection-attack-025": {
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/SQLite%20Injection.md#L35-L35",
+      "original_proof": {
+        "local_path": "sources/SQL Injection__SQLite Injection.md",
+        "byte_start": 1548,
+        "byte_end": 1572,
+        "line_start": 35,
+        "line_end": 35,
+        "payload_sha256": "e425dbdafd615a84db4d0aeea6e9b059b7b729c55e831b86a06308388a47439a"
+      }
+    },
+    "sql_injection-attack-026": {
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/SQLite%20Injection.md#L43-L43",
+      "original_proof": {
+        "local_path": "sources/SQL Injection__SQLite Injection.md",
+        "byte_start": 2008,
+        "byte_end": 2037,
+        "line_start": 43,
+        "line_end": 43,
+        "payload_sha256": "0c0af7096b66871c86880db75313dcf07bfeafedd8787231f2bb92fa153260c3"
+      }
+    },
+    "sql_injection-attack-027": {
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/SQLite%20Injection.md#L44-L44",
+      "original_proof": {
+        "local_path": "sources/SQL Injection__SQLite Injection.md",
+        "byte_start": 2170,
+        "byte_end": 2199,
+        "line_start": 44,
+        "line_end": 44,
+        "payload_sha256": "d792490b74c4b5ed4e650d4b6d8a04377fb47e0e8f9c35066b691abbd6caf6c1"
+      }
+    },
+    "sql_injection-attack-028": {
+      "source_url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/SQL%20Injection/SQLite%20Injection.md#L45-L45",
+      "original_proof": {
+        "local_path": "sources/SQL Injection__SQLite Injection.md",
+        "byte_start": 2332,
+        "byte_end": 2385,
+        "line_start": 45,
+        "line_end": 45,
+        "payload_sha256": "989bee3829f0e40d341882c441712adabeba98d950e2d93907ff26884208df17"
+      }
+    }
+  },
+  "note": "Full upstream document omitted; only four exact CSV metadata-query strings retained at their original line numbers. No protection settings changed."
+}
