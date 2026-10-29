@@ -1,0 +1,12 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-8.3.3, pluggy-1.7.0 -- C:\Users\dtd24\Documents\Codex\2026-10-26\https-github-com-ts825360-payloadlab-https\work\issue19-venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\backend
+plugins: anyio-4.15.1
+collecting ... collected 7 items / 6 deselected / 1 selected
+
+Timeout (0:00:05)!
+Thread 0x000048b0 (most recent call first):
+  File "C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py", line 915 in shield
+  File "C:\Users\dtd24\OneDrive\\ubb38\uc11c\GitHub\-PayloadLab-\backend\app\core\admission.py", line 239 in <genexpr>
+tests/test_admission_cancellation_review.py::test_cancel_and_body_arrival_same_loop_turn_does_not_start_processing[True]

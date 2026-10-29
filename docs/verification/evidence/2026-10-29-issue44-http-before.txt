@@ -1,0 +1,15 @@
+
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_admission_http.py ________________
+ImportError while importing test module 'C:\Users\dtd24\OneDrive\문서\GitHub\-PayloadLab-\backend\tests\test_admission_http.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests\test_admission_http.py:19: in <module>
+    from app.core.admission_guard import AdmissionGuard, admission_action
+E   ModuleNotFoundError: No module named 'app.core.admission_guard'
+=========================== short test summary info ===========================
+ERROR tests/test_admission_http.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 4.27s

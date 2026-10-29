@@ -1,0 +1,27 @@
+{
+  "scope": "policy second review; arithmetic correct; assumptions/test isolation corrected",
+  "head": "eaa3998526b60ea0109cd1b9a08914336944a806",
+  "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+  "product_hashes_unchanged_against": "2026-10-29-issue44-policy-audit.json",
+  "previous_audit_sha256": "dfe1d906015f0936bbd213fe3fb8599046f6c39a32b7c0c74cad5b0a05b5a063",
+  "result_sha256": "9af290c3c7867a3f6e2b4b8b564bf4a1c7514075f26ae002aee37b112d142342",
+  "source_sha256": {
+    "docs/verification/scripts/issue44_policy_second_audit.py": "b524c6f0cac00c88455236df09ffad40c837bedae3344a1b3f19e6d448a307de",
+    "docs/verification/2026-10-29-issue44-policy-proposal.md": "2917f628109d06ad4091beb7e7a935cfd680ed3d72dbded35d6e5f556d2718c7",
+    "docs/verification/2026-10-29-issue44-policy-review-draft.md": "a4b41fc9c0c7a131f3b73f2008b54aa1e9fb5b4e1a13c0c80a573ac7bed9f8c6",
+    "docs/verification/2026-10-29-issue44-policy-second-verification.md": "24b150198474abfea0dd36f3eed941c67b9ace3a0215dc9d436e90c68b0f2f50",
+    "docs/handoff/issue-44.md": "2c98a0ee75ae1157a20e5d4cd117d09bdbe3593350b5d0dbb37b5634384b8227"
+  },
+  "checks": {
+    "raw_samples_recalculated": 816,
+    "sensitivity_models": 48,
+    "isolated_global_controls": 4
+  },
+  "selected_policy": null,
+  "not_performed": [
+    "new HTTP profile",
+    "product tests/build rerun",
+    "operating approval",
+    "publish/commit/push"
+  ]
+}

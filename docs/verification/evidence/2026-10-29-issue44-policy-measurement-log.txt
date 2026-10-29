@@ -1,0 +1,5 @@
+{"clients": 1, "requests": 204, "server_cpu_seconds": 1.65625, "latency_ms": {"median": 15.957900000103109, "p95_sample": 29.946799999379436, "max": 34.94689999934053}}
+{"clients": 2, "requests": 204, "server_cpu_seconds": 1.375, "latency_ms": {"median": 15.635499999916647, "p95_sample": 34.287899999981164, "max": 47.00260000026901}}
+{"clients": 4, "requests": 204, "server_cpu_seconds": 1.65625, "latency_ms": {"median": 23.24659999976575, "p95_sample": 44.799000000239175, "max": 64.31400000019494}}
+{"clients": 8, "requests": 204, "server_cpu_seconds": 1.6875, "latency_ms": {"median": 49.341699999786215, "p95_sample": 93.66979999958858, "max": 125.40079999962472}}
+{"output": "docs\\verification\\evidence\\2026-10-29-issue44-policy-measurement.json", "total": 816}

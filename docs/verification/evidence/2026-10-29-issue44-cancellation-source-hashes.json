@@ -1,0 +1,51 @@
+{
+  "head": "eaa3998526b60ea0109cd1b9a08914336944a806",
+  "scope": "#44 transport cancellation and drain review; default main/compose/frontend unchanged",
+  "environment": {
+    "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "pytest": "8.3.3",
+      "fastapi": "0.115.0",
+      "starlette": "0.38.6",
+      "anyio": "4.15.1",
+      "uvicorn": "0.32.0"
+    }
+  },
+  "source_sha256": {
+    "backend/app/core/admission.py": "595ec2b1b848934cc7ccd04f615161d7034dff7b5a9bd0e95d86899dfdf6665b",
+    "backend/app/core/admission_guard.py": "4ac8eec49d6b2efab9f9413a8f756042f619042fe0824ab8173c9581db319a50",
+    "backend/app/core/lab_paths.py": "0ca2973c3e0c7969060573d9334500072c64a597e3673acbced5b6dd3d41a7ac",
+    "backend/app/review_app.py": "799043e2cfb2994173837b7b268a9e00e2b0c5687dd30874c6b73772084bd6f1",
+    "backend/app/main.py": "df9729526aaaa30674f48e1dab75fea2ad419b866738718b85c3017561fbbe91",
+    "backend/tests/test_admission.py": "584f00f016311bf1ed01b2ef69bcaf026f1e1e5189fe3eb24b4bc5e4017708bb",
+    "backend/tests/test_admission_http.py": "dc3f8471b81822674d7b0d557dd80f370f80fd9f99a0ac9160210a5154c77694",
+    "frontend/src/api.js": "f6aecbeaa103959ae0bf379e0621b6c1ccdb01b84695c53482bdffa0b0a859a1",
+    "frontend/src/admission-feedback.test.jsx": "6d59fc404add5e1b31516d84b14dca57bd0d12bdc097192290218889923772d9",
+    "frontend/src/App.jsx": "421c30234969b71a79153cb1e7e065ad72c375e46ed0f6bd63a02299efdeb268",
+    "frontend/src/useInputAnalysis.js": "342d5dc796a7005324382f7e515fc968252b358ec1392d561ff903a17c5a75e9",
+    "docker-compose.yml": "a6f6bb0440709ed914bd5d26223bbd805c75a3b4cb7b4ada64a1e68ae642bf15",
+    "backend/tests/test_admission_second_review.py": "704d6ffb3cd1b0bff4da59e428e7f2dc4e8fdecac812665d68f2ffabdf967b30",
+    "backend/tests/test_admission_cancellation_review.py": "2d2f751831aa28633a0a61844ea8f80afa4ee288a6bbdbc0d40c585759723e69"
+  },
+  "results": {
+    "new_tests": 7,
+    "backend_total": 433,
+    "included_issue44_tests": 71,
+    "http_requests": 48,
+    "responses": 47,
+    "closed_without_response": 1,
+    "race_replays": 20
+  },
+  "not_rerun": [
+    "frontend related24",
+    "frontend full138/build488"
+  ],
+  "not_performed": [
+    "actual browser UI",
+    "Python3.12 runtime",
+    "multiworker/operating proxy",
+    "policy approval",
+    "commit/push/PR"
+  ]
+}

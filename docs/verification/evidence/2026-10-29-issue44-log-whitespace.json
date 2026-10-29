@@ -1,0 +1,41 @@
+{
+  "scope": "share preparation; original logs preserved locally in outputs/issue44-share-raw-logs",
+  "files": [
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-race-stack.txt",
+      "before_sha256": "1c3f1d5c2aa201a7b21344030a96183510e04e58ace481eb40623fc11430465a",
+      "after_sha256": "87ad3c2c61ad703ee9fad8ac426c71e69104901bb6e70e278c25a2657d475362",
+      "change": "trailing whitespace/newline only; result text preserved"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-send-before.txt",
+      "before_sha256": "4be848dfa9f20636fcd5d80bfa3f8ac198b98c843fcf06ef92c722fb692ee128",
+      "after_sha256": "61b395950fbaffe18d339275314f80503466c6822b288c5a6eb74bd7fc75d90b",
+      "change": "trailing whitespace/newline only; result text preserved"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-before.txt",
+      "before_sha256": "f65390901fd17a0fa7ebd75cc42d7c17371bcccf81a313bfc5a52cbcba85ce3f",
+      "after_sha256": "e4651ef4172970e8b9fcd5bb6366e7cc99c5663a204313d25c453a6f2bba7130",
+      "change": "trailing whitespace/newline only; result text preserved"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-ui-before.txt",
+      "before_sha256": "669faff86a0e235a77f63b367e45115ad79ae96e67f55d1f924434117ca13c5f",
+      "after_sha256": "f9a51f1e6340e9baa4b61c81c1cde0d27aad306bd411fcae5942392d3b416184",
+      "change": "trailing whitespace/final blank lines only; results preserved"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-frontend-tests.txt",
+      "before_sha256": "1c9d01108d25cc71606532fca13989abab0b68318343bbec5c7ba497a440fe96",
+      "after_sha256": "13cd30b7886a57c411242a1ae7cecf082e6f3db7ef80aaefd68fb88c1fe2f37e",
+      "change": "trailing whitespace/final blank lines only; results preserved"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-frontend-tests.txt",
+      "before_sha256": "82b1365223012b5a9942026a798c70d00fa5873eb1f34457403dba590f1d9fa0",
+      "after_sha256": "2b857b397d75188e0a0db313153ab77aae42454a86228032727f5401a1f28c15",
+      "change": "trailing whitespace/final blank lines only; results preserved"
+    }
+  ]
+}

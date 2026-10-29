@@ -1,0 +1,47 @@
+......F.FF.........                                                      [100%]
+================================== FAILURES ===================================
+_____ test_metadata_and_invalid_methods_count_but_health_remains_separate _____
+
+    def test_metadata_and_invalid_methods_count_but_health_remains_separate():
+        c=controller(total=2)
+        with server(c) as (address,_,__):
+            assert request(address,"/labs",method="GET")[0]==200
+            assert request(address,"/labs/sql-injection-easy/analyze",method="GET")[0]==405
+            assert request(address,"/labs/missing",method="GET")[0]==429
+>           assert request(address,"/health",method="GET")[0]==200
+E           assert 404 == 200
+
+tests\test_admission_http.py:164: AssertionError
+_________________ test_concurrent_http_rejection_and_recovery _________________
+
+    def test_concurrent_http_rejection_and_recovery():
+        c=controller(active=1)
+        with server(c,slow=True) as (address,entered,release):
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                first=pool.submit(request,address,"/labs/probe/attempt",{})
+                try:
+>                   assert entered.wait(2)
+E                   assert False
+E                    +  where False = wait(2)
+E                    +    where wait = <threading.Event at 0x268528f62d0: unset>.wait
+
+tests\test_admission_http.py:185: AssertionError
+________ test_disconnected_http_keeps_slot_until_sync_handler_finishes ________
+
+    def test_disconnected_http_keeps_slot_until_sync_handler_finishes():
+        c=controller(active=1)
+        with server(c,slow=True) as (address,entered,release):
+            conn=http.client.HTTPConnection(*address,timeout=3)
+            try:
+                conn.request("POST","/labs/probe/attempt",b"{}",{"Content-Type":"application/json"})
+>               assert entered.wait(2)
+E               assert False
+E                +  where False = wait(2)
+E                +    where wait = <threading.Event at 0x268528f4530: unset>.wait
+
+tests\test_admission_http.py:201: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_admission_http.py::test_metadata_and_invalid_methods_count_but_health_remains_separate
+FAILED tests/test_admission_http.py::test_concurrent_http_rejection_and_recovery
+FAILED tests/test_admission_http.py::test_disconnected_http_keeps_slot_until_sync_handler_finishes
+3 failed, 16 passed in 10.71s

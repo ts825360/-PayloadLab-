@@ -1,0 +1,68 @@
+{
+  "status": "draft; N and final policy unselected; lead decision pending",
+  "head": "eaa3998526b60ea0109cd1b9a08914336944a806",
+  "environment": {
+    "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "uvicorn": "0.32.0",
+      "fastapi": "0.115.0",
+      "starlette": "0.38.6",
+      "anyio": "4.15.1"
+    }
+  },
+  "primary_measurement": {
+    "path": "docs\\verification\\evidence\\2026-10-29-issue44-policy-with-admission.json",
+    "sha256": "aecc7653427c7291bb8b0cc04f2e4f26ca120ba2ac7274ecdfa75669cd13ca6a",
+    "measured_http_requests": 816,
+    "cases": 68,
+    "guide_steps": 27
+  },
+  "virtual_replay": {
+    "path": "docs\\verification\\evidence\\2026-10-29-issue44-policy-replay.json",
+    "sha256": "d4f933855ff309287fd89586d99db36eb8e9d5e2f0e616b4034803bf3bae840d",
+    "scenarios": 12,
+    "admissions": 5858,
+    "overflow_profiles": 4
+  },
+  "source_sha256": {
+    "backend/app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/app/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/app/core/admission.py": "595ec2b1b848934cc7ccd04f615161d7034dff7b5a9bd0e95d86899dfdf6665b",
+    "backend/app/core/admission_guard.py": "4ac8eec49d6b2efab9f9413a8f756042f619042fe0824ab8173c9581db319a50",
+    "backend/app/core/lab.py": "9364dddc730ddbded400c20cf91cf2145e27e3dfe31ffc70fbe190f49e6bce43",
+    "backend/app/core/lab_paths.py": "0ca2973c3e0c7969060573d9334500072c64a597e3673acbced5b6dd3d41a7ac",
+    "backend/app/core/request_limits.py": "a8ff2248bd80506b827d6f496988171ed845a11208f01cfae507117244ba81ec",
+    "backend/app/core/response_limits.py": "d138bad42a0e2fdad81fba3e62d1e55d8275e5651f1315602381ceb78f74e6db",
+    "backend/app/core/sql_context.py": "7b100fb04fa816abd6ea567333bdc3948114fe46b8f7377a27c3e1179ce27908",
+    "backend/app/core/sql_limits.py": "cd9ad1922175701f403071abe03236a4c115f2470f4bb45c54e975a715af2d44",
+    "backend/app/labs/__init__.py": "b59d558905f580b2a95950a292d078de81f73d83d56037f51062b4f8497abb0c",
+    "backend/app/labs/idor.py": "3c39cedb28cfddba3a06a1a8d15b847df8db6b6f151b2be291579402b1319304",
+    "backend/app/labs/practice_extensions.py": "39c98142ae2d81515b8c43e61ba4178bed57f23df2c6e9f64e24dd4b576f15ff",
+    "backend/app/labs/reflected_xss.py": "b98ea27667188a05f0cdef4056ab4e048415d96b8bfa4b3fbf4422378a56e675",
+    "backend/app/labs/sql_injection.py": "64f8e8416ddcde6ca15d565220b9331a2c9929946ef80d75a97b1e72472f87a9",
+    "backend/app/learning_trace.py": "234c4c73011377b11f98245c3ff78b80745ce0be334eb6269b251b93415f46b0",
+    "backend/app/main.py": "df9729526aaaa30674f48e1dab75fea2ad419b866738718b85c3017561fbbe91",
+    "backend/app/review_app.py": "799043e2cfb2994173837b7b268a9e00e2b0c5687dd30874c6b73772084bd6f1",
+    "backend/app/routes/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/app/routes/labs.py": "086d2e932cfbf020c1f7dc7aa2f329b0a7a3718225ef6b8ba361e39b3480cfa8",
+    "frontend/src/lesson-catalog.js": "de2d478b79c31ab52dd6bb6864ed02b9f36acd640b7bbd8cbf4119428cab4c9b",
+    "frontend/src/useInputAnalysis.js": "342d5dc796a7005324382f7e515fc968252b358ec1392d561ff903a17c5a75e9",
+    "frontend/src/learning-content.js": "a0a107296138870dc712bd2d4caf0380d85035789277d48b314569b52d01dec9",
+    "frontend/src/practice-context.js": "346bd86a21cff2d8d81ebc9bf7c12174b25977452ce26a58f7143fb22613ab1c",
+    "docs/verification/scripts/learning_flow_review.mjs": "57973cae382f8e531216139a13a4d3913429e305bf5c86ab6d54c1605ee2188e",
+    "docker-compose.yml": "a6f6bb0440709ed914bd5d26223bbd805c75a3b4cb7b4ada64a1e68ae642bf15",
+    "docs/verification/scripts/issue44_policy_measure.py": "6204dc05ab6df501e50488f3dad552ee7b5597cc8378288c24721a19b0115d71",
+    "docs/verification/scripts/issue44_policy_replay.py": "c39cf7073a5c96f9f231447018f3d770161e0314cb393230080fcf97127219e5"
+  },
+  "previous_runtime_hashes_unchanged": true,
+  "not_performed": [
+    "Docker1CPU/Python3.12",
+    "operating capacity/SLO guarantee",
+    "hard body/total deadline",
+    "multiworker aggregate",
+    "actual school users/browser",
+    "team approval",
+    "publish/commit/push/PR"
+  ]
+}

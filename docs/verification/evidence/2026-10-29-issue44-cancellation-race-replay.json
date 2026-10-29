@@ -1,0 +1,11 @@
+{
+  "scope": "ASGI event-loop ordering replay, not HTTP/load/operating timeout",
+  "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+  "orders": [
+    "cancel then body",
+    "body then cancel"
+  ],
+  "repetitions_per_order": 10,
+  "checks": 20,
+  "result": "passed"
+}

@@ -1,0 +1,525 @@
+{
+  "scope": "reviewed pre-document-commit snapshot; later publication checkpoint is separate; self hash excluded",
+  "code_commit": "a6beb8aee7de8e24177c5a5052bd0a4b2dba4065",
+  "file_count_including_manifest": 75,
+  "files": [
+    {
+      "path": "backend/app/core/admission.py",
+      "bytes": 9661,
+      "raw_sha256": "595ec2b1b848934cc7ccd04f615161d7034dff7b5a9bd0e95d86899dfdf6665b",
+      "lf_sha256": "595ec2b1b848934cc7ccd04f615161d7034dff7b5a9bd0e95d86899dfdf6665b",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/app/core/admission_guard.py",
+      "bytes": 4713,
+      "raw_sha256": "4ac8eec49d6b2efab9f9413a8f756042f619042fe0824ab8173c9581db319a50",
+      "lf_sha256": "4ac8eec49d6b2efab9f9413a8f756042f619042fe0824ab8173c9581db319a50",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/app/core/lab_paths.py",
+      "bytes": 625,
+      "raw_sha256": "0ca2973c3e0c7969060573d9334500072c64a597e3673acbced5b6dd3d41a7ac",
+      "lf_sha256": "59554a1c0c5a7c2a038bb2d35db4111cba0d10dfce1facb2837b65a852ed63ab",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/app/review_app.py",
+      "bytes": 1915,
+      "raw_sha256": "799043e2cfb2994173837b7b268a9e00e2b0c5687dd30874c6b73772084bd6f1",
+      "lf_sha256": "09502c6980cc583a5d381b08104ff38bdf5d770be6a36bc0b4e9464c599725a4",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/tests/test_admission.py",
+      "bytes": 12399,
+      "raw_sha256": "584f00f016311bf1ed01b2ef69bcaf026f1e1e5189fe3eb24b4bc5e4017708bb",
+      "lf_sha256": "584f00f016311bf1ed01b2ef69bcaf026f1e1e5189fe3eb24b4bc5e4017708bb",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/tests/test_admission_cancellation_review.py",
+      "bytes": 4934,
+      "raw_sha256": "2d2f751831aa28633a0a61844ea8f80afa4ee288a6bbdbc0d40c585759723e69",
+      "lf_sha256": "2d2f751831aa28633a0a61844ea8f80afa4ee288a6bbdbc0d40c585759723e69",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/tests/test_admission_http.py",
+      "bytes": 13627,
+      "raw_sha256": "dc3f8471b81822674d7b0d557dd80f370f80fd9f99a0ac9160210a5154c77694",
+      "lf_sha256": "11eab04af45297cf911de51bfe53e1a45bc694b1eee4d7b55bc50b6398d59985",
+      "group": "code/test"
+    },
+    {
+      "path": "backend/tests/test_admission_second_review.py",
+      "bytes": 5855,
+      "raw_sha256": "704d6ffb3cd1b0bff4da59e428e7f2dc4e8fdecac812665d68f2ffabdf967b30",
+      "lf_sha256": "704d6ffb3cd1b0bff4da59e428e7f2dc4e8fdecac812665d68f2ffabdf967b30",
+      "group": "code/test"
+    },
+    {
+      "path": "docs/WORK-STATE.md",
+      "bytes": 16342,
+      "raw_sha256": "88d41da4f516f8022dafc18007503603d438215135e216f0124388e976046910",
+      "lf_sha256": "1f3f1ab4bd39a5644f7153f09d9fef869d89c8b6c068e15f20dc4a5b3aead650",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/handoff/README.md",
+      "bytes": 4526,
+      "raw_sha256": "fff273405b57a0c721d2599a620d7cb0f458f558b194f6a4696c53990500dad9",
+      "lf_sha256": "fff273405b57a0c721d2599a620d7cb0f458f558b194f6a4696c53990500dad9",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/handoff/issue-19.md",
+      "bytes": 10737,
+      "raw_sha256": "52895a8ddfb3fbedaa5818b371cfc6baa9dd890594282b4fc2ad7167c4175997",
+      "lf_sha256": "8c0067805e02fd63a6c821360fe6e3503850ee0170eee249bf6072ad448d59b7",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/handoff/issue-42.md",
+      "bytes": 14223,
+      "raw_sha256": "65c00fa02055ed40c175a23eca8a100d79a5de37aa152cf28eedc303af62d666",
+      "lf_sha256": "6bbc3f707b10b15b647ef993f9258a488269328ecdeeb7f8dc9614d328e4df12",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/handoff/issue-44.md",
+      "bytes": 11287,
+      "raw_sha256": "fc7e14f14e692afb69d283f7d6d8164029ce09acb7290cc3108b29228e4c6234",
+      "lf_sha256": "fc7e14f14e692afb69d283f7d6d8164029ce09acb7290cc3108b29228e4c6234",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-admission-verification.md",
+      "bytes": 8339,
+      "raw_sha256": "e1a925121c72a1a4eb5a993cdae861cc04bfd30dea7db9abfa6c0f16dfbf8635",
+      "lf_sha256": "e1a925121c72a1a4eb5a993cdae861cc04bfd30dea7db9abfa6c0f16dfbf8635",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-cancellation-recheck.md",
+      "bytes": 6531,
+      "raw_sha256": "195d8b359d44841351c4a983d2b92b2978fe467da431b6848872e3159f0725ba",
+      "lf_sha256": "195d8b359d44841351c4a983d2b92b2978fe467da431b6848872e3159f0725ba",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-http-verification.md",
+      "bytes": 8872,
+      "raw_sha256": "904384c9e23da367cbdc6e5ed60879bfd391a6843c82a7b88869bd2190ea4bcb",
+      "lf_sha256": "cd54830b07a1fce1fda8f3e752dcf6a79545f680e9685aaf46624d99a0d2356f",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-plan.md",
+      "bytes": 12062,
+      "raw_sha256": "afc1e991751be1627e6119c6f7021a61e11c0c47f33dc405b4c4f9ee9b616b2b",
+      "lf_sha256": "afc1e991751be1627e6119c6f7021a61e11c0c47f33dc405b4c4f9ee9b616b2b",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-policy-proposal.md",
+      "bytes": 17466,
+      "raw_sha256": "2917f628109d06ad4091beb7e7a935cfd680ed3d72dbded35d6e5f556d2718c7",
+      "lf_sha256": "caf97998282fbca05391b508e4a637bfc2fda0026e18f09667681c5596a57fa3",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-policy-review-draft.md",
+      "bytes": 9133,
+      "raw_sha256": "88d0cbf8353d303bdf81d7cba79791937f00ca54346c24d9328bdc609e0e9012",
+      "lf_sha256": "bfcf5cedfd5ea3a2310470c70c75a34afb3d7b3cb5395fa47ae810231b467dc4",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-policy-second-verification.md",
+      "bytes": 5900,
+      "raw_sha256": "24b150198474abfea0dd36f3eed941c67b9ace3a0215dc9d436e90c68b0f2f50",
+      "lf_sha256": "bcec107efffa3b1b18f07174a7a97e8c0a5c46d5dea8765a23bdf30d4bf0d6b8",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-second-verification.md",
+      "bytes": 7309,
+      "raw_sha256": "2f74726d9bc6238570c75e13222504e85b345cea754218cead15166c21deb9f6",
+      "lf_sha256": "25c36da6ccfc213a2e2466291c2b1b8689e402514067412abc6bc5700c90cc54",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/2026-10-29-issue44-share-package.md",
+      "bytes": 3302,
+      "raw_sha256": "52e2455a6e0f117bcdfe901aff17a677a8e1e34101f229ff2ad4abe92d33d0c0",
+      "lf_sha256": "ac53916ef80749bae77ff1bd98253784d009d9ed56436093305393ced2dba7f6",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-admission-after.txt",
+      "bytes": 101,
+      "raw_sha256": "f862ea49233c01f75cc1cc816ac1f61c75b17693f55623365b73dea6a4740e39",
+      "lf_sha256": "8211600cd456f05df46c938eb97d8020592beb3a8c5619fa996403479eef016e",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-admission-before.txt",
+      "bytes": 892,
+      "raw_sha256": "52cc5168fd38ecb62b0f603b76de8da015cd942bbdf1b5beb90f197c1240a216",
+      "lf_sha256": "07da899e72c08f5d250ab3693285d360f8dbe3e09ce8cba54e0c5b394fc1da74",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-admission-final.txt",
+      "bytes": 101,
+      "raw_sha256": "61f0f9962655b41b37700114d67e778ea317913241637c0b7012307bc01c1fc9",
+      "lf_sha256": "4a33cd158da345fcef0b2fe0d5345383665a5ac80152f1d1ed6c631bc4d2f1e5",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-admission-retry-before.txt",
+      "bytes": 1032,
+      "raw_sha256": "c6bae48c7cbe7741f276b9e187aab60b948f1664a1e119d1df85061586530e00",
+      "lf_sha256": "af388285fb468294bae653ee20e24b9fcdb63ac2c4ea277e7e10992db7dc40e3",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-admission-source-hashes.json",
+      "bytes": 1345,
+      "raw_sha256": "0bd6d5332a994d73f6144b3fae0b5e592a022f0dbd6d190c7925a4b8e47adc0f",
+      "lf_sha256": "8fc710b9850aaa94eb947b2075d94328cfaf1623b277d734ac0c3f5716a1daa7",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-backend-tests.txt",
+      "bytes": 507,
+      "raw_sha256": "9f6f8fb46148ed45d22734074cb596d315d536b2a021a8070e0812474b814a16",
+      "lf_sha256": "1abe787decc581191f762cef31c0ed65e740d1fc1c73e1f1fd8b74b3c7ca4fca",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-after.txt",
+      "bytes": 100,
+      "raw_sha256": "2a972c7717cced890b77c3a37753edc011bf623e3bc84fd1e3a1bf058cf9e17f",
+      "lf_sha256": "5604146c3e5b780882247a56c0a018bc5e66131c378d3d2cbba8b24b66e2ac31",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-backend-tests.txt",
+      "bytes": 589,
+      "raw_sha256": "1ce8454a4fbecc63aae899f69cc37dfc7f07a39d5913fc0cd05d9b0c5a6f7d43",
+      "lf_sha256": "8f5f4c9fc335bfd6d5030681698ad17100ea1b2d7054bde9b390c7536e2c2b02",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-before.txt",
+      "bytes": 4,
+      "raw_sha256": "9462f35d8abd828b5071319f85e2d10e9de2fa6ad5a07f613d47f70ad450c02b",
+      "lf_sha256": "903232245ed716e0c0997e44b527870bdd5bb4eef784fe517b274f33af28a486",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-http-observations.json",
+      "bytes": 7874,
+      "raw_sha256": "f265759bb266652310ce8afa071314646dc8bc41448c77698b52e33078fe0194",
+      "lf_sha256": "9aa1f40bfdb85e7b7d4794ecb233b5401baf0c30c41349be997fc7b8076aba05",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-race-replay.json",
+      "bytes": 324,
+      "raw_sha256": "9f319eeb2a2d92940c8c70ed17c6dc546c37b4775b8dc0e099140b8cc2e465c5",
+      "lf_sha256": "afb266cf7baedefa34484234438aa667f88ef753347c6ce378258f820c5b4eb8",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-race-stack.txt",
+      "bytes": 849,
+      "raw_sha256": "87ad3c2c61ad703ee9fad8ac426c71e69104901bb6e70e278c25a2657d475362",
+      "lf_sha256": "87ad3c2c61ad703ee9fad8ac426c71e69104901bb6e70e278c25a2657d475362",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-send-before.txt",
+      "bytes": 5843,
+      "raw_sha256": "61b395950fbaffe18d339275314f80503466c6822b288c5a6eb74bd7fc75d90b",
+      "lf_sha256": "61b395950fbaffe18d339275314f80503466c6822b288c5a6eb74bd7fc75d90b",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-cancellation-source-hashes.json",
+      "bytes": 2488,
+      "raw_sha256": "493b871030f29d572ec3edf9ee5bf30dfac21c79025a39b7b74c810027a3e932",
+      "lf_sha256": "6d9466e100e922cdf201d65546c274a1d9f11ee30581a60f6dc3d78c921da827",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-discovery.json",
+      "bytes": 27042,
+      "raw_sha256": "8d894b006a6024d21ca8f1a3af073c8418bba4f59704f96ff3a0c4aaa2ac39b0",
+      "lf_sha256": "84686c5e341c5031973c3266b80f8842dbde8a3aebb41e69de53a4c608d58320",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-after.txt",
+      "bytes": 2528,
+      "raw_sha256": "e50d17ff90921c149bd29e795b80a30723b4bbc87540e091171bf6beb6d77da9",
+      "lf_sha256": "412fcb24687562ac43e8c7c69eb46afc4ba7da475fde3438fc0babdbcd62e073",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-backend-tests.txt",
+      "bytes": 507,
+      "raw_sha256": "30cb30b68a9d7c6c241dabfe04ddd00676119084795e6b95411424b5dd77b41c",
+      "lf_sha256": "e536369021cf6b193699d221f84f431dba0a751cdcc8f096f31a1d589e52bf0e",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-before.txt",
+      "bytes": 951,
+      "raw_sha256": "5b42af5040a471b385785fcf8ce34e74738d53908b224edeba0224f4560c5c09",
+      "lf_sha256": "9f3cc3c157722a4dbd5616c0f8c2f0725ecaa52e963cd79da9c50c50ee217a02",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-final.txt",
+      "bytes": 101,
+      "raw_sha256": "3af67a2886c0f21b362231222aba34b565a106cba1bdfa4510b0534580f6871c",
+      "lf_sha256": "0bb6841295466519d64a24275e2f895457ab7916a33fa7f125b9010d5e55c50b",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-frontend-build.txt",
+      "bytes": 356,
+      "raw_sha256": "80d5c2d4cec7e5106ae9f0dc4fd7dfbfebf3d32406f1f7909964ded65d22a2ce",
+      "lf_sha256": "24a684369e2e42ee14d7caa259d43e67ef976cfc6280bcd2b62182b87f4ba850",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-frontend-tests.txt",
+      "bytes": 5249,
+      "raw_sha256": "13cd30b7886a57c411242a1ae7cecf082e6f3db7ef80aaefd68fb88c1fe2f37e",
+      "lf_sha256": "628d126103420ffc7bb3b283b608c5d2f1027bd10b5ddc08be3736dbd5987d62",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-observations.json",
+      "bytes": 5270,
+      "raw_sha256": "29953c442b61868bff3271ec6196c84b278dccaf1683ee7efebf6348f0991d6e",
+      "lf_sha256": "d8e1d31b784729dd82dba7dd486e8e420d8aadf288b961f8ade86c3380d98020",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-http-source-hashes.json",
+      "bytes": 2194,
+      "raw_sha256": "645814b575162ec7ddf646fe7bd90aa613c0be93534142d9367063619d583c4d",
+      "lf_sha256": "19fb6bfacd75fb7eb1916014a256482415739f3eb780bea8c0cf530543d0e691",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-log-whitespace.json",
+      "bytes": 2303,
+      "raw_sha256": "62ab9f2a08cde72dfd1ade0c4478f83f3ac2f835ea316b4a4dbb5220e946d273",
+      "lf_sha256": "cc382ef32097cd8db454cb8c995fd41f46a2a6e7795b4827cbb4ee8c1d0d6e43",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-audit.json",
+      "bytes": 4359,
+      "raw_sha256": "dfe1d906015f0936bbd213fe3fb8599046f6c39a32b7c0c74cad5b0a05b5a063",
+      "lf_sha256": "003d7ec0687f3e4321edf2418826862949735fbbd9ccd7d3282c178134bbbf7c",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-measurement-log.txt",
+      "bytes": 778,
+      "raw_sha256": "e093e23df379f02ce7d2fdebd8b62ad9671194f6de1ab3f7f02e921b12a76d62",
+      "lf_sha256": "757dd861bf0b42e3bc6e81f2b8851a02d968be5a9a1e017baf3556c29fd82004",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-measurement.json",
+      "bytes": 357502,
+      "raw_sha256": "b9a94ee39dd438d0dc98088e396e4d50919674cd1373e9cb8ccc80ec67b8c193",
+      "lf_sha256": "3332656999cdcfca6e19be0f4d68e38d14d8935146492b276c4549c8997703a1",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-replay-log.txt",
+      "bytes": 1749,
+      "raw_sha256": "dcae936eda9280db145dcdde831ff8531a589f21b73e9f8fa0520b224229bcc8",
+      "lf_sha256": "e0722ca36e3cc3ac5ddd82a409b33bb42ed0efe98f16a1c2e3abe6ea3c26652a",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-replay-preliminary.json",
+      "bytes": 7561,
+      "raw_sha256": "ed717783a3cb647e9ebc98b99bcc096db3959ae24c5378eecb8a2ce484df88fa",
+      "lf_sha256": "706258c02787cdbe565bcaf2a7d4df3de326e7dfb6c4649ccc16d684eabe570c",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-replay.json",
+      "bytes": 7562,
+      "raw_sha256": "d4f933855ff309287fd89586d99db36eb8e9d5e2f0e616b4034803bf3bae840d",
+      "lf_sha256": "052938bc2c8b2c8e5897507ba0d60cda45c32a5ddbd908a0b0ffb33fb86f4789",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-second-audit.json",
+      "bytes": 30005,
+      "raw_sha256": "9af290c3c7867a3f6e2b4b8b564bf4a1c7514075f26ae002aee37b112d142342",
+      "lf_sha256": "31dcea7dcec058ef080d06052ee374da6d9f9b49b5fe4314af4e27e3eadd808c",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-second-log.txt",
+      "bytes": 922,
+      "raw_sha256": "2ffe949ff3305e9b5d04a87fa5c72c452e380728b6ce8b41c88d6dc65a26974b",
+      "lf_sha256": "215315be27eb2db7b8941acaf947df020fa209b509a171dc0d9e51fa525ec2ef",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-second-source-hashes.json",
+      "bytes": 1480,
+      "raw_sha256": "8d6943491fe67bcf95a455ec7d85a7cd17d2c8bfd86c4d36c2e7473f737f4e86",
+      "lf_sha256": "4008f4cdc41a1dbb44690858d60079b2f2e9d685668816f67ecc51f3b507569f",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-server-settings.json",
+      "bytes": 215,
+      "raw_sha256": "edbffc72632ad2eca66bbf089e316555f192dea4ca74ed2b10ac637adc75183a",
+      "lf_sha256": "90cfd80da2395cd99d76879aa98dd12e1307e3bce03073fe0f6ee06726e33feb",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-with-admission-log.txt",
+      "bytes": 775,
+      "raw_sha256": "93737523b4c4cdc0579fa4635cdea52b30762f2879081f941904efcb141ccf70",
+      "lf_sha256": "b57815ecb694104a1d2ba1057a6aa1443f2dd06a20b0ea5be5c2a65d82561e50",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-policy-with-admission.json",
+      "bytes": 357979,
+      "raw_sha256": "aecc7653427c7291bb8b0cc04f2e4f26ca120ba2ac7274ecdfa75669cd13ca6a",
+      "lf_sha256": "86e7a372de323a321abb39faaa2a999503dcbf35b60fbec6232286d9a538e129",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-published-comments.json",
+      "bytes": 8841,
+      "raw_sha256": "9f41668af671e219d5327e5b6b778173b84bdf730618e0f237927e7d41069374",
+      "lf_sha256": "e693a58fb5a88358d5f39a2afa5e5687754a2d6f3a9ec910c8ee3cfb386c213c",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-review-readiness.json",
+      "bytes": 4227,
+      "raw_sha256": "5f36f2920060b50db73f4fd1d7b3dd25e06a74a65716adf79d6ecb684e226a79",
+      "lf_sha256": "3106a3c83e0f5c563ec6b34c90eec6754a7392d7c07611be4997978a7fe35ee4",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-after.txt",
+      "bytes": 101,
+      "raw_sha256": "e4fab2db1fec94da03e5a8181fd7b2a56160a8f7cb708ed0c97dd05257ade295",
+      "lf_sha256": "115bcc7be9f9625b39a98f13ae363670f7e8559c68dd829681653dee04580686",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-backend-tests.txt",
+      "bytes": 508,
+      "raw_sha256": "a09e51df35ab9d95123f9c28471c0b9cd2e402cc9d73a66ae97a0055b14edb62",
+      "lf_sha256": "50b443637359859d6af09c0342c36565e5380f5f54f9c2ad4456129172bbb480",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-before.txt",
+      "bytes": 5874,
+      "raw_sha256": "e4651ef4172970e8b9fcd5bb6366e7cc99c5663a204313d25c453a6f2bba7130",
+      "lf_sha256": "e4651ef4172970e8b9fcd5bb6366e7cc99c5663a204313d25c453a6f2bba7130",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-focused.txt",
+      "bytes": 101,
+      "raw_sha256": "cf215f59136f2a5993935fe753b72b6b39398141423abb78ce07a3ba478d8d00",
+      "lf_sha256": "0a6e496b09023eb6b306a1709ca25e85f4896a6697238530e200c735a773d2f5",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-frontend-tests.txt",
+      "bytes": 936,
+      "raw_sha256": "2b857b397d75188e0a0db313153ab77aae42454a86228032727f5401a1f28c15",
+      "lf_sha256": "37905c0168d9f2bb1589f037cf702e125967b37c326fceeb1fbd5f6eaea69a31",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-http-observations.json",
+      "bytes": 7874,
+      "raw_sha256": "f265759bb266652310ce8afa071314646dc8bc41448c77698b52e33078fe0194",
+      "lf_sha256": "9aa1f40bfdb85e7b7d4794ecb233b5401baf0c30c41349be997fc7b8076aba05",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-second-source-hashes.json",
+      "bytes": 2443,
+      "raw_sha256": "71ce6b37bdcbb03ef57a37e53eee8bd99c85fec9302c8393539ce1432cab2280",
+      "lf_sha256": "dc8fb2a20ed5042fad3117a1a19f077463111649feafcc0828c2af97b02b916d",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/evidence/2026-10-29-issue44-ui-before.txt",
+      "bytes": 98984,
+      "raw_sha256": "f9a51f1e6340e9baa4b61c81c1cde0d27aad306bd411fcae5942392d3b416184",
+      "lf_sha256": "f9a51f1e6340e9baa4b61c81c1cde0d27aad306bd411fcae5942392d3b416184",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/scripts/issue44_discovery.py",
+      "bytes": 9187,
+      "raw_sha256": "0f63d4ed93bd2570e07b2a413351ae8b9608e42f9bc6e24ed1784bcee35524d4",
+      "lf_sha256": "0f63d4ed93bd2570e07b2a413351ae8b9608e42f9bc6e24ed1784bcee35524d4",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/scripts/issue44_policy_measure.py",
+      "bytes": 13983,
+      "raw_sha256": "6204dc05ab6df501e50488f3dad552ee7b5597cc8378288c24721a19b0115d71",
+      "lf_sha256": "8fb8bbdcb424d2fbaf1e95c450e56d9ed77627d9b2f3e5c7ad6e62f4445a2495",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/scripts/issue44_policy_replay.py",
+      "bytes": 7470,
+      "raw_sha256": "c39cf7073a5c96f9f231447018f3d770161e0314cb393230080fcf97127219e5",
+      "lf_sha256": "c39cf7073a5c96f9f231447018f3d770161e0314cb393230080fcf97127219e5",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "docs/verification/scripts/issue44_policy_second_audit.py",
+      "bytes": 6881,
+      "raw_sha256": "b524c6f0cac00c88455236df09ffad40c837bedae3344a1b3f19e6d448a307de",
+      "lf_sha256": "5221f480f6f5f0a1481950239a37039b4ec05a2491d7d4404e6aa976cc6c8bea",
+      "group": "docs/evidence"
+    },
+    {
+      "path": "frontend/src/admission-feedback.test.jsx",
+      "bytes": 3877,
+      "raw_sha256": "6d59fc404add5e1b31516d84b14dca57bd0d12bdc097192290218889923772d9",
+      "lf_sha256": "6d59fc404add5e1b31516d84b14dca57bd0d12bdc097192290218889923772d9",
+      "group": "code/test"
+    },
+    {
+      "path": "frontend/src/api.js",
+      "bytes": 2804,
+      "raw_sha256": "f6aecbeaa103959ae0bf379e0621b6c1ccdb01b84695c53482bdffa0b0a859a1",
+      "lf_sha256": "342286e1c426db69fb77c5c3c1772ad7f6bde332b37e237ac89d761b61f4fd8b",
+      "group": "code/test"
+    }
+  ]
+}

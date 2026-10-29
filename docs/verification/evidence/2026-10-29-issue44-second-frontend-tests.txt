@@ -1,0 +1,17 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/admission-feedback.test.jsx (10 tests) 1386ms
+   ✓ shows an execution rate rejection and permits successful manual retry 837ms
+   ✓ shows the automatic-analysis rate message and clears it after a new normal input 529ms
+ ✓ src/api-user-feedback.test.jsx (5 tests) 2079ms
+   ✓ shows actionable 413 rejection and allows a subsequent successful request 841ms
+   ✓ shows actionable 422 rejection and allows a subsequent successful request 330ms
+   ✓ shows input-analysis rejection instead of silently returning to waiting guidance 438ms
+ ✓ src/useInputAnalysis.test.jsx (3 tests) 80ms
+ ✓ src/api-limit-feedback.test.js (6 tests) 16ms
+
+ Test Files  4 passed (4)
+      Tests  24 passed (24)
+   Start at  14:12:34
+   Duration  31.91s (transform 970ms, setup 8.61s, collect 9.90s, tests 3.56s, environment 21.42s, prepare 2.09s)

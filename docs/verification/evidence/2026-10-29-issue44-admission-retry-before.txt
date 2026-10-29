@@ -1,0 +1,17 @@
+............................F..                                          [100%]
+================================== FAILURES ===================================
+______ test_retry_after_accounts_for_peer_even_when_total_is_also_empty _______
+
+    def test_retry_after_accounts_for_peer_even_when_total_is_also_empty():
+        p = AdmissionPolicy(Rate(1,1), {"analyze":Rate(2,1)}, Rate(1,.25), 2, {"analyze":2},2)
+        c = AdmissionController(p, clock=Clock())
+        accepted(c)
+>       assert rejected(c).retry_after == 4
+E       AssertionError: assert 1 == 4
+E        +  where 1 = AdmissionRejected('rate_limit').retry_after
+E        +    where AdmissionRejected('rate_limit') = rejected(<app.core.admission.AdmissionController object at 0x00000200D1D1F800>)
+
+tests\test_admission.py:306: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_admission.py::test_retry_after_accounts_for_peer_even_when_total_is_also_empty
+1 failed, 30 passed in 0.91s

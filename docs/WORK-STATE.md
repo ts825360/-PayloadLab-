@@ -4,9 +4,9 @@
 
 ## 1. 지금 바로 재개할 지점
 
-- 실제 수정 저장소: 사용자가 지정한 문서/GitHub/-PayloadLab-. 기존 `dtd2428/issue-19-lens-sql`을 `suwoong(#19.#42,#44)`로 rename하고 검증한 #19/#42 커밋을 모은다. #42는14d930d·72949e6·6adc295로 보존. #44는 미착수. 원격 push/PR 변경 없음.
-- 갱신일: 2026-10-28. #42 조사 기준 origin/main `64c9cb141108cafa5c6d215fc9eb4981c100b9b7`.
-- 현재 작업: 개인 단일브랜치 통합·충돌 해결·회귀 완료. [통합 근거](verification/2026-10-28-suwoong-integration.md). 이 문서를 포함한 병합 커밋 SHA는 git log로 확인한다.
+- 실제 수정 저장소: 사용자가 지정한 문서/GitHub/-PayloadLab-. 기존 `dtd2428/issue-19-lens-sql`을 `suwoong(#19.#42,#44)`로 rename하고 검증한 #19/#42 커밋을 모은다. #42는14d930d·72949e6·6adc295로 보존. #44는 2026-10-29 조사·스파이크 착수. 원격 push/PR 변경 없음.
+- 갱신일: 2026-10-29. #42 조사 기준 origin/main `64c9cb141108cafa5c6d215fc9eb4981c100b9b7`.
+- 현재 작업: 사용자 승인으로 #44 코드·근거와 #19/#42/#44 설명을 개인 브랜치에 커밋·푸시 준비. 코드10개는 a6beb8a에 저장. [공유 안내](verification/2026-10-29-issue44-share-package.md), [세 이슈 설명](handoff/README.md). 문서 커밋/원격 전송 진행 중.
 - 완료: main 코드 조사, API 타입/상한 현황 표, 후보값/시험안, 작은 SQLite 중단→close→새 연결 정상 조회 기법 시험.
 - 다음: 사용자 요청으로 임의 후보 대신 [실측 재산정](verification/2026-10-28-issue42-limit-rationale.md) 완료. 근거를 사용자에게 설명한 뒤 #6/#24 팀 검토 요청. 최종값 승인 전 기본앱 정책 활성화 금지. #42 개인브랜치 분리와 검토앱 opt-in 연결까지 구현·검사 완료.
 - #19: PR #48은 팀 승인/main 반영 대기. 완료 여부는 원격 재조회. 이전 구현을 #42에서 임의 삭제하거나 반복 구현하지 않는다.
@@ -14,12 +14,12 @@
 
 | 항목 | 저장한 내용 |
 | --- | --- |
-| 작업 ID | PERSONAL-MERGE-01 / 기존#19브랜치 rename·검증통합 커밋으로 fast-forward. #19/#42분리기록 보존·#44미착수 |
-| 변경 | 주입형 검토앱·SQL context와 실제SQL/trace/라우트 opt-in 연결. main.app 기본정책은 미활성 |
-| 마지막 검사 | 통합 backend362·frontend128·build488·dataset7 통과. 충돌0·diff --check 통과 |
-| 근거 | verification/2026-10-28-suwoong-integration.md 및 통합검사 로그/파일해시 |
+| 작업 ID | ISSUE44-SHARE / #44 코드/검사 커밋 완료·검증 근거/세 이슈 설명 문서 커밋·푸시 진행 |
+| 변경 | #44 코드10개 별도 커밋, docs/handoff 인덱스에 #44 연결·실제8항목 설명 정리. 근거/로그/정책 초안 함께 공유 준비. 제품 동작 추가 변경 없음 |
+| 마지막 검사 | 원격 개인 브랜치eaa3998과 작업기준 일치·작성자dtd2428 연결 확인.433검사 소스해시 일치·관련파일만 선별·자격정보 패턴0. 코드커밋 a6beb8a. 제품검사 새실행 아님 |
+| 근거 | verification/2026-10-29-issue44-share-package.md·공유manifest·기존 단계별검증/실제 이슈댓글 JSON |
 | 미실시 | 숫자/SQL authorizer 팀승인·기본앱 활성화·운영환경/전유형UI·push/PR/main반영 미실시. 로컬 커밋은 저장 |
-| 다음 명령 | 사용자 다음 요청에 따라 현재 통합 브랜치에서 진행. push/PR은 별도 요청 전 수행하지 않음. #42종료는 팀장 태성 최종검토/보고로 결정. 검토서버8102는 통합소스로 갱신 |
+| 다음 명령 | 문서/근거 커밋 후 기존 origin/suwoong(#19.#42,#44)에 일반 push. 원격SHA/계정 확인하고 공유 결과 기록. PR/main반영/체크/종료/새댓글은 수행하지 않음. N/A/B/운영값은 태성 결정 대기 |
 
 - 이슈 최신상황 게시(2026-10-28): #19 https://github.com/ts825360/-PayloadLab-/issues/19#issuecomment-6465448348 / #42 https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6465447804 — 재조회 확인, 둘 다 open. 원격 push/체크 변경 없음.
 

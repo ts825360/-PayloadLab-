@@ -1,0 +1,71 @@
+
+ RUN  v2.1.9 C:/Users/dtd24/OneDrive/문서/GitHub/-PayloadLab-/frontend
+
+ ✓ src/guided-lessons.test.jsx (15 tests) 707ms
+   ✓ GuidedLesson > offers editable fill without running or advancing 316ms
+ ✓ src/learning-workspace.test.jsx (11 tests) 9215ms
+   ✓ learning workspace > opens and focuses the observation stage on desktop when Enter executes the first attempt 2352ms
+   ✓ learning workspace > clears the current result when changing category without deleting saved attempts 1094ms
+   ✓ learning workspace > keeps Lens below the input and opens focus without scrolling the page 859ms
+   ✓ learning workspace > does not let old analysis replace a new lab 646ms
+   ✓ learning workspace > opens a mobile dialog and restores its trigger on confirmed close 885ms
+   ✓ learning workspace > renders evidence and Lens on failed attempts, preserving it during editing 809ms
+   ✓ learning workspace > uses Normal as a label while retaining the existing medium API identifier 425ms
+   ✓ learning workspace > rejects a late response after switching labs 375ms
+   ✓ learning workspace > keeps both attempts available for comparison 1242ms
+ ✓ src/terminal/linux-desktop.test.jsx (8 tests) 5429ms
+   ✓ enters immediately when reduced motion is requested 789ms
+   ✓ opens a full Linux workspace for /Command Injection/ instead of a small web input 354ms
+   ✓ opens a full Linux workspace for /Linux 명령어/ instead of a small web input 335ms
+   ✓ opens a full Linux workspace for /권한상승 기초/ instead of a small web input 524ms
+   ✓ preserves web and terminal drafts through the logo and does not replay preparation inside Linux 965ms
+   ✓ runs into the transcript, opens Lens from the raw error, and confirms only observation close 850ms
+   ✓ fills a server-provided supported command without executing it 885ms
+   ✓ keeps a new draft written while an attempt is pending and ignores a late response after web return 724ms
+ ✓ src/execution-canvas.test.jsx (10 tests) 873ms
+ ✓ src/practice-integration.test.jsx (5 tests) 4273ms
+   ✓ starts SQL Easy with an actionable guide rather than an empty Lens slogan 652ms
+   ✓ distinguishes planned permission Normal from unavailable or failed server connection 357ms
+   ✓ keeps Normal available for every pre-agreed web/command-quiz category 1729ms
+   ✓ does not let an unsupported permission command poison later virtual history 824ms
+   ✓ connects the current raw error to Lens and keeps old diagnostics local after editing 708ms
+ ✓ src/web-observation.test.jsx (4 tests) 3176ms
+   ✓ keeps only input and Lens on the base surface while typing and analyzing 902ms
+   ✓ opens on Enter and really removes the dialog after Escape then Enter 836ms
+   ✓ closes immediately with X and can reopen the preserved result from Lens 757ms
+   ✓ remembers the submitting input before focus is lost while opening the dialog 676ms
+ ✓ src/terminal/DiagnosticText.test.jsx (9 tests) 839ms
+   ✓ marks exactly the codepoint range while preserving the entire raw text 327ms
+ ✓ src/terminal/TerminalInspector.test.jsx (7 tests) 143ms
+ ✓ src/unified-workspace.test.jsx (4 tests) 4409ms
+   ✓ contains only input and fixed Lens before opening observation 442ms
+   ✓ provides definition, conditions, flow, goal and next action before input in all 13 supported lab combinations 3228ms
+   ✓ uses real task-specific controls rather than only renaming one text box 655ms
+ ✓ src/terminal/TerminalTranscript.test.jsx (5 tests) 551ms
+   ✓ keeps command/output order, exact raw errors and educational notes separate 310ms
+ ✓ src/terminal/TerminalInput.test.jsx (6 tests) 480ms
+ ✓ src/admission-feedback.test.jsx (10 tests) 1287ms
+   ✓ shows an execution rate rejection and permits successful manual retry 769ms
+   ✓ shows the automatic-analysis rate message and clears it after a new normal input 497ms
+ ✓ src/input-shortcuts.test.jsx (6 tests) 634ms
+   ✓ submits on Enter and reserves Shift+Enter for the native newline 307ms
+ ✓ src/api-user-feedback.test.jsx (5 tests) 2337ms
+   ✓ shows actionable 413 rejection and allows a subsequent successful request 891ms
+   ✓ shows actionable 422 rejection and allows a subsequent successful request 364ms
+   ✓ shows actionable 503 rejection and allows a subsequent successful request 303ms
+   ✓ shows input-analysis rejection instead of silently returning to waiting guidance 522ms
+ ✓ src/terminal/diagnostics.test.js (10 tests) 18ms
+ ✓ src/practice-simulation.test.jsx (3 tests) 379ms
+ ✓ src/useInputAnalysis.test.jsx (3 tests) 88ms
+ ✓ src/resource-limit-view.test.jsx (3 tests) 345ms
+ ✓ src/api-limit-feedback.test.js (6 tests) 18ms
+ ✓ src/change-comparison.test.jsx (1 test) 99ms
+ ✓ src/brand-assets.test.jsx (2 tests) 517ms
+   ✓ uses the approved static wordmark and selects the matching theme variant 513ms
+ ✓ src/theme-tokens.test.js (3 tests) 21ms
+ ✓ src/compare-inputs.test.js (2 tests) 9ms
+
+ Test Files  23 passed (23)
+      Tests  138 passed (138)
+   Start at  13:57:29
+   Duration  132.33s (transform 1.97s, setup 53.07s, collect 40.77s, tests 35.85s, environment 101.10s, prepare 13.97s)

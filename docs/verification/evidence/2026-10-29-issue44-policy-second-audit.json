@@ -1,0 +1,1118 @@
+{
+  "state": "independent draft audit; no capacity guarantee",
+  "measurement_sha256": "aecc7653427c7291bb8b0cc04f2e4f26ca120ba2ac7274ecdfa75669cd13ca6a",
+  "arithmetic_profiles": [
+    {
+      "clients": 1,
+      "requests": 204,
+      "cpu_ms_per_request_decimal": "8.731617647058823529411764706",
+      "p95_from_raw": "32.63700000024983"
+    },
+    {
+      "clients": 2,
+      "requests": 204,
+      "cpu_ms_per_request_decimal": "8.961397058823529411764705882",
+      "p95_from_raw": "33.53959999913059"
+    },
+    {
+      "clients": 4,
+      "requests": 204,
+      "cpu_ms_per_request_decimal": "8.272058823529411764705882353",
+      "p95_from_raw": "47.7710000004663"
+    },
+    {
+      "clients": 8,
+      "requests": 204,
+      "cpu_ms_per_request_decimal": "8.578431372549019607843137255",
+      "p95_from_raw": "103.16670000065642"
+    }
+  ],
+  "max_profile_mean_cpu_ms_decimal": "8.961397058823529411764705882",
+  "sensitivity_scenarios": [
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 133,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 160,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 161,
+      "admitted": 21,
+      "denied": 5,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1920,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 2560,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 26,
+      "skipped_previews_if_attempt_denied": 5,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 200,
+      "admitted": 21,
+      "denied": 5,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1920,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 2560,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 26,
+      "skipped_previews_if_attempt_denied": 5,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 320,
+      "admitted": 22,
+      "denied": 9,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 960,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1600,
+          "action": "render",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 321,
+      "admitted": 12,
+      "denied": 12,
+      "first_denials": [
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 960,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 24,
+      "skipped_previews_if_attempt_denied": 7,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 133,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 160,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 2,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 161,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 3,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 200,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 3,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 320,
+      "admitted": 31,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 31,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 3,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 1,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 321,
+      "admitted": 16,
+      "denied": 10,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 1280,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 26,
+      "skipped_previews_if_attempt_denied": 5,
+      "peak_active": 3,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 133,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 160,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 161,
+      "admitted": 86,
+      "denied": 24,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 110,
+      "skipped_previews_if_attempt_denied": 14,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 200,
+      "admitted": 86,
+      "denied": 24,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 110,
+      "skipped_previews_if_attempt_denied": 14,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 320,
+      "admitted": 88,
+      "denied": 36,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 321,
+      "admitted": 53,
+      "denied": 46,
+      "first_denials": [
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 99,
+      "skipped_previews_if_attempt_denied": 25,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 133,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 160,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 8,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 161,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 12,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 200,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 12,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 320,
+      "admitted": 124,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 124,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 12,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 4,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 321,
+      "admitted": 64,
+      "denied": 40,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 104,
+      "skipped_previews_if_attempt_denied": 20,
+      "peak_active": 12,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 133,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 160,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 161,
+      "admitted": 173,
+      "denied": 48,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 221,
+      "skipped_previews_if_attempt_denied": 27,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 200,
+      "admitted": 173,
+      "denied": 48,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 221,
+      "skipped_previews_if_attempt_denied": 27,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 320,
+      "admitted": 176,
+      "denied": 72,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 321,
+      "admitted": 106,
+      "denied": 94,
+      "first_denials": [
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 200,
+      "skipped_previews_if_attempt_denied": 48,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 133,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 160,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 16,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 161,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 24,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 200,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 24,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 320,
+      "admitted": 248,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 248,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 24,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 8,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 321,
+      "admitted": 128,
+      "denied": 80,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 208,
+      "skipped_previews_if_attempt_denied": 40,
+      "peak_active": 24,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 133,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 160,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 161,
+      "admitted": 346,
+      "denied": 99,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 445,
+      "skipped_previews_if_attempt_denied": 51,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 200,
+      "admitted": 346,
+      "denied": 99,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 445,
+      "skipped_previews_if_attempt_denied": 51,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 320,
+      "admitted": 352,
+      "denied": 144,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "render",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 2,
+      "per_request_hold_ms": 321,
+      "admitted": 213,
+      "denied": 188,
+      "first_denials": [
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 320,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 401,
+      "skipped_previews_if_attempt_denied": 95,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 133,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 160,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 32,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 161,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 48,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 200,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 48,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 320,
+      "admitted": 496,
+      "denied": 0,
+      "first_denials": [],
+      "scheduled_requests": 496,
+      "skipped_previews_if_attempt_denied": 0,
+      "peak_active": 48,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    },
+    {
+      "n": 16,
+      "active_multiplier": 3,
+      "per_request_hold_ms": 321,
+      "admitted": 256,
+      "denied": 160,
+      "first_denials": [
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "analyze",
+          "code": "concurrency_limit"
+        },
+        {
+          "at_ms": 640,
+          "action": "attempt",
+          "code": "concurrency_limit"
+        }
+      ],
+      "scheduled_requests": 416,
+      "skipped_previews_if_attempt_denied": 80,
+      "peak_active": 48,
+      "remaining_slots": 0,
+      "kind": "integer-ms virtual timeline; not HTTP/user capacity"
+    }
+  ],
+  "isolated_global_controls": [
+    {
+      "n": 1,
+      "tight_total_burst": 1,
+      "wide_total_burst": 4,
+      "same_action_allowance": "attempt still unused in both",
+      "tight_attempt": "rate_limit",
+      "wide_attempt": "admitted"
+    },
+    {
+      "n": 4,
+      "tight_total_burst": 4,
+      "wide_total_burst": 16,
+      "same_action_allowance": "attempt still unused in both",
+      "tight_attempt": "rate_limit",
+      "wide_attempt": "admitted"
+    },
+    {
+      "n": 8,
+      "tight_total_burst": 8,
+      "wide_total_burst": 32,
+      "same_action_allowance": "attempt still unused in both",
+      "tight_attempt": "rate_limit",
+      "wide_attempt": "admitted"
+    },
+    {
+      "n": 16,
+      "tight_total_burst": 16,
+      "wide_total_burst": 64,
+      "same_action_allowance": "attempt still unused in both",
+      "tight_attempt": "rate_limit",
+      "wide_attempt": "admitted"
+    }
+  ],
+  "findings": [
+    "2N can reject below 320ms goal when a previous preview overlaps next analysis/attempt",
+    "3N model admits <=320ms per request under this integer-time, one-tab interaction model",
+    "at 321ms the per-action cap still rejects; no overload guarantee",
+    "13N/4N totals equal sum of action quotas; original overflow did not isolate total"
+  ],
+  "source_sha256": "b524c6f0cac00c88455236df09ffad40c837bedae3344a1b3f19e6d448a307de"
+}

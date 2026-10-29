@@ -1,0 +1,145 @@
+F....                                                                    [100%]
+================================== FAILURES ===================================
+____ test_cancel_during_body_receive_does_not_leave_a_slot_waiting_forever ____
+
+fut = <coroutine object AdmissionController.wait_idle at 0x0000024D3C167E60>
+timeout = 0.5
+
+    async def wait_for(fut, timeout):
+        """Wait for the single Future or coroutine to complete, with timeout.
+
+        Coroutine will be wrapped in Task.
+
+        Returns result of the Future or coroutine.  When a timeout occurs,
+        it cancels the task and raises TimeoutError.  To avoid the task
+        cancellation, wrap it in shield().
+
+        If the wait is cancelled, the task is also cancelled.
+
+        If the task suppresses the cancellation and returns a value instead,
+        that value is returned.
+
+        This function is a coroutine.
+        """
+        # The special case for timeout <= 0 is for the following case:
+        #
+        # async def test_waitfor():
+        #     func_started = False
+        #
+        #     async def func():
+        #         nonlocal func_started
+        #         func_started = True
+        #
+        #     try:
+        #         await asyncio.wait_for(func(), 0)
+        #     except asyncio.TimeoutError:
+        #         assert not func_started
+        #     else:
+        #         assert False
+        #
+        # asyncio.run(test_waitfor())
+
+
+        if timeout is not None and timeout <= 0:
+            fut = ensure_future(fut)
+
+            if fut.done():
+                return fut.result()
+
+            await _cancel_and_wait(fut)
+            try:
+                return fut.result()
+            except exceptions.CancelledError as exc:
+                raise TimeoutError from exc
+
+        async with timeouts.timeout(timeout):
+>           return await fut
+
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:507:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <app.core.admission.AdmissionController object at 0x0000024D3C194440>
+
+    async def wait_idle(self):
+        """Graceful drain for tests/lifespan. No fabricated completion timeout."""
+        while True:
+            with self._lock: tasks = tuple(self._owned)
+            if not tasks: return
+>           await asyncio.gather(*(asyncio.shield(task) for task in tasks), return_exceptions=True)
+E           asyncio.exceptions.CancelledError
+
+app\core\admission.py:239: CancelledError
+
+The above exception was the direct cause of the following exception:
+
+    def test_cancel_during_body_receive_does_not_leave_a_slot_waiting_forever():
+        async def run():
+            c=controller(active=1)
+            entered, allow_receive=asyncio.Event(),asyncio.Event()
+            sent=[]
+            async def receive():
+                entered.set()
+                await allow_receive.wait()
+                return {"type":"http.disconnect"}
+            async def send(message): sent.append(message)
+            async def endpoint(sc,recv,snd):
+                message=await recv()
+                assert message["type"]=="http.disconnect"
+            app=AdmissionGuard(endpoint,controller=c)
+            caller=asyncio.create_task(app(scope(),receive,send))
+            await entered.wait()
+            caller.cancel()
+            with pytest.raises(asyncio.CancelledError): await caller
+            try:
+                # Test watchdog only, not a proposed production request timeout.
+                await asyncio.wait_for(c.wait_idle(),.5)
+                assert c.snapshot()["active"]==0 and sent==[]
+            finally:
+                allow_receive.set()
+                await c.wait_idle()
+>       asyncio.run(run())
+
+tests\test_admission_second_review.py:44:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:195: in run
+    return runner.run(main)
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:725: in run_until_complete
+    return future.result()
+tests\test_admission_second_review.py:39: in run
+    await asyncio.wait_for(c.wait_idle(),.5)
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:506: in wait_for
+    async with timeouts.timeout(timeout):
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Timeout [expired]>
+exc_type = <class 'asyncio.exceptions.CancelledError'>
+exc_val = CancelledError(), exc_tb = <traceback object at 0x0000024D3C080800>
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> Optional[bool]:
+        assert self._state in (_State.ENTERED, _State.EXPIRING)
+
+        if self._timeout_handler is not None:
+            self._timeout_handler.cancel()
+            self._timeout_handler = None
+
+        if self._state is _State.EXPIRING:
+            self._state = _State.EXPIRED
+
+            if self._task.uncancel() <= self._cancelling and exc_type is not None:
+                # Since there are no new cancel requests, we're
+                # handling this.
+                if issubclass(exc_type, exceptions.CancelledError):
+>                   raise TimeoutError from exc_val
+E                   TimeoutError
+
+C:\Users\dtd24\AppData\Local\Programs\Python\Python313\Lib\asyncio\timeouts.py:116: TimeoutError
+=========================== short test summary info ===========================
+FAILED tests/test_admission_second_review.py::test_cancel_during_body_receive_does_not_leave_a_slot_waiting_forever
+1 failed, 4 passed in 4.27s

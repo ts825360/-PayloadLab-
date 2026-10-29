@@ -1,0 +1,46 @@
+{
+  "head": "eaa3998526b60ea0109cd1b9a08914336944a806",
+  "scope": "opt-in review app, single process loopback. main.app and compose unchanged",
+  "environment": {
+    "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "uvicorn": "0.32.0",
+      "fastapi": "0.115.0",
+      "starlette": "0.38.6",
+      "anyio": "4.15.1",
+      "pytest": "8.3.3"
+    }
+  },
+  "source_sha256": {
+    "backend/app/core/admission.py": "4784d9f7bc2c32ee5d42093381ea01a45c72c66bce927c4efb2121ccfe19bfda",
+    "backend/app/core/admission_guard.py": "840fdd02999fb6bd74c1834966123ed7e507113ddbbb15b5bc991d9f56d31f4d",
+    "backend/app/core/lab_paths.py": "0ca2973c3e0c7969060573d9334500072c64a597e3673acbced5b6dd3d41a7ac",
+    "backend/app/review_app.py": "799043e2cfb2994173837b7b268a9e00e2b0c5687dd30874c6b73772084bd6f1",
+    "backend/app/main.py": "df9729526aaaa30674f48e1dab75fea2ad419b866738718b85c3017561fbbe91",
+    "backend/tests/test_admission.py": "584f00f016311bf1ed01b2ef69bcaf026f1e1e5189fe3eb24b4bc5e4017708bb",
+    "backend/tests/test_admission_http.py": "bf16dabe64c945565c76993ff1b51090438c5732a2532d76d5770f62715ba455",
+    "frontend/src/api.js": "f6aecbeaa103959ae0bf379e0621b6c1ccdb01b84695c53482bdffa0b0a859a1",
+    "frontend/src/admission-feedback.test.jsx": "6d59fc404add5e1b31516d84b14dca57bd0d12bdc097192290218889923772d9",
+    "frontend/src/App.jsx": "421c30234969b71a79153cb1e7e065ad72c375e46ed0f6bd63a02299efdeb268",
+    "frontend/src/useInputAnalysis.js": "342d5dc796a7005324382f7e515fc968252b358ec1392d561ff903a17c5a75e9",
+    "docker-compose.yml": "a6f6bb0440709ed914bd5d26223bbd805c75a3b4cb7b4ada64a1e68ae642bf15"
+  },
+  "results": {
+    "backend": 413,
+    "new_http_asgi_tests": 19,
+    "http_requests": 32,
+    "frontend": 138,
+    "frontend_files": 23,
+    "new_frontend_tests": 10,
+    "build_modules": 488
+  },
+  "not_performed": [
+    "real browser UI",
+    "real external multi-IP clients",
+    "multiworker aggregation",
+    "production proxy/origin port enforcement",
+    "policy approval",
+    "commit/push/PR"
+  ]
+}

@@ -1,0 +1,5 @@
+{"clients": 1, "requests": 204, "server_cpu_seconds": 1.78125, "latency_ms": {"median": 19.49620000050345, "p95_sample": 32.63700000024983, "max": 37.02369999973598}}
+{"clients": 2, "requests": 204, "server_cpu_seconds": 1.828125, "latency_ms": {"median": 18.58269999956974, "p95_sample": 33.53959999913059, "max": 39.81930000009015}}
+{"clients": 4, "requests": 204, "server_cpu_seconds": 1.6875, "latency_ms": {"median": 23.06570000018837, "p95_sample": 47.7710000004663, "max": 64.51519999973243}}
+{"clients": 8, "requests": 204, "server_cpu_seconds": 1.75, "latency_ms": {"median": 51.47080000006099, "p95_sample": 103.16670000065642, "max": 132.51190000028146}}
+{"output": "docs\\verification\\evidence\\2026-10-29-issue44-policy-with-admission.json", "total": 816}

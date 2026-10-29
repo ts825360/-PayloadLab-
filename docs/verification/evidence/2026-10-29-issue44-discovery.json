@@ -1,0 +1,1140 @@
+{
+  "scope": "small sequential loopback HTTP discovery; no app rate policy, no capacity/load claim",
+  "head": "eaa3998526b60ea0109cd1b9a08914336944a806",
+  "environment": {
+    "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "uvicorn": "0.32.0",
+      "fastapi": "0.115.0",
+      "starlette": "0.38.6",
+      "anyio": "4.15.1"
+    },
+    "uvicorn_defaults_this_environment": {
+      "proxy_headers": true,
+      "forwarded_allow_ips": "127.0.0.1",
+      "workers": 1,
+      "limit_concurrency": null
+    }
+  },
+  "source_sha256": {
+    "backend/app/main.py": "df9729526aaaa30674f48e1dab75fea2ad419b866738718b85c3017561fbbe91",
+    "backend/app/routes/labs.py": "086d2e932cfbf020c1f7dc7aa2f329b0a7a3718225ef6b8ba361e39b3480cfa8",
+    "frontend/src/useInputAnalysis.js": "342d5dc796a7005324382f7e515fc968252b358ec1392d561ff903a17c5a75e9",
+    "frontend/src/App.jsx": "421c30234969b71a79153cb1e7e065ad72c375e46ed0f6bd63a02299efdeb268",
+    "frontend/src/api.js": "2825e8a19cad267066cc5025ba42eb32e331ef4cc43aa572ba5e7cda16f1eb81",
+    "frontend/vite.config.js": "ec249389147d7dc567e87f890272840ebeb9e5460508a08dcc2dfacf56e98806",
+    "docker-compose.yml": "a6f6bb0440709ed914bd5d26223bbd805c75a3b4cb7b4ada64a1e68ae642bf15",
+    "backend/app/core/lab_paths.py": "e2588e48fff7adf55d8f66c53b9be59774fd19cb89ad3a04913d42ca7f74279b"
+  },
+  "cases": [
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "input": {
+        "username": "guest"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1228,
+          "elapsed_ms": 170.5548,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1228,
+          "elapsed_ms": 6.1459,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1228,
+          "elapsed_ms": 5.6712,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/attempt",
+      "input": {
+        "username": "guest"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 3346,
+          "elapsed_ms": 5.6728,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3346,
+          "elapsed_ms": 5.723,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3346,
+          "elapsed_ms": 5.6477,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-medium/analyze",
+      "input": {
+        "username": "guest"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1313,
+          "elapsed_ms": 5.7195,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1313,
+          "elapsed_ms": 5.4137,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1313,
+          "elapsed_ms": 4.6781,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-medium/attempt",
+      "input": {
+        "username": "guest"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 3567,
+          "elapsed_ms": 5.7344,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3567,
+          "elapsed_ms": 5.8759,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3567,
+          "elapsed_ms": 5.1217,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/reflected-xss-easy/analyze",
+      "input": {
+        "query": "hello"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1127,
+          "elapsed_ms": 4.6241,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1127,
+          "elapsed_ms": 4.1873,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1127,
+          "elapsed_ms": 4.7788,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/reflected-xss-easy/attempt",
+      "input": {
+        "query": "hello"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1571,
+          "elapsed_ms": 8.6716,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1571,
+          "elapsed_ms": 4.6456,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1571,
+          "elapsed_ms": 4.667,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/reflected-xss-medium/analyze",
+      "input": {
+        "query": "hello"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1216,
+          "elapsed_ms": 4.6219,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1216,
+          "elapsed_ms": 4.6556,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1216,
+          "elapsed_ms": 4.4358,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/reflected-xss-medium/attempt",
+      "input": {
+        "query": "hello"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1803,
+          "elapsed_ms": 4.7976,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1803,
+          "elapsed_ms": 4.7723,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1803,
+          "elapsed_ms": 4.5636,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/idor-easy/analyze",
+      "input": {
+        "requested_id": 1042
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1164,
+          "elapsed_ms": 4.5149,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1164,
+          "elapsed_ms": 4.2623,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1164,
+          "elapsed_ms": 4.0606,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/idor-easy/attempt",
+      "input": {
+        "requested_id": 1042
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2094,
+          "elapsed_ms": 4.1354,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2094,
+          "elapsed_ms": 4.3509,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2094,
+          "elapsed_ms": 4.4451,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/idor-medium/analyze",
+      "input": {
+        "requested_id": 1042,
+        "claimed_user_id": 1042
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1568,
+          "elapsed_ms": 3.8202,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1568,
+          "elapsed_ms": 4.2969,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1568,
+          "elapsed_ms": 4.4492,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/idor-medium/attempt",
+      "input": {
+        "requested_id": 1042,
+        "claimed_user_id": 1042
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2691,
+          "elapsed_ms": 4.4291,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2691,
+          "elapsed_ms": 4.0339,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2691,
+          "elapsed_ms": 3.9129,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/ssrf-easy/analyze",
+      "input": {
+        "target_url": "https://example.com/news"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1939,
+          "elapsed_ms": 14.2738,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1939,
+          "elapsed_ms": 4.8961,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1939,
+          "elapsed_ms": 4.3211,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/ssrf-easy/attempt",
+      "input": {
+        "target_url": "https://example.com/news"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2551,
+          "elapsed_ms": 4.8792,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2551,
+          "elapsed_ms": 4.7936,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2551,
+          "elapsed_ms": 5.0278,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/ssrf-medium/analyze",
+      "input": {
+        "target_url": "https://example.com/news"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2173,
+          "elapsed_ms": 4.6242,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2173,
+          "elapsed_ms": 4.4581,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2173,
+          "elapsed_ms": 4.9703,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/ssrf-medium/attempt",
+      "input": {
+        "target_url": "https://example.com/news"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2808,
+          "elapsed_ms": 5.0072,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2808,
+          "elapsed_ms": 4.7895,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2808,
+          "elapsed_ms": 5.3608,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/command-injection-easy/analyze",
+      "input": {
+        "hostname": "example.com"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1829,
+          "elapsed_ms": 5.1925,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1829,
+          "elapsed_ms": 6.6213,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1829,
+          "elapsed_ms": 5.4013,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/command-injection-easy/attempt",
+      "input": {
+        "hostname": "example.com"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2582,
+          "elapsed_ms": 5.3901,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2582,
+          "elapsed_ms": 4.9327,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2582,
+          "elapsed_ms": 5.091,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/command-injection-medium/analyze",
+      "input": {
+        "hostname": "example.com"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1964,
+          "elapsed_ms": 4.5114,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1964,
+          "elapsed_ms": 4.3135,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1964,
+          "elapsed_ms": 4.5447,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/command-injection-medium/attempt",
+      "input": {
+        "hostname": "example.com"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2717,
+          "elapsed_ms": 4.5444,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2717,
+          "elapsed_ms": 5.9338,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2717,
+          "elapsed_ms": 4.7725,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/linux-basics-easy/analyze",
+      "input": {
+        "command": "ls"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2270,
+          "elapsed_ms": 4.4669,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2270,
+          "elapsed_ms": 4.2058,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2270,
+          "elapsed_ms": 4.4334,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/linux-basics-easy/attempt",
+      "input": {
+        "command": "ls"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2849,
+          "elapsed_ms": 4.067,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2849,
+          "elapsed_ms": 4.6368,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2849,
+          "elapsed_ms": 4.8468,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/linux-basics-medium/analyze",
+      "input": {
+        "command": "ls"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2316,
+          "elapsed_ms": 15.0793,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2316,
+          "elapsed_ms": 4.6682,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2316,
+          "elapsed_ms": 6.677,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/linux-basics-medium/attempt",
+      "input": {
+        "command": "ls"
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 3484,
+          "elapsed_ms": 5.6061,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3484,
+          "elapsed_ms": 3.6028,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 3484,
+          "elapsed_ms": 5.1738,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/permissions-easy/analyze",
+      "input": {
+        "command": "whoami",
+        "history": []
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2022,
+          "elapsed_ms": 3.8721,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2022,
+          "elapsed_ms": 3.4514,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2022,
+          "elapsed_ms": 3.3732,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/labs/permissions-easy/attempt",
+      "input": {
+        "command": "whoami",
+        "history": []
+      },
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 2606,
+          "elapsed_ms": 4.5613,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2606,
+          "elapsed_ms": 4.4735,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 2606,
+          "elapsed_ms": 4.8938,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/labs/reflected-xss-easy/render?query=hello",
+      "input": null,
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 4.0288,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 4.4167,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 3.9035,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/labs/reflected-xss-medium/render?query=hello",
+      "input": null,
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 3.9065,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 4.1221,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 206,
+          "elapsed_ms": 3.7482,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "input": null,
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 15,
+          "elapsed_ms": 4.0333,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 15,
+          "elapsed_ms": 3.7957,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 15,
+          "elapsed_ms": 4.3009,
+          "retry_after": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/labs",
+      "input": null,
+      "samples": [
+        {
+          "status": 200,
+          "bytes": 1786,
+          "elapsed_ms": 4.3913,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1786,
+          "elapsed_ms": 4.4345,
+          "retry_after": null
+        },
+        {
+          "status": 200,
+          "bytes": 1786,
+          "elapsed_ms": 4.691,
+          "retry_after": null
+        }
+      ]
+    }
+  ],
+  "mounted_sql": [
+    {
+      "status": 200,
+      "bytes": 1228,
+      "elapsed_ms": 5.2888,
+      "retry_after": null
+    },
+    {
+      "status": 200,
+      "bytes": 1228,
+      "elapsed_ms": 5.1677,
+      "retry_after": null
+    },
+    {
+      "status": 200,
+      "bytes": 1228,
+      "elapsed_ms": 4.9678,
+      "retry_after": null
+    }
+  ],
+  "proxy_observations": [
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.5963,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "",
+      "headers_case": "xff-a",
+      "expected_peer": "198.51.100.10",
+      "actual_peer": "198.51.100.10",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.688,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "",
+      "headers_case": "xff-b",
+      "expected_peer": "198.51.100.11",
+      "actual_peer": "198.51.100.11",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 19.4777,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.6318,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "/api",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.2201,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "/api",
+      "headers_case": "xff-a",
+      "expected_peer": "198.51.100.10",
+      "actual_peer": "198.51.100.10",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.162,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "/api",
+      "headers_case": "xff-b",
+      "expected_peer": "198.51.100.11",
+      "actual_peer": "198.51.100.11",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.4581,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-trusted",
+      "path_prefix": "/api",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.6118,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.9001,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "",
+      "headers_case": "xff-a",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.7294,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "",
+      "headers_case": "xff-b",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.9908,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.7231,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "/api",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.5629,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "/api",
+      "headers_case": "xff-a",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.7743,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "/api",
+      "headers_case": "xff-b",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.1954,
+      "retry_after": null
+    },
+    {
+      "profile": "proxy-disabled",
+      "path_prefix": "/api",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.4698,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 19.9886,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "",
+      "headers_case": "xff-a",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.0309,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "",
+      "headers_case": "xff-b",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 2.7406,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.7055,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "/api",
+      "headers_case": "plain",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 4.1057,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "/api",
+      "headers_case": "xff-a",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.4724,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "/api",
+      "headers_case": "xff-b",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.4785,
+      "retry_after": null
+    },
+    {
+      "profile": "loopback-not-trusted",
+      "path_prefix": "/api",
+      "headers_case": "forwarded-only",
+      "expected_peer": "127.0.0.1",
+      "actual_peer": "127.0.0.1",
+      "status": 200,
+      "bytes": 32,
+      "elapsed_ms": 3.6451,
+      "retry_after": null
+    }
+  ],
+  "timer_model": {
+    "input_changes": 25,
+    "delay_ms": 320,
+    "spacing_100ms_requests": 1,
+    "spacing_400ms_requests": 25,
+    "kind": "synthetic timer arithmetic, not actual browser/human telemetry"
+  },
+  "total_http_requests": 117,
+  "remaining": [
+    "multi-worker aggregate",
+    "concurrency/queue/cancellation",
+    "real proxy/container/origin enforcement",
+    "school NAT workload",
+    "approved rates and timeouts",
+    "user-facing retry UI"
+  ]
+}

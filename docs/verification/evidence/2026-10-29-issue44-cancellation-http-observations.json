@@ -1,0 +1,341 @@
+{
+  "scope": "controlled loopback HTTP; TEST policy; single process; no public targets",
+  "count": 48,
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/api/labs/sql-injection-easy/attempt",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 3346
+    },
+    {
+      "method": "GET",
+      "path": "/labs/reflected-xss-easy/render?query=hello",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 221
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/attempt",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 3346
+    },
+    {
+      "method": "GET",
+      "path": "/labs/reflected-xss-easy/render?query=hello",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 206
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/attempt",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 3346
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "GET",
+      "path": "/labs/reflected-xss-easy/render?query=%3Cscript%3ESECRET_DUMMY%3C%2Fscript%3E",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 221
+    },
+    {
+      "method": "GET",
+      "path": "/labs",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1786
+    },
+    {
+      "method": "GET",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 405,
+      "retry_after": null,
+      "bytes": 31
+    },
+    {
+      "method": "GET",
+      "path": "/labs/missing",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 404,
+      "retry_after": null,
+      "bytes": 22
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 2
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 503,
+      "retry_after": null,
+      "bytes": 116
+    },
+    {
+      "method": "POST",
+      "path": "/labs/probe/attempt",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 11
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/probe/attempt",
+      "status": null,
+      "outcome": "client closed without reading a response"
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 503,
+      "retry_after": null,
+      "bytes": 116
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze/",
+      "status": 307,
+      "retry_after": null,
+      "bytes": 0
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/api/labs/sql-injection-easy/analyze/",
+      "status": 307,
+      "retry_after": null,
+      "bytes": 0
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/%73ql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/api/labs/%73ql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 422,
+      "retry_after": null,
+      "bytes": 68
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "retry_after": null,
+      "bytes": 1228
+    },
+    {
+      "method": "HEAD",
+      "path": "/labs",
+      "status": 429,
+      "retry_after": "1",
+      "bytes": 0
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "bytes": 1228,
+      "kind": "same keepalive connection"
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 429,
+      "bytes": 131,
+      "kind": "same keepalive connection"
+    },
+    {
+      "method": "POST",
+      "path": "/labs/sql-injection-easy/analyze",
+      "status": 200,
+      "bytes": 1228,
+      "kind": "same keepalive connection"
+    }
+  ]
+}

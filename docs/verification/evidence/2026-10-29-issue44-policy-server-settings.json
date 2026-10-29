@@ -1,0 +1,10 @@
+{
+  "workers": 1,
+  "proxy_headers": false,
+  "forwarded_allow_ips": "",
+  "limit_concurrency": null,
+  "backlog": 2048,
+  "timeout_keep_alive": 5,
+  "timeout_graceful_shutdown": null,
+  "reload": false
+}

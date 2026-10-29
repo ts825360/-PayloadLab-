@@ -1,0 +1,56 @@
+{
+  "authorization": "User said 진행시켜 after agreeing detailed #44 + short #6/#24 linked comments",
+  "scope": "three issue comments only; no commits/push/PR/checkbox/closing",
+  "comments": [
+    {
+      "issue": 44,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6489536262",
+      "id": 6489536262,
+      "author": "dtd2428",
+      "action": "created",
+      "body": "## #44 진행 보고·정책 검토 요청 — 이수웅 (2026-10-29)\n\n담당 이수웅(2284033, GitHub dtd2428), AI 보조. 이번 작업 범위는 요청 빈도·동시 실행·IP/프록시 경계·거부 응답·취소/복구와 검증 근거 정리입니다. 초기 검토 목표는 2026-11-05 제안이며, 전체 완료일은 정책·운영 조건 결정 후 조정합니다. 목표일을 최종 확정했다는 뜻은 아닙니다.\n\n변경/조사 파일:\n\n- backend/app/core/admission.py, admission_guard.py, lab_paths.py, backend/app/review_app.py.\n- backend/app/main.py, routes/labs.py, docker-compose.yml의 현재 흐름과 적용 범위 조사.\n- frontend/src/api.js의 알려진429/503 안내, 기존 App/Lens 전달 흐름.\n- backend/tests/test_admission*.py, frontend/src/admission-feedback.test.jsx 및 docs/verification·docs/handoff/issue-44.md.\n\n구현한 내용:\n\n- 전체/분류/선택적 peer 예산과 동시 실행·유한 peer 상태. 검토 앱에서 controller를 명시할 때만 활성화합니다.\n- root/mount의 공통 집계, loopback no-proxy 설정, 고정429/503·render 안내 HTML·재시도 문구.\n- 취소된 수신/송신 대기 정리, 실제 worker 완료까지 슬롯 유지, 종료 drain 콜백 처리.\n\n검증 기록:\n\n- 마지막 제품 변경 후보에서 backend433개 통과(#44 관련71 포함). 실제 loopback HTTP48건과 취소 경쟁20회 확인.\n- 프론트 전체138개·빌드488모듈, 이후 관련24개 재확인 기록. 이 수들은 서로 다른 단계 결과이며 이번 댓글 작성 때 재실행한 것이 아닙니다.\n- 정책 단계의 최신 admission 포함HTTP816건 측정, A안133ms 가상12시나리오5858입장, 후속48개 지연 모형·4개 독립 전체 상한 대조.\n- 계산은 원자료와 일치했습니다. A안2N은161ms 응답에서도 이전 미리보기와 다음 분석/실행이 겹치는 반례가 있어 B안3N을 비교 대안으로 추가했습니다. B안도 실제 운영 검증 전입니다.\n\n완료 기준/남은 결정:\n\n- 태성님이 N·A/B·여유폭·신뢰 프록시/운영 전제를 결정하거나 보류해야 합니다.\n- 목표 Python3.12·1CPU/256m, 본문/전체 timeout·다중 worker 공유 집계·원본 API 접근 차단·실제 브라우저/NAT·운영 경보/긴급 중지는 미검증 또는 미결정입니다.\n- 기본 app.main.app·Compose에 미승인 정책을 적용하지 않았습니다. 실제 확인한 기준만 체크하고 전체 기준 충족/팀 검토 전 종료하지 않습니다.\n\n정책 검토는 #6/#24와 연결합니다. 상세 로컬 문서는 docs/verification/2026-10-29-issue44-policy-proposal.md, 2026-10-29-issue44-policy-second-verification.md, 2026-10-29-issue44-cancellation-recheck.md에 있습니다.\n\n현재 #44 코드·근거·설명은 로컬 미커밋/미푸시입니다. 실제 #44 commit/PR 링크는 아직 없고 원격 코드 검토에는 이후 공유가 필요합니다. 본문에 원격에 없는 문서 링크를 만들지 않았습니다. #19/#42 설명도 사용자 결정에 따라 #44와 함께 나중에 커밋·푸시합니다. Refs #44.\n\n### 정책 후보와 산정 이유 — 미확정\n\nN은 동시 학습 작업공간 수이며 태성님이 결정할 사항입니다. 사람 한 명의 여러 탭이나 학교 NAT를 실제 인증 사용자로 식별한 값이 아닙니다.\n\n- 자동분석320ms에서 ceil(1000/320)=4를 기준으로 분석·실행·render 분류별 초당4N/burst N을 제안했습니다. 실행/render에 같은 조작 주기를 허용하는 부분은 정책 선택입니다.\n- 목록/재연결 metadata는 초당N/burst N, 전체 labs는 초당13N/burst4N 후보입니다. 13N/4N은 분류별 상한 합계와 같으며 더 엄격한 독립 서비스 예산이 아닙니다.\n- 분류별 동시N, 전체는 A안2N/B안3N을 비교합니다. 앱 대기열0, IP별 예산은 기본 미사용 제안입니다. 기존 모듈은 peer 예산도 선택 주입할 수 있습니다.\n- A안2N은 응답161ms에도 이전 render와 다음 분석/실행이 겹쳐 거부되는 반례가 있습니다. B안3N은 응답320ms까지의 가상 모형에서 통과했으나 실제 용량을 검증한 것이 아닙니다. N=4의 B안12동시는 실측 상단8 밖입니다.\n- 서버 프로세스별 평균 CPU의 최대8.961ms/요청으로 혼합 비용을 계획했습니다. 전체13N 기준 N=1/4/8/16의 계획치는1core 대비 약11.6/46.6/93.2/186.4%입니다. 평균 기반 계획이며 최악 입력 보호·지원 인원 보장이 아닙니다. 50% 검토선은 팀이 검토할 여유 정책입니다.\n- 현재 실측은 Windows Python3.13·논리CPU8개이며 Compose1CPU/256m이 적용되지 않았습니다. 요청 시작 후320ms는 후보 목표이며 hard timeout은 미정·미구현입니다.\n\nN·A/B·숫자/여유폭·time limit·신뢰 프록시/원본 API 조건을 #6에서 선택하거나 보류하고, 운영 잔여와 경보·긴급 중지 책임은 #24/#12와 연결해 주세요. 후보값·완료 기준 전체는 아직 승인되지 않았습니다.\n",
+      "body_sha256": "ab62e5293521b658040270963ebac91dd5411ed8f3c74d036f5782432f95b7a5"
+    },
+    {
+      "issue": 6,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/6#issuecomment-6489536897",
+      "id": 6489536897,
+      "author": "dtd2428",
+      "action": "created",
+      "body": "### #44 DEC-03/04 정책 선택 요청 (2026-10-29)\n\n이수웅(dtd2428)입니다. [#44 상세 진행·측정·후보 근거](https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6489536262)에 정리했습니다.\n\n태성님이 N(동시 학습 작업공간 수), 분류별/전체 요청 빈도와 burst, 동시 A안2N/B안3N, 앱 대기열·시간 제한·신뢰 프록시/원본 API 조건을 선택하거나 보류해 주세요. 후보의 전체13N/burst4N은 분류 상한 합계이며 더 엄격한 별도 서비스 상한은 아닙니다.\n\nA안은161ms 응답에서도 겹침 반례가 있고, B안은320ms 가상 모형만 확인했습니다. N=4이면 B안12동시는 실제 측정 상단8 밖입니다. N과 최종값은 미선택이고 기본 앱에 적용하지 않았습니다. 상세 코드·근거 파일은 아직 로컬 미커밋/미푸시입니다.\n\n결정값·이유·담당자·적용 버전을 남긴 뒤 필요한 운영환경 재검증으로 이어가겠습니다. Refs #44.\n",
+      "body_sha256": "60c14e96ea1d9122dbd0cd93785adf59a90c965bb9731591af534f636b07ccf8"
+    },
+    {
+      "issue": 24,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6489537551",
+      "id": 6489537551,
+      "author": "dtd2428",
+      "action": "created",
+      "body": "### #44 운영 잔여·최종 검토 연결 (2026-10-29)\n\n이수웅(dtd2428)입니다. [#44 상세 구현·검증·미완료](https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6489536262)를 기준으로 운영 검토 잔여를 연결합니다.\n\n- 기본 앱·Compose의 미승인 정책은 활성화하지 않았습니다. 로컬 검토의 no-proxy·worker1을 실제 운영 우회 방지/다중 worker 집계 완료로 보지 않습니다.\n- 목표 Python3.12·1CPU/256m 재측정, 본문/전체 timeout·강제 종료, 신뢰 프록시/원본 포트 차단, 다중 worker 공유 집계, 실제 브라우저/학교 NAT는 남아 있습니다.\n- #6의 N·정책 결정과 #12의 실제 운영 구성을 연결하고, 경보·비용·긴급 중지의 운영 담당자/책임을 정해야 합니다. 실제 운영 담당자를 이번 댓글로 임의 배정하지 않습니다.\n\n앱 제한을 DDoS 방어 보장이나 공개 승인으로 표현하지 않으며, 확인한 기준만 체크하고 전체 기준 충족 전 #44를 종료하지 않습니다. 코드·근거 파일은 아직 로컬 미공유 상태입니다. Refs #44.\n",
+      "body_sha256": "9addef3f565b10de8eae0c2cd788849d4df5b946974144d7cb2f837b6b54a825"
+    }
+  ],
+  "issues_after": {
+    "44": {
+      "state": "open",
+      "assignees": [
+        "dtd2428"
+      ],
+      "body_unchanged": true
+    },
+    "6": {
+      "state": "open",
+      "assignees": [
+        "ts825360"
+      ],
+      "body_unchanged": true
+    },
+    "24": {
+      "state": "open",
+      "assignees": [
+        "ts825360"
+      ],
+      "body_unchanged": true
+    }
+  }
+}

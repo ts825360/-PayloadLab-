@@ -1,0 +1,103 @@
+{
+  "kind": "read-only GitHub snapshot; no publishing",
+  "issues": [
+    {
+      "issue": 44,
+      "state": "open",
+      "assignees": [
+        "dtd2428"
+      ],
+      "updated_at": "2026-10-26T09:00:22Z",
+      "comments_returned": 0,
+      "comments": []
+    },
+    {
+      "issue": 6,
+      "state": "open",
+      "assignees": [
+        "ts825360"
+      ],
+      "updated_at": "2026-10-28T06:38:23Z",
+      "comments_returned": 2,
+      "comments": [
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/6#issuecomment-6398612166",
+          "updated_at": "2026-10-25T14:03:45Z",
+          "heading": "현재 구현을 여기서 마감하고, 남은 안전 정책·자문 정리는 팀원에게 인계합니다. 본인 작업은 Assignees에 본인을 지정하고, 시작 댓글 → 본인 계정 커밋/PR → docs 검증 결과 → 실제 확인한 체크 순서로 남깁니다. 기존 담당자가 있으면 "
+        },
+        {
+          "author": "dtd2428",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/6#issuecomment-6462476696",
+          "updated_at": "2026-10-28T06:38:23Z",
+          "heading": "## #42 DEC-02/03 제한값 검토 요청 — 이수웅(dtd2428)"
+        }
+      ]
+    },
+    {
+      "issue": 24,
+      "state": "open",
+      "assignees": [
+        "ts825360"
+      ],
+      "updated_at": "2026-10-28T06:38:24Z",
+      "comments_returned": 7,
+      "comments": [
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6378645128",
+          "updated_at": "2026-10-24T02:16:32Z",
+          "heading": "## 로컬 보호 설정과 공개 전 검토 분리"
+        },
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6378750710",
+          "updated_at": "2026-10-24T02:27:58Z",
+          "heading": "## 로컬 Docker 후속 검증 결과"
+        },
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6378841439",
+          "updated_at": "2026-10-24T02:37:47Z",
+          "heading": "## 1차 공개 준비 점검 — 현재 구성 그대로 공개 보류"
+        },
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6379041004",
+          "updated_at": "2026-10-24T03:00:01Z",
+          "heading": "## 문제"
+        },
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6398616758",
+          "updated_at": "2026-10-25T14:04:06Z",
+          "heading": "현재 기능 구현을 기준으로 남은 공개 전 보안 보완을 팀원에게 인계합니다. 전체 인계 안내는 #46입니다."
+        },
+        {
+          "author": "ts825360",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6398712957",
+          "updated_at": "2026-10-25T14:13:03Z",
+          "heading": "최종 공개 배포와 운영·복구 인계 담당 작업을 #47로 추가했습니다. #12의 운영 구성, #22/#13의 기능·UX, 이 이슈의 보안 판단을 근거로 삼고, 대상 환경·URL/공개 범위·SHA/이미지·비용·운영 책임·잔여 위험·복구 방법에 대한 사용자"
+        },
+        {
+          "author": "dtd2428",
+          "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6462476899",
+          "updated_at": "2026-10-28T06:38:24Z",
+          "heading": "## #42 DEC-02/03 제한값 검토 요청 — 이수웅(dtd2428)"
+        }
+      ]
+    }
+  ],
+  "draft": {
+    "path": "docs\\verification\\2026-10-29-issue44-policy-review-draft.md",
+    "sha256": "2a8eea9314d408fa6d39ec566a2d3d0b59d17ab2980576c6afd4ef581cc21385",
+    "sections": [
+      "#44",
+      "#6",
+      "#24"
+    ],
+    "state": "ready for user approval; not published",
+    "outbound_scope": "three issue comments only; no git operations or closing",
+    "product_source_hashes_unchanged": true
+  }
+}
