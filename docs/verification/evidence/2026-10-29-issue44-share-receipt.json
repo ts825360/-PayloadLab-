@@ -1,0 +1,58 @@
+{
+  "scope": "verified code/docs push; publication checkpoint follows as metadata-only commit",
+  "branch": "suwoong(#19.#42,#44)",
+  "verified_remote_head": "b168c7f6444748dcc6721913b6e49999230d6b1f",
+  "commits": [
+    {
+      "sha": "a6beb8aee7de8e24177c5a5052bd0a4b2dba4065",
+      "author": "dtd2428",
+      "url": "https://github.com/ts825360/-PayloadLab-/commit/a6beb8aee7de8e24177c5a5052bd0a4b2dba4065",
+      "subject": "feat: add opt-in request admission and retry feedback (#44)"
+    },
+    {
+      "sha": "b168c7f6444748dcc6721913b6e49999230d6b1f",
+      "author": "dtd2428",
+      "url": "https://github.com/ts825360/-PayloadLab-/commit/b168c7f6444748dcc6721913b6e49999230d6b1f",
+      "subject": "docs: explain issue #19 #42 #44 changes and preserve verification"
+    }
+  ],
+  "handoff_files": [
+    {
+      "path": "docs/handoff/README.md",
+      "blob": "35c61664e2f45cc630699a3c0ffc8c643f1e7b6e",
+      "url": "https://github.com/ts825360/-PayloadLab-/blob/b168c7f6444748dcc6721913b6e49999230d6b1f/docs/handoff/README.md",
+      "content_matches_commit": true
+    },
+    {
+      "path": "docs/handoff/issue-19.md",
+      "blob": "d437c81234d48cc7c44abcc4ce20c6d777dfd519",
+      "url": "https://github.com/ts825360/-PayloadLab-/blob/b168c7f6444748dcc6721913b6e49999230d6b1f/docs/handoff/issue-19.md",
+      "content_matches_commit": true
+    },
+    {
+      "path": "docs/handoff/issue-42.md",
+      "blob": "b9ad8663784c8dc4ef4a0c7286a41c16e9c85d98",
+      "url": "https://github.com/ts825360/-PayloadLab-/blob/b168c7f6444748dcc6721913b6e49999230d6b1f/docs/handoff/issue-42.md",
+      "content_matches_commit": true
+    },
+    {
+      "path": "docs/handoff/issue-44.md",
+      "blob": "149154e81cecbda9192cc0759e550ef222446740",
+      "url": "https://github.com/ts825360/-PayloadLab-/blob/b168c7f6444748dcc6721913b6e49999230d6b1f/docs/handoff/issue-44.md",
+      "content_matches_commit": true
+    }
+  ],
+  "issue_states_at_verification": {
+    "19": "open",
+    "42": "open",
+    "44": "open"
+  },
+  "not_performed": [
+    "PR creation",
+    "main merge",
+    "issue checkbox edits/closing",
+    "policy activation",
+    "new issue comments"
+  ],
+  "validation": "source hashes match433 backend candidate; prior frontend138/build488 + related24; no product rerun during share"
+}
