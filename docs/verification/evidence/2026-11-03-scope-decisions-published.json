@@ -1,0 +1,68 @@
+{
+  "source_sha": "ba4566352f9f52c79444f70a3a90222f1c00b10c",
+  "comments": [
+    {
+      "issue": 42,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6592398160",
+      "id": 6592398160,
+      "body": "## 2026-11-03 SQL 학습 범위 검토 방향·현재 시험 허용 함수 정리\n\n이수웅(dtd2428)이 전달받은 태성님의 직접 테스트 후 검토 방향을 사용자 요청에 따라 기록합니다. AI 보조로 현행 코드와 입력 결과를 확인했습니다. 최종 함수 목록·연산 범위·제한값을 승인한 댓글은 아닙니다.\n\n### 검토 방향\n- SQL은 정해진 공격 원리를 학습하는 범위로 제한하고, 일반 SQL 함수를 폭넓게 지원하는 연습장으로 확장하지 않습니다.\n- 박태성·admin 같은 일반 입력, 빈 값, 잘못된 구문도 Lens가 설명할 수 있도록 계속 받습니다. 공격문만 통과시키는 필터를 만들겠다는 뜻이 아닙니다.\n- 지원 범위 밖 연산은 ‘이 실습에서 지원하지 않는 연산’으로 안내해야 하며, 실제 문법 오류·조건 불충족과 구분합니다.\n- 함수/연산 목록과 수치 제한은 아직 미확정입니다. 확정 전 기본 서비스에는 정책을 적용하지 않습니다.\n- Lens 현재 구현 유지 및 추가 설명 확장 중단 방향은 #19, 요청량/동시 이용 정책 보류는 #44에 별도로 기록합니다.\n\n### 현재 허용 목록은 어디에 있는가?\n기준 SHA: ba4566352f9f52c79444f70a3a90222f1c00b10c.\n기본 app.main.app에는 함수 허용 목록/SQL 제한 정책이 적용되어 있지 않습니다. 검토 서버와 시험에 주입한 authorizer가 length/printf/sum을 허용합니다. 제한 모듈 자체에 확정 목록이 있는 구조가 아닙니다.\n\n| 시험 허용 함수 | 하는 일·작은 예 | 실제 프로젝트에서 허용/시험한 이유 | 현행 학습에 필수인가? |\n| --- | --- | --- | --- |\n| length | length('abc') → 3 | 검토 서버·SQL 단위검사·#44 측정 authorizer에 포함. 기존 관련 SQL 시험/측정 호출에서는 실제 length 사용 근거를 찾지 못했습니다. 이번 작은 입력에서 실행 가능함만 확인했습니다. | 현행 이름 비교·따옴표·OR·주석·Normal 필터 우회에 필수 아님. 학습 목표가 없다면 남길 근거 부족 |\n| printf | printf('%s','abc') → abc | test_total_result_cap_is_separate_from_single_cell에서 긴 문자열을 여러 행 생성해 전체 결과 bytes 초과를 시험 | 학습 단계에는 필수 아님. 제한 기능 검증용 필요와 서비스 허용 필요는 별개 |\n| sum | users의 id를 sum(id) → 3 | 재귀 CTE+sum(x)으로 VM 예산 초과·공유 예산·연결 정리·복구를 시험. #44 기존 무거운 입력 측정에도 사용 | 학습 단계에는 필수 아님. 검증용 정책과 최종 학습 정책을 분리해 결정 필요 |\n\n위 내용은 세 함수를 지금 제거/유지하겠다는 확정안이 아닙니다. 세 함수 모두 교육상 필수라서 허용했다고 설명할 근거는 없습니다. 현재 SQL Easy 3단계와 Normal 2단계는 이 함수 없이 진행됩니다.\n\nSELECT/READ/RECURSIVE는 authorizer 동작 분류이며 함수 이름이 아닙니다. OR·비교·주석·UNION도 함수가 아닙니다. 특히 RECURSIVE는 재귀 계산량 시험용 허용입니다. 함수 목록만 정한다고 최종 연산 범위까지 자동 확정되는 것은 아닙니다. UNION 해설을 추가 확장하는 작업도 진행하지 않습니다.\n\n### 이번 확인\n기본 앱/기존 검토 앱 각각 13건, 총 26건의 로컬 프로세스 내 ASGI 요청을 확인했고 기대 결과와 일치했습니다.\n- 박태성/admin/빈 값: 0행·조건 불충족 설명.\n- 따옴표 오류/OR 누락: syntax_error.\n- 참 조건+주석 성공, Normal 대문자 필터 변형과 혼합 대소문자 우회.\n- 세 함수의 작은 UNION 및 상수 UNION: 행 반환.\n- sqlite_version() UNION: 기본 앱은 행 반환, 시험용 검토 앱은 blocked/operation_blocked. 이 함수의 최종 금지를 결정했다는 뜻은 아닙니다.\n\n실제 TCP/브라우저/부하 검증은 아니며, 제품 코드는 수정하지 않았습니다. 기존 시험용 수치는 이번 소규모 확인에 그대로 사용했을 뿐 승인하지 않았습니다. 현재 확인한 차단 안내를 모든 미지원 구문 분류가 완성됐다는 뜻으로 확대하지 않습니다.\n\n로컬 상세 문서: docs/verification/2026-11-03-sql-function-scope-review.md.\n재현: Python으로 docs/verification/scripts/issue42_function_inventory.py 실행.\n원자료: docs/verification/evidence/2026-11-03-sql-function-inventory.json (기준 SHA·환경·authorizer 해시·입력·기대/실제 결과·Lens ID).\n새 문서/스크립트는 이번 요청으로 commit/push하지 않았으므로 존재하지 않는 원격 문서 링크를 붙이지 않습니다. 핵심 내용을 이 댓글에 직접 공유합니다.\n\n기존 코드/설명은 10월29일 개인 브랜치에 push 완료됐습니다. 이전 댓글의 ‘미푸시’는 작성 당시 상태입니다. 이후 제품 적용/완료 승인은 별개입니다.\n\n기존 실제 코드: [검토 서버 함수 목록](https://github.com/ts825360/-PayloadLab-/blob/ba4566352f9f52c79444f70a3a90222f1c00b10c/docs/verification/scripts/issue42_review_server.py), [제한 시험](https://github.com/ts825360/-PayloadLab-/blob/ba4566352f9f52c79444f70a3a90222f1c00b10c/backend/tests/test_sql_limits.py), [SQL 안내 단계](https://github.com/ts825360/-PayloadLab-/blob/ba4566352f9f52c79444f70a3a90222f1c00b10c/frontend/src/lesson-catalog.js), [세 이슈 설명](https://github.com/ts825360/-PayloadLab-/blob/ba4566352f9f52c79444f70a3a90222f1c00b10c/docs/handoff/README.md).\n\nRefs #42, #6, #24.",
+      "verified": true
+    },
+    {
+      "issue": 19,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/19#issuecomment-6592398753",
+      "id": 6592398753,
+      "body": "## 2026-11-03 Lens 검토 방향 — 현재 구현 유지\n\n이수웅(dtd2428)이 전달받은 태성님의 직접 테스트 후 검토 방향을 사용자 요청에 따라 기록합니다.\n\n- Lens는 현재 구현을 유지합니다.\n- 추가로 제안된 Easy 힌트 직접 안내 강화, 짧은 설명/자세히 보기 분리, UNION 해설 확장은 진행하지 않습니다.\n- SQL의 일반 이름(박태성/admin)·빈 값·잘못된 구문도 계속 받아 설명해야 합니다. 공격문만 받는 방향이 아닙니다.\n- 지원 밖 연산은 문법 오류와 구분하는 방향이며, 구체적인 함수/연산 범위와 수치는 아직 미확정입니다.\n\n이번에는 제품 코드/Lens 문안 추가 변경 없이 결정을 기록했습니다. 팀 검토 방향을 이슈 전체 완료·main 반영·PR 승인/종료로 간주하지 않으며 체크박스/상태를 변경하지 않습니다.\n\nSQL 함수 현황과 실제 기본/검토 앱 26건 확인: https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6592398160\n\n기존 #19/#42/#44 설명 문서는 개인 브랜치에 공유 완료됐고, 과거 댓글의 ‘미푸시’는 당시 상태입니다.\nRefs #19, #42.",
+      "verified": true
+    },
+    {
+      "issue": 44,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6592399407",
+      "id": 6592399407,
+      "body": "## 2026-11-03 요청량·동시 이용 정책 보류\n\n이수웅(dtd2428)이 전달받은 태성님의 검토 방향을 사용자 요청에 따라 기록합니다.\n\n- 요청량·동시 이용 정책은 이번에는 보류합니다.\n- 이전 N, A안2N/B안3N, 요청 빈도/burst 후보를 확정하거나 기본 서비스에 활성화하지 않습니다. 해당 선택/적용 작업을 계속 진행하지 않습니다.\n- 이미 작성한 스파이크·측정·설명은 근거로 보존하며 삭제하거나 운영 보호 완료로 표시하지 않습니다.\n- 정책 보류는 #44 완료 승인이나 공개 승인과 다릅니다. 이슈 종료/체크박스 수정은 하지 않습니다.\n\n기존 코드/설명은 10월29일 개인 브랜치에 push 완료됐습니다. 이전 댓글의 ‘로컬 미커밋/미푸시’는 작성 당시 상태입니다.\nSQL의 함수/제한값도 미확정이며 기본 서비스 적용 보류: https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6592398160\nRefs #44, #6, #24.",
+      "verified": true
+    },
+    {
+      "issue": 6,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/6#issuecomment-6592400069",
+      "id": 6592400069,
+      "body": "## 2026-11-03 후속 검토 방향 — SQL 범위 미확정·요청량 정책 보류\n\n사용자가 전달한 태성님의 직접 테스트 후 검토 방향을 기록합니다. 기존 정책 선택 요청의 현재 상태를 갱신합니다.\n\n- Lens 현행 구현 유지. 추가 Easy 직접 힌트·짧게/자세히 분리·UNION 해설 확장은 진행하지 않습니다.\n- SQL은 정해진 공격 원리의 학습 범위로 제한하는 방향입니다. 일반 이름·빈 값·잘못된 구문도 계속 받아 설명하며 공격문 전용 필터로 바꾸지 않습니다.\n- 현재 시험용 함수 length/printf/sum의 용도를 정리했습니다. 함수/연산 허용 목록과 수치 제한은 미확정이며 기본 서비스 적용은 보류합니다.\n- #44 요청량·동시 이용 정책은 이번에는 보류합니다. 이전 N/A/B 선택·활성화 요청은 계속 진행하지 않습니다.\n- 기존 구현·검증 자료는 개인 브랜치에 보존돼 있습니다. 이 결정만으로 운영 보호 완료·공개 승인·이슈 종료를 의미하지 않습니다.\n\n상세 함수 근거/확인: https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6592398160\nLens 유지 결정: https://github.com/ts825360/-PayloadLab-/issues/19#issuecomment-6592398753\n요청량 정책 보류: https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6592399407\n제품 정책 활성화, commit/push/PR/main 반영, 이슈 체크/상태 변경은 이번 작업에서 하지 않았습니다.\nRefs #19, #42, #44.",
+      "verified": true
+    },
+    {
+      "issue": 24,
+      "url": "https://github.com/ts825360/-PayloadLab-/issues/24#issuecomment-6592400642",
+      "id": 6592400642,
+      "body": "## 2026-11-03 후속 검토 방향 — SQL 범위 미확정·요청량 정책 보류\n\n사용자가 전달한 태성님의 직접 테스트 후 검토 방향을 기록합니다. 기존 정책 선택 요청의 현재 상태를 갱신합니다.\n\n- Lens 현행 구현 유지. 추가 Easy 직접 힌트·짧게/자세히 분리·UNION 해설 확장은 진행하지 않습니다.\n- SQL은 정해진 공격 원리의 학습 범위로 제한하는 방향입니다. 일반 이름·빈 값·잘못된 구문도 계속 받아 설명하며 공격문 전용 필터로 바꾸지 않습니다.\n- 현재 시험용 함수 length/printf/sum의 용도를 정리했습니다. 함수/연산 허용 목록과 수치 제한은 미확정이며 기본 서비스 적용은 보류합니다.\n- #44 요청량·동시 이용 정책은 이번에는 보류합니다. 이전 N/A/B 선택·활성화 요청은 계속 진행하지 않습니다.\n- 기존 구현·검증 자료는 개인 브랜치에 보존돼 있습니다. 이 결정만으로 운영 보호 완료·공개 승인·이슈 종료를 의미하지 않습니다.\n\n상세 함수 근거/확인: https://github.com/ts825360/-PayloadLab-/issues/42#issuecomment-6592398160\nLens 유지 결정: https://github.com/ts825360/-PayloadLab-/issues/19#issuecomment-6592398753\n요청량 정책 보류: https://github.com/ts825360/-PayloadLab-/issues/44#issuecomment-6592399407\n제품 정책 활성화, commit/push/PR/main 반영, 이슈 체크/상태 변경은 이번 작업에서 하지 않았습니다.\nRefs #19, #42, #44.",
+      "verified": true
+    }
+  ],
+  "issue_checks": {
+    "19": {
+      "body_unchanged": true,
+      "state_unchanged": true,
+      "state": "open"
+    },
+    "42": {
+      "body_unchanged": true,
+      "state_unchanged": true,
+      "state": "open"
+    },
+    "44": {
+      "body_unchanged": true,
+      "state_unchanged": true,
+      "state": "open"
+    },
+    "6": {
+      "body_unchanged": true,
+      "state_unchanged": true,
+      "state": "open"
+    },
+    "24": {
+      "body_unchanged": true,
+      "state_unchanged": true,
+      "state": "open"
+    }
+  },
+  "scope": "Authorized decision comments only; no product modification, commit/push/PR/main/checkbox/closing"
+}
